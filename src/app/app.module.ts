@@ -15,6 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReferralComponent } from './components/referral/referral.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { ItemService } from './services/item.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, RegisterComponent, DashboardComponent, ReferralComponent, ShoppingComponent, LogoutComponent],
@@ -26,9 +27,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     HttpClientModule,
     MatNativeDateModule,
     MaterialExampleModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule    
   ],
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
