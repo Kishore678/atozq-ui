@@ -1,1 +1,45 @@
-<p>login works!</p>
+<div class="login-form">
+    <form novalidate #loginForm="ngForm" (submit)="login(loginForm)" autocomplete="off">
+      <h1>Login</h1>
+      <div class="content">
+        <div class="input-field">
+            <input  
+            class="form-control form-control-lg"
+            placeholder="Username"
+            name="username"
+            #username="ngModel"
+            [(ngModel)]="service.loginData.username"
+            required
+            [class.invalid]="username.invalid && username.touched"
+        >
+        <div *ngIf="username.touched">
+            <p *ngIf="username.errors?.['required']">Username is required!</p>
+        </div>
+        </div>
+        <div class="input-field">
+            <input  
+            type="password"
+            class="form-control form-control-lg"
+            placeholder="Password"
+            name="password"
+            #password="ngModel"
+            [(ngModel)]="service.loginData.password"
+            required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            [class.invalid]="password.invalid && password.touched"
+        >
+        <div *ngIf="password.touched">
+            <p *ngIf="password.errors?.['required']">Password is required!</p>
+            <p *ngIf="password.errors?.['pattern']">
+                Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+            </p>
+        </div>
+        </div>
+        <a href="#" class="link">Forgot Your Password?</a>
+      </div>
+      <div class="action">
+        <button [routerLink]="['/register']" routerLinkActive="active">Register</button>
+        <button type="submit" [disabled]="loginForm.invalid">Sign in</button>
+      </div>
+    </form>
+  </div>

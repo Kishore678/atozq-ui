@@ -16,6 +16,8 @@ import { ReferralComponent } from './components/referral/referral.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ItemService } from './services/item.service';
+import { AuthService } from './services/auth.service';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, RegisterComponent, DashboardComponent, ReferralComponent, ShoppingComponent, LogoutComponent],
@@ -29,7 +31,7 @@ import { ItemService } from './services/item.service';
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [ItemService],
+  providers: [ItemService,AuthService,{provide: LocationStrategy, useClass:  PathLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -16,6 +16,7 @@
   
   h1.atozq-app-name {
     margin-left: 8px;
+    cursor: pointer;
   }
   
   .atozq-sidenav-container {
@@ -29,4 +30,29 @@
        `<body>` to be our scrolling element for mobile layouts. */
     flex: 1 0 auto;
   }
-  
+  .spacer {
+    flex: 1 1 auto;
+}
+.menuitems
+{
+  color: #ffffff;
+  margin-right:8px;
+  text-decoration:none;
+  font-size: 14px;  
+  cursor: pointer;
+}
+.sidemenu
+{
+  color: #0000008a;
+
+}
+.menuitems:hover
+{
+  text-decoration:underline;
+}
+.menutext{
+  position: relative;
+  top: -5px;
+}
+
+
