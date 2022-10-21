@@ -1,5 +1,5 @@
 export class Item {
-    itemId = 0;
+    itemId:number = 0;
     Category:string='';
     TitleText:string='';
     SubTitle:string='';
@@ -10,5 +10,6 @@ export class Item {
     DownloadButton:string='';
     ViewButton:string='';
     Comments:number=0;
+    action:string='';
 }
 

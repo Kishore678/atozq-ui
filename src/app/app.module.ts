@@ -19,9 +19,10 @@ import { ItemService } from './services/item.service';
 import { AuthService } from './services/auth.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { ItemFormComponent } from './components/dashboard/item-form/item-form.component';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent,ItemFormComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent,ItemFormComponent, DialogBoxComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

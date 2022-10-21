@@ -18,28 +18,28 @@ export class ItemFormComponent implements OnInit {
     
   }
 
-  onSubmit(form: NgForm) {
-    console.log(this.service.itemData);
-    if (this.service.itemData.itemId == 0) {
-      console.log("Hello");
-      this.insertRecord(form);
-    } else {
-      this.updateRecord(form);
-    }
+  // onSubmit(form: NgForm) {
+  //   console.log(this.service.itemData);
+  //   if (this.service.itemData.itemId == 0) {
+  //     console.log("Hello");
+  //     this.insertRecord(form);
+  //   } else {
+  //     this.updateRecord(form);
+  //   }
 
-  }
+  // }
 
-  insertRecord(form: NgForm) {
+  // insertRecord(form: NgForm) {
   
-  }
+  // }
 
-  updateRecord(form: NgForm) {
+  // updateRecord(form: NgForm) {
    
-  }
+  // }
 
-  resetForm(form: NgForm) {
-    form.form.reset();
-    this.service.itemData = new Item();
-  }
+  // resetForm(form: NgForm) {
+  //   form.form.reset();
+  //   this.service.itemData = new Item();
+  // }
 
 }

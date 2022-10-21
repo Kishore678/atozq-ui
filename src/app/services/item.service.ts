@@ -15,7 +15,7 @@ export class ItemService {
   {
     let items = [
       {
-        itemId:0,
+        itemId:1,
         Category:"referral",
         TitleText:"Country Delight",
         SubTitle:"Milk delivery service",
@@ -25,10 +25,11 @@ export class ItemService {
         ItemDescription:"Country Delight delivers farm-fresh cow and buffalo milk to your doorstep within a few hours of milking. Order now through the app and get pure dairy and bakery products every day.",
         DownloadButton:"",
         ViewButton:"",
-        Comments:0
+        Comments:0,
+        action:''
       },
       {
-        itemId:0,
+        itemId:2,
         Category:"referral",
         TitleText:"Google Pay",
         SubTitle:"Mobile payment service",
@@ -38,10 +39,12 @@ export class ItemService {
         ItemDescription:" Google Pay is a mobile payment service developed by Google to power in-app, online, and in-person contactless purchases on mobile devices, enabling users to make payments with Android phones, tablets",
         DownloadButton:"",
         ViewButton:"",
-        Comments:0
+        Comments:0,
+        action:''
+
       },
       {
-        itemId:0,
+        itemId:3,
         Category:"shopping",
         TitleText:"Redmi 9 Activ (Carbon Black, 4GB RAM, 64GB Storage)",
         SubTitle:"Shopping Deal",
@@ -51,7 +54,9 @@ export class ItemService {
         ItemDescription:"Processor: Octa-core Helio G35 and upto 2.3GHz clock speed \n Camera: 13+2 MP Dual Rear camera with AI portrait| 5 MP front camera\nDisplay: 16.58 centimeters (6.53-inch) HD+ display with 720x1600 pixels and 20:9 aspect ratio\nBattery: 5000 mAH large battery with 10W wired charger in-box\nMemory, \nStorage & SIM: 4GB RAM | 64GB storage | Dual SIM (nano+nano) + Dedicated SD card slot\n",
         DownloadButton:"",
         ViewButton:"",
-        Comments:0
+        Comments:0,
+        action:''
+
       }
     ];
 
