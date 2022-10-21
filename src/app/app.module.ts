@@ -18,9 +18,10 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { ItemService } from './services/item.service';
 import { AuthService } from './services/auth.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { ItemFormComponent } from './components/dashboard/item-form/item-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, RegisterComponent, DashboardComponent, ReferralComponent, ShoppingComponent, LogoutComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent,ItemFormComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

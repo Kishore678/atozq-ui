@@ -1,13 +1,14 @@
-export interface Item {
-    Category:string;
-    TitleText:string;
-    SubTitle:string;
-    AvatarUrl:string;
-    ItemImageUrl:string;
-    ItemHeadLine:string;
-    ItemDescription:string;
-    DownloadButton:string;
-    ViewButton:string;
-    Comments:number;
+export class Item {
+    itemId = 0;
+    Category:string='';
+    TitleText:string='';
+    SubTitle:string='';
+    AvatarUrl:string='';
+    ItemImageUrl:string='';
+    ItemHeadLine:string='';
+    ItemDescription:string='';
+    DownloadButton:string='';
+    ViewButton:string='';
+    Comments:number=0;
 }
 

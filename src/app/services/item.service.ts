@@ -7,13 +7,15 @@ import { Item } from '../models/item.model';
   providedIn: 'root'
 })
 export class ItemService {
-
+  
   constructor(private httpClient:HttpClient) { }
-
+  list: Item[] = [];
+  itemData: Item = new Item();
   GetItems(category:string):Observable<Item[]>
   {
     let items = [
       {
+        itemId:0,
         Category:"referral",
         TitleText:"Country Delight",
         SubTitle:"Milk delivery service",
@@ -26,6 +28,7 @@ export class ItemService {
         Comments:0
       },
       {
+        itemId:0,
         Category:"referral",
         TitleText:"Google Pay",
         SubTitle:"Mobile payment service",
@@ -38,6 +41,7 @@ export class ItemService {
         Comments:0
       },
       {
+        itemId:0,
         Category:"shopping",
         TitleText:"Redmi 9 Activ (Carbon Black, 4GB RAM, 64GB Storage)",
         SubTitle:"Shopping Deal",
@@ -62,6 +66,22 @@ export class ItemService {
 
     // return this.httpClient.get<Item[]>('/items');
   }
+  refreshList() {   
+      this.GetItems("").subscribe(res=>{
+        this.list = res;
+      });   
+  }
 
+  deleteToDoItem(id: number) {
+  
+  }
+
+  postToDoItem() {
+    
+  }
+
+  putToDoItem() {
+   
+  }
  
 }
