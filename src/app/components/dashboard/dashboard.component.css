@@ -1,5 +1,31 @@
 table {
     width: 100%;
   }
+  .mat-raised-button {
+    padding: 0 3px 0 3px;
+    margin: 3px 4px 3px 4px;
+    min-width: 80px;
+    border-radius: 1px;
+    font-size: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration:none;
+    border: none;
+    outline: none;
+ }
 
+ .toolbar{
+  word-break: break-word;
+  background: #006eff;
+  color: #fff;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;   
+  height: 64px;
+  font:500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}
   

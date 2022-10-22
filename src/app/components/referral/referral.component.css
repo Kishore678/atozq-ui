@@ -15,3 +15,17 @@
     float: left;
     width: 180px;
   }
+.toolbar{
+  word-break: break-word;
+  background: #006eff;
+  color: #fff;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;   
+  height: 64px;
+  font:500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}

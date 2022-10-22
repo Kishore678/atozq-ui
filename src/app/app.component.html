@@ -1,53 +1,57 @@
 <div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="atozq-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="atozq-app-name" routerLink="/home">ATOZQ.com</h1>
-    <span class="spacer"></span>
-    
-    <a class="menuitems" mat-list-item routerLink="/home">      
-      <mat-icon aria-hidden="false" aria-label="Home" fontIcon="home"></mat-icon><span class="menutext">Home</span>      
-     </a> 
-     <a class="menuitems" mat-list-item routerLink="/login" *ngIf="!isUserAuthenticated()">      
-      <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Login</span>      
-     </a> 
-     <a class="menuitems" mat-list-item routerLink="/register" *ngIf="!isUserAuthenticated()">      
-      <mat-icon aria-hidden="false" aria-label="Register" fontIcon="how_to_reg"></mat-icon><span class="menutext">Register</span>      
-     </a> 
-     <a class="menuitems" mat-list-item (click)="logOut()" *ngIf="isUserAuthenticated()">      
-      <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span class="menutext">Logout</span>      
-     </a> 
-   
-     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">  
-      <button mat-menu-item routerLink="/dashboard"  *ngIf="isUserAuthenticated()">
-        <mat-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
+
+    <mat-toolbar color="primary" class="atozq-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <a class="atozq-app-name" routerLink="/home">
+        <img src="/assets/atozq.svg" width="150" height="50" title="Home" alt="Home" class="ng-star-inserted">      </a>
+      <span class="spacer"></span>
+      
+      <a class="menuitems" mat-list-item routerLink="/home">      
+        <mat-icon aria-hidden="false" aria-label="Home" fontIcon="home"></mat-icon><span class="menutext">Home</span>      
+       </a> 
+       <a class="menuitems" mat-list-item routerLink="/login" *ngIf="!isUserAuthenticated()">      
+        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Login</span>      
+       </a> 
+       <a class="menuitems" mat-list-item routerLink="/register" *ngIf="!isUserAuthenticated()">      
+        <mat-icon aria-hidden="false" aria-label="Register" fontIcon="how_to_reg"></mat-icon><span class="menutext">Register</span>      
+       </a> 
+       <a class="menuitems" mat-list-item (click)="logOut()" *ngIf="isUserAuthenticated()">      
+        <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span class="menutext">Logout</span>      
+       </a> 
+     
+       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
       </button>
-      <button mat-menu-item routerLink="/referral">
-        <mat-icon>group_add</mat-icon>
-        <span>Referrals</span>
-      </button>
-      <button mat-menu-item routerLink="/shopping">
-        <mat-icon>shopping_basket</mat-icon>
-        <span>Shopping</span>
-      </button>
-      <button mat-menu-item routerLink="/login" *ngIf="!isUserAuthenticated()">
-        <mat-icon>account_circle</mat-icon>
-        <span>Login</span>
-      </button>
-      <button mat-menu-item routerLink="/register" *ngIf="!isUserAuthenticated()">
-        <mat-icon>how_to_reg</mat-icon>
-        <span>Register</span>
-      </button>
-      <button mat-menu-item (click)="logOut()" *ngIf="isUserAuthenticated()">
-        <mat-icon>remove_from_queue</mat-icon>
-        <span>Logout</span>
-      </button>
-    </mat-menu>
-        
-  </mat-toolbar>
+      <mat-menu #menu="matMenu">  
+        <button mat-menu-item routerLink="/dashboard"  *ngIf="isUserAuthenticated()">
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
+        </button>
+        <button mat-menu-item routerLink="/referral">
+          <mat-icon>group_add</mat-icon>
+          <span>Referrals</span>
+        </button>
+        <button mat-menu-item routerLink="/shopping">
+          <mat-icon>shopping_basket</mat-icon>
+          <span>Shopping</span>
+        </button>
+        <button mat-menu-item routerLink="/login" *ngIf="!isUserAuthenticated()">
+          <mat-icon>account_circle</mat-icon>
+          <span>Login</span>
+        </button>
+        <button mat-menu-item routerLink="/register" *ngIf="!isUserAuthenticated()">
+          <mat-icon>how_to_reg</mat-icon>
+          <span>Register</span>
+        </button>
+        <button mat-menu-item (click)="logOut()" *ngIf="isUserAuthenticated()">
+          <mat-icon>remove_from_queue</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+          
+    </mat-toolbar>
+
+
   <mat-sidenav-container class="atozq-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
