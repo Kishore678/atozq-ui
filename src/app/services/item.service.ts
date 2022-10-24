@@ -22,7 +22,7 @@ export class ItemService {
         AvatarUrl:"https://img2.apksum.com/e8/app.mycountrydelight.in.countrydelight/5.1.5/icon.png",
         ItemImageUrl:"https://paisawasooldeal.in/wp-content/uploads/2022/10/Country-Delight-Referral-Code-MILKRA3JGR-768x432.webp",
         ItemHeadLine:" CountryDelight Referral Code: MILKRA3JGR | Get 100% Cashback + Rs.150 Per Referral",
-        ItemDescription:"Country Delight delivers farm-fresh cow and buffalo milk to your doorstep within a few hours of milking. Order now through the app and get pure dairy and bakery products every day.",
+        ItemDescription:"Country Delight delivers farm-fresh cow and buffalo milk to your doorstep within a few hours of milking. Order now through the app and get pure dairy and bakery products every day. Country Delight delivers farm-fresh cow and buffalo milk to your doorstep within a few hours of milking. Order now through the app and get pure dairy and bakery products every day",
         DownloadButton:"",
         ViewButton:"",
         Comments:0,

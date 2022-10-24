@@ -7,20 +7,16 @@
 <mat-card class="item-card">
     <mat-card-header>
       <div mat-card-avatar class="item-header-image" style="background-image: url('{{card.AvatarUrl}}');"></div>
-      <mat-card-title>{{card.TitleText}}</mat-card-title>
-      <mat-card-subtitle>{{card.SubTitle}}</mat-card-subtitle>
+      <mat-card-title class="overflow-ellipsis">{{card.TitleText}}</mat-card-title>
+      <mat-card-subtitle class="overflow-ellipsis">{{card.SubTitle}}</mat-card-subtitle>
     </mat-card-header>
     <div class = "geeks">
       <img mat-card-image src='{{card.ItemImageUrl}}' alt='{{card.TitleText}}'>
   </div>
    
     <mat-card-content>
-      <b>
-        {{card.ItemHeadLine}}
-      </b>
-      <p>
-    {{card.ItemDescription}}
-    </p>
+      <h2 class="overflow-ellipsis">{{card.ItemHeadLine}}</h2>
+      <p class="overflow-ellipsis">{{card.ItemDescription}} </p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button>Use</button>      
