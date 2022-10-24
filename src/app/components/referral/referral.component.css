@@ -1,20 +1,3 @@
-.item-card {
-    max-width: 400px;
-    float: left;
-    margin: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .item-header-image {    
-    background-size: cover;
-  }
-
-  div.gallery {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 180px;
-  }
 .toolbar{
   word-break: break-word;
   background: #006eff;
@@ -28,4 +11,79 @@
   height: 64px;
   font:500 20px/32px Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: normal;
+}
+
+.item-card {
+  max-width: 400px;
+  float: left;
+  margin: 5px;
+  border: 1px solid #ccc;
+}
+
+.item-header-image {    
+  background-size: cover;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+span>small
+{
+  font-weight: lighter;
+  font-size: 14px;    
+}
+
+span {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  word-break: break-all;
+}
+.box
+{
+  word-break: break-word;
+  background: #006eff;
+  color: #fff;
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;   
+  height: 64px;
+  font:500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}
+
+.geeks {
+  width:100%;
+  height:300px;
+}
+img {
+  width:100%;
+  height:100%;
+  object-fit:scale-down;
+}
+
+.overflow-ellipsis
+{
+text-overflow: ellipsis;
+}
+p {
+display: -webkit-box;
+width: relative;
+-webkit-line-clamp: 4;
+-webkit-box-orient: vertical;
+overflow: hidden;
+height: 80px;
+}
+h2 {
+width: relative; 
+padding: 2px 5px;
+/* Both of the following are required for text-overflow */
+white-space: nowrap;
+overflow: hidden;
 }

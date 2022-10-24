@@ -33,7 +33,11 @@ export class DashboardComponent implements OnInit {
   openDialog(action:string,obj:any) {
     obj.action = action;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: 'relative',
+      width: 'relative',
+      panelClass: 'full-screen-modal',
       data:obj
     });
 

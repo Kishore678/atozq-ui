@@ -1,6 +1,10 @@
 table {
     width: 100%;
   }
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .mat-raised-button {
     padding: 0 3px 0 3px;
     margin: 3px 4px 3px 4px;
@@ -13,6 +17,13 @@ table {
     border: none;
     outline: none;
  }
+
+ span {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  word-break: break-all;
+}
 
  .toolbar{
   word-break: break-word;

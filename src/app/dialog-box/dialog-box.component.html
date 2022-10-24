@@ -1,14 +1,66 @@
 <!-- dialog-box.component.html -->
-<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
-<div mat-dialog-content>
-  <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-    <input placeholder="{{titleText}} TitleText" matInput [(ngModel)]="local_data.TitleText">
+<h1 mat-dialog-title><strong>{{action}}</strong></h1>
+<mat-dialog-content>
+<form class="example-form" novalidate *ngIf="action != 'Delete'; else elseTemplate">
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="itemId" name="itemId" [(ngModel)]="local_data.itemId" required placeholder="itemId">
   </mat-form-field>
-  <ng-template #elseTemplate>
-    Sure to delete <b>{{local_data.TitleText}}</b>?
-  </ng-template>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="doAction()">{{action}}</button>
-  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
-</div>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="Category" name="Category" [(ngModel)]="local_data.Category" required placeholder="Category">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="TitleText" name="TitleText" [(ngModel)]="local_data.TitleText" required placeholder="TitleText">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="SubTitle" name="SubTitle" [(ngModel)]="local_data.SubTitle" required placeholder="SubTitle">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="AvatarUrl" name="AvatarUrl" [(ngModel)]="local_data.AvatarUrl" required placeholder="AvatarUrl">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="ItemImageUrl" name="ItemImageUrl" [(ngModel)]="local_data.ItemImageUrl" required placeholder="ItemImageUrl">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="ItemHeadLine" name="ItemHeadLine" [(ngModel)]="local_data.ItemHeadLine" required placeholder="ItemHeadLine">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.ItemDescription" required placeholder="ItemDescription">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="DownloadButton" name="DownloadButton" [(ngModel)]="local_data.DownloadButton" required placeholder="DownloadButton">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="ViewButton" name="ViewButton" [(ngModel)]="local_data.ViewButton" required placeholder="ViewButton">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="Comments" name="Comments" [(ngModel)]="local_data.Comments" required placeholder="Comments">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="Comments" name="Comments" [(ngModel)]="local_data.Comments">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="action" name="action" [(ngModel)]="local_data.action" required placeholder="action">
+  </mat-form-field>
+</form>
+<ng-template #elseTemplate>  
+  <form class="example-form">
+  Sure to delete <b>{{local_data.TitleText}}</b>?
+</form>
+</ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="doAction()" mat-raised-button>{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-raised-button color="warn">Cancel</button>
+</mat-dialog-actions>

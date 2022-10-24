@@ -1,6 +1,7 @@
 <mat-toolbar class="toolbar">
   <span>Manage Items</span>
 </mat-toolbar>  
+<div class="center">
 <button mat-button (click)="openDialog('Add',{})" mat-raised-button color="primary">Add New</button>
 <table mat-table #table [dataSource]="this.service.list" class="mat-elevation-z8">
 
@@ -80,6 +81,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+</div>
   
   
 
