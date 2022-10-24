@@ -1,66 +1,62 @@
 <!-- dialog-box.component.html -->
-<h1 mat-dialog-title><strong>{{action}}</strong></h1>
+<h1 mat-dialog-title><strong>{{rowAction}}</strong></h1>
 <mat-dialog-content>
-<form class="example-form" novalidate *ngIf="action != 'Delete'; else elseTemplate">
+<form class="example-form" novalidate *ngIf="rowAction != 'Delete'; else elseTemplate">
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="itemId" name="itemId" [(ngModel)]="local_data.itemId" required placeholder="itemId">
+    <input matInput type="text" id="ItemId" name="ItemId" [(ngModel)]="local_data.itemId" required placeholder="ItemId">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="Category" name="Category" [(ngModel)]="local_data.Category" required placeholder="Category">
+    <input matInput type="text" id="Category" name="Category" [(ngModel)]="local_data.category" required placeholder="Category">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="TitleText" name="TitleText" [(ngModel)]="local_data.TitleText" required placeholder="TitleText">
+    <input matInput type="text" id="TitleText" name="TitleText" [(ngModel)]="local_data.titleText" required placeholder="TitleText">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="SubTitle" name="SubTitle" [(ngModel)]="local_data.SubTitle" required placeholder="SubTitle">
+    <input matInput type="text" id="SubTitle" name="SubTitle" [(ngModel)]="local_data.subTitle" required placeholder="SubTitle">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="AvatarUrl" name="AvatarUrl" [(ngModel)]="local_data.AvatarUrl" required placeholder="AvatarUrl">
+    <input matInput type="text" id="AvatarUrl" name="AvatarUrl" [(ngModel)]="local_data.avatarUrl" required placeholder="AvatarUrl">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemImageUrl" name="ItemImageUrl" [(ngModel)]="local_data.ItemImageUrl" required placeholder="ItemImageUrl">
+    <input matInput type="text" id="ItemImageUrl" name="ItemImageUrl" [(ngModel)]="local_data.itemImageUrl" required placeholder="ItemImageUrl">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemHeadLine" name="ItemHeadLine" [(ngModel)]="local_data.ItemHeadLine" required placeholder="ItemHeadLine">
+    <input matInput type="text" id="ItemHeadLine" name="ItemHeadLine" [(ngModel)]="local_data.itemHeadLine" required placeholder="ItemHeadLine">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.ItemDescription" required placeholder="ItemDescription">
+    <input matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.itemDescription" required placeholder="ItemDescription">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="DownloadButton" name="DownloadButton" [(ngModel)]="local_data.DownloadButton" required placeholder="DownloadButton">
+    <input matInput type="text" id="UseButton" name="UseButton" [(ngModel)]="local_data.useButton" required placeholder="UseButton">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ViewButton" name="ViewButton" [(ngModel)]="local_data.ViewButton" required placeholder="ViewButton">
+    <input matInput type="text" id="ShareButton" name="ShareButton" [(ngModel)]="local_data.shareButton" required placeholder="ShareButton">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="Comments" name="Comments" [(ngModel)]="local_data.Comments" required placeholder="Comments">
+    <input matInput type="text" id="CommentButton" name="CommentButton" [(ngModel)]="local_data.commentButton" required placeholder="CommentButton">
   </mat-form-field>
-
+ 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="Comments" name="Comments" [(ngModel)]="local_data.Comments">
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input matInput type="text" id="action" name="action" [(ngModel)]="local_data.action" required placeholder="action">
+    <input matInput type="text" id="RowAction" name="RowAction" [(ngModel)]="local_data.rowAction" required placeholder="RowAction">
   </mat-form-field>
 </form>
 <ng-template #elseTemplate>  
   <form class="example-form">
-  Sure to delete <b>{{local_data.TitleText}}</b>?
+  Sure to delete <b>{{local_data.titleText}}</b>?
 </form>
 </ng-template>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="doAction()" mat-raised-button>{{action}}</button>
+  <button mat-button (click)="doAction()" mat-raised-button>{{rowAction}}</button>
   <button mat-button (click)="closeDialog()" mat-raised-button color="warn">Cancel</button>
 </mat-dialog-actions>

@@ -17,61 +17,61 @@
     <!-- Name Column -->
     <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef> Category </th>
-      <td mat-cell *matCellDef="let element"> {{element.Category}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
     </ng-container>
   
     <!-- Weight Column -->
     <ng-container matColumnDef="titleText">
       <th mat-header-cell *matHeaderCellDef> TitleText </th>
-      <td mat-cell *matCellDef="let element"> {{element.TitleText}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.titleText}} </td>
     </ng-container>
   
     <!-- Symbol Column -->
     <ng-container matColumnDef="subTitle">
       <th mat-header-cell *matHeaderCellDef> SubTitle </th>
-      <td mat-cell *matCellDef="let element"> {{element.SubTitle}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.subTitle}} </td>
     </ng-container>
 
      
       <ng-container matColumnDef="avatarUrl">
         <th mat-header-cell *matHeaderCellDef> AvatarUrl </th>
-        <td mat-cell *matCellDef="let element"> {{element.AvatarUrl}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.avatarUrl}} </td>
       </ng-container>
 
           
       <ng-container matColumnDef="itemImageUrl">
         <th mat-header-cell *matHeaderCellDef> ItemImageUrl </th>
-        <td mat-cell *matCellDef="let element"> {{element.ItemImageUrl}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.itemImageUrl}} </td>
       </ng-container>
 
       <ng-container matColumnDef="itemHeadLine">
         <th mat-header-cell *matHeaderCellDef> ItemHeadLine </th>
-        <td mat-cell *matCellDef="let element"> {{element.ItemHeadLine}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.itemHeadLine}} </td>
       </ng-container>
 
       <ng-container matColumnDef="itemDescription">
         <th mat-header-cell *matHeaderCellDef> ItemDescription </th>
-        <td mat-cell *matCellDef="let element"> {{element.ItemDescription}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.itemDescription}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="downloadButton">
-        <th mat-header-cell *matHeaderCellDef> DownloadButton </th>
-        <td mat-cell *matCellDef="let element"> {{element.DownloadButton}} </td>
+      <ng-container matColumnDef="useButton">
+        <th mat-header-cell *matHeaderCellDef> UseButton </th>
+        <td mat-cell *matCellDef="let element"> {{element.useButton}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="viewButton">
-        <th mat-header-cell *matHeaderCellDef> ViewButton </th>
-        <td mat-cell *matCellDef="let element"> {{element.ViewButton}} </td>
+      <ng-container matColumnDef="shareButton">
+        <th mat-header-cell *matHeaderCellDef> ShareButton </th>
+        <td mat-cell *matCellDef="let element"> {{element.shareButton}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="comments">
+      <ng-container matColumnDef="commentButton">
         <th mat-header-cell *matHeaderCellDef> Comments </th>
-        <td mat-cell *matCellDef="let element"> {{element.Comments}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.commentButton}} </td>
       </ng-container>
 
         <!-- Action Column -->
-    <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
+    <ng-container matColumnDef="rowAction">
+        <th mat-header-cell *matHeaderCellDef> RowAction </th>
         <td mat-cell *matCellDef="let element" class="action-link"> 
           <a mat-raised-button color="primary" (click)="openDialog('Update',element)">Edit</a> | 
           <a mat-raised-button color="warn" (click)="openDialog('Delete',element)">Delete</a>  

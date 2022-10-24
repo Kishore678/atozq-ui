@@ -6,17 +6,17 @@
       <div class="col-md-3 mx-auto my-5" *ngFor="let card of cards">
         <mat-card class="item-card">
           <mat-card-header>
-            <div mat-card-avatar class="item-header-image" style="background-image: url('{{card.AvatarUrl}}');"></div>
-            <mat-card-title class="overflow-ellipsis">{{card.TitleText}}</mat-card-title>
-            <mat-card-subtitle class="overflow-ellipsis">{{card.SubTitle}}</mat-card-subtitle>
+            <div mat-card-avatar class="item-header-image" style="background-image: url('{{card.avatarUrl}}');"></div>
+            <mat-card-title class="overflow-ellipsis">{{card.titleText}}</mat-card-title>
+            <mat-card-subtitle class="overflow-ellipsis">{{card.subTitle}}</mat-card-subtitle>
           </mat-card-header>
           <div class = "geeks">
-            <img mat-card-image src='{{card.ItemImageUrl}}' alt='{{card.TitleText}}'>
+            <img mat-card-image src='{{card.itemImageUrl}}' alt='{{card.titleText}}'>
         </div>
          
           <mat-card-content>
-            <h2 class="overflow-ellipsis">{{card.ItemHeadLine}}</h2>
-            <p class="overflow-ellipsis">{{card.ItemDescription}} </p>
+            <h2 class="overflow-ellipsis">{{card.itemHeadLine}}</h2>
+            <p class="overflow-ellipsis">{{card.itemDescription}} </p>
           </mat-card-content>
           <mat-card-actions>
             <button mat-button>Use</button>      

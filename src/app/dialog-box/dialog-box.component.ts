@@ -10,17 +10,17 @@ import { Item } from '../models/item.model';
 })
 export class DialogBoxComponent {
   itemId:number = 0;
-  Category:string='';
-  TitleText:string='';
-  SubTitle:string='';
-  AvatarUrl:string='';
-  ItemImageUrl:string='';
-  ItemHeadLine:string='';
-  ItemDescription:string='';
-  DownloadButton:string='';
-  ViewButton:string='';
-  Comments:number=0;
-  action:string='';
+  category:string='';
+  titleText:string='';
+  subTitle:string='';
+  avatarUrl:string='';
+  itemImageUrl:string='';
+  itemHeadLine:string='';
+  itemDescription:string='';
+  useButton:string='';
+  shareButton:string='';
+  commentButton:number=0;
+  rowAction:string='';
   local_data:Item;
 
   constructor(
@@ -31,21 +31,21 @@ export class DialogBoxComponent {
     this.local_data = {...data};
 
     this.itemId = this.local_data.itemId;
-    this.Category=this.local_data.Category;
-    this.TitleText=this.local_data.TitleText;
-    this.SubTitle=this.local_data.SubTitle;
-    this.AvatarUrl=this.local_data.AvatarUrl;
-    this.ItemImageUrl=this.local_data.ItemImageUrl;
-    this.ItemHeadLine=this.local_data.ItemHeadLine;
-    this.ItemDescription=this.local_data.ItemDescription;
-    this.DownloadButton=this.local_data.DownloadButton;
-    this.ViewButton=this.local_data.ViewButton;
-    this.Comments=this.local_data.Comments;
-    this.action=this.local_data.action;   
+    this.category=this.local_data.category;
+    this.titleText=this.local_data.titleText;
+    this.subTitle=this.local_data.subTitle;
+    this.avatarUrl=this.local_data.avatarUrl;
+    this.itemImageUrl=this.local_data.itemImageUrl;
+    this.itemHeadLine=this.local_data.itemHeadLine;
+    this.itemDescription=this.local_data.itemDescription;
+    this.useButton=this.local_data.useButton;
+    this.shareButton=this.local_data.shareButton;
+    this.commentButton=this.local_data.commentButton;
+    this.rowAction=this.local_data.rowAction;   
   }
 
   doAction(){
-    this.dialogRef.close({event:this.action,data:this.local_data});
+    this.dialogRef.close({event:this.rowAction,data:this.local_data});
   }
 
   closeDialog(){

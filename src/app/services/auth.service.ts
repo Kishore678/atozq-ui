@@ -2,14 +2,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router} from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt'
+import { environment } from 'src/environments/environment';
 import { Login } from '../models/login.model';
 import { Register } from '../models/register.model';
 
+const apiBaseUrl = environment.apiBaseUrl;
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements CanActivate {
-  readonly authURL = "https://api.atozq.com/api/Authentication";
+  readonly authURL =  apiBaseUrl + "/api/Authentication";
   constructor(private jwtHelper:JwtHelperService,private router:Router,private http: HttpClient) { }
   loginData: Login = new Login();
   registerData: Register = new Register() 

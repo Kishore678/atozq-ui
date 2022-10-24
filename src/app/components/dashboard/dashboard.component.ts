@@ -14,14 +14,8 @@ export class DashboardComponent implements OnInit {
 
   displayedColumns: string[] = 
   ['itemId', 'category', 'titleText', 
-  'subTitle','action'];
-  
-  // ,'avatarUrl','itemImageUrl',
-  // 'itemHeadLine','itemDescription',
-  // 'downloadButton','viewButton','comments'];
+  'subTitle','rowAction'];   
 
-  
-  readonly baseURL = "https://api.atozq.com/api/ToDoItem";
   list: Item[]=[];  
   constructor(public service: ItemService,public dialog: MatDialog) { }
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
@@ -30,8 +24,8 @@ export class DashboardComponent implements OnInit {
     
   }
 
-  openDialog(action:string,obj:any) {
-    obj.action = action;
+  openDialog(rowAction:string,obj:any) {
+    obj.rowAction = rowAction;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -56,17 +50,17 @@ export class DashboardComponent implements OnInit {
    
     this.service.list.push({
       itemId:0,
-      Category:'',
-      TitleText:'',
-      SubTitle:'',
-      AvatarUrl:'',
-      ItemImageUrl:'',
-      ItemHeadLine:'',
-      ItemDescription:'',
-      DownloadButton:'',
-      ViewButton:'',
-      Comments:0,
-      action:''
+      category:'',
+      titleText:'',
+      subTitle:'',
+      avatarUrl:'',
+      itemImageUrl:'',
+      itemHeadLine:'',
+      itemDescription:'',
+      useButton:'',
+      shareButton:'',
+      commentButton:0,
+      rowAction:''
     });
     this.table.renderRows();
     
@@ -74,18 +68,16 @@ export class DashboardComponent implements OnInit {
   updateRowData(row_obj:Item){
     this.service.list = this.service.list.filter((value,key)=>{
       if(value.itemId == row_obj.itemId){
-        value.Category = row_obj.Category;
-        value.TitleText = row_obj.TitleText;
-        value.SubTitle = row_obj.SubTitle;
-        value.AvatarUrl = row_obj.AvatarUrl;
-        value.ItemImageUrl = row_obj.ItemImageUrl;
-        value.ItemHeadLine = row_obj.ItemHeadLine;
-        value.ItemDescription = row_obj.ItemDescription;
-        value.DownloadButton = row_obj.DownloadButton;
-        value.ItemDescription = row_obj.ItemDescription;
-        value.ViewButton = row_obj.ViewButton;
-        value.Comments = row_obj.Comments;
-  
+        value.category = row_obj.category;
+        value.titleText = row_obj.titleText;
+        value.subTitle = row_obj.subTitle;
+        value.avatarUrl = row_obj.avatarUrl;
+        value.itemImageUrl = row_obj.itemImageUrl;
+        value.itemHeadLine = row_obj.itemHeadLine;
+        value.itemDescription = row_obj.itemDescription;
+        value.useButton = row_obj.useButton;        
+        value.shareButton = row_obj.shareButton;
+        value.commentButton = row_obj.commentButton;  
       }
       return true;
     });
