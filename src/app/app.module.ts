@@ -5,7 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialExampleModule} from '../material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
@@ -19,6 +19,8 @@ import { ItemService } from './services/item.service';
 import { AuthService } from './services/auth.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { JwtHelper } from './helpers/jwt-helper';
+import { SpinnerService } from './services/spinner.service';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent],
@@ -32,7 +34,7 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [ItemService,AuthService,{provide: LocationStrategy, useClass:  PathLocationStrategy}],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthService,ItemService,SpinnerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

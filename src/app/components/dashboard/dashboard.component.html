@@ -1,9 +1,9 @@
 <mat-toolbar class="toolbar">
-  <span>Manage Items</span>
+  <span>Dashboard</span>
 </mat-toolbar>  
-<div class="center">
+<div class="center" *ngIf="getUser()=='admin'">
 <button mat-button (click)="openDialog('Add',{})" mat-raised-button color="primary">Add New</button>
-<table mat-table #table [dataSource]="this.service.list" class="mat-elevation-z8">
+<table mat-table #table [dataSource]="this.list" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

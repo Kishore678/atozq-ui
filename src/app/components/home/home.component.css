@@ -8,6 +8,10 @@
   .item-header-image {    
     background-size: cover;
   }
+  .mat-card-image
+  {
+    margin: 0;
+  }
 
   div.gallery {
     margin: 5px;
@@ -46,6 +50,7 @@
   .geeks {
     width:100%;
     height:300px;
+    background-color: #fafafa;
 }
 img {
     width:100%;
@@ -64,11 +69,15 @@ p {
   -webkit-box-orient: vertical;
   overflow: hidden;
   height: 80px;
+  background: #fafafa;
+  padding: 4px;  
 }
-h2 {
+h3 {
   width: relative; 
   padding: 2px 5px;
   /* Both of the following are required for text-overflow */
   white-space: nowrap;
   overflow: hidden;
+  color: #3f51b5;
+  text-decoration: underline;
 }

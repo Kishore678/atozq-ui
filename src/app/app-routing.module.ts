@@ -18,7 +18,8 @@ const routes: Routes = [
   {path:'logout',component:LogoutComponent},
   {path:'referral',component:ReferralComponent},
   {path:'shopping',component:ShoppingComponent},
-  {path:'dashboard',component:DashboardComponent,canActivate:[AuthService]}
+  {path:'dashboard',component:DashboardComponent,canActivate:[AuthService]
+}
 ];
 export function tokenGetter() {
   return localStorage.getItem("jwt");

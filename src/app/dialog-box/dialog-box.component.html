@@ -3,7 +3,7 @@
 <mat-dialog-content>
 <form class="example-form" novalidate *ngIf="rowAction != 'Delete'; else elseTemplate">
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemId" name="ItemId" [(ngModel)]="local_data.itemId" required placeholder="ItemId">
+    <input matInput type="text" id="ItemId" name="ItemId" [(ngModel)]="local_data.itemId" required placeholder="ItemId" disabled="true">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -43,7 +43,7 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="CommentButton" name="CommentButton" [(ngModel)]="local_data.commentButton" required placeholder="CommentButton">
+    <input matInput type="text" id="CommentButton" name="CommentButton" [(ngModel)]="local_data.commentButton" required placeholder="CommentButton" disabled="true">
   </mat-form-field>
  
   <mat-form-field class="example-full-width">
@@ -57,6 +57,6 @@
 </ng-template>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="doAction()" mat-raised-button>{{rowAction}}</button>
+  <button mat-button (click)="doAction()" mat-raised-button  color="primary">{{rowAction}}</button>
   <button mat-button (click)="closeDialog()" mat-raised-button color="warn">Cancel</button>
 </mat-dialog-actions>

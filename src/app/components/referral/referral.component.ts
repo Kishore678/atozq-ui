@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from 'src/app/models/item.model';
+import { ItemModel } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -8,11 +8,11 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./referral.component.css']
 })
 export class ReferralComponent implements OnInit {
- cards:Item[]=[];
+ cards:ItemModel[]=[];
   constructor(private itemService:ItemService) { }
 
   ngOnInit(): void {
-    this.itemService.GetItems("referral").subscribe(result=>{
+    this.itemService.getItems("referral").subscribe(result=>{
       this.cards = result; 
     });
   }

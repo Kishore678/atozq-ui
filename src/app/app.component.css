@@ -56,4 +56,21 @@
   top: -5px;
 }
 
+.spinner
+{
+  top: 40%;  
+  left: 40%;
+  right:40%;  
+  bottom:40%;
+  position: fixed;
+  background-color:#eceaea;
+  background-size: 50px;
+  background-repeat:no-repeat;
+  background-position:center;
+  z-index:10000000;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  display: flex; 
+} 
+
 

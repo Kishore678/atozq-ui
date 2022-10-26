@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient,  } from '@angular/common/http';
+import { Injectable, SkipSelf } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Item } from '../models/item.model';
+import { ItemModel } from '../models/item.model';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -10,30 +10,26 @@ const apiBaseUrl = environment.apiBaseUrl;
   providedIn: 'root'
 })
 export class ItemService {
-  readonly itemsAPI =  apiBaseUrl;
+
+  readonly itemsAPI =  `${apiBaseUrl}/api/Item`;
+
   constructor(private httpClient:HttpClient) { }
-  list: Item[] = [];
-  itemData: Item = new Item(); 
-  GetItems(category:string):Observable<Item[]>
-  {   
-   return this.httpClient.get<Item[]>(this.itemsAPI+'/api/Item');   
-  }
-  refreshList() {   
-      this.GetItems("").subscribe(res=>{
-        this.list = res;
-      });   
+
+  getItems(category:string):Observable<ItemModel[]>
+  { 
+   return this.httpClient.get<ItemModel[]>(this.itemsAPI);   
   }
 
-  deleteToDoItem(id: number) {
-  
+  deleteItem(id: number):Observable<boolean> {
+    return this.httpClient.delete<boolean>(`${this.itemsAPI}/${id}`);  
   }
 
-  postToDoItem() {
-    
+  postItem(item:ItemModel):Observable<ItemModel> { 
+   return this.httpClient.post<ItemModel>(this.itemsAPI,item);
   }
 
-  putToDoItem() {
-   
+  putItem(itemModel:ItemModel):Observable<ItemModel> {        
+  return this.httpClient.put<ItemModel>(`${this.itemsAPI}/${itemModel.itemId}`,itemModel);  
   }
  
 }

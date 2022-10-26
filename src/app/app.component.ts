@@ -1,7 +1,10 @@
 import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { SpinnerService } from './services/spinner.service';
 
 /** @title Responsive sidenav */
 @Component({
@@ -12,16 +15,19 @@ import { AuthService } from './services/auth.service';
 export class AppComponent implements OnDestroy {
   title = 'atozq-ui';
   mobileQuery: MediaQueryList;
-
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  value = 50;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private authservice:AuthService,private router:Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private authservice:AuthService,private router:Router,public spinnerService:SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
   }
+
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

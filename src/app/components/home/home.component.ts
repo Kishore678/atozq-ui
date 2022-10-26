@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from 'src/app/models/item.model';
+import { ItemModel } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
 @Component({
   selector: 'app-home',
@@ -7,10 +7,13 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-cards:Item[]=[];
+
+cards:ItemModel[]=[];
+
 constructor(private itemService:ItemService) { }
+
 ngOnInit() {
-this.itemService.GetItems("").subscribe(result=>{
+this.itemService.getItems("").subscribe(result=>{
   this.cards = result
 });
 }

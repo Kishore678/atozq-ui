@@ -1,7 +1,7 @@
 //dialog-box.component.ts
-import { Component, Inject, Optional } from '@angular/core';
+import { Component, EventEmitter, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Item } from '../models/item.model';
+import { ItemModel } from '../models/item.model';
 
 @Component({
   selector: 'app-dialog-box',
@@ -21,15 +21,13 @@ export class DialogBoxComponent {
   shareButton:string='';
   commentButton:number=0;
   rowAction:string='';
-  local_data:Item;
+  local_data:ItemModel;
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
     //@Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: Item) {
-    console.log(data);
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: ItemModel) {   
     this.local_data = {...data};
-
     this.itemId = this.local_data.itemId;
     this.category=this.local_data.category;
     this.titleText=this.local_data.titleText;
@@ -43,13 +41,18 @@ export class DialogBoxComponent {
     this.commentButton=this.local_data.commentButton;
     this.rowAction=this.local_data.rowAction;   
   }
-
+  onDoAction = new EventEmitter();
+  onCloseDialog = new EventEmitter();
   doAction(){
-    this.dialogRef.close({event:this.rowAction,data:this.local_data});
+    this.onDoAction.emit({dialog:this.dialogRef,data:this.local_data});
+    // this.dialogRef.close({event:this.rowAction,data:this.local_data});
   }
 
   closeDialog(){
-    this.dialogRef.close({event:'Cancel'});
+    
+    this.onCloseDialog.emit({dialog:this.dialogRef});
+
+    // this.dialogRef.close({event:'Cancel'});
   }
 
 }

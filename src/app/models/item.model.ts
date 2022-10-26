@@ -1,4 +1,4 @@
-export class Item {
+export class ItemModel {
     itemId:number = 0;
     category:string='';
     titleText:string='';
