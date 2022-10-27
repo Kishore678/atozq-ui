@@ -21,19 +21,17 @@
   }
   span>small
   {
-    font-weight: lighter;
+    font-weight:200;
     font-size: 14px;    
   }
 
   span {
     text-align: center;
     display: inline-block;
-    width: 100%;
-    word-break: break-all;
+    width: 100%;    
   }
-  .box
+ .box
   {
-    word-break: break-word;
     background: #006eff;
     color: #fff;
     display: flex;
@@ -41,8 +39,7 @@
     width: 100%;
     flex-direction: row;
     align-items: center;   
-    height: 64px;
-    font:500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    height: 64px;  
     letter-spacing: normal;
   }
 
@@ -79,4 +76,9 @@ h3 {
   overflow: hidden;
   color: #3f51b5;
   text-decoration: underline;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row 
+{
+padding:0;
 }
