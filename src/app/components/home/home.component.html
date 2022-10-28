@@ -15,7 +15,7 @@
   </div>   
     <mat-card-content>      
       <h3 class="overflow-ellipsis">{{card.itemHeadLine}}</h3>
-      <p class="overflow-ellipsis">{{card.itemDescription}} </p>
+      <p [innerHtml]="card.itemDescription | linkify" class="overflow-ellipsis"></p>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions style="text-align:center">

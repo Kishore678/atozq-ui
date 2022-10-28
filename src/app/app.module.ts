@@ -21,9 +21,10 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { JwtHelper } from './helpers/jwt-helper';
 import { SpinnerService } from './services/spinner.service';
+import { LinkifyPipe } from './helpers/linkify.pipe';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
