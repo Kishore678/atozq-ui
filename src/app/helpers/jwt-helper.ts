@@ -13,7 +13,9 @@ export class JwtHelper implements HttpInterceptor {
   constructor(private authService:AuthService,private spinnerService:SpinnerService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+
     this.spinnerService.show();
+
 
     const isLoggedIn = this.authService.isLoggedIn();
     const isApiUrl = req.url.startsWith(environment.apiBaseUrl);
@@ -26,10 +28,14 @@ export class JwtHelper implements HttpInterceptor {
    }
    return next.handle(req).pipe(tap((event: HttpEvent<any>) => {
                     if (event instanceof HttpResponse) {
+                   
                         this.spinnerService.hide();
+                     
                     }
                 }, (error) => {
+                 
                     this.spinnerService.hide();
+                
                 }));;
   }
 }

@@ -21,14 +21,16 @@ export class AppComponent implements OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private authservice:AuthService,private router:Router,public spinnerService:SpinnerService) {
+  constructor(public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private authservice:AuthService,private router:Router,public spinnerService:SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
 
   }
-
-
+  
+  ngAfterContentChecked(): void {
+   this.changeDetectorRef.detectChanges();
+  }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }

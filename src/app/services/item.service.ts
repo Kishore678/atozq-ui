@@ -12,6 +12,7 @@ const apiBaseUrl = environment.apiBaseUrl;
 export class ItemService {
 
   readonly itemsAPI =  `${apiBaseUrl}/api/Item`;
+  list: ItemModel[]=[]; 
 
   constructor(private httpClient:HttpClient) { }
 

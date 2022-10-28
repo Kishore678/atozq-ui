@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 import { ItemModel } from 'src/app/models/item.model';
@@ -13,11 +13,11 @@ import { ItemService } from 'src/app/services/item.service';
 export class DashboardComponent implements OnInit {
 
   displayedColumns: string[] = ['itemId', 'category', 'titleText','subTitle','rowAction'];   
-  list: ItemModel[]=[]; 
+
   deleted: ItemModel[]=[]; 
   itemData=new ItemModel(); 
  
-  constructor(public service: ItemService,public dialog: MatDialog) { }
+  constructor(public changeDetectorRef:ChangeDetectorRef,public service: ItemService,public dialog: MatDialog) { }
 
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
 
@@ -25,10 +25,14 @@ export class DashboardComponent implements OnInit {
     this.refresh();
   }
 
+  ngAfterContentChecked(): void {
+    this.changeDetectorRef.detectChanges();    
+   }
+
   refresh()
   {
     this.service.getItems("").subscribe(res=>{
-      this.list = res;
+      this.service.list = res;
     });  
   }
 getUser()
@@ -49,7 +53,7 @@ getUser()
     });
 
     dialogRef.componentInstance.onDoAction.subscribe((d) => {
-      debugger;
+
       if(d.data.rowAction == 'Add'){
         this.addRowData(d);        
       }else if(d.data.rowAction == 'Update'){
@@ -67,13 +71,16 @@ getUser()
 
   addRowData(d:any){      
     this.service.postItem(d.data).subscribe(
-      data=>{
-      if(data.itemId>0)
-      {      
-      this.list.push(data);
-      this.table.renderRows();
-      d.dialog.close();      
-      }
+      res=>{
+        if(res.itemId>0)
+        {      
+         this.service.list.push(res); 
+        d.dialog.close();      
+        }
+        this.service.list = this.service.list.filter((item,key)=>{          
+          return true;
+        });
+     
       },
       error=>{ 
         let er='';  
@@ -90,7 +97,7 @@ getUser()
 
   updateRowData(d:any){
       this.service.putItem(d.data).subscribe(res=>{      
-        this.list.filter(function(item){
+        this.service.list.filter(function(item){
            if(item.itemId==res.itemId)
            {
             item.category=res.category;
@@ -106,7 +113,7 @@ getUser()
             item.rowAction=res.rowAction;
             d.dialog.close();               
            }
-           return item.itemId==res.itemId; 
+           return true; 
         });
        
       },
@@ -124,22 +131,17 @@ getUser()
   }
 
   deleteRowData(d:any){
-
+ 
     this.service.deleteItem(d.data.itemId).subscribe(res=>{ 
-
-      this.deleted = this.list.filter(function(item){
+      this.service.list = this.service.list.filter((item,key)=>{     
         if(item.itemId==d.data.itemId && res==true)
         { 
+          this.service.list.splice(key,1);       
           d.dialog.close();
         }
-        return item.itemId==d.data.itemId && res==true; 
-      });   
-      
-      const index = this.list.indexOf(this.deleted[0]);
-      if(index>-1)
-      this.list.splice(index,1);  
-      this.table.renderRows();  
-
+        return this.service.list.indexOf(item)!=-1; 
+      });  
+     
     },
     error=>{ 
       let er='';  
@@ -149,8 +151,7 @@ getUser()
           });                 
       });
       window.alert(er);
-    } 
-    );
+    });
   }
 
   populateForm(selectedRecord: ItemModel) {
