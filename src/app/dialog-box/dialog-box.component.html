@@ -31,7 +31,7 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.itemDescription" required placeholder="ItemDescription">
+    <textarea matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.itemDescription" required placeholder="ItemDescription"></textarea>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -47,7 +47,7 @@
   </mat-form-field>
  
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="RowAction" name="RowAction" [(ngModel)]="local_data.rowAction" required placeholder="RowAction">
+    <input matInput type="text" id="RowAction" name="RowAction" [(ngModel)]="local_data.rowAction" required placeholder="RowAction" disabled="true">
   </mat-form-field>
 </form>
 <ng-template #elseTemplate>  

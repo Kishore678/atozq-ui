@@ -13,7 +13,9 @@ export class ShoppingComponent implements OnInit {
 constructor(private itemService:ItemService) { }
 ngOnInit() {
 this.itemService.getItems("shopping").subscribe(result=>{
-  this.cards = result
+  this.cards = result.filter((value,key)=>{
+    return value.category?.toLowerCase()=="shopping";
+  });
 });
 }
 }

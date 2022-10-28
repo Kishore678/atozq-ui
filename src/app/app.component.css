@@ -81,3 +81,16 @@ a {
   line-height:0;
 }
 
+.copyright
+{
+  background: #3f51b5;
+    color: #fff;
+    padding-top:10px;
+    opacity: 0.9;
+}
+
+.copyright a:link,.copyright a:visited,.copyright a:hover,.copyright a:active {
+  color: #fff;
+  background-color: transparent;
+  text-decoration: underline;
+}

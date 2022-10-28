@@ -13,8 +13,12 @@ export class ReferralComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemService.getItems("referral").subscribe(result=>{
-      this.cards = result; 
-    });
+      this.cards = result.filter((value,key)=>{
+        return value.category?.toLowerCase()=="referral";
+      }); 
+    },
+    error=>{console.log(error);}
+    );
   }
 
 }

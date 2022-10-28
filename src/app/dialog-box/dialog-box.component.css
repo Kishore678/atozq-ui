@@ -52,4 +52,7 @@
   ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
       background-color: #ff33cc;
   }
+  textarea{
+    height: 50px;
+  }
   
