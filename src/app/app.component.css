@@ -94,3 +94,13 @@ a {
   background-color: transparent;
   text-decoration: underline;
 }
+
+.wrapper {
+  position: relative;
+}
+.inner { 
+  padding: 12px;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}

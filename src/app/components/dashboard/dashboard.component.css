@@ -1,6 +1,12 @@
 table {
     width: 100%;
   }
+.mat-column-rowAction
+  {
+    padding-left: 10px;
+    padding-right: 10px;
+    white-space: nowrap;   
+  }
   .center {
     margin-left: auto;
     margin-right: auto;
@@ -16,6 +22,7 @@ table {
     text-decoration:none;
     border: none;
     outline: none;
+    cursor: pointer;
  }
 
  span {
@@ -40,3 +47,6 @@ table {
   letter-spacing: normal;
 }
   
+.action-link a:hover{
+  opacity: 0.5;
+}

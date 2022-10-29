@@ -12,7 +12,7 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class DashboardComponent implements OnInit {
 
-  displayedColumns: string[] = ['itemId', 'category', 'titleText','subTitle','rowAction'];   
+  displayedColumns: string[] = ['itemId', 'category', 'titleText','rowAction'];   
 
   deleted: ItemModel[]=[]; 
   itemData=new ItemModel(); 

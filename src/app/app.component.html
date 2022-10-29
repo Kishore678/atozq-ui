@@ -1,5 +1,4 @@
 <div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches">
-
     <mat-toolbar color="primary" class="atozq-toolbar">
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <a class="atozq-app-name" routerLink="/home">
@@ -47,7 +46,11 @@
       </mat-menu>
           
     </mat-toolbar>
-
+    <div class="wrapper">
+      <div class="inner">
+        <mat-progress-spinner [diameter]="100" *ngIf="spinnerService.visibility | async" class="spinner" [color]="color" [mode]="mode"></mat-progress-spinner>
+      </div>
+    </div>
 
   <mat-sidenav-container class="atozq-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -91,11 +94,6 @@
     </mat-sidenav>
 
     <mat-sidenav-content>  
-     
-    <mat-progress-spinner [diameter]="200" *ngIf="spinnerService.visibility | async"
-    class="spinner" [color]="color" [mode]="mode"></mat-progress-spinner>
-
-          
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
