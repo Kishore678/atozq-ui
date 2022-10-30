@@ -36,7 +36,7 @@
 }
 .menuitems
 {
-  color: #ffffff;
+  color: #08ac0a;
   margin-right:8px;
   text-decoration:none;
   font-size: 14px;  
@@ -44,8 +44,8 @@
 }
 .sidemenu
 {
-  color: #0000008a;
-
+  color: #08ac0a
+  /* line-height: 5px; */
 }
 .menuitems:hover
 {
@@ -83,14 +83,12 @@ a {
 
 .copyright
 {
-  background: #3f51b5;
-    color: #fff;
-    padding-top:10px;
-    opacity: 0.9;
+  color: #08ac0a;
+  line-height: 65px; 
 }
 
 .copyright a:link,.copyright a:visited,.copyright a:hover,.copyright a:active {
-  color: #fff;
+  color: #08ac0a;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -104,3 +102,46 @@ a {
   inset: 0;
   margin: auto;
 }
+
+.mat-toolbar.mat-primary 
+{
+  background:#ffffff;
+  color: #4caf50;
+}
+
+.atozq-app-name
+{
+  text-decoration: none;
+  color: #444;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+mat-sidenav-content
+{
+background-image: url(https://img.freepik.com/premium-photo/white-luxury-fabric-background-with-copy-space_46250-2192.jpg);
+/* background-image: url(/assets/bg.jpg); */
+background-repeat: repeat-x;
+animation: slideleft 20000s infinite linear;
+-webkit-animation: slideleft 20000s infinite linear;
+background-size: cover;
+-webkit-background-size:cover;
+-moz-background-size:cover; 
+background-attachment: fixed;
+position: relative;
+min-height: 100vh;
+}
+.home-toolbar
+{
+  padding: 12px;
+  font-size: 16px;
+  background:#08ac0a;
+  color: #fff;
+  text-align: center;
+}
+.mat-drawer-container
+{
+  overflow:visible;
+}
+

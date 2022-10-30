@@ -1,8 +1,11 @@
+
 <div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="atozq-toolbar">
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <a class="atozq-app-name" routerLink="/home">
-        <img src="/assets/atozq.svg" width="150" height="50" title="Home" alt="Home" class="ng-star-inserted">      </a>
+        <!-- <img src="/assets/atozq.svg" width="150" height="50" title="Home" alt="Home" class="ng-star-inserted">       -->
+        ATOZQ.com
+      </a>
       <span class="spacer"></span>
       
       <a class="menuitems" mat-list-item routerLink="/home">      
@@ -15,33 +18,33 @@
         <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span class="menutext">Logout</span>      
        </a> 
      
-       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">  
         <button mat-menu-item routerLink="/dashboard"  *ngIf="isUserAuthenticated()">
-          <mat-icon>dashboard</mat-icon>
-          <span>Dashboard</span>
+          <mat-icon class="sidemenu">dashboard</mat-icon>
+          <span class="sidemenu">Dashboard</span>
         </button>
         <button mat-menu-item routerLink="/referral">
-          <mat-icon>group_add</mat-icon>
-          <span>Referrals</span>
+          <mat-icon class="sidemenu">group_add</mat-icon>
+          <span class="sidemenu">Referrals</span>
         </button>
         <button mat-menu-item routerLink="/shopping">
-          <mat-icon>shopping_basket</mat-icon>
-          <span>Shopping</span>
+          <mat-icon class="sidemenu">shopping_basket</mat-icon>
+          <span class="sidemenu">Shopping</span>
         </button>
         <button mat-menu-item routerLink="/login" *ngIf="!isUserAuthenticated()">
-          <mat-icon>account_circle</mat-icon>
-          <span>Login</span>
+          <mat-icon class="sidemenu">account_circle</mat-icon>
+          <span class="sidemenu">Login</span>
         </button>
         <button mat-menu-item routerLink="/register" *ngIf="!isUserAuthenticated()">
-          <mat-icon>how_to_reg</mat-icon>
-          <span>Register</span>
+          <mat-icon class="sidemenu">how_to_reg</mat-icon>
+          <span class="sidemenu">Register</span>
         </button>
         <button mat-menu-item (click)="logOut()" *ngIf="isUserAuthenticated()">
-          <mat-icon>remove_from_queue</mat-icon>
-          <span>Logout</span>
+          <mat-icon class="sidemenu">remove_from_queue</mat-icon>
+          <span class="sidemenu">Logout</span>
         </button>
       </mat-menu>
           
@@ -94,15 +97,26 @@
     </mat-sidenav>
 
     <mat-sidenav-content>  
+      <div class="container">
+        <div class="row home-toolbar">        
+          <div class="col-md-12">   
+              Use, Refer and Earn. Way to get referral codes for your new app registration and earn by comment your referral code here.     
+          </div>
+        </div>
       <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  		<!-- copyright -->
-      <div class="copyright">
-        <p>© 2022 ATOZQ.com . All rights reserved | Design by <a href="https://atozq.com/" target="_blank">ATOZQ.com</a></p>
       </div>
-      <!-- //copyright --> 
+     
+    </mat-sidenav-content>    
+  </mat-sidenav-container>
+  <div class="row">        
+    <div class="col-md-12"> 
+  <span class="copyright">
+    <p>© 2022 ATOZQ.com . All rights reserved | Design by <a href="https://atozq.com/" target="_blank">ATOZQ.com</a></p>
+  </span>
+    </div>
+  </div>
 </div>
+
 
 
 

@@ -58,5 +58,6 @@ export class AuthService implements CanActivate {
   }
   logOut() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("user");
   }
 }

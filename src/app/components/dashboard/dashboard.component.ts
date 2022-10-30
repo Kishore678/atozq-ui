@@ -22,7 +22,26 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
 
   ngOnInit(): void {    
+    if(this.getUser()=="admin")
+    {
     this.refresh();
+    }
+    else
+    {
+    //   if(localStorage.getItem('saved')!=undefined)
+    //   {
+    // let ids = Array.from(JSON.parse(localStorage.getItem("saved")!));      
+    //   let outputData = "";
+    //   ids.forEach(function(value,index,arr){
+    //     outputData+=","+value;
+    //      if(index==arr.length-1)
+    //      {
+    //       window.alert(outputData);
+    //      }
+    //   });
+    // }
+    
+    }
   }
 
   ngAfterContentChecked(): void {
