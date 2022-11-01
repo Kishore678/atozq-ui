@@ -3,7 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 import { ItemModel } from 'src/app/models/item.model';
+import { UserInfo } from 'src/app/models/userinfo.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ItemService } from 'src/app/services/item.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,12 +21,13 @@ export class DashboardComponent implements OnInit {
   deleted: ItemModel[]=[]; 
   itemData=new ItemModel(); 
  
-  constructor(public changeDetectorRef:ChangeDetectorRef,public service: ItemService,public dialog: MatDialog) { }
+  constructor(public changeDetectorRef:ChangeDetectorRef,public prodService: ProductService,public dialog: MatDialog,public auth:AuthenticationService) 
+  {}
 
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
 
-  ngOnInit(): void {    
-    if(this.getUser()=="admin")
+  ngOnInit(): void {   
+    if(this.auth.user().IsAdmin)
     {
     this.refresh();
     }
@@ -50,14 +55,11 @@ export class DashboardComponent implements OnInit {
 
   refresh()
   {
-    this.service.getItems("").subscribe(res=>{
-      this.service.list = res;
+    this.prodService.getProductsByCategory("all").subscribe(res=>{
+      this.prodService.products = res;
     });  
   }
-getUser()
-{
-  return localStorage.getItem('user');
-}
+
   openDialog(rowAction:string,obj:any) {
     obj.rowAction = rowAction;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
@@ -89,14 +91,14 @@ getUser()
   }
 
   addRowData(d:any){      
-    this.service.postItem(d.data).subscribe(
+    this.prodService.postProduct(d.data).subscribe(
       res=>{
         if(res.itemId>0)
         {      
-         this.service.list.push(res); 
+         this.prodService.products.push(res); 
         d.dialog.close();      
         }
-        this.service.list = this.service.list.filter((item,key)=>{          
+        this.prodService.products = this.prodService.products.filter((item,key)=>{          
           return true;
         });
      
@@ -115,8 +117,8 @@ getUser()
   }
 
   updateRowData(d:any){
-      this.service.putItem(d.data).subscribe(res=>{      
-        this.service.list.filter(function(item){
+      this.prodService.putProduct(d.data.itemId,d.data).subscribe(res=>{      
+        this.prodService.products.filter(function(item){
            if(item.itemId==res.itemId)
            {
             item.category=res.category;
@@ -151,14 +153,14 @@ getUser()
 
   deleteRowData(d:any){
  
-    this.service.deleteItem(d.data.itemId).subscribe(res=>{ 
-      this.service.list = this.service.list.filter((item,key)=>{     
+    this.prodService.deleteProduct(d.data.itemId).subscribe(res=>{ 
+      this.prodService.products = this.prodService.products.filter((item,key)=>{     
         if(item.itemId==d.data.itemId && res==true)
         { 
-          this.service.list.splice(key,1);       
+          this.prodService.products.splice(key,1);       
           d.dialog.close();
         }
-        return this.service.list.indexOf(item)!=-1; 
+        return this.prodService.products.indexOf(item)!=-1; 
       });  
      
     },
@@ -175,14 +177,6 @@ getUser()
 
   populateForm(selectedRecord: ItemModel) {
     this.itemData = Object.assign({}, selectedRecord);
-  }
-
-  onDelete(id: number) {
-    if (confirm("Are you sure you want to delete this record?")) {
-      this.service.deleteItem(id).subscribe(res=>{
-
-      });
-    }
   }
 
 }

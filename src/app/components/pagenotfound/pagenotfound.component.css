@@ -1,0 +1,60 @@
+.w3layouts-main{  
+    background-image: url(https://img.freepik.com/premium-photo/white-luxury-fabric-background-with-copy-space_46250-2192.jpg);
+    background-repeat: repeat-x;
+    animation: slideleft 20000s infinite linear;
+    -webkit-animation: slideleft 20000s infinite linear;
+    background-size: cover;
+  -webkit-background-size:cover;
+  -moz-background-size:cover; 
+    background-attachment: fixed;
+    position: relative;
+  min-height: 100vh;
+  }
+  .link{
+    font:inherit;
+  }
+  .bg-layer {
+    background: rgba(255, 255, 255, 0.7);
+  min-height: 100vh;
+  }
+  /*-- //slide --*/
+  
+  /*--header start here--*/
+  .w3ls-header {
+    padding: 0em 0 0;
+  }
+  .header-main {
+    max-width: 310px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 999;
+    padding: 3em 2em;
+    background: rgba(255, 255, 255, 0.04);
+    -webkit-box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+    box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+    }
+    .notfound-error
+    {
+        color: red;
+        text-align: center;;
+    }
+    .center
+    {
+        text-align: center;
+    }
+    .notfound-action
+    {
+        font-size: 11px;
+        color: #444;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+    .notfound-action a
+    {
+        font-size: 11px;
+        color: #08ac0a;
+        text-transform: uppercase;
+    }
+    

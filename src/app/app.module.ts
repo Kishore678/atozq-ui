@@ -15,16 +15,17 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReferralComponent } from './components/referral/referral.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { ItemService } from './services/item.service';
-import { AuthService } from './services/auth.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { JwtHelper } from './helpers/jwt-helper';
 import { SpinnerService } from './services/spinner.service';
 import { LinkifyPipe } from './helpers/linkify.pipe';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ProductService } from './services/product.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -35,7 +36,7 @@ import { LinkifyPipe } from './helpers/linkify.pipe';
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthService,ItemService,SpinnerService],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,SpinnerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

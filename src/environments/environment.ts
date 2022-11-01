@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl:'https://api.atozq.com'
+  apiBaseUrl:'http://localhost:24288'
 };
 
 /*

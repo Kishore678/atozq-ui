@@ -56,10 +56,58 @@
     height: 50px;
   }
 
+  ::ng-deep .mat-dialog-title,.btnAction
+  {
+        background: #08ac0a;        
+        color: #fff;  
+  }
   ::ng-deep .mat-dialog-title
   {
-        background: #006eff;
-        padding: 10px;
-        color: #fff;    
+    padding: 5px; 
   }
-  
+
+  .item-card {
+    max-width: 400px;
+    float: left;
+    margin: 5px;
+    border: 1px solid #ccc;  
+    height: 500px;   
+  }
+  .mat-card-header .mat-card-title {    
+    color: #111111;
+}
+  .item-header-image {    
+    background-size: cover;
+  }
+  .mat-card-image
+  {
+    margin: 0;
+  }
+  .geeks {
+    width: 100%;
+    height: 200px;   
+   }
+
+img {
+    width:100%;
+    height:100%;
+    object-fit:scale-down;
+}
+
+p {
+  display: -webkit-box;
+  width: relative;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  padding: 4px;  
+}
+
+
+h2 {
+    width: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;;
+    margin: 0;
+    color:#111111;
+  }

@@ -1,23 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
-
-import { ItemService } from 'src/app/services/item.service';
+import { UserInfo } from 'src/app/models/userinfo.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  saved = [];
-  isMobile:Boolean=false;
 
-constructor(public service:ItemService,public dialog: MatDialog) { }
+saved = [];
 
-ngOnInit() {
-this.service.getItems("").subscribe(result=>{
-  this.service.list = result
+isMobile:Boolean=false;
+
+constructor(public service:ProductService,public dialog: MatDialog,private route:ActivatedRoute,public auth:AuthenticationService) {
+
+ }
+
+ngOnInit() { 
+
+  if(this.route.snapshot.params['id'])
+  {
+    this.service.getProductById (this.route.snapshot.params['id']).subscribe(result=>{
+      this.service.products.push(result);
+    });
+  }
+  else
+  {
+    this.service.getProductsByCategory("all").subscribe(result=>{
+  this.service.products = result;
 });
+  }
+
 }
 share(id:number,category:string,titleText:string)
 {
@@ -46,13 +63,9 @@ share(id:number,category:string,titleText:string)
   let domain = loc.protocol+"//"+(host=="localhost"?host+":"+loc.port:host);  
 
   window.open(
-    (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/item/"+id,
+    (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/product/"+id,
     '_blank' 
 );
-}
-getUser()
-{
-  return localStorage.getItem('user');
 }
 
 save(id:number)
@@ -100,7 +113,7 @@ openDialog(rowAction:string,obj:any) {
       // this.deleteRowData(d);
     }else if(d.data.rowAction=='Update')
     {
-      this.updateRowData(d);
+      this.updateRowData(d.data.itemId,d);
     }
     
   });
@@ -113,9 +126,9 @@ openDialog(rowAction:string,obj:any) {
   
 }
 
-updateRowData(d:any){
-  this.service.putItem(d.data).subscribe(res=>{      
-    this.service.list.filter(function(item){
+updateRowData(id:number,d:any){
+  this.service.putProduct(id,d.data).subscribe(res=>{      
+    this.service.products.filter(function(item){
        if(item.itemId==res.itemId)
        {
         item.category=res.category;

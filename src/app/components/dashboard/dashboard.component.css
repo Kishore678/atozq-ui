@@ -7,6 +7,10 @@ table {
     padding-right: 10px;
     white-space: nowrap;   
   }
+  .mat-column-rowAction .edit
+  {
+    color: #08ac0a;
+  }
   .center {
     margin-left: auto;
     margin-right: auto;
@@ -49,4 +53,9 @@ table {
   
 .action-link a:hover{
   opacity: 0.5;
+}
+
+.mat-raised-button
+{
+  background: #08ac0a;
 }

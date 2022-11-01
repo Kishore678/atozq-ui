@@ -3,7 +3,7 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { AuthenticationService } from './services/authentication.service';
 import { SpinnerService } from './services/spinner.service';
 
 /** @title Responsive sidenav */
@@ -18,17 +18,16 @@ export class AppComponent implements OnDestroy {
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
-
+ 
   private _mobileQueryListener: () => void;
 
-  constructor(public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private authservice:AuthService,private router:Router,public spinnerService:SpinnerService) {
+  constructor(public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-
+    this.mobileQuery.addListener(this._mobileQueryListener); 
   }
   
-  ngAfterContentChecked(): void {
+  ngAfterContentChecked(): void {   
    this.changeDetectorRef.detectChanges();
   }
   ngOnDestroy(): void {
@@ -36,12 +35,8 @@ export class AppComponent implements OnDestroy {
   }
   logOut()
   {
-    this.authservice.logOut(); 
+    this.auth.logOut(); 
     this.router.navigate(["/logout"]);
   }
-  isUserAuthenticated() {
-   return this.authservice.isLoggedIn();
-  }
-
 }
 

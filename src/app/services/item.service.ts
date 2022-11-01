@@ -12,13 +12,19 @@ const apiBaseUrl = environment.apiBaseUrl;
 export class ItemService {
 
   readonly itemsAPI =  `${apiBaseUrl}/api/Item`;
+  readonly productsAPI =  `${apiBaseUrl}/api/product`;
   list: ItemModel[]=[]; 
 
   constructor(private httpClient:HttpClient) { }
 
-  getItems(category:string):Observable<ItemModel[]>
+  getItemsByCategory(category:string):Observable<ItemModel[]>
   { 
-   return this.httpClient.get<ItemModel[]>(this.itemsAPI);   
+   return this.httpClient.get<ItemModel[]>(`${this.productsAPI}/${category}`);   
+  }
+
+  getItemById(id:number):Observable<ItemModel>
+  { 
+   return this.httpClient.get<ItemModel>(`${this.itemsAPI}/${id}`);   
   }
 
   deleteItem(id: number):Observable<boolean> {

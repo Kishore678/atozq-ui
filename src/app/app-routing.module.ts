@@ -5,21 +5,24 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ReferralComponent } from './components/referral/referral.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
-import { AuthService } from './services/auth.service';
+import { AuthenticationService } from './services/authentication.service';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'home',component:HomeComponent},
+  {path:'product',component:HomeComponent},
+  {path:'product/:id',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'logout',component:LogoutComponent},
   {path:'referral',component:ReferralComponent},
   {path:'shopping',component:ShoppingComponent},
-  {path:'dashboard',component:DashboardComponent,canActivate:[AuthService]
-}
+  {path:'dashboard',component:DashboardComponent,canActivate:[AuthenticationService]},
+  {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
+
 ];
 export function tokenGetter() {
   return localStorage.getItem("jwt");

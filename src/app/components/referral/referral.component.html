@@ -1,27 +1,26 @@
-<div class="container">
-  <mat-toolbar class="toolbar">
-    <span>Popular Referral Programs</span>
-  </mat-toolbar>  
-  <div class="row">
-    <div class="col-md-3" *ngFor="let card of cards">
+
+<div class="row">
+  <div class="col-md-4" *ngFor="let card of service.list">
 <mat-card class="item-card">
-  <mat-card-header>
-    <div mat-card-avatar class="item-header-image" style="background-image: url('{{card.avatarUrl}}');"></div>
-    <mat-card-title class="overflow-ellipsis">{{card.titleText}}</mat-card-title>
-    <mat-card-subtitle class="overflow-ellipsis">{{card.subTitle}}</mat-card-subtitle>
-  </mat-card-header>
-  <div class = "geeks">
-    <img mat-card-image src='{{card.itemImageUrl}}' alt='{{card.titleText}}'>
+<mat-card-header>
+  <div mat-card-avatar class="item-header-image" style="background-image: url('{{card.avatarUrl}}');"></div>
+  <mat-card-title class="overflow-ellipsis">{{card.titleText}}</mat-card-title>
+  <mat-card-subtitle class="overflow-ellipsis">{{card.subTitle}}</mat-card-subtitle>
+</mat-card-header>
+<div class = "geeks">
+ <a (click)="openDialog('View',card)"> <img mat-card-image src='{{card.itemImageUrl}}' alt='{{card.titleText}}'></a>
 </div>   
-  <mat-card-content>      
-    <h3 class="overflow-ellipsis">{{card.itemHeadLine}}</h3>
-    <p [innerHtml]="card.itemDescription | linkify" class="overflow-ellipsis"></p>
-  </mat-card-content>
-  <mat-divider></mat-divider>
-  <mat-card-actions style="text-align:center">
-    <button mat-raised-button color="basic"><mat-icon>remove_red_eye</mat-icon>View</button>            
-    <button mat-raised-button color="basic" mat-button><mat-icon>share</mat-icon>Share</button>
-    <button mat-raised-button color="basic" mat-button><mat-icon>comment</mat-icon>Comment</button>
-  </mat-card-actions>
+<mat-card-content>      
+  <h2 class="overflow-ellipsis">{{card.itemHeadLine}}</h2>
+  <p [innerHtml]="card.itemDescription | linkify" class="overflow-ellipsis"></p>
+</mat-card-content>
+<mat-divider></mat-divider>
+<mat-card-actions style="text-align:center">
+  <button (click)="openDialog('View',card)" mat-raised-button color="basic"><mat-icon>remove_red_eye</mat-icon>View</button>            
+  <button (click)="share(card.itemId,card.category,card.titleText)" mat-raised-button color="basic" mat-button><mat-icon>share</mat-icon>Share</button>
+  <button mat-raised-button color="basic" mat-button><mat-icon>comment</mat-icon>Comment</button>      
+  <button (click)="openDialog('Update',card)" *ngIf="user.IsLoggedIn && user.IsAdmin" mat-raised-button color="basic" mat-button><mat-icon>edit</mat-icon>Edit</button>
+  <button (click)="save(card.itemId)" mat-raised-button color="basic" mat-button><mat-icon>add_to_queue</mat-icon>Save</button>
+</mat-card-actions>
 </mat-card>
-</div></div></div>
+</div></div>
