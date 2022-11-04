@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
-import { UserInfo } from 'src/app/models/userinfo.model';
-import { AuthService } from 'src/app/services/auth.service';
-import { ItemService } from 'src/app/services/item.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-referral',
   templateUrl: './referral.component.html',
@@ -16,23 +15,22 @@ saved = [];
 
 isMobile:Boolean=false;
 
-user:UserInfo=new UserInfo();
+constructor(public service:ProductService,public dialog: MatDialog,private route:ActivatedRoute,public auth:AuthenticationService) {
 
-constructor(public service:ItemService,public dialog: MatDialog,private route:ActivatedRoute,public auth:AuthService) {
-  this.auth.UserDetails().subscribe(res=>{this.user = res;});
  }
 
-ngOnInit() {
+ngOnInit() { 
+
   if(this.route.snapshot.params['id'])
   {
-    this.service.getItemById(this.route.snapshot.params['id']).subscribe(result=>{
-      this.service.list.push(result);
+    this.service.getProductById (this.route.snapshot.params['id']).subscribe(result=>{
+      this.service.products.push(result);
     });
   }
   else
   {
-    this.service.getItemsByCategory("referral").subscribe(result=>{
-  this.service.list = result;
+    this.service.getProductsByCategory("referral").subscribe(result=>{
+  this.service.products = result;
 });
   }
 
@@ -67,10 +65,6 @@ share(id:number,category:string,titleText:string)
     (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/product/"+id,
     '_blank' 
 );
-}
-getUser()
-{
-  return localStorage.getItem('username');
 }
 
 save(id:number)
@@ -118,7 +112,7 @@ openDialog(rowAction:string,obj:any) {
       // this.deleteRowData(d);
     }else if(d.data.rowAction=='Update')
     {
-      this.updateRowData(d);
+      this.updateRowData(d.data.itemId,d);
     }
     
   });
@@ -131,9 +125,9 @@ openDialog(rowAction:string,obj:any) {
   
 }
 
-updateRowData(d:any){
-  this.service.putItem(d.data).subscribe(res=>{      
-    this.service.list.filter(function(item){
+updateRowData(id:number,d:any){
+  this.service.putProduct(id,d.data).subscribe(res=>{      
+    this.service.products.filter(function(item){
        if(item.itemId==res.itemId)
        {
         item.category=res.category;
@@ -179,4 +173,3 @@ updateRowData(d:any){
 // }
 
 }
-

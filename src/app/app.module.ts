@@ -23,9 +23,11 @@ import { LinkifyPipe } from './helpers/linkify.pipe';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ProductService } from './services/product.service';
 import { AuthenticationService } from './services/authentication.service';
+import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
+import { ResetpassComponent } from './components/resetpass/resetpass.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

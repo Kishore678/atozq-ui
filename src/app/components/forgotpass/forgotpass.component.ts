@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-forgotpass',
+  templateUrl: './forgotpass.component.html',
+  styleUrls: ['./forgotpass.component.css']
 })
-export class LoginComponent implements OnInit { 
+export class ForgotpassComponent implements OnInit { 
   invalidLogin: boolean | undefined;
 
   constructor(public service: AuthenticationService,
@@ -33,3 +33,4 @@ export class LoginComponent implements OnInit {
     );
   }
 }
+

@@ -3,6 +3,7 @@
 	<div class="bg-layer">
 		<!---728x90--->
 		<div class="header-main">
+			<h1 class="acc-heading">Log In</h1>
 			<div class="main-icon">
 				<span class="fa fa-eercast"></span>
 			</div>
@@ -51,7 +52,7 @@
 						<button type="submit" [disabled]="loginForm.invalid" class="btn">Log In</button>
 					</div>
 					<div class="links">
-						<p><a href="#">Forgot Password?</a></p>           
+						<p><a [routerLink]="['/forgotpass']">Forgot Password?</a></p>           
 						<p class="right"><a [routerLink]="['/register']" routerLinkActive="active">New User? Register</a></p>
 						<div class="clear"></div>
 					</div>

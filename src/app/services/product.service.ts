@@ -21,7 +21,7 @@ export class ProductService {
   // url: api/product/{category}
   getProductsByCategory(category:string):Observable<ItemModel[]>
   {
-    return this.http.get<ItemModel[]>(`${this.prodUrl}/${category}`);
+    return this.http.get<ItemModel[]>(`${this.prodUrl}/display/${category}`);
   }
 
   //get product by id

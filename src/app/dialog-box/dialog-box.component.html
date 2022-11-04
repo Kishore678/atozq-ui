@@ -51,7 +51,7 @@
   </mat-form-field>
 </form>
 
-<mat-card class="item-card">
+<mat-card class="item-card" *ngIf="rowAction=='View'">
   <mat-card-header>
     <div mat-card-avatar class="item-header-image" style="background-image: url('{{avatarUrl}}');"></div>
     <mat-card-title>{{titleText}}</mat-card-title>

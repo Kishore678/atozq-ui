@@ -33,6 +33,10 @@ background: rgba(255, 255, 255, 0.94);
   color: #222;
   width: 22px;
 }
+.acc-heading
+{
+  color:#08ac0a;
+}
 .main-icon {
   text-align: center;
 }

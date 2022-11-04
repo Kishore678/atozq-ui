@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
+import { ResetpassComponent } from './components/resetpass/resetpass.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path:'product/:id',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
+  {path:'forgotpass',component:ForgotpassComponent},
+  {path:'resetpass/:user/:token',component:ResetpassComponent},
   {path:'logout',component:LogoutComponent},
   {path:'referral',component:ReferralComponent},
   {path:'shopping',component:ShoppingComponent},

@@ -1,0 +1,94 @@
+
+<div class="w3layouts-main"> 
+	<div class="bg-layer">
+		<!---728x90--->
+		<div class="header-main">
+			<h1 class="acc-heading">Change Password</h1>
+			<div class="main-icon">
+				<span class="fa fa-eercast"></span>
+			</div>
+			<div class="header-left-bottom">
+				<form novalidate #resetForm="ngForm" (submit)="reset(resetForm)" autocomplete="off">    
+
+          <input  
+          type="hidden"
+          class="form-control form-control-lg"   
+          name="token"
+          #token="ngModel"
+          [(ngModel)]="service.resetData.token"
+          required
+          [class.invalid]="token.invalid && token.touched"> 
+
+
+					<div class="icon1">    
+            <span *ngIf="username.touched">
+              <span class="errmsg" *ngIf="username.errors?.['required']">Username is required!</span>
+            </span>    
+						<span class="fa fa-user"></span>
+            <input  
+            type="text"
+            class="form-control form-control-lg"
+            placeholder="Username"
+            name="username"
+            #username="ngModel"
+            [(ngModel)]="service.resetData.username"
+            required
+            [class.invalid]="username.invalid && username.touched">  
+					</div>
+
+					<div class="icon1">
+            <span *ngIf="password.touched">
+              <span class="errmsg" *ngIf="password.errors?.['required']">New Password is required!</span>
+              <span class="errmsg" *ngIf="password.errors?.['pattern']">
+                  Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+              </span>
+            </span>
+						<span class="fa fa-lock"></span>
+            <input  
+            type="password"
+            class="form-control form-control-lg"
+            placeholder="New Password"
+            name="password"
+            #password="ngModel"
+            [(ngModel)]="service.resetData.password"
+            required
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+            [class.invalid]="password.invalid && password.touched" (keyup)='checkPasswords(password.value, confirmpassword.value)'>           
+					</div>
+
+                    <div class="icon1">
+                        <span *ngIf="confirmpassword.touched">
+                          <span class="errmsg" *ngIf="confirmpassword.errors?.['required']">Confirm Password is required!</span>
+                          <span class="errmsg" *ngIf="confirmpassword.errors?.['pattern']">
+                              Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+                          </span>
+                          <span class="errmsg" *ngIf="!confirmpassword.errors?.['required'] && !confirmpassword.errors?.['pattern'] && !passMatched">Password and Confirm Password not matched</span>
+                        </span>
+                                    <span class="fa fa-lock"></span>
+                        <input  
+                        type="password"
+                        class="form-control form-control-lg"
+                        placeholder="Confirm Password"
+                        name="confirmpassword"
+                        #confirmpassword="ngModel"
+                        [(ngModel)]="service.resetData.cpassword"
+                        required
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                        [class.invalid]="confirmpassword.invalid && confirmpassword.touched" (keyup)='checkPasswords(password.value, confirmpassword.value)'>           
+                                </div>
+				
+					<div class="bottom">
+						<button type="submit" [disabled]="resetForm.invalid" class="btn">Change Password</button>
+					</div>
+					<div class="links">
+						<p><a [routerLink]="['/login']">Goto Login</a></p>           
+						<p class="right"><a [routerLink]="['/register']" routerLinkActive="active">Create new account</a></p>
+						<div class="clear"></div>
+					</div>
+				</form>	
+			</div>		
+		</div>
+		<!---728x90--->
+
+	</div>
+</div>

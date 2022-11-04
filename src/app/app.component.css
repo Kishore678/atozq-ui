@@ -144,3 +144,11 @@ min-height: 100vh;
   overflow:visible;
 }
 
+.profile{
+  background:#08ac0a;
+  color:#fff;
+}
+.profile mat-icon{
+  color:#fff;
+}
+

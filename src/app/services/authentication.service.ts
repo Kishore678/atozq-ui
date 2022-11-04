@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { JwtModel } from '../models/jwt.model';
 import { Login } from '../models/login.model';
 import { Register } from '../models/register.model';
+import { ResetUser } from '../models/resetuser.model';
 import { UserInfo } from '../models/userinfo.model';
 
 @Injectable({
@@ -19,34 +20,40 @@ export class AuthenticationService implements CanActivate {
   loginData: Login = new Login();
   registerData: Register = new Register(); 
   userinfo:UserInfo = new UserInfo();
+  resetData:ResetUser = new ResetUser();
 
   activate:boolean=false;
   constructor(private jwt:JwtHelperService,private router:Router,private http:HttpClient) 
   { 
-    const token = localStorage.getItem('jwt');
 
-   if(token && !this.jwt.isTokenExpired(token))
-   {
-    this.activate = true;
-   }
-   else
-   {   
-   this.activate = false;
-   }
    
   }
   canActivate()
     //route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> 
-  {    
-    if(!this.activate)
+  { 
+    const token = localStorage.getItem('jwt');
+
+    if(token && !this.jwt.isTokenExpired(token))
     {
-      this.router.navigate(["login"]);
+     return true;
     }
-   return this.activate;
+    else
+    {  
+      this.router.navigate(["login"]); 
+     return false;
+    }
   }
 
   loginUser() {
     return this.http.post(`${this.authUrl}/login`, this.loginData, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    });
+  }
+
+  resetUser() {
+    return this.http.post(`${this.authUrl}/resetpassword`, this.resetData, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })

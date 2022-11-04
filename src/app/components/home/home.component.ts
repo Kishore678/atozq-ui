@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
-import { UserInfo } from 'src/app/models/userinfo.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProductService } from 'src/app/services/product.service';
 @Component({
