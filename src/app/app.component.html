@@ -22,9 +22,13 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">  
-        <button class="profile" mat-menu-item routerLink="/profile"  *ngIf="auth.user().IsLoggedIn">
+        <button class="profile" mat-menu-item *ngIf="auth.user().IsLoggedIn" [disabled]="true">
           <mat-icon class="sidemenu">account_circle</mat-icon>
           <span>{{auth.user().UserName | titlecase}}</span>
+        </button>
+        <button mat-menu-item routerLink="/profile"  *ngIf="auth.user().IsLoggedIn">
+          <mat-icon class="sidemenu">settings</mat-icon>
+          <span class="sidemenu">Settings</span>
         </button>
         <button mat-menu-item routerLink="/dashboard"  *ngIf="auth.user().IsLoggedIn">
           <mat-icon class="sidemenu">dashboard</mat-icon>
@@ -65,6 +69,11 @@
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">                 
       <mat-nav-list>
        <mat-selection-list #menu [multiple]="false">
+          <mat-list-option *ngIf="auth.user().IsLoggedIn">
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/profile">      
+              <mat-icon aria-hidden="false" aria-label="settings" fontIcon="settings"></mat-icon><span>Settings</span>      
+             </a>            
+          </mat-list-option>
           <mat-list-option *ngIf="auth.user().IsLoggedIn">
             <a mat-list-item  class="sidemenu" mat-list-item routerLink="/dashboard">      
               <mat-icon aria-hidden="false" aria-label="Dashboard" fontIcon="dashboard"></mat-icon><span>Dashboard</span>      

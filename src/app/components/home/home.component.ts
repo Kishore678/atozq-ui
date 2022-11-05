@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,7 +15,12 @@ saved = [];
 
 isMobile:Boolean=false;
 
-constructor(public service:ProductService,public dialog: MatDialog,private route:ActivatedRoute,public auth:AuthenticationService) {
+constructor(
+  public service:ProductService,
+  public dialog: MatDialog,
+  private route:ActivatedRoute,
+  private router:Router,
+  public auth:AuthenticationService) {
 
  }
 
@@ -69,6 +74,10 @@ share(id:number,category:string,titleText:string)
 
 save(id:number)
 {
+  if(!this.auth.user().IsLoggedIn)
+  {
+    this.router.navigate(['/login']);
+  }
   let ids = [];
   ids.push(1);
   ids.push(2);

@@ -23,6 +23,8 @@ export class RegisterComponent implements OnInit {
   register(form: NgForm) {
     this.service.registerUser().subscribe(
       res => {
+        if((<any>res).status=='Success')
+        {
         this.service.loginData.username = this.service.registerData.username;
         this.service.loginData.password = this.service.registerData.password;
         this.service.loginUser().subscribe(
@@ -37,6 +39,11 @@ export class RegisterComponent implements OnInit {
             console.log(err);
           }
         );;
+      }
+      else
+      {
+        alert((<any>res).message);
+      }
       },
       err => { console.log(err); }
     );
