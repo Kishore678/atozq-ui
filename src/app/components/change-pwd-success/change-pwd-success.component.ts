@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  selector: 'app-change-pwd-success',
+  templateUrl: './change-pwd-success.component.html',
+  styleUrls: ['./change-pwd-success.component.css']
 })
-export class LogoutComponent implements OnInit {
+export class ChangePwdSuccessComponent implements OnInit {
 
   constructor(private service:AuthenticationService,private router:Router) { }
 
@@ -15,7 +15,7 @@ export class LogoutComponent implements OnInit {
     if(this.service.user().IsLoggedIn)
     {
       this.router.navigate(['/dashboard']);
-    }
+    }    
   }
 
 }

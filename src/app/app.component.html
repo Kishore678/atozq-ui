@@ -22,7 +22,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">  
-        <button class="profile" mat-menu-item routerLink="/profile"  *ngIf="auth.user().IsLoggedIn" disabled="true">
+        <button class="profile" mat-menu-item routerLink="/profile"  *ngIf="auth.user().IsLoggedIn">
           <mat-icon class="sidemenu">account_circle</mat-icon>
           <span>{{auth.user().UserName | titlecase}}</span>
         </button>

@@ -15,7 +15,7 @@ import { UserInfo } from '../models/userinfo.model';
 })
 export class AuthenticationService implements CanActivate {
 
-  readonly authUrl = `${environment.apiBaseUrl}/api/Authentication`;
+  readonly authUrl = `${environment.apiBaseUrl}/api/Account`;
 
   loginData: Login = new Login();
   registerData: Register = new Register(); 
@@ -52,8 +52,18 @@ export class AuthenticationService implements CanActivate {
     });
   }
 
+  forgotPassword()
+  {
+    return this.http.post(`${this.authUrl}/reset-link`,this.registerData ,{
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      })
+    });
+
+  }
   resetUser() {
-    return this.http.post(`${this.authUrl}/resetpassword`, this.resetData, {
+    let resetUrl =  this.user().IsLoggedIn?'manage':'reset';    
+    return this.http.post(`${this.authUrl}/${resetUrl}`, this.resetData, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })

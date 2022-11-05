@@ -12,6 +12,7 @@ import { ReferralComponent } from './components/referral/referral.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { AuthenticationService } from './services/authentication.service';
+import { ChangePwdSuccessComponent } from './components/change-pwd-success/change-pwd-success.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -20,6 +21,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'forgotpass',component:ForgotpassComponent},
+  {path:'pwdsuccess',component:ChangePwdSuccessComponent},
+  {path:'profile',component:ResetpassComponent},
   {path:'resetpass/:user/:token',component:ResetpassComponent},
   {path:'logout',component:LogoutComponent},
   {path:'referral',component:ReferralComponent},

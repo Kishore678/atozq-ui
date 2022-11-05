@@ -10,7 +10,7 @@
 			<div class="header-left-bottom">
 				<form novalidate #resetForm="ngForm" (submit)="reset(resetForm)" autocomplete="off">    
 
-          <input  
+          <input *ngIf="!service.user().IsLoggedIn"
           type="hidden"
           class="form-control form-control-lg"   
           name="token"
@@ -33,7 +33,7 @@
             #username="ngModel"
             [(ngModel)]="service.resetData.username"
             required
-            [class.invalid]="username.invalid && username.touched">  
+            [class.invalid]="username.invalid && username.touched" [disabled]="true">  
 					</div>
 
 					<div class="icon1">
@@ -80,7 +80,7 @@
 					<div class="bottom">
 						<button type="submit" [disabled]="resetForm.invalid" class="btn">Change Password</button>
 					</div>
-					<div class="links">
+					<div class="links" *ngIf="!service.user().IsLoggedIn">
 						<p><a [routerLink]="['/login']">Goto Login</a></p>           
 						<p class="right"><a [routerLink]="['/register']" routerLinkActive="active">Create new account</a></p>
 						<div class="clear"></div>

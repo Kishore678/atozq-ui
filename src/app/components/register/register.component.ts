@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit {
      private router: Router) { }
 
   ngOnInit(): void {
+    if(this.service.user().IsLoggedIn)
+    {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   register(form: NgForm) {

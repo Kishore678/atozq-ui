@@ -8,7 +8,7 @@
 				<span class="fa fa-eercast"></span>
 			</div>
 			<div class="header-left-bottom">
-				<form novalidate #loginForm="ngForm" (submit)="login(loginForm)" autocomplete="off">    
+				<form novalidate #forgotpassForm="ngForm" (submit)="forgotpass(forgotpassForm)" autocomplete="off">    
                     <div class="icon1">
                         <span *ngIf="email.touched">
                             <span class="errmsg" *ngIf="email.errors?.['required']">Email is required!</span>
@@ -30,7 +30,7 @@
 					</div>
 				
 					<div class="bottom">
-						<button type="submit" [disabled]="loginForm.invalid" class="btn">Send</button>
+						<button type="submit" [disabled]="forgotpassForm.invalid" class="btn">Send</button>
 					</div>
 					<div class="links">
 						<p><a [routerLink]="['/login']">I want to Login</a></p>           
@@ -38,15 +38,7 @@
 						<div class="clear"></div>
 					</div>
 				</form>	
-			</div>
-			<!-- <div class="social">
-				<ul>
-					<li>or login using : </li>
-					<li><a href="#" class="facebook"><span class="fa fa-facebook"></span></a></li>
-					<li><a href="#" class="twitter"><span class="fa fa-twitter"></span></a></li>
-					<li><a href="#" class="google"><span class="fa fa-google-plus"></span></a></li>
-				</ul>
-			</div> -->
+			</div>		
 		</div>
 		<!---728x90--->
 

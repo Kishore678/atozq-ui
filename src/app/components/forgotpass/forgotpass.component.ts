@@ -16,15 +16,23 @@ export class ForgotpassComponent implements OnInit {
      private router: Router) { }
 
   ngOnInit(): void {
+    if(this.service.user().IsLoggedIn)
+    {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
-  login(form: NgForm) {
-    this.service.loginUser().subscribe(
+  forgotpass(form: NgForm) {
+    this.service.forgotPassword().subscribe(
       res => {
-        const token = (<any>res).token;
-        localStorage.setItem("jwt", token);        
-        this.invalidLogin = false;      
-        this.router.navigate(["/dashboard"]);
+        let status = (<any>res).status; 
+        let msg = (<any>res).message; 
+        
+        if(status=='Success')
+        {
+          alert(msg);
+        }
+     
         // this.toastr.success("LoggedIn successfully", "Log in");
       },
       err => {

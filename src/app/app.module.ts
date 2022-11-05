@@ -25,9 +25,10 @@ import { ProductService } from './services/product.service';
 import { AuthenticationService } from './services/authentication.service';
 import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
+import { ChangePwdSuccessComponent } from './components/change-pwd-success/change-pwd-success.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

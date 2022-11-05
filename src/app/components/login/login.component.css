@@ -1,6 +1,6 @@
 
 .w3layouts-main{  
-  background-image: url(https://img.freepik.com/premium-photo/white-luxury-fabric-background-with-copy-space_46250-2192.jpg);
+  background-image: url(/assets/bg.jpg);
   background-repeat: repeat-x;
   animation: slideleft 20000s infinite linear;
   -webkit-animation: slideleft 20000s infinite linear;
