@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, Router} from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -23,6 +23,7 @@ export class AuthenticationService implements CanActivate {
   resetData:ResetUser = new ResetUser();
 
   activate:boolean=false;
+  redirectUrl!: string;
   constructor(private jwt:JwtHelperService,private router:Router,private http:HttpClient) 
   { 
 

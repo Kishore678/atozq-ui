@@ -11,5 +11,7 @@ export class ItemModel {
     shareButton:string='';
     commentButton:number=0;
     rowAction:string='';
+    referralCode:string='';
+    referralLink:string='';
 }
 

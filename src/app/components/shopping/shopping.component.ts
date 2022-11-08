@@ -76,7 +76,7 @@ save(id:number)
   ids.push(4);
   ids.push(5);
   localStorage.setItem("saved", JSON.stringify(ids));
-//   debugger;
+
 //   if(localStorage.getItem('saved')!=null)
 //   {
 // let ids = Array.from(JSON.parse(localStorage.getItem("saved")!));

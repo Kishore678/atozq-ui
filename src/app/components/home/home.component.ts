@@ -1,7 +1,10 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { CommentModel } from 'src/app/models/comment.model';
+import { ItemModel } from 'src/app/models/item.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProductService } from 'src/app/services/product.service';
 @Component({
@@ -13,6 +16,8 @@ export class HomeComponent implements OnInit {
 
 saved = [];
 
+commentObj = new ItemModel();
+isSearch:boolean=false;
 isMobile:Boolean=false;
 
 constructor(
@@ -25,11 +30,12 @@ constructor(
  }
 
 ngOnInit() { 
-
   if(this.route.snapshot.params['id'])
   {
-    this.service.getProductById (this.route.snapshot.params['id']).subscribe(result=>{
+    this.service.getProductById(this.route.snapshot.params['id']).subscribe(result=>{
+      this.service.products = [];
       this.service.products.push(result);
+      this.isSearch = true;
     });
   }
   else
@@ -85,7 +91,7 @@ save(id:number)
   ids.push(4);
   ids.push(5);
   localStorage.setItem("saved", JSON.stringify(ids));
-//   debugger;
+
 //   if(localStorage.getItem('saved')!=null)
 //   {
 // let ids = Array.from(JSON.parse(localStorage.getItem("saved")!));
@@ -98,42 +104,293 @@ save(id:number)
 //   }
 }
 
-openDialog(rowAction:string,obj:any) {
+openDialog(rowAction:string,obj:any) {  
+  debugger;
   obj.rowAction = rowAction;
-  const dialogRef = this.dialog.open(DialogBoxComponent, {
-    maxWidth: '100vw',
-    maxHeight: '100vh',
-    height: 'relative',
-    width: 'relative',
-    panelClass: 'full-screen-modal',
-    disableClose: true,
-    autoFocus: true,
-    data:obj
-  });
-
-  dialogRef.componentInstance.onDoAction.subscribe((d) => {
-
-    if(d.data.rowAction == 'View'){
-      // this.addRowData(d);        
-    }else if(d.data.rowAction == 'Share'){
-      // this.updateRowData(d);
-    }else if(d.data.rowAction == 'Comment'){
-      // this.deleteRowData(d);
-    }else if(d.data.rowAction=='Update')
-    {
-      this.updateRowData(d.data.itemId,d);
-    }
-    
-  });
-
   
+  if(rowAction=='Comment')
+  { 
+    this.commentObj = new ItemModel(); 
+    this.commentObj.itemId = obj.itemId;
+    this.commentObj.rowAction = rowAction; 
+    this.commentObj.avatarUrl = obj.avatarUrl; 
+    this.commentObj.titleText = obj.titleText; 
+    this.commentObj.subTitle = obj.subTitle; 
+    if(localStorage[rowAction+'-'+obj.itemId]==undefined)
+    {
+      if(this.auth.user().IsLoggedIn) 
+      {
+        this.service.getCommentByItemId(this.commentObj.itemId).subscribe(
+          {
+            next: (v) => {
+             
+                 this.commentObj.referralCode = v.referralCode;
+                 this.commentObj.referralLink = v.referralLink;
+  
+                 const dialogRef = this.dialog.open(DialogBoxComponent, {
+                  maxWidth: '100vw',
+                  maxHeight: '100vh',
+                  height: 'relative',
+                  width: 'relative',
+                  panelClass: 'full-screen-modal',
+                  disableClose: true,
+                  autoFocus: true,
+                  data:rowAction=='Comment'?this.commentObj:obj
+                });
+  
+                dialogRef.componentInstance.onDoAction.subscribe((d) => {
+  
+                  if(d.data.rowAction == 'View'){
+                    // this.addRowData(d);        
+                  }else if(d.data.rowAction == 'Share'){
+                    // this.updateRowData(d);
+                  }else if(d.data.rowAction == 'Comment'){
+                    
+                    let commentModel = new CommentModel();
+                    commentModel.itemId = d.data.itemId;
+                    commentModel.referralCode = d.data.referralCode;
+                    commentModel.referralLink = d.data.referralLink;
+              
+                    this.saveComment(commentModel,d.dialog);
+                  }else if(d.data.rowAction=='Update')
+                  {
+                    this.updateRowData(d.data.itemId,d);
+                  }
+                  
+                });
+              
+                
+              
+                dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+                  d.dialog.close();
+                }); 
+              
+            },
+            error: (e) => console.error(e),
+            complete: () => {} 
+        });
 
-  dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
-    d.dialog.close();
-  });    
+      }
+      else{
+      const dialogRef = this.dialog.open(DialogBoxComponent, {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: 'relative',
+        width: 'relative',
+        panelClass: 'full-screen-modal',
+        disableClose: true,
+        autoFocus: true,
+        data:rowAction=='Comment'?this.commentObj:obj
+      });
+  
+      dialogRef.componentInstance.onDoAction.subscribe((d) => {
+  
+        if(d.data.rowAction == 'View'){
+          // this.addRowData(d);        
+        }else if(d.data.rowAction == 'Share'){
+          // this.updateRowData(d);
+        }else if(d.data.rowAction == 'Comment'){
+          
+          let commentModel = new CommentModel();
+          commentModel.itemId = d.data.itemId;
+          commentModel.referralCode = d.data.referralCode;
+          commentModel.referralLink = d.data.referralLink;
+    
+          this.saveComment(commentModel,d.dialog);
+        }else if(d.data.rowAction=='Update')
+        {
+          this.updateRowData(d.data.itemId,d);
+        }
+        
+      });
+    
+      dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+        d.dialog.close();
+      }); 
+    }
+
+    }
+    else if(localStorage[rowAction+'-'+obj.itemId]!=undefined)
+    {  
+    var comment = JSON.parse(localStorage[rowAction+'-'+obj.itemId]);
+    this.commentObj.referralCode = comment.referralCode;
+    this.commentObj.referralLink = comment.referralLink;
+
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: 'relative',
+      width: 'relative',
+      panelClass: 'full-screen-modal',
+      disableClose: true,
+      autoFocus: true,
+      data:rowAction=='Comment'?this.commentObj:obj
+    });
+
+    dialogRef.componentInstance.onDoAction.subscribe((d) => {
+
+      if(d.data.rowAction == 'View'){
+        // this.addRowData(d);        
+      }else if(d.data.rowAction == 'Share'){
+        // this.updateRowData(d);
+      }else if(d.data.rowAction == 'Comment'){
+        
+        let commentModel = new CommentModel();
+        commentModel.itemId = d.data.itemId;
+        commentModel.referralCode = d.data.referralCode;
+        commentModel.referralLink = d.data.referralLink;
+  
+        this.saveComment(commentModel,d.dialog);
+      }else if(d.data.rowAction=='Update')
+      {
+        this.updateRowData(d.data.itemId,d);
+      }
+      
+    });
+  
+    
+  
+    dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+      d.dialog.close();
+    }); 
+    
+    }
+    else if(this.auth.user().IsLoggedIn) 
+    {
+      this.service.getCommentByItemId(this.commentObj.itemId).subscribe(
+        {
+          next: (v) => {
+           
+               this.commentObj.referralCode = v.referralCode;
+               this.commentObj.referralLink = v.referralLink;
+
+               const dialogRef = this.dialog.open(DialogBoxComponent, {
+                maxWidth: '100vw',
+                maxHeight: '100vh',
+                height: 'relative',
+                width: 'relative',
+                panelClass: 'full-screen-modal',
+                disableClose: true,
+                autoFocus: true,
+                data:rowAction=='Comment'?this.commentObj:obj
+              });
+
+              dialogRef.componentInstance.onDoAction.subscribe((d) => {
+
+                if(d.data.rowAction == 'View'){
+                  // this.addRowData(d);        
+                }else if(d.data.rowAction == 'Share'){
+                  // this.updateRowData(d);
+                }else if(d.data.rowAction == 'Comment'){
+                  
+                  let commentModel = new CommentModel();
+                  commentModel.itemId = d.data.itemId;
+                  commentModel.referralCode = d.data.referralCode;
+                  commentModel.referralLink = d.data.referralLink;
+            
+                  this.saveComment(commentModel,d.dialog);
+                }else if(d.data.rowAction=='Update')
+                {
+                  this.updateRowData(d.data.itemId,d);
+                }
+                
+              });
+            
+              
+            
+              dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+                d.dialog.close();
+              }); 
+            
+          },
+          error: (e) => console.error(e),
+          complete: () => {} 
+      });       
+   
+    }  
+  }
+  else
+  {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: 'relative',
+      width: 'relative',
+      panelClass: 'full-screen-modal',
+      disableClose: true,
+      autoFocus: true,
+      data:rowAction=='Comment'?this.commentObj:obj
+    });
+
+    dialogRef.componentInstance.onDoAction.subscribe((d) => {
+
+      if(d.data.rowAction == 'View'){
+        // this.addRowData(d);        
+      }else if(d.data.rowAction == 'Share'){
+        // this.updateRowData(d);
+      }else if(d.data.rowAction == 'Comment'){
+        
+        let commentModel = new CommentModel();
+        commentModel.itemId = d.data.itemId;
+        commentModel.referralCode = d.data.referralCode;
+        commentModel.referralLink = d.data.referralLink;
+  
+        this.saveComment(commentModel,d.dialog);
+      }else if(d.data.rowAction=='Update')
+      {
+        this.updateRowData(d.data.itemId,d);
+      }
+      
+    });
+  
+    dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+      d.dialog.close();
+    }); 
+  
+  }
+
+
+     
   
 }
 
+saveComment(model:CommentModel,dialog:any)
+{ 
+  if(model.referralCode=="" && model.referralLink=="")
+  {
+  alert('Atleast one (Referral Code or Link) should be required');  
+  }
+ else if(this.auth.user().IsLoggedIn)
+ {  
+  if(model.referralCode=="" && model.referralLink=="")
+  {
+  alert('Atleast one (Referral Code or Link) should be required');
+  }
+  else 
+  { 
+  this.service.postComment(model).subscribe(result=>{
+  if(result.commentId>0)
+  {
+    localStorage.removeItem('Comment-'+model.itemId);  
+    dialog.close();
+   alert('Successfully posted your comment.');
+  }
+  else
+  {
+    alert('Something went wrong. Try again later.');
+  }
+  });  
+  }
+ }
+ else
+ {  
+  localStorage['Comment-'+model.itemId]=JSON.stringify(model);
+  dialog.close();
+  this.auth.redirectUrl = '/product/'+model.itemId;  
+  this.router.navigate(['/login']);  
+ }
+
+}
 updateRowData(id:number,d:any){
   this.service.putProduct(id,d.data).subscribe(res=>{      
     this.service.products.filter(function(item){
@@ -145,6 +402,8 @@ updateRowData(id:number,d:any){
         item.avatarUrl=res.avatarUrl;
         item.itemImageUrl=res.itemImageUrl;
         item.itemHeadLine=res.itemHeadLine;
+        item.referralCode=res.referralCode;
+        item.referralLink=res.referralLink;
         item.itemDescription=res.itemDescription;
         item.useButton=res.useButton;
         item.shareButton=res.shareButton;
@@ -180,5 +439,18 @@ updateRowData(id:number,d:any){
 //   else
 //   return false;
 // }
+
+// var localstorage = {
+//     set: function (key, value) {
+//         window.localStorage.setItem( key, JSON.stringify(value) );
+//     },
+//     get: function (key) {
+//         try {
+//             return JSON.parse( window.localStorage.getItem(key) );
+//         } catch (e) {
+//             return null;
+//         }
+//     }
+// };
 
 }

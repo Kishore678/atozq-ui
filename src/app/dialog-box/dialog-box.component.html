@@ -1,5 +1,10 @@
 <!-- dialog-box.component.html -->
-<h1 mat-dialog-title>{{rowAction=='View'?'Details':rowAction}}</h1>
+<h1 mat-dialog-title>
+  <mat-icon *ngIf="rowAction=='View'">remove_red_eye</mat-icon>
+  <mat-icon *ngIf="rowAction=='Comment'">comment</mat-icon>
+  <mat-icon *ngIf="rowAction=='Update'">edit</mat-icon>
+  {{rowAction=='View'?'Details':rowAction}}
+</h1>
 <mat-dialog-content>
 <form class="example-form" novalidate *ngIf="rowAction == 'Add' || rowAction == 'Update'">
   <mat-form-field class="example-full-width">
@@ -28,6 +33,14 @@
 
   <mat-form-field class="example-full-width">
     <input matInput type="text" id="ItemHeadLine" name="ItemHeadLine" [(ngModel)]="local_data.itemHeadLine" required placeholder="ItemHeadLine">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="referralCode" name="referralCode" [(ngModel)]="local_data.referralCode" required placeholder="referralCode">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput type="text" id="referralLink" name="referralLink" [(ngModel)]="local_data.referralLink" required placeholder="referralLink">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -64,21 +77,38 @@
     <h2>{{itemHeadLine}}</h2>
     <p [innerHtml]="itemDescription | linkify" ></p>
   </mat-card-content>
- 
-  <!-- <mat-card-actions style="text-align:center">    
-    <button (click)="share(card.itemId,card.category,card.titleText)" mat-raised-button color="basic" mat-button><mat-icon>share</mat-icon>Share</button>
-    <button mat-raised-button color="basic" mat-button><mat-icon>comment</mat-icon>Comment</button>      
-    <button (click)="openDialog('Update',card)" *ngIf="getUser()=='admin'" mat-raised-button color="basic" mat-button><mat-icon>edit</mat-icon>Edit</button>
-    <button (click)="save(card.itemId)" *ngIf="getUser()!='admin'" mat-raised-button color="basic" mat-button><mat-icon>add_to_queue</mat-icon>Save</button>
-  </mat-card-actions> -->
 </mat-card>
 
-<ng-template #deleteTemplate>
+<mat-card *ngIf="rowAction=='Delete'">
 <form class="example-form">
   Sure to delete <b>{{titleText}}</b>?
 </form>
-</ng-template> 
+</mat-card> 
 
+<mat-card *ngIf="rowAction=='Comment'">
+ 
+  <!-- <mat-card-header>
+    <div mat-card-avatar class="item-header-image" style="background-image: url('./assets/money.png');"></div>
+    <mat-card-title class="overflow-ellipsis">Start your referral earnings.</mat-card-title>
+    <mat-card-subtitle class="overflow-ellipsis">earn on fly</mat-card-subtitle>
+ </mat-card-header> -->
+
+ <mat-card-header>
+  <div mat-card-avatar class="item-header-image" style="background-image: url('{{local_data.avatarUrl}}');"></div>
+  <mat-card-title class="overflow-ellipsis">{{local_data.titleText}}</mat-card-title>
+  <mat-card-subtitle class="overflow-ellipsis">{{local_data.subTitle}}</mat-card-subtitle>
+</mat-card-header>
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" id="referralCode" name="referralCode" [(ngModel)]="local_data.referralCode" required placeholder="Please enter your Referral Code">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput type="text" id="referralLink" name="referralLink" [(ngModel)]="local_data.referralLink" required placeholder="Please enter your Referral Link">
+    </mat-form-field>
+  </form>
+  </mat-card> 
 
 </mat-dialog-content>
 <mat-dialog-actions>

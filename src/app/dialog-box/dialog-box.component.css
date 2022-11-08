@@ -102,6 +102,11 @@ p {
   padding: 4px;  
 }
 
+h1 > mat-icon
+{
+  line-height: 1.3;
+}
+
 
 h2 {
     width: relative;

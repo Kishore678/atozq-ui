@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CommentModel } from '../models/comment.model';
 import { ItemModel } from '../models/item.model';
 
 @Injectable({
@@ -49,7 +50,21 @@ export class ProductService {
   // url: api/product/{id}
   deleteProduct(id:number):Observable<boolean>
   {
-    return this.http.delete<boolean>(`${this.prodUrl}/${id}`)
+    return this.http.delete<boolean>(`${this.prodUrl}/${id}`);
+  }
+
+//post
+//url: api/product/comment
+  postComment(model:CommentModel):Observable<CommentModel>
+  {
+    return this.http.post<CommentModel>(`${this.prodUrl}/comment`,model);
+  }
+  
+  //get
+  //url: api/product/comment/{itemId}
+  getCommentByItemId(itemId:number):Observable<CommentModel>
+  {
+    return this.http.get<CommentModel>(`${this.prodUrl}/comment/`+itemId);    
   }
 
 }

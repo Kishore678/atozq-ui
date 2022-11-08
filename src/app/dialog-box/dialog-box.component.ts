@@ -21,6 +21,8 @@ export class DialogBoxComponent {
   shareButton:string='';
   commentButton:number=0;
   rowAction:string='';
+  referralCode:string='';
+  referralLink:string='';
   local_data:ItemModel;
 
   constructor(
@@ -39,20 +41,21 @@ export class DialogBoxComponent {
     this.useButton=this.local_data.useButton;
     this.shareButton=this.local_data.shareButton;
     this.commentButton=this.local_data.commentButton;
+    this.referralCode=this.local_data.referralCode;   
+    this.referralLink=this.local_data.referralLink;   
     this.rowAction=this.local_data.rowAction;   
   }
+
   onDoAction = new EventEmitter();
+
   onCloseDialog = new EventEmitter();
+
   doAction(){
-    this.onDoAction.emit({dialog:this.dialogRef,data:this.local_data});
-    // this.dialogRef.close({event:this.rowAction,data:this.local_data});
+    this.onDoAction.emit({dialog:this.dialogRef,data:this.local_data});   
   }
 
   closeDialog(){
-    
     this.onCloseDialog.emit({dialog:this.dialogRef});
-
-    // this.dialogRef.close({event:'Cancel'});
   }
 
 }
