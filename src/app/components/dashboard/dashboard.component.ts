@@ -58,6 +58,14 @@ export class DashboardComponent implements OnInit {
     this.prodService.getProductsByCategory("all").subscribe(res=>{
       this.prodService.products = res;
     });  
+
+    this.prodService.getImages().subscribe({
+      next:(v)=>{
+        this.prodService.images = v;
+      },
+      error:(e)=>{},
+      complete:()=>{}
+    });
   }
 
   openDialog(rowAction:string,obj:any) {
@@ -82,6 +90,14 @@ export class DashboardComponent implements OnInit {
       }else if(d.data.rowAction == 'Delete'){
         this.deleteRowData(d);
       }
+      else if(d.data.rowAction=='Add Media')
+      {
+        this.addMedia(d)
+      }
+      else if(d.data.rowAction=='Update Media')
+      {
+        this.updateMedia(d);
+      }
     });
 
     dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
@@ -89,6 +105,11 @@ export class DashboardComponent implements OnInit {
     });    
     
   }
+
+  addMedia(d:any){
+    
+  }
+  updateMedia(d:any){}
 
   addRowData(d:any){      
     this.prodService.postProduct(d.data).subscribe(

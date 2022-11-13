@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CardModel } from '../models/card.model';
 import { CommentModel } from '../models/comment.model';
+import { ImageModel } from '../models/image.model';
 import { ItemModel } from '../models/item.model';
 
 @Injectable({
@@ -11,10 +13,14 @@ import { ItemModel } from '../models/item.model';
 export class ProductService {
 
   products:ItemModel[]=[];
+  cards:CardModel[] =[];
+  images:ImageModel[]=[];
 
   product = new ItemModel();
 
   readonly prodUrl = `${environment.apiBaseUrl}/api/product`;
+  readonly mediaUrl = `${environment.apiBaseUrl}/api/Media`;
+  readonly cardUrl = `${environment.apiBaseUrl}/api/Card`;
 
   constructor(private http:HttpClient) { }
 
@@ -65,6 +71,28 @@ export class ProductService {
   getCommentByItemId(itemId:number):Observable<CommentModel>
   {
     return this.http.get<CommentModel>(`${this.prodUrl}/comment/`+itemId);    
+  }
+
+
+  getImages():Observable<ImageModel[]>
+  {
+    return this.http.get<ImageModel[]>(this.mediaUrl);
+  }
+
+
+  getCards(category:string=""):Observable<CardModel[]>
+  {
+    return this.http.get<CardModel[]>(`${this.cardUrl}/all/${category}`);
+  }
+
+  addWatch(card:CardModel):Observable<CardModel>
+  {
+    return this.http.post<CardModel>(`${this.cardUrl}/addwatch`,card);
+  }
+
+  removeWatch(card:CardModel):Observable<CardModel>
+  {
+    return this.http.delete<CardModel>(`${this.cardUrl}/removewatch/${card.watch.watchId}`);
   }
 
 }

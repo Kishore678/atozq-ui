@@ -1,9 +1,8 @@
 
 <div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="atozq-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-      <a class="atozq-app-name" routerLink="/">
-        <!-- <img src="/assets/atozq.svg" width="150" height="50" title="Home" alt="Home" class="ng-star-inserted">       -->
+      <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button>
+      <a class="atozq-app-name" routerLink="/">        
         ATOZQ.com
       </a>
       <span class="spacer"></span>
@@ -34,11 +33,11 @@
           <mat-icon class="sidemenu">dashboard</mat-icon>
           <span class="sidemenu">Dashboard</span>
         </button>
-        <button mat-menu-item routerLink="/referral">
+        <button mat-menu-item routerLink="/referral" *ngIf="auth.user().IsAdmin">
           <mat-icon class="sidemenu">group_add</mat-icon>
           <span class="sidemenu">Referrals</span>
         </button>
-        <button mat-menu-item routerLink="/shopping">
+        <button mat-menu-item routerLink="/shopping" *ngIf="auth.user().IsAdmin">
           <mat-icon class="sidemenu">shopping_basket</mat-icon>
           <span class="sidemenu">Shopping</span>
         </button>
@@ -68,7 +67,7 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">                 
       <mat-nav-list>
-       <mat-selection-list #menu [multiple]="false">
+       <mat-selection-list id="account" title="account" #menu [multiple]="false">
           <mat-list-option *ngIf="auth.user().IsLoggedIn">
             <a mat-list-item  class="sidemenu" mat-list-item routerLink="/profile">      
               <mat-icon aria-hidden="false" aria-label="settings" fontIcon="settings"></mat-icon><span>Settings</span>      
@@ -79,12 +78,12 @@
               <mat-icon aria-hidden="false" aria-label="Dashboard" fontIcon="dashboard"></mat-icon><span>Dashboard</span>      
              </a>            
           </mat-list-option>
-          <mat-list-option>
+          <mat-list-option *ngIf="auth.user().IsAdmin">
             <a mat-list-item  class="sidemenu" mat-list-item routerLink="/referral">      
               <mat-icon aria-hidden="false" aria-label="Referral" fontIcon="group_add"></mat-icon><span>Referrals</span>      
              </a>            
           </mat-list-option>
-          <mat-list-option>
+          <mat-list-option  *ngIf="auth.user().IsAdmin">
             <a mat-list-item  class="sidemenu" mat-list-item routerLink="/shopping">      
               <mat-icon aria-hidden="false" aria-label="Shopping" fontIcon="shopping_basket"></mat-icon><span>Shopping</span>      
              </a>            

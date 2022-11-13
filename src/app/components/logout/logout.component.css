@@ -36,4 +36,10 @@ min-height: 100vh;
   box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
   color:#08ac0a;
   }
-  .header-main a{color: red;}
+  .header-main a{color:#08ac0a;}
+
+  .logout-nav
+  {
+    color: #2a2a2a;
+    font-weight: 500;
+  }

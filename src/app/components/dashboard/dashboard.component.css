@@ -59,3 +59,110 @@ table {
 {
   background: #08ac0a;
 }
+
+.example-tab-icon {
+  margin-right: 8px;
+}
+
+
+.item-card {
+  max-width: 400px;
+  float: left;
+  margin: 5px;
+  border: 1px solid #ccc;  
+}
+.mat-card-header .mat-card-title {    
+  color: #111111;
+}
+.item-header-image {    
+  background-size: cover;
+}
+.mat-card-image
+{
+  margin: 0;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+span>small
+{
+  font-weight:200;
+  font-size: 14px;    
+}
+
+span {
+  text-align: center;
+  display: inline-block;
+  width: 100%;    
+}
+
+.geeks {
+  width: 100%;
+  height: 200px;   
+ }
+ .geeks a {cursor:pointer;}
+
+img {
+  width:100%;
+  height:100%;
+  object-fit:scale-down;
+}
+
+
+.mat-toolbar-row, .mat-toolbar-single-row 
+{
+padding:0;
+}
+.mat-card-actions .mat-button, .mat-card-actions .mat-raised-button,mat-toolbar .mat-raised-button 
+{
+  background-color:#08ac0a;
+  color:#ffffff;
+}
+
+h2 {
+  width: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 14px;;
+  margin: 0;
+  color:#111111;
+}
+
+.mat-card-actions .mat-button, .mat-card-actions .mat-raised-button,h3,mat-toolbar .mat-raised-button  {  
+  padding:1px;
+  margin:0 2px 0 2px; 
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.box
+{ 
+  display: flex;
+  box-sizing: border-box;   
+  width: 100%;
+  flex-direction: row;
+  align-items: center;   
+  height: 64px;  
+  letter-spacing: normal;
+}
+
+mat-toolbar{
+  margin: 5px;
+  height: 45px;
+  font-size: 14px;
+}
+mat-toolbar span{
+  background:#ffff;
+  margin: 10px;
+}
+
+button.viewall
+{
+  width: 100%;
+    color: #ffffff;
+    background: #08ac0a;
+}
