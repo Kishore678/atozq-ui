@@ -3,11 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 import { ItemModel } from 'src/app/models/item.model';
-import { UserInfo } from 'src/app/models/userinfo.model';
-import { AuthService } from 'src/app/services/auth.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ItemService } from 'src/app/services/item.service';
 import { ProductService } from 'src/app/services/product.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +14,11 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DashboardComponent implements OnInit {
 
-  displayedColumns: string[] = ['itemId', 'category', 'titleText','rowAction'];   
+  readonly appBaseUrl = window.location.origin;
+
+  displayedColumns: string[] = ['itemId', 'category', 'titleText','subTitle','rowAction'];  
+  
+  myPageGridColumns:string[] = ['category', 'title','rowAction'];  
 
   deleted: ItemModel[]=[]; 
   itemData=new ItemModel(); 
@@ -26,25 +28,19 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
 
-  ngOnInit(): void {   
+  ngOnInit(): void { 
+    debugger;
+    this.displayMyPageUrl();   
     if(this.auth.user().IsAdmin)
     {
     this.refresh();
     }
-    else
+    else if(this.auth.user().IsLoggedIn)
     {
-    //   if(localStorage.getItem('saved')!=undefined)
-    //   {
-    // let ids = Array.from(JSON.parse(localStorage.getItem("saved")!));      
-    //   let outputData = "";
-    //   ids.forEach(function(value,index,arr){
-    //     outputData+=","+value;
-    //      if(index==arr.length-1)
-    //      {
-    //       window.alert(outputData);
-    //      }
-    //   });
-    // }
+      this.prodService.getProducts(this.auth.user().UserName).subscribe(result=>{
+        this.prodService.products = [];
+        this.prodService.products = result;        
+      });
     
     }
   }
@@ -56,7 +52,7 @@ export class DashboardComponent implements OnInit {
   refresh()
   {
     this.prodService.getProductsByCategory("all").subscribe(res=>{
-      this.prodService.products = res;
+      // this.prodService.products = res;
     });  
 
     this.prodService.getImages().subscribe({
@@ -116,7 +112,7 @@ export class DashboardComponent implements OnInit {
       res=>{
         if(res.itemId>0)
         {      
-         this.prodService.products.push(res); 
+        //  this.prodService.products.push(res); 
         d.dialog.close();      
         }
         this.prodService.products = this.prodService.products.filter((item,key)=>{          
@@ -140,18 +136,16 @@ export class DashboardComponent implements OnInit {
   updateRowData(d:any){
       this.prodService.putProduct(d.data.itemId,d.data).subscribe(res=>{      
         this.prodService.products.filter(function(item){
-           if(item.itemId==res.itemId)
+           if(item.productId==res.itemId)
            {
             item.category=res.category;
-            item.titleText=res.titleText;
+            item.title=res.titleText;
             item.subTitle=res.subTitle;
             item.avatarUrl=res.avatarUrl;
-            item.itemImageUrl=res.itemImageUrl;
-            item.itemHeadLine=res.itemHeadLine;
-            item.itemDescription=res.itemDescription;
-            item.useButton=res.useButton;
-            item.shareButton=res.shareButton;
-            item.commentButton=res.commentButton;
+            item.imageUrl=res.itemImageUrl;
+            item.headLine=res.itemHeadLine;
+            item.description=res.itemDescription;
+     
             item.rowAction=res.rowAction;
             d.dialog.close();               
            }
@@ -176,7 +170,7 @@ export class DashboardComponent implements OnInit {
  
     this.prodService.deleteProduct(d.data.itemId).subscribe(res=>{ 
       this.prodService.products = this.prodService.products.filter((item,key)=>{     
-        if(item.itemId==d.data.itemId && res==true)
+        if(item.productId==d.data.itemId && res==true)
         { 
           this.prodService.products.splice(key,1);       
           d.dialog.close();
@@ -199,6 +193,29 @@ export class DashboardComponent implements OnInit {
   populateForm(selectedRecord: ItemModel) {
     this.itemData = Object.assign({}, selectedRecord);
   }
+
+myPageUrl!:string;
+//Start: My Page
+displayMyPageUrl()
+{
+  this.myPageUrl = `${this.appBaseUrl}/${this.auth.user().UserName}`;
+}
+
+saveMyPage()
+{
+
+}
+
+deleteMyPage()
+{
+
+}
+
+loadMyPage()
+{
+
+}
+//End: My Page
 
 }
 

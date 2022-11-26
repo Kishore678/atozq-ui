@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
-import { CardModel } from 'src/app/models/card.model';
 import { CommentModel } from 'src/app/models/comment.model';
+import { Product } from 'src/app/models/product.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProductService } from 'src/app/services/product.service';
 @Component({
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
 saved = [];
 isWatched:boolean=false;
-commentObj = new CardModel();
+commentObj = new Product();
 isSearch:boolean=false;
 isMobile:Boolean=false;
 
@@ -31,18 +31,20 @@ constructor(
 @ViewChild('button') button!: ElementRef;
 
 ngOnInit() { 
+  debugger;
   if(this.route.snapshot.params['id'])
   {
-    this.service.getProductById(this.route.snapshot.params['id']).subscribe(result=>{
+    this.service.getProducts(this.route.snapshot.params['id']).subscribe(result=>{
       this.service.products = [];
-      this.service.products.push(result);
-      this.isSearch = true;
+      this.service.products = result;
+      this.isSearch = false;
     });
   }
   else
   {
-    this.service.getCards().subscribe(result=>{    
-  this.service.cards = result; 
+  this.service.getProducts("").subscribe(result=>{
+  this.service.products = result;
+  this.isSearch = false;
 });
   }
 
@@ -81,11 +83,11 @@ share(id:number,category:string,titleText:string)
 
 
 
-watch(card:CardModel)//,event:Event)
+watch(prod:Product)//,event:Event)
 {
   if(!this.auth.user().IsLoggedIn)
   {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/account/login']);
   }
 
   // let target = event.target as HTMLElement;
@@ -109,12 +111,12 @@ watch(card:CardModel)//,event:Event)
   //   matbutton = target.offsetParent as HTMLElement;
   // }  
   
-  if(card.isWatch)
+  if(prod.isWatch)
   {    
     //Remove from WatchList
-    this.service.removeWatch(card).subscribe({
+    this.service.removeWatch(prod).subscribe({
       next:(v)=>{
-         card.isWatch = false;
+        prod.isWatch = v.isWatch;
         // if(matbutton.classList.contains('bred') || maticon.classList.contains('bred'))
         // {
         //   matbutton.classList.remove('bred');
@@ -131,9 +133,9 @@ watch(card:CardModel)//,event:Event)
   else
   {  
     //Add to WatchList
-    this.service.addWatch(card).subscribe({
+    this.service.addWatch(prod).subscribe({
       next:(v)=>{        
-        card.isWatch = true;
+        prod.isWatch=v.isWatch;
     // if(matbutton.classList.contains('bgreen') || maticon.classList.contains('bgreen'))
     // {
     //   matbutton.classList.remove('bgreen');
@@ -149,28 +151,28 @@ watch(card:CardModel)//,event:Event)
   }     
 }
 
-openDialog(rowAction:string,card:CardModel) {  
+openDialog(rowAction:string,prod:Product) {  
 debugger;
-  card.item.rowAction = rowAction;
+prod.rowAction = rowAction;
   
   if(rowAction=='Comment')
   { 
-    this.commentObj = new CardModel(); 
-    this.commentObj.item.itemId = card.item.itemId;
-    this.commentObj.item.rowAction = rowAction; 
-    this.commentObj.item.avatarUrl = card.item.avatarUrl; 
-    this.commentObj.item.titleText = card.item.titleText; 
-    this.commentObj.item.subTitle = card.item.subTitle; 
-    if(localStorage[rowAction+'-'+card.item.itemId]==undefined)
+    this.commentObj = new Product(); 
+    this.commentObj.productId = prod.productId;
+    this.commentObj.rowAction = rowAction; 
+    this.commentObj.avatarUrl = prod.avatarUrl; 
+    this.commentObj.title = prod.title; 
+    this.commentObj.subTitle = prod.subTitle; 
+    if(localStorage[rowAction+'-'+prod.productId]==undefined)
     {
       if(this.auth.user().IsLoggedIn) 
       {
-        this.service.getCommentByItemId(this.commentObj.item.itemId).subscribe(
+        this.service.getCommentByItemId(this.commentObj.productId).subscribe(
           {
             next: (v) => {
              
-                 this.commentObj.item.referralCode = v.referralCode;
-                 this.commentObj.item.referralLink = v.referralLink;
+                 this.commentObj.referralCode = v.referralCode;
+                 this.commentObj.referralLink = v.referralLink;
   
                  const dialogRef = this.dialog.open(DialogBoxComponent, {
                   maxWidth: '100vw',
@@ -180,7 +182,7 @@ debugger;
                   panelClass: 'full-screen-modal',
                   disableClose: true,
                   autoFocus: true,
-                  data:rowAction=='Comment'?this.commentObj:card
+                  data:rowAction=='Comment'?this.commentObj:prod
                 });
   
                 dialogRef.componentInstance.onDoAction.subscribe((d) => {
@@ -225,7 +227,7 @@ debugger;
         panelClass: 'full-screen-modal',
         disableClose: true,
         autoFocus: true,
-        data:rowAction=='Comment'?this.commentObj:card
+        data:rowAction=='Comment'?this.commentObj:prod
       });
   
       dialogRef.componentInstance.onDoAction.subscribe((d) => {
@@ -255,11 +257,11 @@ debugger;
     }
 
     }
-    else if(localStorage[rowAction+'-'+card.item.itemId]!=undefined)
+    else if(localStorage[rowAction+'-'+prod.productId]!=undefined)
     {  
-    var comment = JSON.parse(localStorage[rowAction+'-'+card.item.itemId]);
-    this.commentObj.item.referralCode = comment.referralCode;
-    this.commentObj.item.referralLink = comment.referralLink;
+    var comment = JSON.parse(localStorage[rowAction+'-'+prod.productId]);
+    this.commentObj.referralCode = comment.referralCode;
+    this.commentObj.referralLink = comment.referralLink;
 
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       maxWidth: '100vw',
@@ -269,7 +271,7 @@ debugger;
       panelClass: 'full-screen-modal',
       disableClose: true,
       autoFocus: true,
-      data:rowAction=='Comment'?this.commentObj:card
+      data:rowAction=='Comment'?this.commentObj:prod
     });
 
     dialogRef.componentInstance.onDoAction.subscribe((d) => {
@@ -302,12 +304,12 @@ debugger;
     }
     else if(this.auth.user().IsLoggedIn) 
     {
-      this.service.getCommentByItemId(this.commentObj.item.itemId).subscribe(
+      this.service.getCommentByItemId(this.commentObj.productId).subscribe(
         {
           next: (v) => {
            
-               this.commentObj.item.referralCode = v?.referralCode;
-               this.commentObj.item.referralLink = v?.referralLink;
+               this.commentObj.referralCode = v?.referralCode;
+               this.commentObj.referralLink = v?.referralLink;
 
                const dialogRef = this.dialog.open(DialogBoxComponent, {
                 maxWidth: '100vw',
@@ -317,7 +319,7 @@ debugger;
                 panelClass: 'full-screen-modal',
                 disableClose: true,
                 autoFocus: true,
-                data:rowAction=='Comment'?this.commentObj:card
+                data:rowAction=='Comment'?this.commentObj:prod
               });
 
               dialogRef.componentInstance.onDoAction.subscribe((d) => {
@@ -364,7 +366,7 @@ debugger;
       panelClass: 'full-screen-modal',
       disableClose: true,
       autoFocus: true,
-      data:card
+      data:prod
     });
 
     dialogRef.componentInstance.onDoAction.subscribe((d) => {

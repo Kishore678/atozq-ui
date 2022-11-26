@@ -166,3 +166,11 @@ button.viewall
     color: #ffffff;
     background: #08ac0a;
 }
+.page-toolbar
+{
+  padding: 12px;
+  font-size: 16px;
+  background:#00d103;
+  color: #fff;
+  text-align: center;
+}

@@ -10,7 +10,7 @@
       <a class="menuitems" mat-list-item routerLink="/">      
         <mat-icon aria-hidden="false" aria-label="Home" fontIcon="home"></mat-icon><span class="menutext">Home</span>      
        </a> 
-       <a class="menuitems" mat-list-item routerLink="/login" *ngIf="!auth.user().IsLoggedIn">      
+       <a class="menuitems" mat-list-item routerLink="/account/login" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Login</span>      
        </a>    
        <a class="menuitems" mat-list-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">      
@@ -25,27 +25,27 @@
           <mat-icon class="sidemenu">account_circle</mat-icon>
           <span>{{auth.user().UserName | titlecase}}</span>
         </button>
-        <button mat-menu-item routerLink="/profile"  *ngIf="auth.user().IsLoggedIn">
+        <button mat-menu-item routerLink="/account/profile"  *ngIf="auth.user().IsLoggedIn">
           <mat-icon class="sidemenu">settings</mat-icon>
           <span class="sidemenu">Settings</span>
         </button>
-        <button mat-menu-item routerLink="/dashboard"  *ngIf="auth.user().IsLoggedIn">
+        <button mat-menu-item routerLink="/app/dashboard"  *ngIf="auth.user().IsLoggedIn">
           <mat-icon class="sidemenu">dashboard</mat-icon>
           <span class="sidemenu">Dashboard</span>
         </button>
-        <button mat-menu-item routerLink="/referral" *ngIf="auth.user().IsAdmin">
+        <button mat-menu-item routerLink="/app/referral" *ngIf="auth.user().IsAdmin">
           <mat-icon class="sidemenu">group_add</mat-icon>
           <span class="sidemenu">Referrals</span>
         </button>
-        <button mat-menu-item routerLink="/shopping" *ngIf="auth.user().IsAdmin">
+        <button mat-menu-item routerLink="/app/shopping" *ngIf="auth.user().IsAdmin">
           <mat-icon class="sidemenu">shopping_basket</mat-icon>
           <span class="sidemenu">Shopping</span>
         </button>
-        <button mat-menu-item routerLink="/login" *ngIf="!auth.user().IsLoggedIn">
+        <button mat-menu-item routerLink="/account/login" *ngIf="!auth.user().IsLoggedIn">
           <mat-icon class="sidemenu">account_circle</mat-icon>
           <span class="sidemenu">Login</span>
         </button>
-        <button mat-menu-item routerLink="/register" *ngIf="!auth.user().IsLoggedIn">
+        <button mat-menu-item routerLink="/account/register" *ngIf="!auth.user().IsLoggedIn">
           <mat-icon class="sidemenu">how_to_reg</mat-icon>
           <span class="sidemenu">Register</span>
         </button>
@@ -69,32 +69,32 @@
       <mat-nav-list>
        <mat-selection-list id="account" title="account" #menu [multiple]="false">
           <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/profile">      
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/account/profile">      
               <mat-icon aria-hidden="false" aria-label="settings" fontIcon="settings"></mat-icon><span>Settings</span>      
              </a>            
           </mat-list-option>
           <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/dashboard">      
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/dashboard">      
               <mat-icon aria-hidden="false" aria-label="Dashboard" fontIcon="dashboard"></mat-icon><span>Dashboard</span>      
              </a>            
           </mat-list-option>
           <mat-list-option *ngIf="auth.user().IsAdmin">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/referral">      
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/referral">      
               <mat-icon aria-hidden="false" aria-label="Referral" fontIcon="group_add"></mat-icon><span>Referrals</span>      
              </a>            
           </mat-list-option>
           <mat-list-option  *ngIf="auth.user().IsAdmin">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/shopping">      
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/shopping">      
               <mat-icon aria-hidden="false" aria-label="Shopping" fontIcon="shopping_basket"></mat-icon><span>Shopping</span>      
              </a>            
           </mat-list-option>
           <mat-list-option *ngIf="!auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/login">      
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/account/login">      
               <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span>Login</span>      
              </a>            
           </mat-list-option>
           <mat-list-option *ngIf="!auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/register">      
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/account/register">      
               <mat-icon aria-hidden="false" aria-label="Register" fontIcon="how_to_reg"></mat-icon><span>Register</span>      
              </a>            
           </mat-list-option>

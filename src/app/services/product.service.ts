@@ -6,13 +6,15 @@ import { CardModel } from '../models/card.model';
 import { CommentModel } from '../models/comment.model';
 import { ImageModel } from '../models/image.model';
 import { ItemModel } from '../models/item.model';
+import { Product } from '../models/product.model';
+import { UserItem } from '../models/userItem.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  products:ItemModel[]=[];
+  products:Product[]=[];
   cards:CardModel[] =[];
   images:ImageModel[]=[];
 
@@ -21,6 +23,9 @@ export class ProductService {
   readonly prodUrl = `${environment.apiBaseUrl}/api/product`;
   readonly mediaUrl = `${environment.apiBaseUrl}/api/Media`;
   readonly cardUrl = `${environment.apiBaseUrl}/api/Card`;
+  readonly userUrl = `${environment.apiBaseUrl}/api/UserItems`;
+  
+  // http://localhost:24288/api/UserItems/all/kishore
 
   constructor(private http:HttpClient) { }
 
@@ -85,14 +90,34 @@ export class ProductService {
     return this.http.get<CardModel[]>(`${this.cardUrl}/all/${category}`);
   }
 
-  addWatch(card:CardModel):Observable<CardModel>
+  addWatch(prod:Product):Observable<Product>
   {
-    return this.http.post<CardModel>(`${this.cardUrl}/addwatch`,card);
+    return this.http.post<Product>(`${this.prodUrl}/addwatch`,prod);
   }
 
-  removeWatch(card:CardModel):Observable<CardModel>
+  removeWatch(prod:Product):Observable<Product>
   {
-    return this.http.delete<CardModel>(`${this.cardUrl}/removewatch/${card.watch.watchId}`);
+    return this.http.post<Product>(`${this.prodUrl}/removewatch`,prod);   
   }
+
+addToUserItem(model:UserItem):Observable<UserItem>
+{
+  return this.http.post<UserItem>(`${this.userUrl}`,model);
+}
+
+removeUserItem(userItemId:number):Observable<UserItem>
+{
+  return this.http.delete<UserItem>(`${this.userUrl}/${userItemId}`);
+}
+
+
+//Product Service
+
+getProducts(username:string):Observable<Product[]>
+{
+  return this.http.get<Product[]>(`${this.prodUrl}/${username}`);
+}
+
+
 
 }

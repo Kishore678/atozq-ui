@@ -1,40 +1,40 @@
 
 <div class="row">
-      <div class="col-md-4" *ngFor="let card of service.cards">
+      <div class="col-md-4" *ngFor="let prod of service.products">
 <mat-card class="item-card">
     <mat-card-header>
-      <div mat-card-avatar class="item-header-image" style="background-image: url('{{card.item.avatarUrl}}');"></div>
-      <mat-card-title class="overflow-ellipsis">{{card.item.titleText}}</mat-card-title>
-      <mat-card-subtitle class="overflow-ellipsis">{{card.item.subTitle}}</mat-card-subtitle>
+      <div mat-card-avatar class="item-header-image" style="background-image: url('{{prod.avatarUrl}}');"></div>
+      <mat-card-title class="overflow-ellipsis">{{prod.title}}</mat-card-title>
+      <mat-card-subtitle class="overflow-ellipsis">{{prod.subTitle}}</mat-card-subtitle>
     </mat-card-header>
     <div class = "geeks">
-     <a (click)="openDialog('View',card)"> <img mat-card-image src='{{card.item.itemImageUrl}}' alt='{{card.item.titleText}}'></a>
+     <a (click)="openDialog('View',prod)"> <img mat-card-image src='{{prod.imageUrl}}' alt='{{prod.title}}'></a>
   </div>   
     <mat-card-content>      
-      <h2 class="overflow-ellipsis">{{card.item.itemHeadLine}}</h2>
+      <h2 class="overflow-ellipsis">{{prod.headLine}}</h2>
      
         <mat-toolbar>
-          <span [ngClass]="card.item.referralCode?'overflow-ellipsis fgreen':'overflow-ellipsis'">{{card.item.referralCode || 'No Code' | uppercase}}</span>
-          <button  class="bgreen" mat-button mat-raised-button [cdkCopyToClipboard]="card.item.referralCode || ''" [cdkCopyToClipboardAttempts]="6"><mat-icon>file_copy</mat-icon>Copy</button>
+          <span [ngClass]="prod.referralCode?'overflow-ellipsis fgreen':'overflow-ellipsis'">{{prod.referralCode || 'No Code' | uppercase}}</span>
+          <button  class="bgreen" mat-button mat-raised-button [cdkCopyToClipboard]="prod.referralCode || ''" [cdkCopyToClipboardAttempts]="6"><mat-icon>file_copy</mat-icon>Copy</button>
         </mat-toolbar>
     
         <mat-toolbar>
         
-          <span class="overflow-ellipsis" *ngIf="card.item.referralLink;else emptybox"><a href="{{card.item.referralLink}}" target="_blank">{{card.item.referralLink | slice:0:30}}</a></span>
+          <span class="overflow-ellipsis" *ngIf="prod.referralLink;else emptybox"><a href="{{prod.referralLink}}" target="_blank">{{prod.referralLink | slice:0:30}}</a></span>
           <ng-template #emptybox><span class="overflow-ellipsis">No Link</span></ng-template>        
-          <button  class="bgreen" mat-button mat-raised-button [cdkCopyToClipboard]="card.item.referralLink || ''" [cdkCopyToClipboardAttempts]="6"><mat-icon>file_copy</mat-icon>Copy</button>
+          <button  class="bgreen" mat-button mat-raised-button [cdkCopyToClipboard]="prod.referralLink || ''" [cdkCopyToClipboardAttempts]="6"><mat-icon>file_copy</mat-icon>Copy</button>
         </mat-toolbar>
      
 
-      <p [innerHtml]="card.item.itemDescription | linkify" class="overflow-ellipsis"></p>
+      <p [innerHtml]="prod.description | linkify" class="overflow-ellipsis"></p>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions style="text-align:center">
-      <button class="bgreen" (click)="openDialog('View',card)" mat-raised-button color="basic"><mat-icon>remove_red_eye</mat-icon>View</button>            
-      <button class="bgreen" (click)="share(card.item.itemId,card.item.category,card.item.titleText)" mat-raised-button color="basic" mat-button><mat-icon>share</mat-icon>Share</button>
-      <button class="bgreen" (click)="openDialog('Comment',card)" mat-raised-button color="basic" mat-button><mat-icon>comment</mat-icon>Comment</button>      
-      <button class="bgreen" (click)="openDialog('Update',card)" *ngIf="auth.user().IsLoggedIn && auth.user().IsAdmin" mat-raised-button color="basic" mat-button><mat-icon>edit</mat-icon>Edit</button>
-      <button [ngClass]="card.isWatch?'bred':'bgreen'" (click)="watch(card)" mat-raised-button color="basic" mat-button><mat-icon>add_to_queue</mat-icon>Save</button>
+      <button class="bgreen" (click)="openDialog('View',prod)" mat-raised-button color="basic"><mat-icon>remove_red_eye</mat-icon>View</button>            
+      <button class="bgreen" (click)="share(prod.productId,prod.category,prod.title)" mat-raised-button color="basic" mat-button><mat-icon>share</mat-icon>Share</button>
+      <button class="bgreen" (click)="openDialog('Comment',prod)" mat-raised-button color="basic" mat-button><mat-icon>comment</mat-icon>Comment</button>      
+      <button class="bgreen" (click)="openDialog('Update',prod)" *ngIf="auth.user().IsLoggedIn && auth.user().IsAdmin" mat-raised-button color="basic" mat-button><mat-icon>edit</mat-icon>Edit</button>
+      <button [ngClass]="prod.isWatch?'bred':'bgreen'" (click)="watch(prod)" mat-raised-button color="basic" mat-button><mat-icon>add_to_queue</mat-icon>Save</button>
     </mat-card-actions>
     <button class="viewall" *ngIf="isSearch" routerLink="/" mat-raised-button color="basic"><mat-icon>remove_red_eye</mat-icon>View All</button>
   </mat-card>  

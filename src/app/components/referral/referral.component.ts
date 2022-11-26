@@ -24,13 +24,13 @@ ngOnInit() {
   if(this.route.snapshot.params['id'])
   {
     this.service.getProductById (this.route.snapshot.params['id']).subscribe(result=>{
-      this.service.products.push(result);
+      // this.service.products.push(result);
     });
   }
   else
   {
     this.service.getProductsByCategory("referral").subscribe(result=>{
-  this.service.products = result;
+  // this.service.products = result;
 });
   }
 
@@ -128,18 +128,15 @@ openDialog(rowAction:string,obj:any) {
 updateRowData(id:number,d:any){
   this.service.putProduct(id,d.data).subscribe(res=>{      
     this.service.products.filter(function(item){
-       if(item.itemId==res.itemId)
+       if(item.productId==res.itemId)
        {
         item.category=res.category;
-        item.titleText=res.titleText;
+        item.title=res.titleText;
         item.subTitle=res.subTitle;
         item.avatarUrl=res.avatarUrl;
-        item.itemImageUrl=res.itemImageUrl;
-        item.itemHeadLine=res.itemHeadLine;
-        item.itemDescription=res.itemDescription;
-        item.useButton=res.useButton;
-        item.shareButton=res.shareButton;
-        item.commentButton=res.commentButton;
+        item.imageUrl=res.itemImageUrl;
+        item.headLine=res.itemHeadLine;
+        item.description=res.itemDescription;        
         item.rowAction=res.rowAction;
         d.dialog.close();               
        }

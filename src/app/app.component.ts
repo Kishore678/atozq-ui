@@ -36,7 +36,7 @@ export class AppComponent implements OnDestroy {
   logOut()
   {
     this.auth.logOut(); 
-    this.router.navigate(["/logout"]);
+    this.router.navigate(["/account/logout"]);
   }
 }
 

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if(this.service.user().IsLoggedIn)
     {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/app/dashboard']);
     }
   }
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         const token = (<any>res).token;
         localStorage.setItem("jwt", token);        
         this.invalidLogin = false;      
-        this.router.navigate([this.service.redirectUrl==undefined?'/dashboard':this.service.redirectUrl]);
+        this.router.navigate([this.service.redirectUrl==undefined?'/app/dashboard':this.service.redirectUrl]);
         }
         else
         {
