@@ -19,6 +19,8 @@ commentObj = new Product();
 isSearch:boolean=false;
 isMobile:Boolean=false;
 
+products:Product[]=[];
+
 constructor(
   public service:ProductService,
   public dialog: MatDialog,
@@ -30,21 +32,35 @@ constructor(
 
 @ViewChild('button') button!: ElementRef;
 
-ngOnInit() { 
+ngOnInit() {  
   debugger;
-  if(this.route.snapshot.params['id'])
-  {
-    this.service.getProducts(this.route.snapshot.params['id']).subscribe(result=>{
-      this.service.products = [];
+  let rootpath = this.route.snapshot.routeConfig?.path;
+  if(rootpath!=undefined && rootpath.startsWith('app/search/:id'))
+  {    
+    debugger;
+    this.service.getProductById(this.route.snapshot.params['id']).subscribe(result=>{
+      this.products = [];
       this.service.products = result;
+      this.products = this.service.products;
+      this.isSearch = false;
+    }); 
+  }
+  else if(this.route.snapshot.params['page'])
+  {
+    this.service.getProducts(this.route.snapshot.params['page']).subscribe(result=>{
+      this.products = [];
+      this.service.products = result;
+      this.products = this.service.products;
       this.isSearch = false;
     });
   }
   else
   {
   this.service.getProducts("").subscribe(result=>{
-  this.service.products = result;
-  this.isSearch = false;
+    this.products = [];
+    this.service.products = result;
+    this.products = this.service.products;
+    this.isSearch = false;
 });
   }
 
@@ -83,48 +99,18 @@ share(id:number,category:string,titleText:string)
 
 
 
-watch(prod:Product)//,event:Event)
+watch(prod:Product)
 {
   if(!this.auth.user().IsLoggedIn)
   {
     this.router.navigate(['/account/login']);
   }
-
-  // let target = event.target as HTMLElement;
-
-  // let matbutton!:HTMLElement;
-  // let maticon!:HTMLElement;
-
-  // if(target.tagName == 'BUTTON')
-  // {
-  //   matbutton = target as HTMLElement;
-  //   maticon = target.childNodes[0].firstChild as HTMLElement;
-  // }
-  // if(target.tagName == 'MAT-ICON')
-  // {
-  //   maticon = target as HTMLElement;
-  //   matbutton = target.offsetParent as HTMLElement;
-  // }
-  // if(target.tagName == 'SPAN')
-  // {
-  //   maticon = target.offsetParent?.childNodes[0].firstChild as HTMLElement;
-  //   matbutton = target.offsetParent as HTMLElement;
-  // }  
-  
-  if(prod.isWatch)
+  else if(prod.isWatch)
   {    
     //Remove from WatchList
     this.service.removeWatch(prod).subscribe({
       next:(v)=>{
-        prod.isWatch = v.isWatch;
-        // if(matbutton.classList.contains('bred') || maticon.classList.contains('bred'))
-        // {
-        //   matbutton.classList.remove('bred');
-        //   matbutton.classList.add('bgreen');
-    
-        //   maticon.classList.remove('bred');
-        //   maticon.classList.add('bgreen');
-        // }
+        prod.isWatch = v.isWatch; 
       },
       error:(e)=>{},
       complete:()=>{}
@@ -136,14 +122,6 @@ watch(prod:Product)//,event:Event)
     this.service.addWatch(prod).subscribe({
       next:(v)=>{        
         prod.isWatch=v.isWatch;
-    // if(matbutton.classList.contains('bgreen') || maticon.classList.contains('bgreen'))
-    // {
-    //   matbutton.classList.remove('bgreen');
-    //   matbutton.classList.add('bred');
-
-    //   maticon.classList.remove('bgreen');
-    //   maticon.classList.add('bred');
-    // }
       },
       error:(e)=>{},
       complete:()=>{}
@@ -167,12 +145,8 @@ prod.rowAction = rowAction;
     {
       if(this.auth.user().IsLoggedIn) 
       {
-        this.service.getCommentByItemId(this.commentObj.productId).subscribe(
-          {
-            next: (v) => {
-             
-                 this.commentObj.referralCode = v.referralCode;
-                 this.commentObj.referralLink = v.referralLink;
+                 this.commentObj.referralCode = '';
+                 this.commentObj.referralLink = '';
   
                  const dialogRef = this.dialog.open(DialogBoxComponent, {
                   maxWidth: '100vw',
@@ -194,14 +168,14 @@ prod.rowAction = rowAction;
                   }else if(d.data.rowAction == 'Comment'){
                     
                     let commentModel = new CommentModel();
-                    commentModel.itemId = d.data.itemId;
+                    commentModel.productId = d.data.productId;
                     commentModel.referralCode = d.data.referralCode;
                     commentModel.referralLink = d.data.referralLink;
               
                     this.saveComment(commentModel,d.dialog);
                   }else if(d.data.rowAction=='Update')
                   {
-                    this.updateRowData(d.data.itemId,d);
+                    this.updateRowData(d.data.productId,d);
                   }
                   
                 });
@@ -210,12 +184,7 @@ prod.rowAction = rowAction;
               
                 dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
                   d.dialog.close();
-                }); 
-              
-            },
-            error: (e) => console.error(e),
-            complete: () => {} 
-        });
+                });         
 
       }
       else{
@@ -239,14 +208,14 @@ prod.rowAction = rowAction;
         }else if(d.data.rowAction == 'Comment'){
           
           let commentModel = new CommentModel();
-          commentModel.itemId = d.data.itemId;
+          commentModel.productId = d.data.productId;
           commentModel.referralCode = d.data.referralCode;
           commentModel.referralLink = d.data.referralLink;
     
           this.saveComment(commentModel,d.dialog);
         }else if(d.data.rowAction=='Update')
         {
-          this.updateRowData(d.data.itemId,d);
+          this.updateRowData(d.data.productId,d);
         }
         
       });
@@ -283,7 +252,7 @@ prod.rowAction = rowAction;
       }else if(d.data.rowAction == 'Comment'){
         
         let commentModel = new CommentModel();
-        commentModel.itemId = d.data.itemId;
+        commentModel.productId = d.data.productId;
         commentModel.referralCode = d.data.referralCode;
         commentModel.referralLink = d.data.referralLink;
   
@@ -303,56 +272,7 @@ prod.rowAction = rowAction;
     
     }
     else if(this.auth.user().IsLoggedIn) 
-    {
-      this.service.getCommentByItemId(this.commentObj.productId).subscribe(
-        {
-          next: (v) => {
-           
-               this.commentObj.referralCode = v?.referralCode;
-               this.commentObj.referralLink = v?.referralLink;
-
-               const dialogRef = this.dialog.open(DialogBoxComponent, {
-                maxWidth: '100vw',
-                maxHeight: '100vh',
-                height: 'relative',
-                width: 'relative',
-                panelClass: 'full-screen-modal',
-                disableClose: true,
-                autoFocus: true,
-                data:rowAction=='Comment'?this.commentObj:prod
-              });
-
-              dialogRef.componentInstance.onDoAction.subscribe((d) => {
-
-                if(d.data.rowAction == 'View'){
-                  // this.addRowData(d);        
-                }else if(d.data.rowAction == 'Share'){
-                  // this.updateRowData(d);
-                }else if(d.data.rowAction == 'Comment'){
-                  
-                  let commentModel = new CommentModel();
-                  commentModel.itemId = d.data.itemId;
-                  commentModel.referralCode = d.data.referralCode;
-                  commentModel.referralLink = d.data.referralLink;
-            
-                  this.saveComment(commentModel,d.dialog);
-                }else if(d.data.rowAction=='Update')
-                {
-                  this.updateRowData(d.data.itemId,d);
-                }
-                
-              });
-            
-              
-            
-              dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
-                d.dialog.close();
-              }); 
-            
-          },
-          error: (e) => console.error(e),
-          complete: () => {} 
-      });       
+    {         
    
     }  
   }
@@ -378,7 +298,7 @@ prod.rowAction = rowAction;
       }else if(d.data.rowAction == 'Comment'){
         
         let commentModel = new CommentModel();
-        commentModel.itemId = d.data.itemId;
+        commentModel.productId = d.data.productId;
         commentModel.referralCode = d.data.referralCode;
         commentModel.referralLink = d.data.referralLink;
   
@@ -394,10 +314,7 @@ prod.rowAction = rowAction;
       d.dialog.close();
     }); 
   
-  }
-
-
-     
+  }    
   
 }
 
@@ -418,7 +335,7 @@ saveComment(model:CommentModel,dialog:any)
   this.service.postComment(model).subscribe(result=>{
   if(result.commentId>0)
   {
-    localStorage.removeItem('Comment-'+model.itemId);  
+    localStorage.removeItem('Comment-'+model.productId);  
     dialog.close();
    alert('Successfully posted your comment.');
   }
@@ -431,10 +348,10 @@ saveComment(model:CommentModel,dialog:any)
  }
  else
  {  
-  localStorage['Comment-'+model.itemId]=JSON.stringify(model);
+  localStorage['Comment-'+model.productId]=JSON.stringify(model);
   dialog.close();
-  this.auth.redirectUrl = '/product/'+model.itemId;  
-  this.router.navigate(['/login']);  
+  this.auth.redirectUrl = '/app/search/'+model.productId;  
+  this.router.navigate(['/account/login']);  
  }
 
 }

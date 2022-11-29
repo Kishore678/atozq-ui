@@ -16,9 +16,9 @@ import { ChangePwdSuccessComponent } from './components/change-pwd-success/chang
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:':id',component:HomeComponent},
-  {path:'app/product',component:HomeComponent},
-  {path:'app/product/:id',component:HomeComponent},
+  {path:':page',component:HomeComponent},
+  {path:'app/search',component:HomeComponent},
+  {path:'app/search/:id',component:HomeComponent},
   {path:'account/login',component:LoginComponent},
   {path:'account/register',component:RegisterComponent},
   {path:'account/forgotpass',component:ForgotpassComponent},

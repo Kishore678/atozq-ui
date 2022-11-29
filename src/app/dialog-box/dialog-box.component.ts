@@ -1,7 +1,6 @@
 //dialog-box.component.ts
 import { Component, EventEmitter, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CardModel } from '../models/card.model';
 
 @Component({
   selector: 'app-dialog-box',
@@ -23,27 +22,27 @@ export class DialogBoxComponent {
   rowAction:string='';
   referralCode:string='';
   referralLink:string='';
-  local_data:CardModel;
+  local_data:any;
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
     //@Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: CardModel) {   
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {   
     this.local_data = {...data};
-    this.itemId = this.local_data.item.itemId;
-    this.category=this.local_data.item.category;
-    this.titleText=this.local_data.item.titleText;
-    this.subTitle=this.local_data.item.subTitle;
-    this.avatarUrl=this.local_data.item.avatarUrl;
-    this.itemImageUrl=this.local_data.item.itemImageUrl;
-    this.itemHeadLine=this.local_data.item.itemHeadLine;
-    this.itemDescription=this.local_data.item.itemDescription;
-    this.useButton=this.local_data.item.useButton;
-    this.shareButton=this.local_data.item.shareButton;
-    this.commentButton=this.local_data.item.commentButton;
-    this.referralCode=this.local_data.item.referralCode;   
-    this.referralLink=this.local_data.item.referralLink;   
-    this.rowAction=this.local_data.item.rowAction;   
+    this.itemId = this.local_data.itemId;
+    this.category=this.local_data.category;
+    this.titleText=this.local_data.titleText;
+    this.subTitle=this.local_data.subTitle;
+    this.avatarUrl=this.local_data.avatarUrl;
+    this.itemImageUrl=this.local_data.itemImageUrl;
+    this.itemHeadLine=this.local_data.itemHeadLine;
+    this.itemDescription=this.local_data.itemDescription;
+    this.useButton=this.local_data.useButton;
+    this.shareButton=this.local_data.shareButton;
+    this.commentButton=this.local_data.commentButton;
+    this.referralCode=this.local_data.referralCode;   
+    this.referralLink=this.local_data.referralLink;   
+    this.rowAction=this.local_data.rowAction;   
   }
 
   onDoAction = new EventEmitter();
@@ -51,7 +50,7 @@ export class DialogBoxComponent {
   onCloseDialog = new EventEmitter();
 
   doAction(){
-    this.onDoAction.emit({dialog:this.dialogRef,data:this.local_data.item});   
+    this.onDoAction.emit({dialog:this.dialogRef,data:this.local_data});   
   }
 
   closeDialog(){

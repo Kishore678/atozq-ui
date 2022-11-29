@@ -38,10 +38,10 @@ export class ProductService {
 
   //get product by id
   // url: api/product/{id}
-  getProductById(id:number):Observable<ItemModel>
-  {
-    return this.http.get<ItemModel>(`${this.prodUrl}/${id}`);
-  }
+  // getProductById(id:number):Observable<ItemModel>
+  // {
+  //   return this.http.get<ItemModel>(`${this.prodUrl}/${id}`);
+  // }
 
   //create
   // url: api/product
@@ -118,6 +118,9 @@ getProducts(username:string):Observable<Product[]>
   return this.http.get<Product[]>(`${this.prodUrl}/${username}`);
 }
 
-
+getProductById(id:number):Observable<Product[]>
+{
+  return this.http.get<Product[]>(`${this.prodUrl}/${id}`)
+}
 
 }

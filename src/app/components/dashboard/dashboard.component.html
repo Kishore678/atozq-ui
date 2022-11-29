@@ -1,135 +1,4 @@
-<mat-tab-group dynamicHeight *ngIf="auth.user().IsAdmin">
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">edit</mat-icon>
-      Products
-    </ng-template>
-    <div class="center">
-      <button mat-button (click)="openDialog('Add',{})" mat-raised-button color="primary">Add New</button>
-      <table mat-table #table [dataSource]="prodService.products" class="mat-elevation-z8">
-      
-          <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-        
-          <!-- Position Column -->
-          <ng-container matColumnDef="itemId">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.itemId}} </td>
-          </ng-container>
-        
-          <!-- Name Column -->
-          <ng-container matColumnDef="category">
-            <th mat-header-cell *matHeaderCellDef> Category </th>
-            <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-          </ng-container>
-        
-          <!-- Weight Column -->
-          <ng-container matColumnDef="titleText">
-            <th mat-header-cell *matHeaderCellDef> TitleText </th>
-            <td mat-cell *matCellDef="let element"> {{element.titleText}} </td>
-          </ng-container>
-        
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="subTitle">
-            <th mat-header-cell *matHeaderCellDef> SubTitle </th>
-            <td mat-cell *matCellDef="let element"> {{element.subTitle}} </td>
-          </ng-container>      
-           
-            <ng-container matColumnDef="avatarUrl">
-              <th mat-header-cell *matHeaderCellDef> AvatarUrl </th>
-              <td mat-cell *matCellDef="let element"> {{element.avatarUrl}} </td>
-            </ng-container>      
-                
-            <ng-container matColumnDef="itemImageUrl">
-              <th mat-header-cell *matHeaderCellDef> ItemImageUrl </th>
-              <td mat-cell *matCellDef="let element"> {{element.itemImageUrl}} </td>
-            </ng-container>
-      
-            <ng-container matColumnDef="itemHeadLine">
-              <th mat-header-cell *matHeaderCellDef> ItemHeadLine </th>
-              <td mat-cell *matCellDef="let element"> {{element.itemHeadLine}} </td>
-            </ng-container>
-      
-            <ng-container matColumnDef="itemDescription">
-              <th mat-header-cell *matHeaderCellDef> ItemDescription </th>
-              <td mat-cell *matCellDef="let element"> {{element.itemDescription}} </td>
-            </ng-container>
-      
-            <ng-container matColumnDef="useButton">
-              <th mat-header-cell *matHeaderCellDef> UseButton </th>
-              <td mat-cell *matCellDef="let element"> {{element.useButton}} </td>
-            </ng-container>
-      
-            <ng-container matColumnDef="shareButton">
-              <th mat-header-cell *matHeaderCellDef> ShareButton </th>
-              <td mat-cell *matCellDef="let element"> {{element.shareButton}} </td>
-            </ng-container>
-      
-            <ng-container matColumnDef="commentButton">
-              <th mat-header-cell *matHeaderCellDef> Comments </th>
-              <td mat-cell *matCellDef="let element"> {{element.commentButton}} </td>
-            </ng-container>
-      
-              <!-- Action Column -->
-          <ng-container matColumnDef="rowAction">
-              <th mat-header-cell *matHeaderCellDef> RowAction </th>
-              <td mat-cell *matCellDef="let element" class="action-link"> 
-                <a (click)="openDialog('Update',element)"><mat-icon class="edit" aria-hidden="false" aria-label="edit" fontIcon="edit"></mat-icon></a> | 
-                <a (click)="openDialog('Delete',element)"><mat-icon color="warn" aria-hidden="false" aria-label="delete" fontIcon="delete"></mat-icon></a>  
-              </td>
-            </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">comment</mat-icon>
-      Comments
-    </ng-template>
-    Content 2
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">add_to_queue</mat-icon>
-      Watch List
-    </ng-template>
-
-    Content 3
-  </mat-tab>
-  
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">perm_media</mat-icon>
-      Media
-    </ng-template>
-    <button mat-button (click)="openDialog('Add Media',{})" mat-raised-button color="primary">Add New</button>
-<div class="row">
-  <div class="col-md-4" *ngFor="let card of prodService.images">
-<mat-card class="item-card">
-<div class = "geeks">
- <a (click)="openDialog('View',card)"> <img mat-card-image src='{{card.src}}' alt='{{card.fileName}}'></a>
-</div>   
-<mat-card-content>      
-  <h2 class="overflow-ellipsis">{{card.fileName}}</h2>
-</mat-card-content>
-<mat-divider></mat-divider>
-<mat-card-actions style="text-align:center">     
-  <button (click)="openDialog('Update Media',card)" *ngIf="auth.user().IsLoggedIn && auth.user().IsAdmin" mat-raised-button color="basic" mat-button><mat-icon>edit</mat-icon>Edit</button>  
-</mat-card-actions>
-</mat-card>  
-</div>
-</div>
-  </mat-tab>
-</mat-tab-group>
-
-
-
-<mat-tab-group dynamicHeight *ngIf="!auth.user().IsAdmin">
+<mat-tab-group dynamicHeight>
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">domain</mat-icon>
@@ -142,7 +11,7 @@
 </mat-toolbar-row>
       </mat-toolbar>
     <div class="container">
-      <!-- <button mat-button (click)="openDialog('Add',{})" mat-raised-button color="primary">Add New</button> -->
+      <button *ngIf="addCtrl" mat-button (click)="openDialog('Add',{})" mat-raised-button color="primary">Add New</button>
       <div class="row page-toolbar">        
         <div class="col-md-12">   
           Manage Page
@@ -162,35 +31,7 @@
         <ng-container matColumnDef="rowAction">
             <th mat-header-cell *matHeaderCellDef>Action</th>
             <td mat-cell *matCellDef="let element" class="action-link">               
-              <a (click)="openDialog('Edit',element)"><mat-icon color="primary" aria-hidden="false" aria-label="edit" fontIcon="edit"></mat-icon></a>  | 
-              <a (click)="openDialog('Delete',element)"><mat-icon color="warn" aria-hidden="false" aria-label="delete" fontIcon="delete"></mat-icon></a>  
-            </td>
-          </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="myPageGridColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: myPageGridColumns;"></tr>
-      </table>
-
-      </div>
-  </mat-tab>
-  <!-- <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">add_to_queue</mat-icon>
-      Save List
-    </ng-template>
-    <div class="center">      
-      <table mat-table #table [dataSource]="prodService.products" class="mat-elevation-z8">   
-        <ng-container matColumnDef="category">
-          <th mat-header-cell *matHeaderCellDef>Category</th>
-          <td mat-cell *matCellDef="let element">  </td>
-        </ng-container>
-        <ng-container matColumnDef="titleText">
-          <th mat-header-cell *matHeaderCellDef>Product</th>
-          <td mat-cell *matCellDef="let element"> </td>
-        </ng-container> 
-        <ng-container matColumnDef="rowAction">
-            <th mat-header-cell *matHeaderCellDef>Action</th>
-            <td mat-cell *matCellDef="let element" class="action-link">               | 
+              <a (click)="openDialog('Update',element)"><mat-icon color="primary" aria-hidden="false" aria-label="edit" fontIcon="edit"></mat-icon></a>  | 
               <a (click)="openDialog('Delete',element)"><mat-icon color="warn" aria-hidden="false" aria-label="delete" fontIcon="delete"></mat-icon></a>  
             </td>
           </ng-container>
@@ -199,35 +40,7 @@
         <tr mat-row *matRowDef="let row; columns: myPageGridColumns;"></tr>
       </table>
       </div>
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">comment</mat-icon>
-      Comments
-    </ng-template>
-    <div class="center">      
-      <table mat-table #table [dataSource]="prodService.products" class="mat-elevation-z8">   
-        <ng-container matColumnDef="category">
-          <th mat-header-cell *matHeaderCellDef>Category</th>
-          <td mat-cell *matCellDef="let element">  </td>
-        </ng-container>
-        <ng-container matColumnDef="titleText">
-          <th mat-header-cell *matHeaderCellDef>Product</th>
-          <td mat-cell *matCellDef="let element"> </td>
-        </ng-container> 
-        <ng-container matColumnDef="rowAction">
-            <th mat-header-cell *matHeaderCellDef>Action</th>
-            <td mat-cell *matCellDef="let element" class="action-link">               | 
-              <a (click)="openDialog('Delete',element)"><mat-icon color="warn" aria-hidden="false" aria-label="delete" fontIcon="delete"></mat-icon></a>  
-            </td>
-          </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="myPageGridColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: myPageGridColumns;"></tr>
-      </table>
-      </div>
-  </mat-tab> -->
+  </mat-tab> 
 </mat-tab-group>
   
   

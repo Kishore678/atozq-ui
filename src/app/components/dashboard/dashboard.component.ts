@@ -14,11 +14,15 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DashboardComponent implements OnInit {
 
+  myPageGridColumns:string[] = ['category', 'title','rowAction'];  
+
+  addCtrl:boolean=false;
+
   readonly appBaseUrl = window.location.origin;
 
-  displayedColumns: string[] = ['itemId', 'category', 'titleText','subTitle','rowAction'];  
+  // displayedColumns: string[] = ['itemId', 'category', 'titleText','subTitle','rowAction'];  
   
-  myPageGridColumns:string[] = ['category', 'title','rowAction'];  
+
 
   deleted: ItemModel[]=[]; 
   itemData=new ItemModel(); 
@@ -29,16 +33,15 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
 
   ngOnInit(): void { 
-    debugger;
-    this.displayMyPageUrl();   
-    if(this.auth.user().IsAdmin)
+    this.prodService.products = [];
+    this.displayMyPageUrl(); 
+    if(this.auth.user().IsLoggedIn)
     {
-    this.refresh();
-    }
-    else if(this.auth.user().IsLoggedIn)
-    {
-      this.prodService.getProducts(this.auth.user().UserName).subscribe(result=>{
-        this.prodService.products = [];
+      if(this.auth.user().IsAdmin)
+      {
+        this.addCtrl = true;
+      }
+      this.prodService.getProducts(this.auth.user().UserName).subscribe(result=>{        
         this.prodService.products = result;        
       });
     
@@ -65,6 +68,7 @@ export class DashboardComponent implements OnInit {
   }
 
   openDialog(rowAction:string,obj:any) {
+    debugger;
     obj.rowAction = rowAction;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       maxWidth: '100vw',
@@ -78,7 +82,7 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.componentInstance.onDoAction.subscribe((d) => {
-
+debugger;
       if(d.data.rowAction == 'Add'){
         this.addRowData(d);        
       }else if(d.data.rowAction == 'Update'){

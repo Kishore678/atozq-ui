@@ -9,98 +9,81 @@
 <mat-dialog-content>
 <form class="example-form" novalidate *ngIf="rowAction == 'Add' || rowAction == 'Update'">
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemId" name="ItemId" [(ngModel)]="local_data.item.itemId" required placeholder="ItemId" disabled="true">
+    <input matInput type="text" id="ItemId" name="ItemId" [(ngModel)]="local_data.productId" required placeholder="ItemId" disabled="true">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="Category" name="Category" [(ngModel)]="local_data.item.category" required placeholder="Category">
+    <input matInput type="text" id="Category" name="Category" [(ngModel)]="local_data.category" required placeholder="Category">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="TitleText" name="TitleText" [(ngModel)]="local_data.item.titleText" required placeholder="TitleText">
+    <input matInput type="text" id="TitleText" name="TitleText" [(ngModel)]="local_data.title" required placeholder="TitleText">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="SubTitle" name="SubTitle" [(ngModel)]="local_data.item.subTitle" required placeholder="SubTitle">
+    <input matInput type="text" id="SubTitle" name="SubTitle" [(ngModel)]="local_data.subTitle" required placeholder="SubTitle">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="AvatarUrl" name="AvatarUrl" [(ngModel)]="local_data.item.avatarUrl" required placeholder="AvatarUrl">
+    <input matInput type="text" id="AvatarUrl" name="AvatarUrl" [(ngModel)]="local_data.avatarUrl" required placeholder="AvatarUrl">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemImageUrl" name="ItemImageUrl" [(ngModel)]="local_data.item.itemImageUrl" required placeholder="ItemImageUrl">
+    <input matInput type="text" id="ItemImageUrl" name="ItemImageUrl" [(ngModel)]="local_data.imageUrl" required placeholder="ItemImageUrl">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ItemHeadLine" name="ItemHeadLine" [(ngModel)]="local_data.item.itemHeadLine" required placeholder="ItemHeadLine">
+    <input matInput type="text" id="ItemHeadLine" name="ItemHeadLine" [(ngModel)]="local_data.headLine" required placeholder="ItemHeadLine">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="referralCode" name="referralCode" [(ngModel)]="local_data.item.referralCode" required placeholder="referralCode">
+    <input matInput type="text" id="referralCode" name="referralCode" [(ngModel)]="local_data.referralCode" required placeholder="referralCode">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="referralLink" name="referralLink" [(ngModel)]="local_data.item.referralLink" required placeholder="referralLink">
+    <input matInput type="text" id="referralLink" name="referralLink" [(ngModel)]="local_data.referralLink" required placeholder="referralLink">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <textarea matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.item.itemDescription" required placeholder="ItemDescription"></textarea>
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input matInput type="text" id="UseButton" name="UseButton" [(ngModel)]="local_data.item.useButton" required placeholder="UseButton">
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input matInput type="text" id="ShareButton" name="ShareButton" [(ngModel)]="local_data.item.shareButton" required placeholder="ShareButton">
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input matInput type="text" id="CommentButton" name="CommentButton" [(ngModel)]="local_data.item.commentButton" required placeholder="CommentButton" disabled="true">
-  </mat-form-field>
- 
-  <mat-form-field class="example-full-width">
-    <input matInput type="text" id="RowAction" name="RowAction" [(ngModel)]="local_data.item.rowAction" required placeholder="RowAction" disabled="true">
+    <textarea matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.description" required placeholder="Description"></textarea>
   </mat-form-field>
 </form>
-
 <mat-card class="item-card" *ngIf="rowAction=='View'">
   <mat-card-header>
-    <div mat-card-avatar class="item-header-image" style="background-image: url('{{avatarUrl}}');"></div>
-    <mat-card-title>{{titleText}}</mat-card-title>
+    <div mat-card-avatar class="item-header-image" style="background-image: url('{{local_data.avatarUrl}}');"></div>
+    <mat-card-title>{{local_data.title}}</mat-card-title>
     <mat-card-subtitle>{{subTitle}}</mat-card-subtitle>
   </mat-card-header>
   <div class = "geeks">
-    <img mat-card-image src='{{itemImageUrl}}' alt='{{titleText}}'>
+    <img mat-card-image src='{{local_data.imageUrl}}' alt='{{local_data.title}}'>
 </div>   
   <mat-card-content>      
-    <h2>{{itemHeadLine}}</h2>
-    <p [innerHtml]="itemDescription | linkify" ></p>
+    <h2>{{local_data.headLine}}</h2>
+    <p [innerHtml]="local_data.description | linkify" ></p>
   </mat-card-content>
 </mat-card>
 
 <mat-card *ngIf="rowAction=='Delete'">
 <form class="example-form">
-  Sure to delete <b>{{titleText}}</b>?
+  Sure to delete <b>{{local_data.title}}</b>?
 </form>
 </mat-card> 
 
 <mat-card *ngIf="rowAction=='Comment'">
 
  <mat-card-header>
-  <div mat-card-avatar class="item-header-image" style="background-image: url('{{local_data.item.avatarUrl}}');"></div>
-  <mat-card-title class="overflow-ellipsis">{{local_data.item.titleText}}</mat-card-title>
-  <mat-card-subtitle class="overflow-ellipsis">{{local_data.item.subTitle}}</mat-card-subtitle>
+  <div mat-card-avatar class="item-header-image" style="background-image: url('{{local_data.avatarUrl}}');"></div>
+  <mat-card-title class="overflow-ellipsis">{{local_data.title}}</mat-card-title>
+  <mat-card-subtitle class="overflow-ellipsis">{{local_data.subTitle}}</mat-card-subtitle>
 </mat-card-header>
 
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <input matInput type="text" id="referralCode" name="referralCode" [(ngModel)]="local_data.item.referralCode" required placeholder="Please enter your Referral Code">
+      <input matInput type="text" id="referralCode" name="referralCode" [(ngModel)]="local_data.referralCode" required placeholder="Please enter your Referral Code">
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <input matInput type="text" id="referralLink" name="referralLink" [(ngModel)]="local_data.item.referralLink" required placeholder="Please enter your Referral Link">
+      <input matInput type="text" id="referralLink" name="referralLink" [(ngModel)]="local_data.referralLink" required placeholder="Please enter your Referral Link">
     </mat-form-field>
   </form>
   </mat-card> 
@@ -109,11 +92,11 @@
   <mat-card *ngIf="rowAction=='Add Media' || rowAction=='Update Media'">   
      <form class="example-form">
        <mat-form-field class="example-full-width">
-         <input matInput type="text" id="imageSource" name="imageSource" [(ngModel)]="local_data.item.referralCode" required placeholder="Please enter url">
+         <input matInput type="text" id="imageSource" name="imageSource" [(ngModel)]="local_data.referralCode" required placeholder="Please enter url">
        </mat-form-field>
      
        <mat-form-field class="example-full-width">
-         <input matInput type="text" id="imageName" name="imageName" [(ngModel)]="local_data.item.referralLink" required placeholder="Please enter filename">
+         <input matInput type="text" id="imageName" name="imageName" [(ngModel)]="local_data.referralLink" required placeholder="Please enter filename">
        </mat-form-field>
      </form>
      </mat-card>
