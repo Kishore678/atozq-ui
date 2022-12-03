@@ -13,7 +13,7 @@
        <a class="menuitems" mat-list-item routerLink="/account/login" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Login</span>      
        </a>    
-       <a class="menuitems" mat-list-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">      
+       <a style="padding: 8px;" class="menuitems bred" mat-list-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span class="menutext">Logout</span>      
        </a> 
      
@@ -49,9 +49,9 @@
           <mat-icon class="sidemenu">how_to_reg</mat-icon>
           <span class="sidemenu">Register</span>
         </button>
-        <button mat-menu-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu">remove_from_queue</mat-icon>
-          <span class="sidemenu">Logout</span>
+        <button class="bred" mat-menu-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">
+          <mat-icon class="sidemenu bred">remove_from_queue</mat-icon>
+          <span class="sidemenu bred">Logout</span>
         </button>
       </mat-menu>
           
@@ -99,7 +99,7 @@
              </a>            
           </mat-list-option>
           <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item (click)="logOut()">      
+            <a mat-list-item  class="sidemenu bred" mat-list-item (click)="logOut()">      
               <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span>Logout</span>      
              </a>            
           </mat-list-option>         
