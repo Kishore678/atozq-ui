@@ -167,7 +167,7 @@ prod.rowAction = rowAction;
                     // this.updateRowData(d);
                   }else if(d.data.rowAction == 'Comment'){
                     
-                    let commentModel = new CommentModel();
+                    let commentModel = new Product();
                     commentModel.productId = d.data.productId;
                     commentModel.referralCode = d.data.referralCode;
                     commentModel.referralLink = d.data.referralLink;
@@ -207,7 +207,7 @@ prod.rowAction = rowAction;
           // this.updateRowData(d);
         }else if(d.data.rowAction == 'Comment'){
           
-          let commentModel = new CommentModel();
+          let commentModel = new Product();
           commentModel.productId = d.data.productId;
           commentModel.referralCode = d.data.referralCode;
           commentModel.referralLink = d.data.referralLink;
@@ -251,7 +251,7 @@ prod.rowAction = rowAction;
         // this.updateRowData(d);
       }else if(d.data.rowAction == 'Comment'){
         
-        let commentModel = new CommentModel();
+        let commentModel = new Product();
         commentModel.productId = d.data.productId;
         commentModel.referralCode = d.data.referralCode;
         commentModel.referralLink = d.data.referralLink;
@@ -297,7 +297,7 @@ prod.rowAction = rowAction;
         // this.updateRowData(d);
       }else if(d.data.rowAction == 'Comment'){
         
-        let commentModel = new CommentModel();
+        let commentModel = new Product();
         commentModel.productId = d.data.productId;
         commentModel.referralCode = d.data.referralCode;
         commentModel.referralLink = d.data.referralLink;
@@ -318,7 +318,7 @@ prod.rowAction = rowAction;
   
 }
 
-saveComment(model:CommentModel,dialog:any)
+saveComment(model:Product,dialog:any)
 { 
   if(model.referralCode=="" && model.referralLink=="")
   {
@@ -333,7 +333,7 @@ saveComment(model:CommentModel,dialog:any)
   else 
   { 
   this.service.postComment(model).subscribe(result=>{
-  if(result.commentId>0)
+  if(result.Id>0)
   {
     localStorage.removeItem('Comment-'+model.productId);  
     dialog.close();

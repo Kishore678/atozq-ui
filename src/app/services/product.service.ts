@@ -66,7 +66,7 @@ export class ProductService {
 
 //post
 //url: api/product/comment
-  postComment(model:CommentModel):Observable<CommentModel>
+  postComment(model:Product):Observable<CommentModel>
   {
     return this.http.post<CommentModel>(`${this.prodUrl}/comment`,model);
   }

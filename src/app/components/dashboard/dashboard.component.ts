@@ -1,8 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { CommentModel } from 'src/app/models/comment.model';
 import { ItemModel } from 'src/app/models/item.model';
+import { Product } from 'src/app/models/product.model';
+import { UserInfo } from 'src/app/models/userinfo.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -13,7 +17,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+ 
   myPageGridColumns:string[] = ['category', 'title','rowAction'];  
 
   addCtrl:boolean=false;
@@ -27,7 +31,7 @@ export class DashboardComponent implements OnInit {
   deleted: ItemModel[]=[]; 
   itemData=new ItemModel(); 
  
-  constructor(public changeDetectorRef:ChangeDetectorRef,public prodService: ProductService,public dialog: MatDialog,public auth:AuthenticationService) 
+  constructor( private router:Router,public changeDetectorRef:ChangeDetectorRef,public prodService: ProductService,public dialog: MatDialog,public auth:AuthenticationService) 
   {}
 
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
@@ -69,7 +73,7 @@ export class DashboardComponent implements OnInit {
 
   openDialog(rowAction:string,obj:any) {
     debugger;
-    obj.rowAction = rowAction;
+    obj.rowAction = rowAction=='Update'&& !this.auth.user().IsAdmin?'Comment':rowAction;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -98,6 +102,15 @@ debugger;
       {
         this.updateMedia(d);
       }
+      else if(d.data.rowAction == 'Comment'){
+        
+        let commentModel = new Product();
+        commentModel.productId = d.data.productId;
+        commentModel.referralCode = d.data.referralCode;
+        commentModel.referralLink = d.data.referralLink;
+  
+        this.saveComment(commentModel,d.dialog);
+      }
     });
 
     dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
@@ -105,6 +118,44 @@ debugger;
     });    
     
   }
+
+saveComment(model:Product,dialog:any)
+{
+  if(model.referralCode=="" && model.referralLink=="")
+  {
+  alert('Atleast one (Referral Code or Link) should be required');  
+  }
+ else if(this.auth.user().IsLoggedIn)
+ {  
+  if(model.referralCode=="" && model.referralLink=="")
+  {
+  alert('Atleast one (Referral Code or Link) should be required');
+  }
+  else 
+  { 
+  this.prodService.postComment(model).subscribe(result=>{
+  if(result.Id>0)
+  {
+    localStorage.removeItem('Comment-'+model.productId);  
+    dialog.close();
+   alert('Successfully posted your comment.');
+  }
+  else
+  {
+    alert('Something went wrong. Try again later.');
+  }
+  });  
+  }
+ }
+ else
+ {  
+  localStorage['Comment-'+model.productId]=JSON.stringify(model);
+  dialog.close();
+  this.auth.redirectUrl = '/app/search/'+model.productId;  
+  this.router.navigate(['/account/login']);  
+ }
+
+}
 
   addMedia(d:any){
     
@@ -171,17 +222,25 @@ debugger;
   }
 
   deleteRowData(d:any){
- 
-    this.prodService.deleteProduct(d.data.itemId).subscribe(res=>{ 
-      this.prodService.products = this.prodService.products.filter((item,key)=>{     
-        if(item.productId==d.data.itemId && res==true)
+    
+    this.prodService.deleteProduct(d.data.productId).subscribe(res=>{ 
+      let deleteId=-1;
+      this.prodService.products = this.prodService.products.filter((item,key)=>{  
+        debugger; 
+         
+        if(item.productId==d.data.productId && res==true)
         { 
-          this.prodService.products.splice(key,1);       
-          d.dialog.close();
+          debugger;
+          // this.prodService.products.splice(key,1);
+          deleteId = key;       
         }
         return this.prodService.products.indexOf(item)!=-1; 
       });  
-     
+      if(deleteId>=0)
+      {
+      this.prodService.products.splice(deleteId,1);
+      d.dialog.close();
+      }
     },
     error=>{ 
       let er='';  
@@ -192,6 +251,7 @@ debugger;
       });
       window.alert(er);
     });
+
   }
 
   populateForm(selectedRecord: ItemModel) {
