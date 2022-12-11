@@ -174,3 +174,12 @@ button.viewall
   color: #fff;
   text-align: center;
 }
+
+.share{
+  background:#00d103;
+  color: #fff;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
