@@ -86,6 +86,14 @@
       <input matInput type="text" id="referralLink" name="referralLink" [(ngModel)]="local_data.referralLink" required placeholder="Please enter your Referral Link">
     </mat-form-field>
   </form>
+
+  <mat-card-footer *ngIf="isLoggedIn">
+<mat-toolbar class="cmt-footer">
+  <mat-toolbar-row>
+    <span>Go to my page: <a href="{{mypage}}">{{mypage}}</a></span>  
+  </mat-toolbar-row>
+  </mat-toolbar>
+  </mat-card-footer>
   </mat-card> 
 
 

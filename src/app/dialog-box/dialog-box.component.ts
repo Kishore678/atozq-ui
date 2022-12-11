@@ -22,7 +22,9 @@ export class DialogBoxComponent {
   rowAction:string='';
   referralCode:string='';
   referralLink:string='';
+  mypage:string='';
   local_data:any;
+  isLoggedIn:boolean=false;
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
@@ -42,7 +44,9 @@ export class DialogBoxComponent {
     this.commentButton=this.local_data.commentButton;
     this.referralCode=this.local_data.referralCode;   
     this.referralLink=this.local_data.referralLink;   
-    this.rowAction=this.local_data.rowAction;   
+    this.rowAction=this.local_data.rowAction;
+    this.mypage = this.local_data.mypage;   
+    this.isLoggedIn = this.local_data.isLoggedIn;
   }
 
   onDoAction = new EventEmitter();

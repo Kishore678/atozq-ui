@@ -1,3 +1,5 @@
+import { CommentModel } from "./comment.model";
+
 export class Product {
     productId!: number;
     category!: string;
@@ -10,5 +12,6 @@ export class Product {
     referralLink!: string;
     description!: string;
     isWatch!: boolean;
-    rowAction!:string
+    rowAction!:string;
+    comment!:CommentModel;
 }

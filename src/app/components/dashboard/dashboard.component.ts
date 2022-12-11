@@ -103,13 +103,12 @@ debugger;
         this.updateMedia(d);
       }
       else if(d.data.rowAction == 'Comment'){
-        
+        debugger;
         let commentModel = new Product();
         commentModel.productId = d.data.productId;
         commentModel.referralCode = d.data.referralCode;
         commentModel.referralLink = d.data.referralLink;
-  
-        this.saveComment(commentModel,d.dialog);
+        this.saveComment(commentModel,d.dialog);        
       }
     });
 
@@ -133,12 +132,35 @@ saveComment(model:Product,dialog:any)
   }
   else 
   { 
-  this.prodService.postComment(model).subscribe(result=>{
-  if(result.Id>0)
+  this.prodService.postComment(model).subscribe(result=>{   
+  if(result.productId>0)
   {
     localStorage.removeItem('Comment-'+model.productId);  
-    dialog.close();
-   alert('Successfully posted your comment.');
+    let updated = false;
+    this.prodService.products = this.prodService.products.filter(function(item){  
+      if(item.productId==result.productId)
+      {       
+        item.category=result.category;
+        item.avatarUrl=result.avatarUrl;
+        item.title=result.title;
+        item.subTitle=result.subTitle;
+        item.imageUrl=result.imageUrl;
+        item.headLine=result.headLine;
+       item.referralCode=result.referralCode; 
+       item.referralLink=result.referralLink; 
+       item.description=result.description;
+       item.isWatch=result.isWatch;
+       updated = true;
+      }
+      return true; 
+   });
+
+   if(updated)
+   {
+    dialog.close(); 
+    alert('Successfully posted your comment.');
+   } 
+ 
   }
   else
   {
@@ -154,7 +176,7 @@ saveComment(model:Product,dialog:any)
   this.auth.redirectUrl = '/app/search/'+model.productId;  
   this.router.navigate(['/account/login']);  
  }
-
+return model;
 }
 
   addMedia(d:any){

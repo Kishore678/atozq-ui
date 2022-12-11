@@ -15,11 +15,19 @@ export class HomeComponent implements OnInit {
 
 saved = [];
 isWatched:boolean=false;
-commentObj = new Product();
+commentObj = new CommentModel();
 isSearch:boolean=false;
 isMobile:Boolean=false;
 
 products:Product[]=[];
+
+myPageUrl!:string;
+readonly appBaseUrl = window.location.origin;
+//Start: My Page
+displayMyPageUrl()
+{
+  this.myPageUrl = `${this.appBaseUrl}/${this.auth.user().UserName}`;
+}
 
 constructor(
   public service:ProductService,
@@ -34,6 +42,7 @@ constructor(
 
 ngOnInit() {  
   debugger;
+  this.displayMyPageUrl();
   let rootpath = this.route.snapshot.routeConfig?.path;
   if(rootpath!=undefined && rootpath.startsWith('app/search/:id'))
   {    
@@ -135,7 +144,7 @@ prod.rowAction = rowAction;
   
   if(rowAction=='Comment')
   { 
-    this.commentObj = new Product(); 
+    this.commentObj = new CommentModel(); 
     this.commentObj.productId = prod.productId;
     this.commentObj.rowAction = rowAction; 
     this.commentObj.avatarUrl = prod.avatarUrl; 
@@ -145,8 +154,19 @@ prod.rowAction = rowAction;
     {
       if(this.auth.user().IsLoggedIn) 
       {
-                 this.commentObj.referralCode = '';
-                 this.commentObj.referralLink = '';
+        if(prod.comment!=null)
+        {
+          this.commentObj.referralCode = prod.comment.referralCode;
+          this.commentObj.referralLink = prod.comment.referralLink;
+        }
+        else
+        {
+          this.commentObj.referralCode = '';
+          this.commentObj.referralLink = '';
+        }
+                
+                 this.commentObj.mypage = this.myPageUrl;
+                 this.commentObj.isLoggedIn = true;
   
                  const dialogRef = this.dialog.open(DialogBoxComponent, {
                   maxWidth: '100vw',
@@ -302,7 +322,7 @@ prod.rowAction = rowAction;
         commentModel.referralCode = d.data.referralCode;
         commentModel.referralLink = d.data.referralLink;
   
-        this.saveComment(commentModel,d.dialog);
+        commentModel =  this.saveComment(commentModel,d.dialog);
       }else if(d.data.rowAction=='Update')
       {
         this.updateRowData(d.data.itemId,d);
@@ -320,6 +340,7 @@ prod.rowAction = rowAction;
 
 saveComment(model:Product,dialog:any)
 { 
+  debugger;
   if(model.referralCode=="" && model.referralLink=="")
   {
   alert('Atleast one (Referral Code or Link) should be required');  
@@ -333,11 +354,25 @@ saveComment(model:Product,dialog:any)
   else 
   { 
   this.service.postComment(model).subscribe(result=>{
-  if(result.Id>0)
+  if(result.productId>0)
   {
     localStorage.removeItem('Comment-'+model.productId);  
-    dialog.close();
-   alert('Successfully posted your comment.');
+    let updated = false;
+    this.service.products = this.service.products.filter(function(item){  
+      if(item.productId==result.productId && result.comment!=null)
+      {       
+       item.comment.referralCode = result.comment.referralCode;
+       item.comment.referralLink = result.comment.referralLink;
+       updated = true;
+      }
+      return true; 
+   });
+
+   if(updated)
+   {
+    dialog.close(); 
+    alert('Successfully posted your comment.');
+   } 
   }
   else
   {
@@ -353,7 +388,7 @@ saveComment(model:Product,dialog:any)
   this.auth.redirectUrl = '/app/search/'+model.productId;  
   this.router.navigate(['/account/login']);  
  }
-
+ return model;
 }
 updateRowData(id:number,d:any){
   debugger;
