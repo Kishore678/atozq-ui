@@ -49,7 +49,7 @@ ngOnInit() {
       this.products = [];
       this.service.products = result;
       this.products = this.service.products;
-      this.isSearch = false;
+      this.isSearch = true;
     }); 
   }
   else if(this.route.snapshot.params['page'])
@@ -99,7 +99,7 @@ share(id:number,category:string,titleText:string)
   let domain = loc.protocol+"//"+(host=="localhost"?host+":"+loc.port:host);  
 
   window.open(
-    (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/product/"+id,
+    (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/app/search/"+id,
     '_blank' 
 );
 }

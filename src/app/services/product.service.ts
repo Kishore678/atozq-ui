@@ -21,6 +21,7 @@ export class ProductService {
   product = new ItemModel();
 
   readonly prodUrl = `${environment.apiBaseUrl}/api/product`;
+  readonly searchUrl = `${environment.apiBaseUrl}/api/product/search`;
   readonly mediaUrl = `${environment.apiBaseUrl}/api/Media`;
   readonly cardUrl = `${environment.apiBaseUrl}/api/Card`;
   readonly userUrl = `${environment.apiBaseUrl}/api/UserItems`;
@@ -120,7 +121,7 @@ getProducts(username:string):Observable<Product[]>
 
 getProductById(id:number):Observable<Product[]>
 {
-  return this.http.get<Product[]>(`${this.prodUrl}/${id}`)
+  return this.http.get<Product[]>(`${this.searchUrl}/${id}`);
 }
 
 }
