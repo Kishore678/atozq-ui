@@ -88,10 +88,16 @@
     </mat-form-field>
   </form>
 
-  <mat-card-footer *ngIf="isLoggedIn">
+  <mat-card-footer>
 <mat-toolbar class="cmt-footer">
   <mat-toolbar-row>
-    <span>Go to my page: <a href="{{mypage}}">{{mypage}}</a></span>  
+  <span *ngIf="isLoggedIn">Go to my page: <a href="{{mypage}}">{{mypage}}</a><br>
+    Comment or Save to add item to your page: <a href="{{mypage}}">{{mypage}}</a>
+  </span>  
+
+  <span *ngIf="!isLoggedIn"><a routerLink="/account/login" (click)="closeDialog()">Login</a> or <a routerLink="/account/register" (click)="closeDialog()">Register</a> to access your page: <span>{{mypage}}</span><br>
+  Comment or Save to add item to your page: <span>{{mypage}}</span>
+  </span>  
   </mat-toolbar-row>
   </mat-toolbar>
   </mat-card-footer>

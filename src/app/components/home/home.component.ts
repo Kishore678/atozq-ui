@@ -26,7 +26,7 @@ readonly appBaseUrl = window.location.origin;
 //Start: My Page
 displayMyPageUrl()
 {
-  this.myPageUrl = `${this.appBaseUrl}/${this.auth.user().UserName}`;
+  this.myPageUrl = this.auth.user().IsLoggedIn?`${this.appBaseUrl}/${this.auth.user().UserName}`:`${this.appBaseUrl}/UserName`;
 }
 
 constructor(
@@ -41,12 +41,10 @@ constructor(
 @ViewChild('button') button!: ElementRef;
 
 ngOnInit() {  
-  debugger;
   this.displayMyPageUrl();
   let rootpath = this.route.snapshot.routeConfig?.path;
   if(rootpath!=undefined && rootpath.startsWith('app/search/:id'))
   {    
-    debugger;
     this.service.getProductById(this.route.snapshot.params['id']).subscribe(result=>{
       this.products = [];
       this.service.products = result;
@@ -139,7 +137,6 @@ watch(prod:Product)
 }
 
 openDialog(rowAction:string,prod:Product) {  
-debugger;
 prod.rowAction = rowAction;
   
   if(rowAction=='Comment')
@@ -150,10 +147,13 @@ prod.rowAction = rowAction;
     this.commentObj.avatarUrl = prod.avatarUrl; 
     this.commentObj.title = prod.title; 
     this.commentObj.subTitle = prod.subTitle; 
+    this.commentObj.mypage = this.myPageUrl;
     if(localStorage[rowAction+'-'+prod.productId]==undefined)
     {
       if(this.auth.user().IsLoggedIn) 
       {
+        this.commentObj.isLoggedIn = true;
+
         if(prod.comment!=null)
         {
           this.commentObj.referralCode = prod.comment.referralCode;
@@ -165,8 +165,8 @@ prod.rowAction = rowAction;
           this.commentObj.referralLink = '';
         }
                 
-                 this.commentObj.mypage = this.myPageUrl;
-                 this.commentObj.isLoggedIn = true;
+                
+                
   
                  const dialogRef = this.dialog.open(DialogBoxComponent, {
                   maxWidth: '100vw',
@@ -340,7 +340,6 @@ prod.rowAction = rowAction;
 
 saveComment(model:Product,dialog:any)
 { 
-  debugger;
   if(model.referralCode=="" && model.referralLink=="")
   {
   alert('Atleast one (Referral Code or Link) should be required');  
@@ -391,7 +390,6 @@ saveComment(model:Product,dialog:any)
  return model;
 }
 updateRowData(id:number,d:any){
-  debugger;
   this.service.putProduct(id,d.data).subscribe(res=>{      
     this.service.cards.filter(function(item){
        if(item.item.itemId==res.itemId)

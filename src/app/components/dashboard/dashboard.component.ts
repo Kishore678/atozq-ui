@@ -71,8 +71,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  openDialog(rowAction:string,obj:any) {
-    debugger;
+  openDialog(rowAction:string,obj:any) {  
     obj.rowAction = rowAction=='Update'&& !this.auth.user().IsAdmin?'Comment':rowAction;
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       maxWidth: '100vw',
@@ -86,7 +85,6 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.componentInstance.onDoAction.subscribe((d) => {
-debugger;
       if(d.data.rowAction == 'Add'){
         this.addRowData(d);        
       }else if(d.data.rowAction == 'Update'){
@@ -102,8 +100,7 @@ debugger;
       {
         this.updateMedia(d);
       }
-      else if(d.data.rowAction == 'Comment'){
-        debugger;
+      else if(d.data.rowAction == 'Comment'){        
         let commentModel = new Product();
         commentModel.productId = d.data.productId;
         commentModel.referralCode = d.data.referralCode;
@@ -247,12 +244,10 @@ return model;
     
     this.prodService.deleteProduct(d.data.productId).subscribe(res=>{ 
       let deleteId=-1;
-      this.prodService.products = this.prodService.products.filter((item,key)=>{  
-        debugger; 
+      this.prodService.products = this.prodService.products.filter((item,key)=>{ 
          
         if(item.productId==d.data.productId && res==true)
-        { 
-          debugger;
+        {          
           // this.prodService.products.splice(key,1);
           deleteId = key;       
         }
