@@ -95,8 +95,8 @@
     Comment or Save to add item to your page: <a href="{{mypage}}">{{mypage}}</a>
   </span>  
 
-  <span *ngIf="!isLoggedIn"><a routerLink="/account/login" (click)="closeDialog()">Login</a> or <a routerLink="/account/register" (click)="closeDialog()">Register</a> to access your page: <span>{{mypage}}</span><br>
-  Comment or Save to add item to your page: <span>{{mypage}}</span>
+  <span *ngIf="!isLoggedIn"><a routerLink="/account/login" (click)="closeDialog()">Login</a> or <a routerLink="/account/register" (click)="closeDialog()">Register</a> to access your page: <a>{{mypage}}</a><br>
+  Comment or Save to add item to your page: <a>{{mypage}}</a>
   </span>  
   </mat-toolbar-row>
   </mat-toolbar>

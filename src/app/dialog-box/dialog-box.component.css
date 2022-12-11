@@ -123,3 +123,8 @@ h2 {
     background:#f0ffff;
     color:#08ac0a;  
   }
+
+  .cmt-footer a
+  {
+    color: blue;
+  }
