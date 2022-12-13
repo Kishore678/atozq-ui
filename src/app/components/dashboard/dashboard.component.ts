@@ -18,11 +18,13 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DashboardComponent implements OnInit {
  
-  myPageGridColumns:string[] = ['category', 'title','rowAction'];  
+  myPageGridColumns:string[] = ['sno','category', 'title','rowAction'];  
 
   addCtrl:boolean=false;
 
   isMobile:Boolean=false;
+
+  product:Product = new Product();
 
   readonly appBaseUrl = window.location.origin;
 
@@ -73,8 +75,61 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  openDialog(rowAction:string,obj:any) {  
-    obj.rowAction = rowAction=='Update'&& !this.auth.user().IsAdmin?'Comment':rowAction;
+  commentObj = new CommentModel();
+
+  openDialog(rowAction:string,prod:Product) {  
+debugger;
+   rowAction = rowAction=='Update'&&this.auth.user().IsAdmin!=true?'Comment':rowAction;
+   prod.rowAction = rowAction;
+
+    if(rowAction=='Comment')
+    { 
+      this.commentObj = new CommentModel(); 
+      this.commentObj.productId = prod.productId;
+      this.commentObj.rowAction = rowAction; 
+      // this.commentObj.avatarUrl = prod.avatarUrl; 
+      // this.commentObj.title = prod.title; 
+      // this.commentObj.subTitle = prod.subTitle; 
+      this.commentObj.mypage = this.myPageUrl;
+      this.commentObj.isLoggedIn = true;
+
+      if(prod.comment!=null)
+      {
+        this.commentObj.referralCode = prod.comment.referralCode;
+        this.commentObj.referralLink = prod.comment.referralLink;
+      }
+      else
+      {
+        this.commentObj.referralCode = '';
+        this.commentObj.referralLink = '';
+      }
+
+      const dialogRef = this.dialog.open(DialogBoxComponent, {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: 'relative',
+        width: 'relative',
+        panelClass: 'full-screen-modal',
+        disableClose: true,
+        autoFocus: true,
+        data:this.commentObj
+      });
+
+      dialogRef.componentInstance.onDoAction.subscribe((d) => {            
+          let commentModel = new Product();
+          commentModel.productId = d.data.productId;
+          commentModel.referralCode = d.data.referralCode;
+          commentModel.referralLink = d.data.referralLink;
+          this.saveComment(commentModel,d.dialog); 
+      });
+
+      dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+        d.dialog.close();
+      }); 
+    }
+    else
+    {
+      
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
@@ -83,7 +138,7 @@ export class DashboardComponent implements OnInit {
       panelClass: 'full-screen-modal',
       disableClose: true,
       autoFocus: true,
-      data:obj
+      data:prod
     });
 
     dialogRef.componentInstance.onDoAction.subscribe((d) => {
@@ -114,6 +169,7 @@ export class DashboardComponent implements OnInit {
     dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
       d.dialog.close();
     });    
+  }
     
   }
 
@@ -137,18 +193,10 @@ saveComment(model:Product,dialog:any)
     localStorage.removeItem('Comment-'+model.productId);  
     let updated = false;
     this.prodService.products = this.prodService.products.filter(function(item){  
-      if(item.productId==result.productId)
+      if(item.productId==result.productId && result.comment!=null)
       {       
-        item.category=result.category;
-        item.avatarUrl=result.avatarUrl;
-        item.title=result.title;
-        item.subTitle=result.subTitle;
-        item.imageUrl=result.imageUrl;
-        item.headLine=result.headLine;
-       item.referralCode=result.referralCode; 
-       item.referralLink=result.referralLink; 
-       item.description=result.description;
-       item.isWatch=result.isWatch;
+       item.comment.referralCode = result.comment.referralCode;
+       item.comment.referralLink = result.comment.referralLink;
        updated = true;
       }
       return true; 
