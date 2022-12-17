@@ -6,13 +6,58 @@ import { CommentModel } from 'src/app/models/comment.model';
 import { Product } from 'src/app/models/product.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProductService } from 'src/app/services/product.service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('blackState', [
+      state('true', style({opacity: '0.8', background: 'linear-gradient(to right, #c0ffc0, #ffffff)'})),
+      state('false', style({ opacity: '1', background: 'linear-gradient(to right, none, none)'})),
+      transition('0 <=> 1', animate('1000ms ease'))
+    ]),
+    trigger('greenState', [
+      state('true', style({opacity: '0.8', background: 'linear-gradient(to right, #c0ffc0, #ffffff)'})),
+      state('false', style({ opacity: '1', background: 'linear-gradient(to right, none, none)'})),
+      transition('0 <=> 1', animate('1000ms ease'))
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
 
+  blackState:boolean = true;
+  greenState: boolean = false;
+
+  CodeCopyToggle(prod:Product) {  
+    if(prod.referralCode)
+    {
+  this.service.products = this.service.products.filter((val,index,arr)=>{    
+    val.isCodeCopied = false;
+    val.isLinkCopied = false;
+     return true;
+  });
+  prod.isCodeCopied = !prod.isCodeCopied;
+   }
+  }
+  LinkCopyToggle(prod:Product) {
+    if(prod.referralLink)
+    {
+    this.service.products = this.service.products.filter((val,index,arr)=>{    
+      val.isCodeCopied = false;
+      val.isLinkCopied = false;
+       return true;
+    });
+    prod.isLinkCopied = !prod.isLinkCopied;
+    }
+    }
+  
 saved = [];
 isWatched:boolean=false;
 commentObj = new CommentModel();

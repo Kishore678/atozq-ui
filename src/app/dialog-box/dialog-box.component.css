@@ -41,16 +41,16 @@
   
   
   ::ng-deep .mat-form-field.mat-form-field-invalid .mat-input-element {
-      color: #ff33cc;
+      color:  #f44336;
   }
   ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-      color: #ff33cc!important;
+      color:  #f44336!important;
   }
   ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
-      color: #ff33cc;
+      color:  #f44336;
   }
   ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
-      background-color: #ff33cc;
+      background-color:  #f44336;
   }
   ::ng-deep textarea{
     height: 50px;

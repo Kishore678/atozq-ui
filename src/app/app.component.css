@@ -36,15 +36,15 @@
 }
 .menuitems
 {
-  color: #08ac0a;
-  margin-right:8px;
-  text-decoration:none;
-  font-size: 14px;  
+  color: #00d103;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 14px;
   cursor: pointer;
 }
 .sidemenu
 {
-  color: #08ac0a
+  color: #00d103;
   /* line-height: 5px; */
 }
 .menuitems:hover
@@ -112,7 +112,7 @@ a {
 .atozq-app-name
 {
   text-decoration: none;
-  color: #444;
+  color: #00d103;
   font-size: 20px;
   font-family: sans-serif;
   font-weight: bold;
@@ -145,12 +145,14 @@ min-height: 100vh;
 }
 
 .profile{
-  background:#08ac0a;
+  background:#00d103;
   color:#fff;
 }
 .profile mat-icon{
   color:#fff;
 }
 
-.bred{background:#f44336 !important;color:#ffffff !important;}
+.bred{color: #ffffff !important;
+  background: #ff9800;}
+
 

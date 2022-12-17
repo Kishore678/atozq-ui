@@ -14,4 +14,6 @@ export class Product {
     isWatch!: boolean;
     rowAction!:string;
     comment!:CommentModel;
+    isCodeCopied!:boolean;
+    isLinkCopied!:boolean;
 }
