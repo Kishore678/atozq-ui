@@ -49,10 +49,20 @@ export class DialogBoxComponent {
     this.mypage = this.local_data.mypage;   
     this.isLoggedIn = this.local_data.isLoggedIn;
   }
+  // share(id:number,category:string,titleText:string)
+  // {
+  //   share(local_data.productId,local_data.category,local_data.title)
 
+  // }
   onDoAction = new EventEmitter();
 
   onCloseDialog = new EventEmitter();
+
+  onDoShare = new EventEmitter();
+
+  doShare(){
+    this.onDoShare.emit({dialog:this.dialogRef,data:this.local_data});  
+  }
 
   doAction(){
     this.onDoAction.emit({dialog:this.dialogRef,data:this.local_data});   

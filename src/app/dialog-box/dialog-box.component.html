@@ -62,6 +62,10 @@
     <h2>{{local_data.headLine}}</h2>
     <p [innerHtml]="local_data.description | linkify" ></p>
   </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions style="text-align:center">       
+    <button class="bgreen" (click)="doShare()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>share</mat-icon>&nbsp;Share&nbsp;</button>       
+  </mat-card-actions>
 </mat-card>
 
 <mat-card *ngIf="rowAction=='Delete'">

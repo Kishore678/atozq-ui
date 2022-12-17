@@ -243,8 +243,7 @@ prod.rowAction = rowAction;
                     this.updateRowData(d.data.productId,d);
                   }
                   
-                });
-              
+                });             
                 
               
                 dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
@@ -353,7 +352,9 @@ prod.rowAction = rowAction;
       autoFocus: true,
       data:prod
     });
-
+    dialogRef.componentInstance.onDoShare.subscribe((d) => {  
+     this.share(d.data.productId,d.data.category,d.data.title);
+    });  
     dialogRef.componentInstance.onDoAction.subscribe((d) => {
 
       if(d.data.rowAction == 'View'){
