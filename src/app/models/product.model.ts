@@ -16,4 +16,6 @@ export class Product {
     comment!:CommentModel;
     isCodeCopied!:boolean;
     isLinkCopied!:boolean;
+    isLoggedIn:boolean=false;
+    isAdmin:boolean=false;
 }

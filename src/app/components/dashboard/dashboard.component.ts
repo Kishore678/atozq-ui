@@ -92,6 +92,7 @@ debugger;
       // this.commentObj.subTitle = prod.subTitle; 
       this.commentObj.mypage = this.myPageUrl;
       this.commentObj.isLoggedIn = true;
+      this.commentObj.isAdmin = this.auth.user().IsAdmin;
 
       if(prod.comment!=null)
       {

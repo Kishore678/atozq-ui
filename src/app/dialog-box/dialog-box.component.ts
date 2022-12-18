@@ -25,6 +25,8 @@ export class DialogBoxComponent {
   mypage:string='';
   local_data:any;
   isLoggedIn:boolean=false;
+  isAdmin:boolean = false;
+  isWatch:boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
@@ -48,6 +50,8 @@ export class DialogBoxComponent {
     this.rowAction=this.local_data.rowAction;
     this.mypage = this.local_data.mypage;   
     this.isLoggedIn = this.local_data.isLoggedIn;
+    this.isAdmin = this.local_data.isAdmin;
+    this.isWatch = this.local_data.isWatch;
   }
   // share(id:number,category:string,titleText:string)
   // {
@@ -59,6 +63,8 @@ export class DialogBoxComponent {
   onCloseDialog = new EventEmitter();
 
   onDoShare = new EventEmitter();
+  onDoWatch = new EventEmitter();
+  onDoComment = new EventEmitter();
 
   doShare(){
     this.onDoShare.emit({dialog:this.dialogRef,data:this.local_data});  
@@ -66,6 +72,16 @@ export class DialogBoxComponent {
 
   doAction(){
     this.onDoAction.emit({dialog:this.dialogRef,data:this.local_data});   
+  }
+
+  doComment()
+  {
+    this.onDoComment.emit({dialog:this.dialogRef,data:this.local_data});       
+  }
+
+  doWatch()
+  {
+    this.onDoWatch.emit({dialog:this.dialogRef,data:this.local_data});   
   }
 
   closeDialog(){

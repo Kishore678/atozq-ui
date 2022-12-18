@@ -15,4 +15,5 @@ export class CommentModel {
     rowAction!:string;
     mypage!:string;
     isLoggedIn:boolean=false;
+    isAdmin:boolean=false;
 }

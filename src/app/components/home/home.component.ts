@@ -13,6 +13,7 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import { Observable,of } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -149,10 +150,25 @@ share(id:number,category:string,titleText:string)
 );
 }
 
-
-
-watch(prod:Product)
+reloadData(prd:Product)
 {
+
+  return this.products.filter((val,index,arr)=>{
+
+    if(val.productId == prd.productId)
+    {
+      val.isWatch=prd.isWatch;
+    }
+    return true;
+  });
+
+}
+
+watch(prod:Product):Observable<boolean>
+{
+
+  let isWatch = false;
+
   if(!this.auth.user().IsLoggedIn)
   {
     this.router.navigate(['/account/login']);
@@ -160,9 +176,12 @@ watch(prod:Product)
   else if(prod.isWatch)
   {    
     //Remove from WatchList
-    this.service.removeWatch(prod).subscribe({
+   this.service.removeWatch(prod).subscribe({
       next:(v)=>{
-        prod.isWatch = v.isWatch; 
+        prod.isWatch = v.isWatch;
+        
+        this.service.products = this.reloadData(v);
+
       },
       error:(e)=>{},
       complete:()=>{}
@@ -174,15 +193,29 @@ watch(prod:Product)
     this.service.addWatch(prod).subscribe({
       next:(v)=>{        
         prod.isWatch=v.isWatch;
+        this.service.products = this.reloadData(v);
       },
       error:(e)=>{},
       complete:()=>{}
     });        
-  }     
+  }  
+
+
+  this.service.products.filter((val,index,arr)=>{
+       if(val.productId==prod.productId)
+       {
+        isWatch = val.isWatch;
+       }
+  });
+
+  return of(isWatch as boolean);
+
 }
 
 openDialog(rowAction:string,prod:Product) {  
 prod.rowAction = rowAction;
+prod.isLoggedIn =  this.auth.user().IsLoggedIn;
+prod.isAdmin =  this.auth.user().IsAdmin;
   
   if(rowAction=='Comment')
   { 
@@ -198,6 +231,7 @@ prod.rowAction = rowAction;
       if(this.auth.user().IsLoggedIn) 
       {
         this.commentObj.isLoggedIn = true;
+        this.commentObj.isAdmin = this.auth.user().IsAdmin;
 
         if(prod.comment!=null)
         {
@@ -248,7 +282,9 @@ prod.rowAction = rowAction;
               
                 dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
                   d.dialog.close();
-                });         
+                });  
+                
+                return dialogRef;
 
       }
       else{
@@ -287,6 +323,8 @@ prod.rowAction = rowAction;
       dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
         d.dialog.close();
       }); 
+
+      return dialogRef;
     }
 
     }
@@ -333,12 +371,10 @@ prod.rowAction = rowAction;
     dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
       d.dialog.close();
     }); 
-    
-    }
-    else if(this.auth.user().IsLoggedIn) 
-    {         
-   
-    }  
+    return dialogRef;
+    } 
+
+    return this.dialog.open(DialogBoxComponent, {});
   }
   else
   {
@@ -355,6 +391,53 @@ prod.rowAction = rowAction;
     dialogRef.componentInstance.onDoShare.subscribe((d) => {  
      this.share(d.data.productId,d.data.category,d.data.title);
     });  
+    dialogRef.componentInstance.onDoComment.subscribe((d) => { 
+      const dref = this.openDialog("Comment",d.data); 
+      dref.afterClosed().subscribe(result => {
+        dialogRef.componentInstance.isWatch = true;
+        d.data.isWatch = true;
+        this.service.products = this.reloadData(d.data);
+
+      });
+      // this.share(d.data.productId,d.data.category,d.data.title);
+     });  
+     dialogRef.componentInstance.onDoWatch.subscribe((d) => {  
+
+      if(!this.auth.user().IsLoggedIn)
+      {
+        this.router.navigate(['/account/login']);
+      }
+      else if(prod.isWatch)
+      {    
+        //Remove from WatchList
+       this.service.removeWatch(prod).subscribe({
+          next:(v)=>{
+            prod.isWatch = v.isWatch; 
+            d.data.isWatch = dialogRef.componentInstance.isWatch;
+            dialogRef.componentInstance.isWatch = v.isWatch;
+            this.service.products = this.reloadData(v);    
+          },
+          error:(e)=>{},
+          complete:()=>{}
+        });   
+      }
+      else
+      {  
+        //Add to WatchList
+        this.service.addWatch(prod).subscribe({
+          next:(v)=>{        
+            prod.isWatch=v.isWatch;
+            d.data.isWatch = dialogRef.componentInstance.isWatch;
+            dialogRef.componentInstance.isWatch = v.isWatch;
+            this.service.products = this.reloadData(v);
+          },
+          error:(e)=>{},
+          complete:()=>{}
+        });        
+      } 
+
+       
+     });  
     dialogRef.componentInstance.onDoAction.subscribe((d) => {
 
       if(d.data.rowAction == 'View'){
@@ -379,6 +462,8 @@ prod.rowAction = rowAction;
     dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
       d.dialog.close();
     }); 
+
+    return dialogRef;
   
   }    
   
@@ -405,13 +490,21 @@ saveComment(model:Product,dialog:any)
     let updated = false;
     this.service.products = this.service.products.filter(function(item){  
       if(item.productId==result.productId && result.comment!=null)
-      {       
+      {    
+        if(item.comment==null)
+        {
+        item.comment = result.comment;
+        }
        item.comment.referralCode = result.comment.referralCode;
        item.comment.referralLink = result.comment.referralLink;
+       item.isWatch = true;
        updated = true;
+
       }
       return true; 
    });
+
+
 
    if(updated)
    {
