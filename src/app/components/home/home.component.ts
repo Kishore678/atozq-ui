@@ -118,9 +118,13 @@ ngOnInit() {
   }
 
 }
-share(id:number,category:string,titleText:string)
+share(prod:Product)
 {
 
+
+  let id = prod.id;
+  let category = prod.category;
+  let titleText = prod.title;
 
   let mobileCheck = function() {
     let check = false;
@@ -144,10 +148,26 @@ share(id:number,category:string,titleText:string)
 
   let domain = loc.protocol+"//"+(host=="localhost"?host+":"+loc.port:host);  
 
-  window.open(
-    (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/app/search/"+id,
-    '_blank' 
-);
+  let url = 
+  (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/app/search/";
+
+  
+  this.service.share(id).subscribe(result=>{
+
+    this.products = this.products.filter((val,index,arr)=>{
+
+      if(val.productId == result.productId)
+      {
+        val.isWatch=result.isWatch;
+      }
+      return true;
+    });
+
+ window.open(url+result.id, '_blank');
+  });
+
+
+ // window.open(url, '_blank');
 }
 
 reloadData(prd:Product)
@@ -390,7 +410,7 @@ prod.isAdmin =  this.auth.user().IsAdmin;
       data:prod
     });
     dialogRef.componentInstance.onDoShare.subscribe((d) => {  
-     this.share(d.data.productId,d.data.category,d.data.title);
+     this.share(d.data);
     });  
     dialogRef.componentInstance.onDoComment.subscribe((d) => { 
      
@@ -405,8 +425,7 @@ prod.isAdmin =  this.auth.user().IsAdmin;
       });
 
       const dref = this.openDialog("Comment",d.data); 
-      dref.afterClosed().subscribe(result => {
-        debugger;
+      dref.afterClosed().subscribe(result => {        
         dialogRef.componentInstance.isWatch = dref.componentInstance.isWatch??dialogRef.componentInstance.isWatch;
         d.data.isWatch = dref.componentInstance.isWatch??dialogRef.componentInstance.isWatch;
         this.service.products = this.reloadData(d.data);

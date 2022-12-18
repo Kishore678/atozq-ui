@@ -78,7 +78,6 @@ export class DashboardComponent implements OnInit {
   commentObj = new CommentModel();
 
   openDialog(rowAction:string,prod:Product) {  
-debugger;
    rowAction = rowAction=='Update'&&this.auth.user().IsAdmin!=true?'Comment':rowAction;
    prod.rowAction = rowAction;
 

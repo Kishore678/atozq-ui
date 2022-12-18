@@ -1,6 +1,7 @@
 import { CommentModel } from "./comment.model";
 
 export class Product {
+    id!:number;
     productId!: number;
     category!: string;
     avatarUrl!: string;
