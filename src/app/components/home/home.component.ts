@@ -272,6 +272,7 @@ prod.isAdmin =  this.auth.user().IsAdmin;
                     commentModel.referralLink = d.data.referralLink;
               
                     this.saveComment(commentModel,d.dialog);
+                    dialogRef.componentInstance.isWatch = true;
                   }else if(d.data.rowAction=='Update')
                   {
                     this.updateRowData(d.data.productId,d);
@@ -392,10 +393,22 @@ prod.isAdmin =  this.auth.user().IsAdmin;
      this.share(d.data.productId,d.data.category,d.data.title);
     });  
     dialogRef.componentInstance.onDoComment.subscribe((d) => { 
+     
+      this.service.products.filter((val,index,arr)=>{
+        if(val.productId==d.data.productId)
+        {
+          if(d.data.comment==null)
+          {
+            d.data.comment = val.comment;
+          }
+        }
+      });
+
       const dref = this.openDialog("Comment",d.data); 
       dref.afterClosed().subscribe(result => {
-        dialogRef.componentInstance.isWatch = true;
-        d.data.isWatch = true;
+        debugger;
+        dialogRef.componentInstance.isWatch = dref.componentInstance.isWatch??dialogRef.componentInstance.isWatch;
+        d.data.isWatch = dref.componentInstance.isWatch??dialogRef.componentInstance.isWatch;
         this.service.products = this.reloadData(d.data);
 
       });
