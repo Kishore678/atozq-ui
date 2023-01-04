@@ -49,7 +49,7 @@
     <textarea matInput type="text" id="ItemDescription" name="ItemDescription" [(ngModel)]="local_data.description" required placeholder="Description"></textarea>
   </mat-form-field>
 </form>
-<mat-card class="item-card" *ngIf="rowAction=='View'">
+<mat-card class="view-item-card" *ngIf="rowAction=='View'">
   <mat-card-header>
     <div mat-card-avatar class="item-header-image" style="background-image: url('{{local_data.avatarUrl}}');"></div>
     <mat-card-title>{{local_data.title}}</mat-card-title>
@@ -61,17 +61,14 @@
   <mat-card-content>      
     <h2>{{local_data.headLine}}</h2>
     <p [innerHtml]="local_data.description | linkify" ></p>
+    <mat-divider></mat-divider>
+    <h2>How to create {{local_data.title}} account?</h2>
+    <p [innerHtml]="local_data.description | linkify" ></p>
+    <mat-divider></mat-divider>
+    <h2>Where is my {{local_data.title}} referral code or link?</h2>
+    <p [innerHtml]="local_data.description | linkify" ></p>
   </mat-card-content>
-  <!-- <mat-divider></mat-divider>
-  <mat-card-footer>
-    <mat-toolbar class="cmt-footer">
-      <mat-toolbar-row>       
-        <mat-card-actions style="text-align:center">       
-          <button class="bgreen" (click)="doShare()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>share</mat-icon>&nbsp;Share&nbsp;</button>       
-        </mat-card-actions>
-      </mat-toolbar-row>
-    </mat-toolbar>
-  </mat-card-footer> -->
+  <mat-divider></mat-divider>
 </mat-card>
 
 <mat-card *ngIf="rowAction=='Delete'">

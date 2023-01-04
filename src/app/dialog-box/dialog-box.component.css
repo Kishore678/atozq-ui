@@ -132,3 +132,10 @@ h2 {
   .bgreen{background:#08ac0a !important;color:#ffffff !important;}
 
   .bred{color: #ffffff !important;background: #ff9800;}
+
+  .view-item-card[_ngcontent-xcn-c318] {
+    max-width: 400px;
+    float: left;
+    margin: 5px;
+    height: 500px;
+}
