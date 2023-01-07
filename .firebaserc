@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "atozq-28a01",
+    "production": "atozq-28a01"
+  },
+  "targets": {},
+  "etags": {}
+}
