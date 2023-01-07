@@ -78,6 +78,7 @@ export class DashboardComponent implements OnInit {
   commentObj = new CommentModel();
 
   openDialog(rowAction:string,prod:Product) {  
+    debugger;
    rowAction = rowAction=='Update'&&this.auth.user().IsAdmin!=true?'Comment':rowAction;
    prod.rowAction = rowAction;
 
@@ -86,9 +87,9 @@ export class DashboardComponent implements OnInit {
       this.commentObj = new CommentModel(); 
       this.commentObj.productId = prod.productId;
       this.commentObj.rowAction = rowAction; 
-      // this.commentObj.avatarUrl = prod.avatarUrl; 
-      // this.commentObj.title = prod.title; 
-      // this.commentObj.subTitle = prod.subTitle; 
+      this.commentObj.avatarUrl = prod.avatarUrl; 
+      this.commentObj.title = prod.title; 
+      this.commentObj.subTitle = prod.subTitle; 
       this.commentObj.mypage = this.myPageUrl;
       this.commentObj.isLoggedIn = true;
       this.commentObj.isAdmin = this.auth.user().IsAdmin;
