@@ -31,18 +31,17 @@ export class LoginComponent implements OnInit {
     this.service.loginUser().subscribe(
       res => {
         let status = (<any>res).status; 
-        let msg = (<any>res).message; 
+        let tokenResponse = (<any>res).token; 
         
         if(status=='Success')
-        {          
-        const token = (<any>res).token;
-        localStorage.setItem("jwt", token);        
+        {
+        localStorage.setItem("jwt", tokenResponse);        
         this.invalidLogin = false;      
         this.router.navigate([this.service.redirectUrl==undefined?'/app/dashboard':this.service.redirectUrl]);
         }
         else
         {
-          alert(msg);
+          alert(tokenResponse);
         }
        
         // this.toastr.success("LoggedIn successfully", "Log in");

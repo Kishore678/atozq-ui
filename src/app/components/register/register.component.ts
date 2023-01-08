@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     if(this.service.user().IsLoggedIn)
     {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/app/dashboard']);
     }
   }
 
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
             const token = (<any>res).token;
             localStorage.setItem("jwt", token);             
             localStorage.setItem("username",  this.service.loginData.username);             
-            this.router.navigate(["/dashboard"]);          
+            this.router.navigate(["/app/dashboard"]);          
           },
           err => {
 

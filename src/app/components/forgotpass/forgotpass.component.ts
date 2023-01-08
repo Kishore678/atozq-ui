@@ -18,7 +18,7 @@ export class ForgotpassComponent implements OnInit {
   ngOnInit(): void {
     if(this.service.user().IsLoggedIn)
     {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/app/dashboard']);
     }
   }
 
@@ -30,7 +30,7 @@ export class ForgotpassComponent implements OnInit {
         
         if(status=='Success')
         {
-          alert(msg);
+          alert("Successfully sent change password email.");
         }
      
         // this.toastr.success("LoggedIn successfully", "Log in");
