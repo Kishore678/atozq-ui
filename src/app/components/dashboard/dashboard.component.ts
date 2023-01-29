@@ -8,6 +8,7 @@ import { ItemModel } from 'src/app/models/item.model';
 import { Product } from 'src/app/models/product.model';
 import { UserInfo } from 'src/app/models/userinfo.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 
 
@@ -35,13 +36,17 @@ export class DashboardComponent implements OnInit {
   deleted: ItemModel[]=[]; 
   itemData=new ItemModel(); 
  
-  constructor( private router:Router,public changeDetectorRef:ChangeDetectorRef,public prodService: ProductService,public dialog: MatDialog,public auth:AuthenticationService) 
+  constructor( private router:Router,public changeDetectorRef:ChangeDetectorRef,public prodService: ProductService
+    // ,public catService: CategoryService
+    ,public dialog: MatDialog,public auth:AuthenticationService) 
   {}
 
   @ViewChild(MatTable,{static:true}) table!: MatTable<any>;
 
   ngOnInit(): void { 
     this.prodService.products = [];
+    // this.catService.categories = [];
+
     this.displayMyPageUrl(); 
     if(this.auth.user().IsLoggedIn)
     {
@@ -50,7 +55,7 @@ export class DashboardComponent implements OnInit {
         this.addCtrl = true;
       }
       this.prodService.getProducts(this.auth.user().UserName).subscribe(result=>{        
-        this.prodService.products = result;        
+        this.prodService.products = result;             
       });
     
     }
@@ -232,12 +237,13 @@ return model;
   }
   updateMedia(d:any){}
 
-  addRowData(d:any){      
-    this.prodService.postProduct(d.data).subscribe(
+  addRowData(d:any){   
+    debugger;   
+    this.prodService.saveProduct(d.data).subscribe(
       res=>{
-        if(res.itemId>0)
+        if(res.productId>0)
         {      
-        //  this.prodService.products.push(res); 
+         this.prodService.products.push(res); 
         d.dialog.close();      
         }
         this.prodService.products = this.prodService.products.filter((item,key)=>{          
@@ -259,17 +265,18 @@ return model;
   }
 
   updateRowData(d:any){
-      this.prodService.putProduct(d.data.itemId,d.data).subscribe(res=>{      
+    debugger;
+      this.prodService.saveProduct(d.data).subscribe(res=>{      
         this.prodService.products.filter(function(item){
-           if(item.productId==res.itemId)
+           if(item.productId==res.productId)
            {
             item.category=res.category;
-            item.title=res.titleText;
+            item.title=res.title;
             item.subTitle=res.subTitle;
             item.avatarUrl=res.avatarUrl;
-            item.imageUrl=res.itemImageUrl;
-            item.headLine=res.itemHeadLine;
-            item.description=res.itemDescription;
+            item.imageUrl=res.imageUrl;
+            item.headLine=res.headLine;
+            item.description=res.description;
      
             item.rowAction=res.rowAction;
             d.dialog.close();               

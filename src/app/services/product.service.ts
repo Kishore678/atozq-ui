@@ -21,6 +21,7 @@ export class ProductService {
   product = new ItemModel();
 
   readonly prodUrl = `${environment.apiBaseUrl}/api/product`;
+  readonly saveProdUrl = `${environment.apiBaseUrl}/api/product/save`;
   readonly searchUrl = `${environment.apiBaseUrl}/api/product/search`;
   readonly shareUrl = `${environment.apiBaseUrl}/api/product/share`;
   readonly mediaUrl = `${environment.apiBaseUrl}/api/Media`;
@@ -57,6 +58,11 @@ export class ProductService {
   putProduct(id:number,product:ItemModel):Observable<ItemModel>
   {
     return this.http.put<ItemModel>(`${this.prodUrl}/${id}`,product);
+  }
+  
+  saveProduct(product:Product):Observable<Product>
+  {
+    return this.http.post<Product>(this.saveProdUrl,product);
   }
 
   //delete

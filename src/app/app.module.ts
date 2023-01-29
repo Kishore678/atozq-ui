@@ -26,6 +26,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { ForgotpassComponent } from './components/forgotpass/forgotpass.component';
 import { ResetpassComponent } from './components/resetpass/resetpass.component';
 import { ChangePwdSuccessComponent } from './components/change-pwd-success/change-pwd-success.component';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent],
@@ -39,7 +40,7 @@ import { ChangePwdSuccessComponent } from './components/change-pwd-success/chang
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,SpinnerService],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

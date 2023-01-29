@@ -13,16 +13,18 @@
     <input matInput type="text" id="ItemId" name="ItemId" [(ngModel)]="local_data.productId" required placeholder="ItemId" disabled="true">
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <input matInput type="text" id="Category" name="Category" [(ngModel)]="local_data.category" required placeholder="Category">
+  <mat-form-field  class="example-full-width">  
+    <mat-select id="Category" name="Category" [(value)]="local_data.categoryId">
+      <mat-option *ngFor="let cat of categories" [value]="cat.id">{{cat.categoryName}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="TitleText" name="TitleText" [(ngModel)]="local_data.title" required placeholder="TitleText">
+    <input matInput type="text" id="TitleText" name="TitleText" [(ngModel)]="local_data.title" required placeholder="Title">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput type="text" id="SubTitle" name="SubTitle" [(ngModel)]="local_data.subTitle" required placeholder="SubTitle">
+    <input matInput type="text" id="SubCategory" name="SubCategory" [(ngModel)]="local_data.subTitle" required placeholder="Sub Category">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">

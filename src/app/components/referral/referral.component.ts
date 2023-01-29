@@ -130,7 +130,7 @@ updateRowData(id:number,d:any){
     this.service.products.filter(function(item){
        if(item.productId==res.itemId)
        {
-        item.category=res.category;
+        // item.category=res.category;
         item.title=res.titleText;
         item.subTitle=res.subTitle;
         item.avatarUrl=res.avatarUrl;

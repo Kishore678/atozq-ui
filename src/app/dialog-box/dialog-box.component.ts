@@ -1,6 +1,8 @@
 //dialog-box.component.ts
 import { Component, EventEmitter, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Category } from '../models/category.model';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-dialog-box',
@@ -9,6 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogBoxComponent {
   itemId:number = 0;
+  categoryId:number=0;
+  categoryName:string='';
   category:string='';
   titleText:string='';
   subTitle:string='';
@@ -27,13 +31,17 @@ export class DialogBoxComponent {
   isLoggedIn:boolean=false;
   isAdmin:boolean = false;
   isWatch:boolean = false;
+  categories!:Category[];
 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
+    public catService:CategoryService,
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {         
     this.local_data = {...data};
     this.itemId = this.local_data.itemId;
+    this.categoryId=this.local_data.categoryId;
+    this.categoryName=this.local_data.categoryName;
     this.category=this.local_data.category;
     this.titleText=this.local_data.titleText;
     this.subTitle=this.local_data.subTitle;
@@ -51,6 +59,10 @@ export class DialogBoxComponent {
     this.isLoggedIn = this.local_data.isLoggedIn;
     this.isAdmin = this.local_data.isAdmin;
     this.isWatch = this.local_data.isWatch;
+
+    this.catService.getCategories().subscribe(res=>{
+      this.categories = res; 
+    });
   }
   // share(id:number,category:string,titleText:string)
   // {

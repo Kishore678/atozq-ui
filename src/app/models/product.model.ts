@@ -1,9 +1,12 @@
+import { Category } from "./category.model";
 import { CommentModel } from "./comment.model";
 
 export class Product {
     id!:number;
     productId!: number;
-    category!: string;
+    categoryName!:string;
+    categoryId!: number;
+    category!: Category;
     avatarUrl!: string;
     title!: string;
     subTitle!: string;
@@ -18,5 +21,5 @@ export class Product {
     isCodeCopied!:boolean;
     isLinkCopied!:boolean;
     isLoggedIn:boolean=false;
-    isAdmin:boolean=false;
+    isAdmin:boolean=false;   
 }

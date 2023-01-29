@@ -17,7 +17,7 @@
 <mat-divider></mat-divider>
 <mat-card-actions style="text-align:center">
   <button (click)="openDialog('View',card)" mat-raised-button color="basic"><mat-icon>remove_red_eye</mat-icon>View</button>            
-  <button (click)="share(card.productId,card.category,card.title)" mat-raised-button color="basic" mat-button><mat-icon>share</mat-icon>Share</button>
+  <button (click)="share(card.productId,'',card.title)" mat-raised-button color="basic" mat-button><mat-icon>share</mat-icon>Share</button>
   <button mat-raised-button color="basic" mat-button><mat-icon>comment</mat-icon>Comment</button>      
   <button (click)="openDialog('Update',card)" *ngIf="auth.user().IsLoggedIn && auth.user().IsAdmin" mat-raised-button color="basic" mat-button><mat-icon>edit</mat-icon>Edit</button>
   <button (click)="save(card.productId)" mat-raised-button color="basic" mat-button><mat-icon>add_to_queue</mat-icon>Save</button>
