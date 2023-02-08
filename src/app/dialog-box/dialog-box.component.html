@@ -130,8 +130,8 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button *ngIf="rowAction != 'View'" mat-button (click)="doAction()" mat-raised-button  class="btnAction">{{rowAction}}</button>
-  <button *ngIf="rowAction == 'View'" class="bgreen" (click)="doShare()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>share</mat-icon>&nbsp;Share&nbsp;</button>   
-  <button *ngIf="rowAction == 'View' && !isAdmin" class="bgreen" (click)="doComment()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>comment</mat-icon>&nbsp;Comment&nbsp;</button>      
-  <button *ngIf="rowAction == 'View' && !isAdmin" [ngClass]="isWatch?'bred':'bgreen'" (click)="doWatch()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>add_to_queue</mat-icon>&nbsp;Add to Page&nbsp;</button>
+  <button *ngIf="rowAction == 'View'" class="bgreen" (click)="doShare()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>share</mat-icon></button>   
+  <button *ngIf="rowAction == 'View' && !isAdmin" class="bgreen" (click)="doComment()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>comment</mat-icon></button>      
+  <button *ngIf="rowAction == 'View' && !isAdmin" [ngClass]="isWatch?'bred':'bgreen'" (click)="doWatch()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>add_to_queue</mat-icon></button>
   <button mat-button (click)="closeDialog()" mat-raised-button color="warn">{{rowAction != 'View'?'Cancel':'Close'}}</button>
 </mat-dialog-actions>
