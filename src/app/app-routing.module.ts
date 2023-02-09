@@ -13,6 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { AuthenticationService } from './services/authentication.service';
 import { ChangePwdSuccessComponent } from './components/change-pwd-success/change-pwd-success.component';
+import { DetailComponent } from './components/detail/detail.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:'account/resetpass/:user/:token',component:ResetpassComponent},
   {path:'account/logout',component:LogoutComponent},
   {path:'app/referral',component:ReferralComponent},
+  {path:'app/detail/:id',component:DetailComponent},
   {path:'app/shopping',component:ShoppingComponent},
   {path:'app/dashboard',component:DashboardComponent,canActivate:[AuthenticationService]},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},

@@ -1,0 +1,31 @@
+.geeks-left {
+    width: 25%;
+    height: 200px;   
+   }
+
+.geeks-right {
+    width: 75%;
+    height: 200px;   
+   }
+
+
+.csimg {
+    width:100%;
+    height:100%;
+    object-fit:scale-down;
+}
+
+.item-card-left {
+    max-width: 450px;
+    float: left;
+    margin: 5px;
+    border: 1px solid #ccc;  
+  }
+  .item-card-right {
+    max-width: 800px;
+    float: left;
+    margin: 5px;
+    border: 1px solid #ccc;  
+  }
+
+  .bgreen{background:#08ac0a !important;color:#ffffff !important;}
