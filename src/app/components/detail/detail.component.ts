@@ -1,7 +1,15 @@
 import { Component, OnInit, VERSION } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
+import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+import { CommentModel } from 'src/app/models/comment.model';
 import { Detail } from 'src/app/models/detail.model';
 import { Product } from 'src/app/models/product.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { NavigationService } from 'src/app/services/navigation.service';
+import { ProductService } from 'src/app/services/product.service';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-detail',
@@ -10,16 +18,34 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class DetailComponent implements OnInit {
   details:Detail=new Detail(); 
+  
   prods:Product[]=[];
-  constructor(  public auth:AuthenticationService) { }
+  commentObj = new CommentModel();
+
+  constructor(public dialog: MatDialog,public auth:AuthenticationService,public navigation:NavigationService,private service:ShareService,  private route:ActivatedRoute,private router:Router,private prodSer:ProductService) { }
+
+  back(): void {
+    this.navigation.back()
+  }
+
+  myPageUrl!:string;
+readonly appBaseUrl = window.location.origin;
+//Start: My Page
+displayMyPageUrl()
+{
+  this.myPageUrl = this.auth.user().IsLoggedIn?`${this.appBaseUrl}/${this.auth.user().UserName}`:`${this.appBaseUrl}/UserName`;
+}
 
   ngOnInit() {   
-    debugger;
+    this.displayMyPageUrl();
+    this.details.prod.id=this.route.snapshot.params['id'];
+    this.details.prod.title='Google Pay';
+    this.details.prod.categoryName='Referral';
     this.details.prod.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU';   
     this.details.prod.imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTqxRSHvenISIuW93nugIGeoBm8msCN-v7w&usqp=CAU';
     this.details.productImages = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTqxRSHvenISIuW93nugIGeoBm8msCN-v7w&usqp=CAU','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTqxRSHvenISIuW93nugIGeoBm8msCN-v7w&usqp=CAU'];
     this.details.shareUrl='';
-    this.details.backUrl='';
+    this.details.backUrl='..';
 
     this.details.createHeader='Google Pay';
     this.details.createBody='Create ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
@@ -44,18 +70,337 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
     this.details.prodRelated = this.prods;
     this.details.homeUrl='/';
   }  
-  share(prod:any)
+  share()
   {
-
+    this.service.share(this.details.prod);
   }
-  openDialog(d1:any,d2:any)
-  {
-
-  }
-  watch(d:any)
-  {
+  openDialog(rowAction:string) {
+    let prod = new Product(); 
+    prod.rowAction = rowAction;
+    prod.isLoggedIn =  this.auth.user().IsLoggedIn;
+    prod.isAdmin =  this.auth.user().IsAdmin;
+      
+      if(rowAction=='Comment')
+      { 
+        this.commentObj = new CommentModel(); 
+        this.commentObj.productId = prod.productId;
+        this.commentObj.rowAction = rowAction; 
+        this.commentObj.avatarUrl = prod.avatarUrl; 
+        this.commentObj.title = prod.title; 
+        this.commentObj.subTitle = prod.subTitle; 
+        this.commentObj.mypage = this.myPageUrl;
+        if(localStorage[rowAction+'-'+prod.productId]==undefined)
+        {
+          if(this.auth.user().IsLoggedIn) 
+          {
+            this.commentObj.isLoggedIn = true;
+            this.commentObj.isAdmin = this.auth.user().IsAdmin;
     
+            if(prod.comment!=null)
+            {
+              this.commentObj.referralCode = prod.comment.referralCode;
+              this.commentObj.referralLink = prod.comment.referralLink;
+            }
+            else
+            {
+              this.commentObj.referralCode = '';
+              this.commentObj.referralLink = '';
+            }
+                     const dialogRef = this.dialog.open(DialogBoxComponent, {
+                      maxWidth: '100vw',
+                      maxHeight: '100vh',
+                      height: 'relative',
+                      width: 'relative',
+                      panelClass: 'full-screen-modal',
+                      disableClose: true,
+                      autoFocus: true,
+                      data:rowAction=='Comment'?this.commentObj:prod
+                    });
+      
+                    dialogRef.componentInstance.onDoAction.subscribe((d) => {      
+                     
+                        let commentModel = new Product();
+                        commentModel.productId = d.data.productId;
+                        commentModel.referralCode = d.data.referralCode;
+                        commentModel.referralLink = d.data.referralLink;
+                  
+                        this.saveComment(commentModel,d.dialog);
+                        dialogRef.componentInstance.isWatch = true;
+                      
+                      
+                    });             
+                    
+                  
+                    dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+                      d.dialog.close();
+                    });  
+                    
+                    return dialogRef;
+    
+          }
+          else{
+          const dialogRef = this.dialog.open(DialogBoxComponent, {
+            maxWidth: '100vw',
+            maxHeight: '100vh',
+            height: 'relative',
+            width: 'relative',
+            panelClass: 'full-screen-modal',
+            disableClose: true,
+            autoFocus: true,
+            data:rowAction=='Comment'?this.commentObj:prod
+          });
+      
+          dialogRef.componentInstance.onDoAction.subscribe((d) => {      
+           
+              let commentModel = new Product();
+              commentModel.productId = d.data.productId;
+              commentModel.referralCode = d.data.referralCode;
+              commentModel.referralLink = d.data.referralLink;        
+              this.saveComment(commentModel,d.dialog);
+            
+            
+          });
+        
+          dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+            d.dialog.close();
+          }); 
+    
+          return dialogRef;
+        }
+    
+        }
+        else if(localStorage[rowAction+'-'+prod.productId]!=undefined)
+        {  
+        var comment = JSON.parse(localStorage[rowAction+'-'+prod.productId]);
+        this.commentObj.referralCode = comment.referralCode;
+        this.commentObj.referralLink = comment.referralLink;
+    
+        const dialogRef = this.dialog.open(DialogBoxComponent, {
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+          height: 'relative',
+          width: 'relative',
+          panelClass: 'full-screen-modal',
+          disableClose: true,
+          autoFocus: true,
+          data:rowAction=='Comment'?this.commentObj:prod
+        });
+    
+        dialogRef.componentInstance.onDoAction.subscribe((d) => {
+    
+      
+            
+            let commentModel = new Product();
+            commentModel.productId = d.data.productId;
+            commentModel.referralCode = d.data.referralCode;
+            commentModel.referralLink = d.data.referralLink;
+      
+            this.saveComment(commentModel,d.dialog);
+         
+          
+        });
+      
+        
+      
+        dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+          d.dialog.close();
+        }); 
+        return dialogRef;
+        } 
+    
+        return this.dialog.open(DialogBoxComponent, {});
+      }
+      else
+      {
+        const dialogRef = this.dialog.open(DialogBoxComponent, {
+          maxWidth: '100vw',
+          maxHeight: '100vh',
+          height: 'relative',
+          width: 'relative',
+          panelClass: 'full-screen-modal',
+          disableClose: true,
+          autoFocus: true,
+          data:prod
+        });
+  
+        dialogRef.componentInstance.onDoComment.subscribe((d) => { 
+         
+          this.prodSer.products.filter((val,index,arr)=>{
+            if(val.productId==d.data.productId)
+            {
+              if(d.data.comment==null)
+              {
+                d.data.comment = val.comment;
+              }
+            }
+          });
+    
+          const dref = this.openDialog("Comment"); 
+          dref.afterClosed().subscribe(result => {        
+            dialogRef.componentInstance.isWatch = dref.componentInstance.isWatch??dialogRef.componentInstance.isWatch;
+            d.data.isWatch = dref.componentInstance.isWatch??dialogRef.componentInstance.isWatch;
+            // this.service.products = this.reloadData(d.data);
+    
+          });
+          // this.share(d.data.productId,d.data.category,d.data.title);
+         });   
+        dialogRef.componentInstance.onDoAction.subscribe((d) => {
+    
+         if(d.data.rowAction=='Update')
+          {
+            this.updateRowData(d);
+          }
+          
+        });
+      
+        dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+          d.dialog.close();
+        }); 
+    
+        return dialogRef;
+      
+      } 
+
   }
+
+  updateRowData(d:any){
+    debugger;
+      this.prodSer.saveProduct(d.data).subscribe(res=>{      
+        this.prodSer.products.filter(function(item){
+           if(item.productId==res.productId)
+           {
+            item.category=res.category;
+            item.title=res.title;
+            item.subTitle=res.subTitle;
+            item.avatarUrl=res.avatarUrl;
+            item.imageUrl=res.imageUrl;
+            item.headLine=res.headLine;
+            item.description=res.description;
+     
+            item.rowAction=res.rowAction;
+            d.dialog.close();               
+           }
+           return true; 
+        });
+       
+      },
+      error=>{ 
+        let er='';  
+        Object.values(error.error.errors).forEach(function(errs:any){ 
+          Object.values(errs).forEach(function(msg:any){          
+           er+=msg+'\n';
+            });                 
+        });
+        window.alert(er);
+      } 
+      
+      );   
+  }
+  watch()
+  {  
+    let prod = new Product();
+    let isWatch = false;
+  
+    if(!this.auth.user().IsLoggedIn)
+    {
+      this.router.navigate(['/account/login']);
+    }
+    else if(prod.isWatch)
+    {    
+      //Remove from WatchList
+     this.prodSer.removeWatch(prod).subscribe({
+        next:(v)=>{
+          prod.isWatch = v.isWatch;
+          
+          // this.service.products = this.reloadData(v);
+  
+        },
+        error:(e)=>{},
+        complete:()=>{}
+      });   
+    }
+    else
+    {  
+      //Add to WatchList
+      this.prodSer.addWatch(prod).subscribe({
+        next:(v)=>{        
+          prod.isWatch=v.isWatch;
+          // this.service.products = this.reloadData(v);
+        },
+        error:(e)=>{},
+        complete:()=>{}
+      });        
+    }  
+  
+  
+    this.prodSer.products.filter((val,index,arr)=>{
+         if(val.productId==prod.productId)
+         {
+          isWatch = val.isWatch;
+         }
+    });
+  
+    return of(isWatch as boolean);
+  
+  }
+
+  saveComment(model:Product,dialog:any)
+{ 
+  if(model.referralCode=="" && model.referralLink=="")
+  {
+  alert('Atleast one (Referral Code or Link) should be required');  
+  }
+ else if(this.auth.user().IsLoggedIn)
+ {  
+  if(model.referralCode=="" && model.referralLink=="")
+  {
+  alert('Atleast one (Referral Code or Link) should be required');
+  }
+  else 
+  { 
+  this.prodSer.postComment(model).subscribe(result=>{
+  if(result.productId>0)
+  {
+    localStorage.removeItem('Comment-'+model.productId);  
+    let updated = false;
+    this.prodSer.products.filter(function(item){  
+      if(item.productId==result.productId && result.comment!=null)
+      {    
+        if(item.comment==null)
+        {
+        item.comment = result.comment;
+        }
+       item.comment.referralCode = result.comment.referralCode;
+       item.comment.referralLink = result.comment.referralLink;
+       item.isWatch = true;
+       updated = true;
+
+      }
+      return true; 
+   });
+
+   if(updated)
+   {
+    dialog.close(); 
+    alert('Successfully posted your comment.');
+   } 
+  }
+  else
+  {
+    alert('Something went wrong. Try again later.');
+  }
+  });  
+  }
+ }
+ else
+ {  
+  localStorage['Comment-'+model.productId]=JSON.stringify(model);
+  dialog.close();
+  this.auth.redirectUrl = '/app/search/'+model.productId;  
+  this.router.navigate(['/account/login']);  
+ }
+ return model;
+}
 
 }
 

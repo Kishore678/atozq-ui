@@ -123,7 +123,7 @@ share(prod:Product)
 
 
   let id = prod.id;
-  let category = prod.category;
+  let category = prod.categoryName;
   let titleText = prod.title;
 
   let mobileCheck = function() {
