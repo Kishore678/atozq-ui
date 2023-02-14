@@ -3,7 +3,7 @@
     <mat-card class="item-card-left">
       <mat-card-header>
         <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU"
+          src="{{details.prod.avatarUrl}}"
           mat-card-avatar />
         <mat-card-title>Google Pay</mat-card-title>
         <mat-card-subtitle>
@@ -12,28 +12,13 @@
       </mat-card-header>
       <mat-card-content>        
         <div class="geek-left">
-          <img class="csimg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTqxRSHvenISIuW93nugIGeoBm8msCN-v7w&usqp=CAU">
+          <img class="csimg" src="{{details.prod.imageUrl}}">
         </div>   
         <dl>
-          <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-      </dl>
+          <dd style="float:left;border:1px solid #ccc;margin:4px;" *ngFor="let img of details.productImages">   
+          <img src="{{img}}" mat-card-avatar />
+          </dd>       
+        </dl>
         <div style="clear:both"></div>
       </mat-card-content>      
       <mat-card-actions style="text-align:center">                   
@@ -52,180 +37,26 @@
       </mat-card-header>
       <mat-card-content>        
         <div class="geek-right">
-          <h3 class="fgreen">How to create Google Pay account?</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p> 
+          <h3 class="fgreen">How to create {{details.createHeader}} account?</h3>
+          <p>{{details.createBody}}</p> 
           <h3 class="fgreen">How to use Google Pay account?</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p> 
+          <p>{{details.useBody}}</p>  
           <h3 class="fgreen">Where is my Google Pay referral code or link?</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p>  
+          <p>{{details.refBody}}</p>   
           <h3 class="fgreen">How to earn money using Google Pay?</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p> 
-        </div>  
-       
+          <p>{{details.earnBody}}</p> 
+        </div>         
         <dl>
-          <caption style="white-space: nowrap;font-weight: 500;color: #444;">Other Related:</caption>
-          <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">   
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
-        <dd style="float:left;border:1px solid #ccc;margin:4px;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU" mat-card-avatar />
-        </dd>
+          <caption class="fgreen" style="white-space: nowrap;font-weight: 500;">Other Related:</caption>
+          <dd style="float:left;border:1px solid #ccc;margin:4px;" *ngFor="let relate of details.prodRelated">   
+          <img src="{{relate.avatarUrl}}" mat-card-avatar />
+        </dd>       
       </dl>
         <div style="clear:both"></div>
       </mat-card-content>  
       <mat-card-actions>
         <button class="bgreen" (click)="share('prod')" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>arrow_back</mat-icon>Back</button>
-        <button class="bgreen" (click)="share('prod')" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>home</mat-icon>Home</button>
+        <button class="bgreen" routerLink="{{details.homeUrl}}" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>home</mat-icon>Home</button>
       </mat-card-actions>
     </mat-card>
   </div>

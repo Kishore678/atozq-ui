@@ -31,7 +31,7 @@ import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent],
-  imports: [
+  imports: [ 
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,

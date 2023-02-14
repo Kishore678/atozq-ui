@@ -536,8 +536,6 @@ saveComment(model:Product,dialog:any)
       return true; 
    });
 
-
-
    if(updated)
    {
     dialog.close(); 
@@ -561,23 +559,20 @@ saveComment(model:Product,dialog:any)
  return model;
 }
 updateRowData(id:number,d:any){
-  this.service.putProduct(id,d.data).subscribe(res=>{      
-    this.service.cards.filter(function(item){
-       if(item.item.itemId==res.itemId)
+  this.service.saveProduct(d.data).subscribe(res=>{      
+    this.service.products.filter(function(item){
+       if(item.productId==res.productId)
        {
-        item.item.category=res.category;
-        item.item.titleText=res.titleText;
-        item.item.subTitle=res.subTitle;
-        item.item.avatarUrl=res.avatarUrl;
-        item.item.itemImageUrl=res.itemImageUrl;
-        item.item.itemHeadLine=res.itemHeadLine;
-        item.item.referralCode=res.referralCode;
-        item.item.referralLink=res.referralLink;
-        item.item.itemDescription=res.itemDescription;
-        item.item.useButton=res.useButton;
-        item.item.shareButton=res.shareButton;
-        item.item.commentButton=res.commentButton;
-        item.item.rowAction=res.rowAction;
+        item.category=res.category;
+        item.title=res.title;
+        item.subTitle=res.subTitle;
+        item.avatarUrl=res.avatarUrl;
+        item.imageUrl=res.imageUrl;
+        item.headLine=res.headLine;
+        item.referralCode=res.referralCode;
+        item.referralLink=res.referralLink;
+        item.description=res.description;
+        item.rowAction=res.rowAction;
         d.dialog.close();               
        }
        return true; 
