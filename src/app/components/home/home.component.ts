@@ -186,7 +186,7 @@ reloadData(prd:Product)
 
 watch(prod:Product):Observable<boolean>
 {
-
+  debugger;
   let isWatch = false;
 
   if(!this.auth.user().IsLoggedIn)
@@ -233,6 +233,7 @@ watch(prod:Product):Observable<boolean>
 }
 
 openDialog(rowAction:string,prod:Product) {  
+
 prod.rowAction = rowAction;
 prod.isLoggedIn =  this.auth.user().IsLoggedIn;
 prod.isAdmin =  this.auth.user().IsAdmin;
@@ -279,6 +280,7 @@ prod.isAdmin =  this.auth.user().IsAdmin;
                 });
   
                 dialogRef.componentInstance.onDoAction.subscribe((d) => {
+                  debugger;
   
                   if(d.data.rowAction == 'View'){
                     // this.addRowData(d);        

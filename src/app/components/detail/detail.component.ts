@@ -20,6 +20,8 @@ export class DetailComponent implements OnInit {
   details:Detail=new Detail(); 
   
   prods:Product[]=[];
+  prod:Product = new Product();
+
   commentObj = new CommentModel();
 
   constructor(public dialog: MatDialog,public auth:AuthenticationService,public navigation:NavigationService,private service:ShareService,  private route:ActivatedRoute,private router:Router,private prodSer:ProductService) { }
@@ -37,6 +39,13 @@ displayMyPageUrl()
 }
 
   ngOnInit() {   
+    this.prod.productId=1;
+    this.prod.isWatch=true;
+    this.prod.comment = new CommentModel();
+    this.prod.comment.referralCode='REFCODE';
+    this.prod.comment.referralLink='REFLINK';
+
+
     this.displayMyPageUrl();
     this.details.prod.id=this.route.snapshot.params['id'];
     this.details.prod.title='Google Pay';
@@ -74,32 +83,32 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
   {
     this.service.share(this.details.prod);
   }
-  openDialog(rowAction:string) {
-    let prod = new Product(); 
-    prod.rowAction = rowAction;
-    prod.isLoggedIn =  this.auth.user().IsLoggedIn;
-    prod.isAdmin =  this.auth.user().IsAdmin;
+  openDialog(rowAction:string) {    
+    debugger;
+    this.prod.rowAction = rowAction;
+    this.prod.isLoggedIn =  this.auth.user().IsLoggedIn;
+    this.prod.isAdmin =  this.auth.user().IsAdmin;
       
       if(rowAction=='Comment')
       { 
         this.commentObj = new CommentModel(); 
-        this.commentObj.productId = prod.productId;
+        this.commentObj.productId = this.prod.productId;
         this.commentObj.rowAction = rowAction; 
-        this.commentObj.avatarUrl = prod.avatarUrl; 
-        this.commentObj.title = prod.title; 
-        this.commentObj.subTitle = prod.subTitle; 
+        this.commentObj.avatarUrl = this.prod.avatarUrl; 
+        this.commentObj.title = this.prod.title; 
+        this.commentObj.subTitle = this.prod.subTitle; 
         this.commentObj.mypage = this.myPageUrl;
-        if(localStorage[rowAction+'-'+prod.productId]==undefined)
+        if(localStorage[rowAction+'-'+this.prod.productId]==undefined)
         {
           if(this.auth.user().IsLoggedIn) 
           {
             this.commentObj.isLoggedIn = true;
             this.commentObj.isAdmin = this.auth.user().IsAdmin;
     
-            if(prod.comment!=null)
+            if(this.prod.comment!=null)
             {
-              this.commentObj.referralCode = prod.comment.referralCode;
-              this.commentObj.referralLink = prod.comment.referralLink;
+              this.commentObj.referralCode = this.prod.comment.referralCode;
+              this.commentObj.referralLink = this.prod.comment.referralLink;
             }
             else
             {
@@ -114,11 +123,11 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
                       panelClass: 'full-screen-modal',
                       disableClose: true,
                       autoFocus: true,
-                      data:rowAction=='Comment'?this.commentObj:prod
+                      data:rowAction=='Comment'?this.commentObj:this.prod
                     });
       
                     dialogRef.componentInstance.onDoAction.subscribe((d) => {      
-                     
+                     debugger;
                         let commentModel = new Product();
                         commentModel.productId = d.data.productId;
                         commentModel.referralCode = d.data.referralCode;
@@ -147,7 +156,7 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
             panelClass: 'full-screen-modal',
             disableClose: true,
             autoFocus: true,
-            data:rowAction=='Comment'?this.commentObj:prod
+            data:rowAction=='Comment'?this.commentObj:this.prod
           });
       
           dialogRef.componentInstance.onDoAction.subscribe((d) => {      
@@ -169,9 +178,9 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
         }
     
         }
-        else if(localStorage[rowAction+'-'+prod.productId]!=undefined)
+        else if(localStorage[rowAction+'-'+this.prod.productId]!=undefined)
         {  
-        var comment = JSON.parse(localStorage[rowAction+'-'+prod.productId]);
+        var comment = JSON.parse(localStorage[rowAction+'-'+this.prod.productId]);
         this.commentObj.referralCode = comment.referralCode;
         this.commentObj.referralLink = comment.referralLink;
     
@@ -183,7 +192,7 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
           panelClass: 'full-screen-modal',
           disableClose: true,
           autoFocus: true,
-          data:rowAction=='Comment'?this.commentObj:prod
+          data:rowAction=='Comment'?this.commentObj:this.prod
         });
     
         dialogRef.componentInstance.onDoAction.subscribe((d) => {
@@ -220,7 +229,7 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
           panelClass: 'full-screen-modal',
           disableClose: true,
           autoFocus: true,
-          data:prod
+          data:this.prod
         });
   
         dialogRef.componentInstance.onDoComment.subscribe((d) => { 
@@ -298,19 +307,19 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
   }
   watch()
   {  
-    let prod = new Product();
+
     let isWatch = false;
   
     if(!this.auth.user().IsLoggedIn)
     {
       this.router.navigate(['/account/login']);
     }
-    else if(prod.isWatch)
+    else if(this.prod.isWatch)
     {    
       //Remove from WatchList
-     this.prodSer.removeWatch(prod).subscribe({
+     this.prodSer.removeWatch(this.prod).subscribe({
         next:(v)=>{
-          prod.isWatch = v.isWatch;
+          this.prod.isWatch = v.isWatch;
           
           // this.service.products = this.reloadData(v);
   
@@ -322,9 +331,9 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
     else
     {  
       //Add to WatchList
-      this.prodSer.addWatch(prod).subscribe({
+      this.prodSer.addWatch(this.prod).subscribe({
         next:(v)=>{        
-          prod.isWatch=v.isWatch;
+          this.prod.isWatch=v.isWatch;
           // this.service.products = this.reloadData(v);
         },
         error:(e)=>{},
@@ -334,7 +343,7 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
   
   
     this.prodSer.products.filter((val,index,arr)=>{
-         if(val.productId==prod.productId)
+         if(val.productId==this.prod.productId)
          {
           isWatch = val.isWatch;
          }
@@ -345,7 +354,7 @@ prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSd
   }
 
   saveComment(model:Product,dialog:any)
-{ 
+{ debugger;
   if(model.referralCode=="" && model.referralLink=="")
   {
   alert('Atleast one (Referral Code or Link) should be required');  
