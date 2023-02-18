@@ -58,7 +58,7 @@
 
   ::ng-deep .mat-dialog-title,.btnAction
   {
-        background: #08ac0a;        
+        background: #1c971d;        
         color: #fff;  
   }
   ::ng-deep .mat-dialog-title
@@ -121,7 +121,7 @@ h2 {
   {
     font-size: 10px;
     background:#f0ffff;
-    color:#08ac0a;  
+    color:#1c971d;  
   }
 
   .cmt-footer a
@@ -129,7 +129,7 @@ h2 {
     color: blue;
   }
 
-  .bgreen{background:#08ac0a !important;color:#ffffff !important;}
+  .bgreen{background:#1c971d !important;color:#ffffff !important;}
 
   .bred{color: #ffffff !important;background: #ff9800;}
 
