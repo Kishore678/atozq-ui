@@ -37,47 +37,55 @@ displayMyPageUrl()
 {
   this.myPageUrl = this.auth.user().IsLoggedIn?`${this.appBaseUrl}/${this.auth.user().UserName}`:`${this.appBaseUrl}/UserName`;
 }
+LoadDetailsById(id:number)
+{
+ this.prodSer.getProductById(id).subscribe(res=>{
+  debugger;
+  let d = res[0];
+  this.details.prod.id=d.id;
+  this.details.prod.title=d.title;
+  this.details.prod.categoryName=d.categoryName;
+  this.details.prod.avatarUrl = d.avatarUrl;   
+  this.details.prod.imageUrl = d.imageUrl;
+  this.details.productImages = [d.imageUrl,d.imageUrl];//need to add db multiple prod images
+  // this.details.shareUrl='';
+  // this.details.backUrl='..';
 
+  this.details.createHeader=d.title;
+  this.details.createBody=d.description;
+
+  this.details. useHeader=d.title;
+  this.details.useBody=d.description;//need to add db useBody description
+
+  this.details.refHeader=d.title;
+  this.details.refBody=d.description;//need to add db refBody description
+
+  this.details.earnHeader=d.title;
+  this.details.earnBody=d.description;//need to add db earnBody description
+  
+  this.prod.productId=d.productId;
+  this.prod.isWatch=d.isWatch;
+  this.prod.comment = new CommentModel();
+  this.prod.comment.referralCode=d.referralCode;
+  this.prod.comment.referralLink=d.referralLink;
+
+  //Start: Need to implement related prod logic currently dummy
+  let prod1 = new Product();
+  let prod2 = new Product();
+  prod1.avatarUrl = d.avatarUrl;
+  prod2.avatarUrl = d.avatarUrl;
+  this.prods.push(prod1);
+  this.prods.push(prod2);
+  this.details.prodRelated = this.prods;
+ //End: Need to implement related prod logic currently dummy
+
+  // this.details.homeUrl='/';
+  
+ });
+}
   ngOnInit() {   
-    this.prod.productId=1;
-    this.prod.isWatch=true;
-    this.prod.comment = new CommentModel();
-    this.prod.comment.referralCode='REFCODE';
-    this.prod.comment.referralLink='REFLINK';
-
-
     this.displayMyPageUrl();
-    this.details.prod.id=this.route.snapshot.params['id'];
-    this.details.prod.title='Google Pay';
-    this.details.prod.categoryName='Referral';
-    this.details.prod.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU';   
-    this.details.prod.imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTqxRSHvenISIuW93nugIGeoBm8msCN-v7w&usqp=CAU';
-    this.details.productImages = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTqxRSHvenISIuW93nugIGeoBm8msCN-v7w&usqp=CAU','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyTqxRSHvenISIuW93nugIGeoBm8msCN-v7w&usqp=CAU'];
-    this.details.shareUrl='';
-    this.details.backUrl='..';
-
-    this.details.createHeader='Google Pay';
-    this.details.createBody='Create ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-
-    this.details. useHeader='Google Pay';
-    this.details.useBody='Use ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-
-    this.details.refHeader='Google Pay';
-    this.details.refBody='Ref ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-
-    this.details.earnHeader='Google Pay';
-    this.details.earnBody='Earn ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
-
-let prod1 = new Product();
-let prod2 = new Product();
-prod1.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU';
-prod2.avatarUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3TmYSdiVW8FTkqamUmP0YNMSVwTuqfkqqJw&usqp=CAU';
-
-    this.prods.push(prod1);
-    this.prods.push(prod2);
-
-    this.details.prodRelated = this.prods;
-    this.details.homeUrl='/';
+    this.LoadDetailsById(this.route.snapshot.params['id']);
   }  
   share()
   {
