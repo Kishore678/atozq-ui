@@ -27,12 +27,10 @@ export class ForgotpassComponent implements OnInit {
       res => {
         let status = (<any>res).status; 
         let msg = (<any>res).message; 
-        
-        if(status=='Success')
-        {
-          alert("Successfully sent change password email.");
-        }
-     
+        if(msg==undefined || msg==null)
+        alert('Something went wrong. Try again.');
+        else 
+        alert(msg);       
         // this.toastr.success("LoggedIn successfully", "Log in");
       },
       err => {
