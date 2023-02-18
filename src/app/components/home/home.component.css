@@ -65,7 +65,7 @@ padding:0;
 }
 /* .mat-card-actions .mat-button, .mat-card-actions .mat-raised-button,mat-toolbar .mat-raised-button 
 {
-  background-color:#08ac0a;
+  background-color:#1c971d;
   color:#ffffff;
 } */
 
@@ -110,12 +110,12 @@ button.viewall
 {
   width: 100%;
     color: #ffffff;
-    background: #08ac0a;
+    background: #1c971d;
 }
 
-.fgreen{color:#08ac0a;}
+.fgreen{color:#1c971d;}
 
-.bgreen{background:#08ac0a !important;color:#ffffff !important;}
+.bgreen{background:#1c971d !important;color:#ffffff !important;}
 
 .bred{color: #ffffff !important;background: #ff9800;}
 

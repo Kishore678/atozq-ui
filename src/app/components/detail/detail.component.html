@@ -26,7 +26,7 @@
         <button *ngIf="!auth.user().IsAdmin" class="bgreen" (click)="openDialog('Comment')" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>comment</mat-icon></button>      
         <button class="bgreen" (click)="openDialog('Update')" *ngIf="auth.user().IsLoggedIn && auth.user().IsAdmin" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>edit</mat-icon></button>
         <button *ngIf="!auth.user().IsAdmin" [ngClass]="prod.isWatch?'bred':'bgreen'" (click)="watch()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>add_to_queue</mat-icon></button>
-        <button class="bgreen" (click)="back()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>arrow_back</mat-icon>Back</button>
+        <button class="bblack" (click)="back()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>arrow_back</mat-icon>Back</button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="item-card-right">
@@ -55,8 +55,8 @@
         <div style="clear:both"></div>
       </mat-card-content>  
       <mat-card-actions>
-        <button class="bgreen" (click)="back()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>arrow_back</mat-icon>Back</button>
-        <button class="bgreen" routerLink="/" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>home</mat-icon>Home</button>
+        <button class="bblack" (click)="back()" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>arrow_back</mat-icon>Back</button>
+        <button class="bblack" routerLink="/" mat-raised-button color="basic" mat-button>&nbsp;<mat-icon>home</mat-icon>Home</button>
       </mat-card-actions>
     </mat-card>
   </div>

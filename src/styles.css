@@ -3,5 +3,10 @@ html, body { height: 100%; }
 body { margin: 0;}
 
 .mat-tab-label, .mat-tab-link {
-    color:   rgb(8 172 10)!important;
+    color:#1c971d!important;
+  }
+
+  .bblack{
+    background: #601da1!important;
+    color: #fff!important;
   }
