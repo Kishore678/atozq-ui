@@ -1,148 +1,109 @@
+
 <div class="row" style="margin:15px;">
-    <div class="col-md-3">
-      <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-      <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-      <a href="https://www.bseindia.com/markets/MarketInfo/BhavCopy.aspx" target="_blank" style="margin-left: 10px;cursor:default;color: green;">Download BhavCopy <mat-icon>download</mat-icon> </a>
-    </div>
-    <div class="col-md-4">
-      <span class="upload" *ngIf="progress > 0">
-        {{progress}}%
-      </span>
-      <span class="upload" *ngIf="message">
-        {{message}}
-      </span>
-    </div>
+  <div class="col-md-3">
+    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+    <a href="https://www.bseindia.com/markets/MarketInfo/BhavCopy.aspx" target="_blank" style="margin-left: 10px;cursor:default;color: green;">Download BhavCopy <mat-icon>download</mat-icon> </a>
   </div>
-
-  <mat-tab-group color="primary" backgroundColor="primary">
-
-  
-
-    <mat-tab   *ngFor="let dataSource of dsArray">
-        <ng-template mat-tab-label>           
-            {{dataSource.key}}
-          </ng-template>
-          <!-- <mat-form-field>
-            <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event,dataSource)" placeholder="Ex. Mia" #input>
-          </mat-form-field> -->
-          <div class="mat-elevation-z8">
-          <table  mat-table [dataSource]="dataSource.data" matSort>
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="sC_CODE">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_CODE">
-     Code
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.sC_CODE}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="sC_NAME">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_NAME">
-      Stock
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.sC_NAME}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="sC_GROUP">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_GROUP">
-      Group
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.sC_GROUP}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="sC_TYPE">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_TYPE">
-     Type
-    </th>
-    <td mat-cell *matCellDef="let element"> {{element.sC_TYPE}} </td>
-  </ng-container>
-
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="open">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by open">
-         Open
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.open}} </td>
-      </ng-container>
-
-          <!-- Symbol Column -->
-    <ng-container matColumnDef="high">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by high">
-         High
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.high}} </td>
-      </ng-container>
-
-      
-          <!-- Symbol Column -->
-    <ng-container matColumnDef="low">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by low">
-         Low
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.low}} </td>
-      </ng-container>
-
-      
-          <!-- Symbol Column -->
-    <ng-container matColumnDef="close">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by close">
-         Close
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.close}} </td>
-      </ng-container>
-      
-          <!-- Symbol Column -->
-    <ng-container matColumnDef="last">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by last">
-         Last
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.last}} </td>
-      </ng-container>
-      
-          <!-- Symbol Column -->
-    <ng-container matColumnDef="prevclose">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by prevclose">
-        Previous
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.prevclose}} </td>
-      </ng-container>
-
-                <!-- Symbol Column -->
-    <ng-container matColumnDef="nO_TRADES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nO_TRADES">
-        Trades(Count)
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.nO_TRADES}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="nO_OF_SHRS">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nO_OF_SHRS">
-        Volume(Shares)
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.nO_OF_SHRS}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="neT_TURNOV">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by neT_TURNOV">
-        Turnover(Rs.)
-        </th>
-        <td mat-cell *matCellDef="let element"> {{element.neT_TURNOV}} </td>
-      </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+  <div class="col-md-4">
+    <span class="upload" *ngIf="progress > 0">
+      {{progress}}%
+    </span>
+    <span class="upload" *ngIf="message">
+      {{message}}
+    </span>
+  </div>
 </div>
-    </mat-tab>
-  
+<div class="row" style="margin:15px;">
+  <div class="col-md-12">
+    <button [ngClass]="pagesClass" *ngFor="let b of dsArray" (click)="handleClick($event,b.key)">{{b.key}}</button>
+  </div>
+</div>
+<mat-card>
+	<table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="sC_CODE">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_CODE">
+       Code
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.sC_CODE}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sC_NAME">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_NAME">
+        Stock
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.sC_NAME}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sC_GROUP">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_GROUP">
+        Group
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.sC_GROUP}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sC_TYPE">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_TYPE">
+       Type
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.sC_TYPE}} </td>
+    </ng-container>
+    <ng-container matColumnDef="open">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by open">
+           Open
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.open}} </td>
+     </ng-container>
+      <ng-container matColumnDef="high">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by high">
+           High
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.high}} </td>
+      </ng-container>
+      <ng-container matColumnDef="low">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by low">
+           Low
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.low}} </td>
+      </ng-container>
+      <ng-container matColumnDef="close">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by close">
+           Close
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.close}} </td>
+      </ng-container>
+      <ng-container matColumnDef="last">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by last">
+           Last
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.last}} </td>
+      </ng-container>
+      <ng-container matColumnDef="prevclose">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by prevclose">
+          Previous
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.prevclose}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nO_TRADES">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nO_TRADES">
+          Trades(Count)
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.nO_TRADES}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nO_OF_SHRS">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nO_OF_SHRS">
+          Volume(Shares)
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.nO_OF_SHRS}} </td>
+      </ng-container>
+      <ng-container matColumnDef="neT_TURNOV">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by neT_TURNOV">
+          Turnover(Rs.)
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.neT_TURNOV}} </td>
+      </ng-container>
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+	</table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
 
-  </mat-tab-group>
 
   

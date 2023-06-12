@@ -8,28 +8,40 @@
   table {
     width: 100%;
   }
+  
+  th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
+    border-bottom-width: 0px;  
+  }
 
-  .example-tab-icon {
-    margin-right: 8px;
+  .table-container {
+    height: 500px;
+    overflow: auto;
   }
 
-.mat-column-sC_CODE {
-    width: 32px;
-    border-right: 1px solid currentColor;
-    padding-right: 24px;
-    text-align: center;
+  button.btn {
+    background: #1c971d;
+    color: #fff;
+    font-size: 12px;
+    margin: 2px;
+    text-transform: uppercase;
+    padding: .4em 1em;
+    letter-spacing: 1px;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: none; 
   }
+
   
-  .mat-column-sC_NAME {
-    padding-left: 16px;
-  }
-  
-  .mat-column-demo-weight {
-    font-style: italic;
-  }
-  
-  .mat-column-demo-symbol {
-    width: 32px;
-    text-align: center;
+  button.btn:hover,button.selected
+  {
+    background: #84da9c;
+    color:#1c971d;
     font-weight: bold;
   }
