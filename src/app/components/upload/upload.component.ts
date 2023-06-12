@@ -6,12 +6,17 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { of } from 'rxjs/internal/observable/of';
 import { delay} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+const apiBaseUrl = environment.apiBaseUrl;
+
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent {
+  isTrue:boolean=false;
   dsArray:any[]=[];
   fileName:string='';
   size:number=5;
@@ -30,9 +35,24 @@ export class UploadComponent {
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:24288/api/file')
+    this.http.get(`${apiBaseUrl}/api/file`)
     .subscribe({
       next: (event:any) => { 
+        
+this.dsArray.push({key:'All'});
+this.dsArray.push({key:'0-1'});
+this.dsArray.push({key:'1-10'});
+this.dsArray.push({key:'10-20'});
+this.dsArray.push({key:'20-50'});
+this.dsArray.push({key:'50-100'});
+this.dsArray.push({key:'100-200'});
+this.dsArray.push({key:'200-500'});
+this.dsArray.push({key:'500-1K'});
+this.dsArray.push({key:'1K-5K'});
+this.dsArray.push({key:'5K-10K'});
+this.dsArray.push({key:'10K-50K'});
+this.dsArray.push({key:'50K-1L'});
+
      this.LoadDataSource(event);
     },
     error: (err: HttpErrorResponse) => console.log(err)
@@ -45,7 +65,6 @@ export class UploadComponent {
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
-  pagesClass:string='btn';
   handleClick(event:any,method: string) {
     switch (method) {
       case 'All': this.bseBhavData = this.bseBhavModel.fullData;
@@ -80,15 +99,11 @@ export class UploadComponent {
  }
  this.dataSource.data = this.bseBhavData;
  this.length = this.bseBhavData.length; 
+ }
 
- event.target.setAttribute('class','btn selected');
-
- event.target.parentNode.childNodes.forEach(function(item:any)
- {  if(event.target!=item)
-  {
-  item.setAttribute('class','btn');
-  }
- });
+ Browse(url:string)
+ {
+  window.open(url,'self');
  }
   progress!: number;
   message!: string;
@@ -97,6 +112,7 @@ export class UploadComponent {
 
   LoadDataSource(event:any)
   { 
+    this.dataSource.data  = [];
     this.bseBhavModel = event;
     this.fileName = this.bseBhavModel.fileName;
     this.bseBhavData = event.underOneRupeeGroupBXT;
@@ -104,19 +120,7 @@ export class UploadComponent {
 of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
   this.dataSource.data = this.bseBhavData
 }); 
-      this.dsArray.push({key:'All'});
-      this.dsArray.push({key:'0-1'});
-      this.dsArray.push({key:'1-10'});
-      this.dsArray.push({key:'10-20'});
-      this.dsArray.push({key:'20-50'});
-      this.dsArray.push({key:'50-100'});
-      this.dsArray.push({key:'100-200'});
-      this.dsArray.push({key:'200-500'});
-      this.dsArray.push({key:'500-1K'});
-      this.dsArray.push({key:'1K-5K'});
-      this.dsArray.push({key:'5K-10K'});
-      this.dsArray.push({key:'10K-50K'});
-      this.dsArray.push({key:'50K-1L'});
+
   }
 
   sorter = (a:any, b:any) => {

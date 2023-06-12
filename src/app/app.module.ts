@@ -30,7 +30,7 @@ import { CategoryService } from './services/category.service';
 import { DetailComponent } from './components/detail/detail.component';
 import { NavigationService } from './services/navigation.service';
 import { ShareService } from './services/share.service';
-import { UploadComponent } from './upload/upload.component';
+import { UploadComponent } from './components/upload/upload.component';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent],

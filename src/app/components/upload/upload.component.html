@@ -1,29 +1,26 @@
-
-<div class="row" style="margin:15px;">
-  <div class="col-md-3">
+<div class="container file-toolbar">
+  <div class="left-element">
     <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
-    <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
-    <a href="https://www.bseindia.com/markets/MarketInfo/BhavCopy.aspx" target="_blank" style="margin-left: 10px;cursor:default;color: green;">Download BhavCopy <mat-icon>download</mat-icon> </a>
+    <button mat-button class="btn" (click)="file.click()"><mat-icon>upload</mat-icon>&nbsp;Upload File</button>
   </div>
-  <div class="col-md-4">
-    <span class="upload" *ngIf="progress > 0">
-      {{progress}}%
-    </span>
-    <span class="upload" *ngIf="message">
-      {{message}}
-    </span>
+  <div class="right-element">
+    <button  mat-button class="btn" (click)="Browse('https://www.bseindia.com/markets/MarketInfo/BhavCopy.aspx')"><mat-icon>download</mat-icon>&nbsp;Download File</button>
+  </div>
+  <div class="middle-element">
+    <b>Latest Bhav Copy: </b><label class="filename">{{fileName}}</label>
   </div>
 </div>
-<div class="row" class="file-toolbar">
+
+<div class="row" style="margin:5px 0 10px 5px;text-align:center;">
   <div class="col-md-12">
-    <label>Current File: {{fileName}}</label>
+    <mat-button-toggle-group>
+      <mat-button-toggle *ngFor="let b of dsArray" (click)="handleClick($event,b.key)">{{b.key}}</mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 </div>
-<div class="row" style="margin:15px;">
-  <div class="col-md-12">
-    <button [ngClass]="pagesClass" *ngFor="let b of dsArray" (click)="handleClick($event,b.key)">{{b.key}}</button>
-  </div>
-</div>
+
+
+
 
 <section class="table-container mat-elevation-z8" tabindex="0">
 	<table mat-table [dataSource]="dataSource" matSort>

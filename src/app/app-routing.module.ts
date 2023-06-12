@@ -14,7 +14,7 @@ import { ShoppingComponent } from './components/shopping/shopping.component';
 import { AuthenticationService } from './services/authentication.service';
 import { ChangePwdSuccessComponent } from './components/change-pwd-success/change-pwd-success.component';
 import { DetailComponent } from './components/detail/detail.component';
-import { UploadComponent } from './upload/upload.component';
+import { UploadComponent } from './components/upload/upload.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
