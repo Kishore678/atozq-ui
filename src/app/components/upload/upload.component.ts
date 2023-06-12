@@ -137,7 +137,7 @@ of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     
-    this.http.post('http://localhost:24288/api/file', formData, {reportProgress: true, observe: 'events'})
+    this.http.post(`${apiBaseUrl}/api/file`, formData, {reportProgress: true, observe: 'events'})
       .subscribe({
         next: (event:any) => {
         if (event.type === HttpEventType.UploadProgress)
