@@ -14,12 +14,18 @@
     </span>
   </div>
 </div>
+<div class="row" class="file-toolbar">
+  <div class="col-md-12">
+    <label>Current File: {{fileName}}</label>
+  </div>
+</div>
 <div class="row" style="margin:15px;">
   <div class="col-md-12">
     <button [ngClass]="pagesClass" *ngFor="let b of dsArray" (click)="handleClick($event,b.key)">{{b.key}}</button>
   </div>
 </div>
-<mat-card>
+
+<section class="table-container mat-elevation-z8" tabindex="0">
 	<table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="sC_CODE">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_CODE">
@@ -99,11 +105,11 @@
           </th>
           <td mat-cell *matCellDef="let element"> {{element.neT_TURNOV}} </td>
       </ng-container>
-		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
 		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 	</table>
 	<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</mat-card>
+</section>
 
 
   

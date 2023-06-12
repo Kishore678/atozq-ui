@@ -13,6 +13,7 @@ import { delay} from 'rxjs/operators';
 })
 export class UploadComponent {
   dsArray:any[]=[];
+  fileName:string='';
   size:number=5;
   length!:number;
   bseBhavData!:BSEBhavCopy[];
@@ -32,26 +33,7 @@ export class UploadComponent {
     this.http.get('http://localhost:24288/api/file')
     .subscribe({
       next: (event:any) => { 
-        this.bseBhavModel = event;
-        this.bseBhavData = event.underOneRupeeGroupBXT;
-            // Simulate api call
-    of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
-      this.dataSource.data = this.bseBhavData
-    }); 
-          this.dsArray.push({key:'All'});
-          this.dsArray.push({key:'0-1'});
-          this.dsArray.push({key:'1-10'});
-          this.dsArray.push({key:'10-20'});
-          this.dsArray.push({key:'20-50'});
-          this.dsArray.push({key:'50-100'});
-          this.dsArray.push({key:'100-200'});
-          this.dsArray.push({key:'200-500'});
-          this.dsArray.push({key:'500-1K'});
-          this.dsArray.push({key:'1K-5K'});
-          this.dsArray.push({key:'5K-10K'});
-          this.dsArray.push({key:'10K-50K'});
-          this.dsArray.push({key:'50K-1L'});
-
+     this.LoadDataSource(event);
     },
     error: (err: HttpErrorResponse) => console.log(err)
   });
@@ -104,112 +86,37 @@ export class UploadComponent {
  event.target.parentNode.childNodes.forEach(function(item:any)
  {  if(event.target!=item)
   {
-  item.setAttribute('class','btn'); 
+  item.setAttribute('class','btn');
   }
  });
  }
-//   ngAfterViewInit() {    
-//     this.oneDataSource.sort = this.oneMatSort;
-//     this.oneDataSource.paginator = this.oneMatPaginator;
-// }
-  
-  // {
-  //   this.oneSort = ms;
-  //   this.tenSort = ms;
-  //   this.twentySort = ms;
-  //   this.setDataSourceAttributes();
-  // }
-
-  // @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-  //   this.onePaginator = mp;
-  //   this.tenPaginator = mp;
-  //   this.twentyPaginator = mp;
-  //   this.setDataSourceAttributes();
-  // }
-
-  // setDataSourceAttributes() {
-  //   this.oneDataSource.paginator = this.onePaginator;
-  //   // this.tenDataSource.paginator = this.tenPaginator;
-  //   // this.twentyDataSource.paginator = this.twentyPaginator;
-  //   this.oneDataSource.sort = this.oneSort;
-  //   // this.tenDataSource.sort = this.tenSort;
-  //   // this.twentyDataSource.sort = this.twentySort;
-  //   // if (this.paginator && this.sort) {
-  //   //   this.applyFilter('');
-  //   // }
-  // }
-
-
- 
-
-  allData:any;
-  one:any;
-  ten:any;
-  twenty:any;
-  fifty:any;
-  hundred:any;
-  twohundred:any;
-  fivehundred:any;
-  oneK:any;
-  fiveK:any;
-  tenK:any;
-  fiftyK:any;
-  oneL:any;
-
   progress!: number;
   message!: string;
   
   constructor(private http: HttpClient,private _liveAnnouncer: LiveAnnouncer) { }
 
-  // allDataSource = new MatTableDataSource<any>;
-  // oneDataSource = new MatTableDataSource<any>;
-  // tenDataSource = new MatTableDataSource<any>;
-  // twentyDataSource = new MatTableDataSource<any>;
-  // fiftyDataSource = new MatTableDataSource<any>;
-  // hundredDataSource = new MatTableDataSource<any>;
-  // twohundredDataSource = new MatTableDataSource<any>;
-  // fivehundredDataSource = new MatTableDataSource<any>;
-  // oneKDataSource = new MatTableDataSource<any>;
-  // fiveKDataSource = new MatTableDataSource<any>;
-  // tenKDataSource = new MatTableDataSource<any>;
-  // fiftyKDataSource = new MatTableDataSource<any>;
-  // oneLDataSource = new MatTableDataSource<any>;
-
- 
-
-//   onSortData(sort: Sort) {
-//     let data = this.oneDataSource.slice();
-//     if (sort.active && sort.direction !== '') {
-//         data = data.sort((a: any, b: any) => {
-//             const isAsc = sort.direction === 'asc';
-//             switch (sort.active) {
-//                 case 'address': return this.compare(a.address, b.address, isAsc);
-//                 case 'beds': return this.compare(+a.beds, +b.beds, isAsc);
-//                 case 'baths': return this.compare(+a.baths, +b.baths, isAsc);
-//                 case 'sqft': return this.compare(+a.sqft, +b.sqft, isAsc);
-//                 default: return 0;
-//             }
-//         });
-//     }
-//     this.one.next(data);
-// }
-
-  LoadDataSource()
+  LoadDataSource(event:any)
   { 
-    // this.allDataSource.data = this.allData;
-    this.length = this.one.length;
-    this.dataSource.data = this.one;     
-    // this.tenDataSource.data = this.ten;
-    // this.twentyDataSource.data = this.twenty;
-    // this.fiftyDataSource.data = this.fifty;
-    // this.hundredDataSource.data = this.hundred;
-    // this.twohundredDataSource.data = this.twohundred;
-    // this.fivehundredDataSource.data = this.fivehundred;
-    // this.oneKDataSource.data = this.oneK;
-    // this.fiveKDataSource.data = this.fiveK;
-    // this.tenKDataSource.data = this.tenK;
-    // this.fiftyKDataSource.data = this.fiftyK;
-    // this.oneLDataSource.data = this.oneL;
+    this.bseBhavModel = event;
+    this.fileName = this.bseBhavModel.fileName;
+    this.bseBhavData = event.underOneRupeeGroupBXT;
+        // Simulate api call
+of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
+  this.dataSource.data = this.bseBhavData
+}); 
+      this.dsArray.push({key:'All'});
+      this.dsArray.push({key:'0-1'});
+      this.dsArray.push({key:'1-10'});
+      this.dsArray.push({key:'10-20'});
+      this.dsArray.push({key:'20-50'});
+      this.dsArray.push({key:'50-100'});
+      this.dsArray.push({key:'100-200'});
+      this.dsArray.push({key:'200-500'});
+      this.dsArray.push({key:'500-1K'});
+      this.dsArray.push({key:'1K-5K'});
+      this.dsArray.push({key:'5K-10K'});
+      this.dsArray.push({key:'10K-50K'});
+      this.dsArray.push({key:'50K-1L'});
   }
 
   sorter = (a:any, b:any) => {
@@ -232,24 +139,8 @@ export class UploadComponent {
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
         else if (event.type === HttpEventType.Response) {
-          this.message = 'Upload success.';    
-          // this.onUploadFinished.emit(event.body);
-
-     // this.allData =event.body.fullData;
-    this.one =event.body.underOneRupeeGroupBXT;
-    // this.ten =event.body.underTenGroupA;
-    // this.twenty =event.body.underTwentyGroupA;
-    // this.fifty =event.body.underFiftyGroupA;
-    // this.hundred =event.body.underHundredGroupA;
-    // this.twohundred =event.body.underTwoHundredGroupA;
-    // this.fivehundred =event.body.underFiveHundredGroupA;
-    // this.oneK =event.body.underOneKGroupA;
-    // this.fiveK =event.body.underFiveKGroupA;
-    // this.tenK =event.body.underTenKGroupA;
-    // this.fiftyK =event.body.underFiftyKGroupA;
-    // this.oneL =event.body.underOneLGroupA;
-
-          this.LoadDataSource();
+          this.message = 'Upload success.';  
+          this.LoadDataSource(event.body);
         }
       },
       error: (err: HttpErrorResponse) => console.log(err)
@@ -275,6 +166,7 @@ export interface BSEBhavCopy
   tDCLOINDI:string;
 }
 export interface BSEBhavCopyViewModel {
+   fileName:string;
    fullData:BSEBhavCopy[];
    underOneRupeeGroupBXT:BSEBhavCopy[];
    underTenGroupA:BSEBhavCopy[];

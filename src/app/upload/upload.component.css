@@ -41,7 +41,17 @@
   
   button.btn:hover,button.selected
   {
-    background: #84da9c;
-    color:#1c971d;
+    background:#15e52a;
+    color: #fff;
     font-weight: bold;
   }
+
+  .file-toolbar
+  {
+    padding: 8px;
+    font-size: 16px;
+    background:#009688;
+    color: #fff;
+    text-align: center;
+  }
+  
