@@ -117,4 +117,12 @@
 mat-button-toggle-group {
   flex-wrap: wrap;
 }
+
+.mat-column-sC_GROUP{
+  width:20px;
+  text-indent: 5px;
+}
+mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
   

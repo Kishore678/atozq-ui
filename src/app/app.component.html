@@ -13,9 +13,6 @@
        <a class="menuitems" mat-list-item routerLink="/app/dashboard" *ngIf="auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Dashboard" fontIcon="dashboard"></mat-icon><span class="menutext">Dashboard</span>      
        </a> 
-       <a class="menuitems" mat-list-item routerLink="/app/upload" *ngIf="auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Upload" fontIcon="upload"></mat-icon><span class="menutext">Upload</span>      
-       </a> 
        <a class="menuitems" mat-list-item routerLink="/account/login" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Login</span>      
        </a>    
@@ -47,6 +44,17 @@
           <mat-icon class="sidemenu">shopping_basket</mat-icon>
           <span class="sidemenu">Shopping</span>
         </button>
+
+        <button mat-menu-item routerLink="/app/stock"  *ngIf="auth.user().IsLoggedIn">
+          <mat-icon class="sidemenu">bar_chart</mat-icon>
+          <span class="sidemenu">Stock Market</span>
+        </button>
+
+        <button mat-menu-item routerLink="/app/log"  *ngIf="auth.user().IsLoggedIn">
+          <mat-icon class="sidemenu">error</mat-icon>
+          <span class="sidemenu">Web Log</span>
+        </button>
+
         <button mat-menu-item routerLink="/account/login" *ngIf="!auth.user().IsLoggedIn">
           <mat-icon class="sidemenu">account_circle</mat-icon>
           <span class="sidemenu">Login</span>
@@ -104,6 +112,19 @@
               <mat-icon aria-hidden="false" aria-label="Register" fontIcon="how_to_reg"></mat-icon><span>Register</span>      
              </a>            
           </mat-list-option>
+
+          <mat-list-option *ngIf="auth.user().IsLoggedIn">
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/stock">      
+              <mat-icon aria-hidden="false" aria-label="BSE" fontIcon="bar_chart">bar_chart</mat-icon><span>Stock Market</span>      
+             </a>            
+          </mat-list-option>
+          <mat-list-option *ngIf="auth.user().IsLoggedIn">
+            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/log">      
+              <mat-icon aria-hidden="false" aria-label="Log" fontIcon="error">error</mat-icon><span>Web Log</span>      
+             </a>            
+          </mat-list-option>
+          
+
           <mat-list-option *ngIf="auth.user().IsLoggedIn">
             <a mat-list-item  class="sidemenu bblack" mat-list-item (click)="logOut()">      
               <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span>Logout</span>      
@@ -116,8 +137,8 @@
     <mat-sidenav-content>  
       <div class="container">
         <div class="row home-toolbar">        
-          <div class="col-md-12">   
-              Use, refer, share and earn. Way to get referral codes. Earn by create atozq.com account, share and comment your referral codes.     
+          <div class="col-md-12">Welcome to ATOZQ.com              
+              <!-- Use, refer, share and earn. Way to get referral codes. Earn by create atozq.com account, share and comment your referral codes.      -->
           </div>
         </div>
       <router-outlet></router-outlet>

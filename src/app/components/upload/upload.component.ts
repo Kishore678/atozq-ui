@@ -26,32 +26,31 @@ export class UploadComponent {
   @ViewChild(MatSort) sortForDataSource!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns = ['sC_CODE', 'sC_NAME', 'sC_GROUP', 'sC_TYPE','open','high','low','close','last','prevclose','nO_TRADES','nO_OF_SHRS','neT_TURNOV'];
+  displayedColumns = ['sC_GROUP','sC_NAME','last', 'close','high','low','prevclose','open','nO_TRADES','nO_OF_SHRS','neT_TURNOV','sC_CODE','sC_TYPE'];
   dataSource = new MatTableDataSource<BSEBhavCopy>();
-
+  selected = '0-1';
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sortForDataSource;
   }
-
   ngOnInit() {
     this.http.get(`${apiBaseUrl}/api/file`)
     .subscribe({
       next: (event:any) => { 
         
-this.dsArray.push({key:'All'});
-this.dsArray.push({key:'0-1'});
-this.dsArray.push({key:'1-10'});
-this.dsArray.push({key:'10-20'});
-this.dsArray.push({key:'20-50'});
-this.dsArray.push({key:'50-100'});
-this.dsArray.push({key:'100-200'});
-this.dsArray.push({key:'200-500'});
-this.dsArray.push({key:'500-1K'});
-this.dsArray.push({key:'1K-5K'});
-this.dsArray.push({key:'5K-10K'});
-this.dsArray.push({key:'10K-50K'});
-this.dsArray.push({key:'50K-1L'});
+this.dsArray.push({key:'All',text:'All'});
+this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
+this.dsArray.push({key:'1-10',text:'Group-A b/w Rs.1 and Rs.10'});
+this.dsArray.push({key:'10-20',text:'Group-A b/w Rs.10 and Rs.20'});
+this.dsArray.push({key:'20-50',text:'Group-A b/w Rs.20 and Rs.50'});
+this.dsArray.push({key:'50-100',text:'Group-A b/w Rs.50 and Rs.100'});
+this.dsArray.push({key:'100-200',text:'Group-A b/w Rs.100 and Rs.200'});
+this.dsArray.push({key:'200-500',text:'Group-A b/w Rs.200 and Rs.500'});
+this.dsArray.push({key:'500-1K',text:'Group-A b/w Rs.500 and Rs.1,000'});
+this.dsArray.push({key:'1K-5K',text:'Group-A b/w Rs.1,000 and Rs.5,000'});
+this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
+this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
+this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
 
      this.LoadDataSource(event);
     },
@@ -65,8 +64,10 @@ this.dsArray.push({key:'50K-1L'});
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
-  handleClick(event:any,method: string) {
-    switch (method) {
+
+  
+  handleClick() {
+    switch (this.selected) {
       case 'All': this.bseBhavData = this.bseBhavModel.fullData;
       break;     
            case '0-1': this.bseBhavData = this.bseBhavModel.underOneRupeeGroupBXT;

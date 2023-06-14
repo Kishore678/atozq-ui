@@ -15,6 +15,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { ChangePwdSuccessComponent } from './components/change-pwd-success/change-pwd-success.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { LogComponent } from './components/log/log.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path:'app/detail/:id',component:DetailComponent},
   {path:'app/shopping',component:ShoppingComponent},
   {path:'app/dashboard',component:DashboardComponent,canActivate:[AuthenticationService]},
-  {path:'app/upload',component:UploadComponent},
+  {path:'app/stock',component:UploadComponent},
+  {path:'app/log',component:LogComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];
