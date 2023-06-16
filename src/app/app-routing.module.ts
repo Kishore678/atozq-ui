@@ -18,7 +18,7 @@ import { UploadComponent } from './components/upload/upload.component';
 import { LogComponent } from './components/log/log.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
+  {path:'',component:UploadComponent},
   {path:':page',component:HomeComponent},
   {path:'app/search',component:HomeComponent},
   {path:'app/search/:id',component:HomeComponent},

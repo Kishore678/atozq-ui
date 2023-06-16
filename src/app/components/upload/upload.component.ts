@@ -34,11 +34,7 @@ export class UploadComponent {
     this.dataSource.sort = this.sortForDataSource;
   }
   ngOnInit() {
-    this.http.get(`${apiBaseUrl}/api/file`)
-    .subscribe({
-      next: (event:any) => { 
-        
-this.dsArray.push({key:'All',text:'All'});
+    this.dsArray.push({key:'All',text:'All'});
 this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
 this.dsArray.push({key:'1-10',text:'Group-A b/w Rs.1 and Rs.10'});
 this.dsArray.push({key:'10-20',text:'Group-A b/w Rs.10 and Rs.20'});
@@ -52,6 +48,9 @@ this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
 this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
 
+    this.http.get(`${apiBaseUrl}/api/file?group=${this.selected}`)
+    .subscribe({
+      next: (event:any) => { 
      this.LoadDataSource(event);
     },
     error: (err: HttpErrorResponse) => console.log(err)
@@ -67,6 +66,33 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
 
   
   handleClick() {
+
+    this.http.get(`${apiBaseUrl}/api/file?group=${this.selected}`)
+    .subscribe({
+      next: (event:any) => { 
+     this.LoadDataSource(event);
+    },
+    error: (err: HttpErrorResponse) => console.log(err)
+  });
+
+  
+ }
+
+ Browse(url:string)
+ {
+  window.open(url,'self');
+ }
+  progress!: number;
+  message!: string;
+  
+  constructor(private http: HttpClient,private _liveAnnouncer: LiveAnnouncer) { }
+
+  LoadDataSource(event:any)
+  { 
+    this.dataSource.data  = [];
+    this.bseBhavModel = event;
+    this.fileName = this.bseBhavModel.fileName;
+   
     switch (this.selected) {
       case 'All': this.bseBhavData = this.bseBhavModel.fullData;
       break;     
@@ -93,33 +119,11 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
            case '10K-50K': this.bseBhavData = this.bseBhavModel.underFiftyKGroupA;
            break;   
            case '50K-1L': this.bseBhavData = this.bseBhavModel.underOneLGroupA;
-           break;   
- 
-   default:this.bseBhavData = this.bseBhavModel.fullData;
-     break;
+           break;  
  }
- this.dataSource.data = this.bseBhavData;
- this.length = this.bseBhavData.length; 
- }
-
- Browse(url:string)
- {
-  window.open(url,'self');
- }
-  progress!: number;
-  message!: string;
-  
-  constructor(private http: HttpClient,private _liveAnnouncer: LiveAnnouncer) { }
-
-  LoadDataSource(event:any)
-  { 
-    this.dataSource.data  = [];
-    this.bseBhavModel = event;
-    this.fileName = this.bseBhavModel.fileName;
-    this.bseBhavData = event.underOneRupeeGroupBXT;
-        // Simulate api call
-of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
-  this.dataSource.data = this.bseBhavData
+ of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
+  this.dataSource.data = this.bseBhavData;
+  this.length = this.bseBhavData.length; 
 }); 
 
   }
