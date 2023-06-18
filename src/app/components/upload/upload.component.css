@@ -5,18 +5,21 @@
     line-height: 36px;
   }
 
-  table {
+  table,mat-paginator {
     width: 100%;
   }
+ 
+  tr>td>a {color:black;font-weight: 500;}
+  tr:hover,td:hover,tr>td>a:hover {background-color: aliceblue;color:seagreen;}
   
   th.mat-header-cell,
   td.mat-cell,
   td.mat-footer-cell {
-    border-bottom-width: 0px;  
+    border-bottom: 1px solid #ddd;
   }
 
   .table-container {
-    height: 500px;
+    height: 600px;
     overflow: auto;
   }
 
@@ -123,6 +126,9 @@ mat-button-toggle-group {
   text-indent: 5px;
 }
 mat-form-field + mat-form-field {
-  margin-left: 8px;
+  margin-left: 8px;  
+}
+.mat-form-field-infix { 
+  width: 267px;
 }
   

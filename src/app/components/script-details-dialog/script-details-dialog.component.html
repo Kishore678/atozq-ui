@@ -1,0 +1,165 @@
+<h1 mat-dialog-title>Fundamentals</h1>
+<mat-dialog-content>
+    <table>
+        <caption>Basic Info</caption>
+        <tr>
+            <td>Company:</td>
+            <td>{{local_data.BasicDetails.Company}}</td>
+        </tr>
+        <tr>
+            <td>ASM/GSM/IRP Notices:</td>
+            <td style="color:red">
+                {{local_data.BasicDetails.ASMText}}
+                {{local_data.BasicDetails.IRPText}}
+                {{local_data.BasicDetails.GSMText}}
+            </td>  
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>{{local_data.BasicDetails.Category}}</td>
+        </tr>
+        <tr>
+            <td>Group:</td>
+            <td>{{local_data.BasicDetails.Group}}</td>
+        </tr>
+        <tr>
+            <td>Industry:</td>
+            <td>{{local_data.BasicDetails.Industry}}</td>
+        </tr>
+        <tr>
+            <td>Script Code:</td>
+            <td>{{local_data.BasicDetails.ScriptCode}}</td>
+        </tr>
+        <tr>
+            <td>Script Id:</td>
+            <td>{{local_data.BasicDetails.ScriptID}}</td> </tr>
+            <tr><td>Trade Date:</td>
+            <td>{{local_data.BasicDetails.TrdeDate}}</td> </tr>
+            <tr> <td>Settlement:</td>
+            <td>{{local_data.BasicDetails.SettlementType}}</td> </tr>
+      
+    </table>
+    <table>
+        <caption>Price Movement</caption>
+        <tr>
+
+            <td>LTP:</td>
+            <td>{{local_data.PriceDetails.LTP}}</td>
+        </tr>
+        <tr>
+            <td>High:</td>
+            <td>{{local_data.PriceDetails.High}}</td>
+        </tr>
+        <tr>
+            <td>Low:</td>
+            <td>{{local_data.PriceDetails.Low}}</td>
+        </tr>
+        <tr>
+            <td>Avg:</td>
+            <td>{{local_data.PriceDetails.Avg}}</td>
+        </tr>
+        <tr>
+            <td>Previous:</td>
+            <td>{{local_data.PriceDetails.Previous}}</td>
+        </tr>
+        <tr>
+            <td>52 Weeks High:</td>
+            <td>{{local_data.PriceDetails.Fifty2WksHigh}}</td>
+        </tr>
+        <tr>
+            <td>52 Weeks Low :</td>
+            <td>{{local_data.PriceDetails.Fifty2WksLow}}</td>
+        </tr>
+        <tr>
+            <td>Upper Circuit:</td>
+            <td>{{local_data.PriceDetails.UpperCktPrice}}</td>
+        </tr>
+        <tr>
+            <td>Lower Circuit:</td>
+            <td>{{local_data.PriceDetails.LowerCktPrice}}</td>
+        </tr>
+        <tr>
+            <td>Upper Circuit(%):</td>
+            <td>{{local_data.PriceDetails.UpperCktPercent}}</td>
+        </tr>
+        <tr>
+            <td>Lower Circit(%):</td>
+            <td>{{local_data.PriceDetails.LowerCktPercent}}</td>
+        </tr>
+        <tr>
+            <td>Open:</td>
+            <td>{{local_data.PriceDetails.Open}}</td>
+        </tr>
+        <tr>
+            <td>Price Change:</td>
+            <td>{{local_data.PriceDetails.PriceChange}}</td>
+        </tr>
+        <tr>
+            <td>Price Change(%):</td>
+            <td>{{local_data.PriceDetails.PricePercentChange}}</td>
+        </tr>
+    </table>
+    <table>
+        <caption>Financials</caption>
+        <tr>
+            <td>Market Cap(Cr.):</td>
+            <td>{{local_data.FinancialsDetails.McapFullCr}}</td>
+        </tr>
+        <tr>
+            <td>Face Value:</td>
+            <td>{{local_data.FinancialsDetails.FaceValue}}</td>
+        </tr>
+        <tr>
+            <td>EPS:</td>
+            <td>{{local_data.FinancialsDetails.EPS}}</td>
+        </tr>
+        <tr>
+            <td>CEPS:</td>
+            <td>{{local_data.FinancialsDetails.CEPS}}</td>
+        </tr>
+        <tr>
+            <td>PE:</td>
+            <td>{{local_data.FinancialsDetails.PE}}</td>
+        </tr>
+        <tr>
+            <td>PB:</td>
+            <td>{{local_data.FinancialsDetails.PB}}</td>
+        </tr>
+        <tr>
+            <td>ROE:</td>
+            <td>{{local_data.FinancialsDetails.ROE}}</td>
+        </tr>
+        <tr>
+            <td>Financial Year:</td>
+            <td>{{local_data.FinancialsDetails.FY}}</td>
+        </tr>
+        <tr>
+            <td>Revenue</td>
+            <td>{{local_data.FinancialsDetails.Revenue}}</td>
+        </tr>
+        <tr>
+            <td>Net Profit:</td>
+            <td>{{local_data.FinancialsDetails.NetProfit}}</td>
+        </tr>
+    
+    
+    
+    </table>
+
+
+  
+    <table>
+        <caption>News</caption>
+        <tr>
+            <th>Date</th>
+            <th>Announcement</th>
+        </tr>
+        <tr *ngFor="let n of local_data.Announcements">
+            <td>{{n.Date}}</td>
+            <td>{{n.AnnouncementNote}}</td>
+        </tr>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="closeDialog()" mat-raised-button color="warn">Close</button>
+</mat-dialog-actions>

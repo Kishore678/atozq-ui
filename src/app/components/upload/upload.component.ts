@@ -1,12 +1,16 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { of } from 'rxjs/internal/observable/of';
 import { delay} from 'rxjs/operators';
+import { Scriptdetails } from 'src/app/models/scriptdetails.model';
+import { ScriptdetailsService } from 'src/app/services/scriptdetails.service';
 import { environment } from 'src/environments/environment';
+import { ScriptDetailsDialogComponent } from '../script-details-dialog/script-details-dialog.component';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -16,6 +20,7 @@ const apiBaseUrl = environment.apiBaseUrl;
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent {
+  
   isTrue:boolean=false;
   dsArray:any[]=[];
   fileName:string='';
@@ -26,7 +31,7 @@ export class UploadComponent {
   @ViewChild(MatSort) sortForDataSource!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns = ['sC_GROUP','sC_NAME','last', 'close','high','low','prevclose','open','nO_TRADES','nO_OF_SHRS','neT_TURNOV','sC_CODE','sC_TYPE'];
+  displayedColumns = ['sC_NAME','sC_GROUP','last', 'close','nO_OF_SHRS'];
   dataSource = new MatTableDataSource<BSEBhavCopy>();
   selected = '0-1';
   ngAfterViewInit() {
@@ -74,9 +79,34 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
     },
     error: (err: HttpErrorResponse) => console.log(err)
   });
-
+  
   
  }
+ ViewDetails(element:any)
+ {
+   this.scriptDetailService.GetScriptDetails(element.sC_CODE).subscribe(res=>{
+      debugger;
+      const dialogRef = this.dialog.open(ScriptDetailsDialogComponent, {
+        maxWidth: '100vw',
+        maxHeight: '100vh',
+        height: 'relative',
+        width: 'relative',
+        panelClass: 'full-screen-modal',
+        disableClose: true,
+        autoFocus: true,
+        data:res
+      });
+
+      dialogRef.componentInstance.onDoAction.subscribe((d) => {            
+         //do some action
+      });
+
+      dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+        d.dialog.close();
+      }); 
+   });
+ }
+
 
  Browse(url:string)
  {
@@ -85,8 +115,17 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
   progress!: number;
   message!: string;
   
-  constructor(private http: HttpClient,private _liveAnnouncer: LiveAnnouncer) { }
+  constructor(
+    private http: HttpClient,
+    private _liveAnnouncer: LiveAnnouncer,
+    private scriptDetailService:ScriptdetailsService,
+    private dialog: MatDialog
+    ) { }
+    openDialog(model:Scriptdetails) {
+     
 
+      // this.dialog.open(ScriptDetailsDialogComponent,{data:model});
+    }
   LoadDataSource(event:any)
   { 
     this.dataSource.data  = [];

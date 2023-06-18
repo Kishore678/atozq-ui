@@ -33,9 +33,11 @@ import { ShareService } from './services/share.service';
 import { UploadComponent } from './components/upload/upload.component';
 import { LogComponent } from './components/log/log.component';
 import { LogService } from './services/log.service';
+import { ScriptdetailsService } from './services/scriptdetails.service';
+import { ScriptDetailsDialogComponent } from './components/script-details-dialog/script-details-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,
@@ -46,7 +48,7 @@ import { LogService } from './services/log.service';
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
