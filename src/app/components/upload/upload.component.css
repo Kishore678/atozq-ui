@@ -8,9 +8,13 @@
   table,mat-paginator {
     width: 100%;
   }
+
+  th{background: #00bcd4;
+    color: #fff;}
  
-  tr>td>a {color:black;font-weight: 500;}
-  tr:hover,td:hover,tr>td>a:hover {background-color: aliceblue;color:seagreen;}
+  tr>td>a {color:#00bcd4;cursor: pointer;text-decoration: underline;}
+  tr:hover,td:hover,tr>td>a:hover {    background-color: aliceblue;
+    color: #00bcd4;}
   
   th.mat-header-cell,
   td.mat-cell,

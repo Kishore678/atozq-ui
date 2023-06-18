@@ -1,35 +1,53 @@
 
 table
 {  
-    width: 367px;
-    float: left;  
-    height: 479px;
+    width: 300px;
+    float: left;
+    height: 330px;
     margin: 5px;
+    border-spacing: 0;
+    border-left: 1px solid#00bcd4;
+}
+
+
+td,th{
+    border-right: 1px solid#00bcd4;  
+    border-bottom: 1px solid#00bcd4;
+    border-spacing: 0;
 }
 
 
 
 table>caption{
-    background: seagreen;
+    background:#00bcd4;
     color: #fff;
     font-size: 16px;
-    padding: 4px;
+    padding: 2px;
 }
-table td {
-    text-align: left;
-    font-size: 14px;;
-    border: 1px solid seagreen;
-    border-spacing: 0;
+table td,th {
+    text-align: left;   
 }
 
+
 table td:first-child {
-    text-align: right;
-    font-weight: 500;
+    text-align: right;   
     background-color: aliceblue;
     color: black;
 }
 
 th, td {
-    padding: 5px;
+    padding: 2px;
     text-align: left;   
   }
+
+  
+
+  table.basic-info td{text-align: center;}
+
+  table.price-movement td{text-align: right;}
+
+  table.financial td{text-align: right;}
+
+  table.news{width:98%;clear:both;height: auto;}
+  table.news th{text-align: center;color: #601da1;background-color: lightgreen;}
+  table.news td:first-child{text-align: center;}

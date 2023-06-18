@@ -36,7 +36,7 @@
 }
 .menuitems
 {
-  color: #1c971d;
+  color: #218b99;
   padding: 8px;
   text-decoration: none;
   font-size: 14px;
@@ -44,7 +44,7 @@
 }
 .sidemenu
 {
-  color: #1c971d;
+  color: #218b99;
   /* line-height: 5px; */
 }
 .menuitems:hover
@@ -83,12 +83,12 @@ a {
 
 .copyright
 {
-  color: #1c971d;
+  color: #218b99;
   line-height: 65px; 
 }
 
 .copyright a:link,.copyright a:visited,.copyright a:hover,.copyright a:active {
-  color: #1c971d;
+  color: #218b99;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -112,7 +112,7 @@ a {
 .atozq-app-name
 {
   text-decoration: none;
-  color: #1c971d;
+  color: #218b99;
   font-size: 20px;
   font-family: sans-serif;
   font-weight: bold;
@@ -138,7 +138,7 @@ min-height: 100vh;
 }
 
 .profile{
-  background:#1c971d;
+  background:#218b99;
   color:#fff;
 }
 .profile mat-icon{
@@ -152,7 +152,7 @@ min-height: 100vh;
 {
   padding: 12px;
   font-size: 16px;
-  background:#601da1;
+  background:#218b99;
   color: #fff;
   text-align: center;
 }

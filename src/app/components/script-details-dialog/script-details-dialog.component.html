@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Fundamentals</h1>
+<h2 mat-dialog-title>Fundamentals</h2>
 <mat-dialog-content>
-    <table>
+    <table class="basic-info">
         <caption>Basic Info</caption>
         <tr>
             <td>Company:</td>
@@ -39,11 +39,11 @@
             <td>{{local_data.BasicDetails.SettlementType}}</td> </tr>
       
     </table>
-    <table>
+    <table class="price-movement">
         <caption>Price Movement</caption>
         <tr>
 
-            <td>LTP:</td>
+            <td>Price:</td>
             <td>{{local_data.PriceDetails.LTP}}</td>
         </tr>
         <tr>
@@ -54,10 +54,10 @@
             <td>Low:</td>
             <td>{{local_data.PriceDetails.Low}}</td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td>Avg:</td>
             <td>{{local_data.PriceDetails.Avg}}</td>
-        </tr>
+        </tr> -->
         <tr>
             <td>Previous:</td>
             <td>{{local_data.PriceDetails.Previous}}</td>
@@ -99,7 +99,7 @@
             <td>{{local_data.PriceDetails.PricePercentChange}}</td>
         </tr>
     </table>
-    <table>
+    <table class="financial">
         <caption>Financials</caption>
         <tr>
             <td>Market Cap(Cr.):</td>
@@ -148,12 +148,8 @@
 
 
   
-    <table>
-        <caption>News</caption>
-        <tr>
-            <th>Date</th>
-            <th>Announcement</th>
-        </tr>
+    <table class="news">
+        <caption>News</caption>        
         <tr *ngFor="let n of local_data.Announcements">
             <td>{{n.Date}}</td>
             <td>{{n.AnnouncementNote}}</td>
