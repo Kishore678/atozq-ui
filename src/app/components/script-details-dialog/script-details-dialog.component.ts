@@ -18,7 +18,6 @@ export class ScriptDetailsDialogComponent implements OnInit {
  
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Scriptdetails) {  
-      debugger;       
     this.local_data = {...data};   
   }
   // share(id:number,category:string,titleText:string)

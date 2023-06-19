@@ -40,7 +40,6 @@ displayMyPageUrl()
 LoadDetailsById(id:number)
 {
  this.prodSer.getProductById(id).subscribe(res=>{
-  debugger;
   let d = res[0];
   this.details.prod.id=d.id;
   this.details.prod.title=d.title;
@@ -91,8 +90,7 @@ LoadDetailsById(id:number)
   {
     this.service.share(this.details.prod);
   }
-  openDialog(rowAction:string) {    
-    debugger;
+  openDialog(rowAction:string) { 
     this.prod.rowAction = rowAction;
     this.prod.isLoggedIn =  this.auth.user().IsLoggedIn;
     this.prod.isAdmin =  this.auth.user().IsAdmin;
@@ -134,8 +132,7 @@ LoadDetailsById(id:number)
                       data:rowAction=='Comment'?this.commentObj:this.prod
                     });
       
-                    dialogRef.componentInstance.onDoAction.subscribe((d) => {      
-                     debugger;
+                    dialogRef.componentInstance.onDoAction.subscribe((d) => {                
                         let commentModel = new Product();
                         commentModel.productId = d.data.productId;
                         commentModel.referralCode = d.data.referralCode;
@@ -281,7 +278,6 @@ LoadDetailsById(id:number)
   }
 
   updateRowData(d:any){
-    debugger;
       this.prodSer.saveProduct(d.data).subscribe(res=>{      
         this.prodSer.products.filter(function(item){
            if(item.productId==res.productId)
@@ -362,7 +358,7 @@ LoadDetailsById(id:number)
   }
 
   saveComment(model:Product,dialog:any)
-{ debugger;
+{ 
   if(model.referralCode=="" && model.referralLink=="")
   {
   alert('Atleast one (Referral Code or Link) should be required');  

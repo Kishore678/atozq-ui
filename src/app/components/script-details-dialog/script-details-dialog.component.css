@@ -40,14 +40,21 @@ th, td {
     text-align: left;   
   }
 
-  
+  .mat-dialog-title{
+    margin: -15px 5px 0px !important;
+    display: block;
+    color: #00bcd4;
+    font-weight: 500 !important;
+  }
 
   table.basic-info td{text-align: center;}
 
   table.price-movement td{text-align: right;}
+  table.price-movement td:first-child{text-align: left;}
 
   table.financial td{text-align: right;}
+  table.financial td:first-child{text-align: left;}
 
-  table.news{width:98%;clear:both;height: auto;}
+  table.news{width:97%;clear:both;height: auto;}
   table.news th{text-align: center;color: #601da1;background-color: lightgreen;}
   table.news td:first-child{text-align: center;}

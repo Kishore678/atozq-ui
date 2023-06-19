@@ -83,7 +83,6 @@ export class DashboardComponent implements OnInit {
   commentObj = new CommentModel();
 
   openDialog(rowAction:string,prod:Product) {  
-    debugger;
    rowAction = rowAction=='Update'&&this.auth.user().IsAdmin!=true?'Comment':rowAction;
    prod.rowAction = rowAction;
 
@@ -237,8 +236,7 @@ return model;
   }
   updateMedia(d:any){}
 
-  addRowData(d:any){   
-    debugger;   
+  addRowData(d:any){     
     this.prodService.saveProduct(d.data).subscribe(
       res=>{
         if(res.productId>0)
@@ -265,7 +263,6 @@ return model;
   }
 
   updateRowData(d:any){
-    debugger;
       this.prodService.saveProduct(d.data).subscribe(res=>{      
         this.prodService.products.filter(function(item){
            if(item.productId==res.productId)

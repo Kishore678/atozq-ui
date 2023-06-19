@@ -5,8 +5,9 @@
     line-height: 36px;
   }
 
-  table,mat-paginator {
+  table {
     width: 100%;
+    border-left: 1px solid #ddd;
   }
 
   th{background: #00bcd4;
@@ -21,9 +22,13 @@
   td.mat-footer-cell {
     border-bottom: 1px solid #ddd;
   }
-
+  td,th{
+    border-right: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd;
+    border-spacing: 0;
+}
   .table-container {
-    height: 600px;
+    height: 700px;
     overflow: auto;
   }
 
@@ -59,6 +64,8 @@
     font-size: 16px;
     color:black; 
   }
+
+  .mat-toolbar
 
   .container {
     overflow: hidden;
@@ -134,5 +141,19 @@ mat-form-field + mat-form-field {
 }
 .mat-form-field-infix { 
   width: 267px;
+}
+
+.mat-column-sC_NAME{
+  width: 50px;
+}
+.mat-column-sC_GROUP
+{
+  width:10px;
+  text-align: center;
+}
+.mat-column-last
+{
+  width:50px;
+  text-align: right;
 }
   

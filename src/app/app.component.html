@@ -137,9 +137,7 @@
     <mat-sidenav-content>  
       <div class="container">
         <div class="row home-toolbar">        
-          <div class="col-md-12">Welcome to ATOZQ.com              
-              <!-- Use, refer, share and earn. Way to get referral codes. Earn by create atozq.com account, share and comment your referral codes.      -->
-          </div>
+          <div class="col-md-12"><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span> <span class="dot date"></span>Date:<span class="box">{{dt}}</span></div>
         </div>
       <router-outlet></router-outlet>
       </div>

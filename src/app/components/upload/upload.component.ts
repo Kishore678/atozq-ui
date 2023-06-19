@@ -24,14 +24,20 @@ export class UploadComponent {
   isTrue:boolean=false;
   dsArray:any[]=[];
   fileName:string='';
-  size:number=5;
+  size:number=10;
   length!:number;
   bseBhavData!:BSEBhavCopy[];
   bseBhavModel!:BSEBhavCopyViewModel;
   @ViewChild(MatSort) sortForDataSource!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns = ['sC_NAME','sC_GROUP','last', 'close','nO_OF_SHRS'];
+  displayedColumns = ['sC_NAME','sC_GROUP','last', 'nO_OF_SHRS','nO_TRADES' ,'open' ,'high' ,'low'
+  ,'close'
+  ,'prevclose'
+  ,'neT_TURNOV'
+  ,'sC_CODE'
+];
+  
   dataSource = new MatTableDataSource<BSEBhavCopy>();
   selected = '0-1';
   ngAfterViewInit() {
@@ -84,15 +90,14 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
  }
  ViewDetails(element:any)
  {
-   this.scriptDetailService.GetScriptDetails(element.sC_CODE).subscribe(res=>{
-      debugger;
+   this.scriptDetailService.GetScriptDetails(element.sC_CODE).subscribe(res=>{    
       const dialogRef = this.dialog.open(ScriptDetailsDialogComponent, {
         maxWidth: '100vw',
         maxHeight: '100vh',
         height: 'relative',
         width: 'relative',
         panelClass: 'full-screen-modal',
-        disableClose: true,
+        disableClose: false,
         autoFocus: true,
         data:res
       });

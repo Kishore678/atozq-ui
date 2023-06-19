@@ -15,7 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReferralComponent } from './components/referral/referral.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { DatePipe, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { JwtHelper } from './helpers/jwt-helper';
 import { SpinnerService } from './services/spinner.service';
@@ -48,7 +48,7 @@ import { ScriptDetailsDialogComponent } from './components/script-details-dialog
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService],
+  providers: [DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
