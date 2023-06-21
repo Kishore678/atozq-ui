@@ -35,7 +35,7 @@ background: rgba(255, 255, 255, 0.94);
 }
 .acc-heading
 {
-  color:#1c971d;
+  color:#00bcd4;
 }
 .main-icon {
   text-align: center;
@@ -90,7 +90,7 @@ background: transparent;
   letter-spacing: 1px;
 }
 .header-left-bottom button.btn {
-  background: #1c971d;
+  background: #00bcd4;
   color: #fff;
   font-size: 15px;
   text-transform: uppercase;

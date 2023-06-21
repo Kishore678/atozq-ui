@@ -31,7 +31,7 @@ export class UploadComponent {
   @ViewChild(MatSort) sortForDataSource!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns = ['sC_NAME','sC_GROUP','last', 'nO_OF_SHRS','nO_TRADES' ,'open' ,'high' ,'low'
+  displayedColumns = ['flag','sC_NAME','sC_GROUP','last', 'nO_OF_SHRS','nO_TRADES' ,'open' ,'high' ,'low'
   ,'close'
   ,'prevclose'
   ,'neT_TURNOV'
@@ -142,7 +142,7 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
       break;     
            case '0-1': this.bseBhavData = this.bseBhavModel.underOneRupeeGroupBXT;
            break;   
-           case '1-10': this.bseBhavData = this.bseBhavModel.underTenGroupA;
+           case '1-10': this.bseBhavData = this.bseBhavModel.underTenGroupA;         
            break;   
            case '10-20': this.bseBhavData = this.bseBhavModel.underTwentyGroupA;
            break;   
@@ -203,6 +203,7 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
 
 export interface BSEBhavCopy
 {
+  flag:number;
   sC_CODE:number;
   sC_NAME:string;
   sC_GROUP:string;  

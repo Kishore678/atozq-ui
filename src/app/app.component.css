@@ -36,7 +36,7 @@
 }
 .menuitems
 {
-  color: #218b99;
+  color: #00bcd4;
   padding: 8px;
   text-decoration: none;
   font-size: 14px;
@@ -44,7 +44,7 @@
 }
 .sidemenu
 {
-  color: #218b99;
+  color: #00bcd4;
   /* line-height: 5px; */
 }
 .menuitems:hover
@@ -83,12 +83,12 @@ a {
 
 .copyright
 {
-  color: #218b99;
+  color: #00bcd4;
   line-height: 65px; 
 }
 
 .copyright a:link,.copyright a:visited,.copyright a:hover,.copyright a:active {
-  color: #218b99;
+  color: #00bcd4;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -106,7 +106,7 @@ a {
 .mat-toolbar.mat-primary 
 {
   background:#ffffff;
-  color: #218b99;
+  color: #00bcd4;
 }
 .dot {
   height: 11px;
@@ -127,11 +127,12 @@ a {
   margin-left: 2px;
   border-radius: 4px;
   font-weight: 500;
+  font-size: 12px;
 }
 .atozq-app-name
 {
   text-decoration: none;
-  color: #218b99;
+  color: #00bcd4;
   font-size: 20px;
   font-family: sans-serif;
   font-weight: bold;
@@ -157,7 +158,7 @@ min-height: 100vh;
 }
 
 .profile{
-  background:#218b99;
+  background:#00bcd4;
   color:#fff;
 }
 .profile mat-icon{
@@ -169,11 +170,21 @@ min-height: 100vh;
 
   .home-toolbar
 {
-  padding: 12px;
-  font-size: 14px;
+  padding: 2px; 
   background:#218b99;
   color: #fff;
   text-align: center;
+}
+.home-toolbar2
+{
+  padding: 2px;
+  background: #297983;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+}
+.datetime{
+  color: #ffffff;
 }
 
 

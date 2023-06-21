@@ -1,15 +1,17 @@
-<div class="row" style="color:#218b99;margin-top: 18px;padding: 0px 15px 1px 15px;text-align:left;float:left;background: #f6f6f6;">
-<b>BSE: </b><label class="filename">{{fileName}}</label>
-</div>
-<div class="row" style="margin:0;text-align:left;background: #f6f6f6;">
-<mat-form-field style="width: 200px;"> 
+<div class="row" style="color: #0040ff;text-align: left;background: #ffffff;padding: 2px;">
+<span style="float:left;padding:1px;"><b style="font-weight:500;">BSE: </b><label class="filename">{{fileName}}</label></span>
   <mat-select [(value)]="selected" (selectionChange)="handleClick()">    
     <mat-option *ngFor="let b of dsArray" value="{{b.key}}">{{b.text}}</mat-option>   
   </mat-select>  
-</mat-form-field>
 </div>
 <section class="table-container mat-elevation-z8" tabindex="0">
 	<table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="flag">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
+       #
+      </th>
+      <td mat-cell *matCellDef="let element"> <mat-icon>flag</mat-icon> </td>
+    </ng-container>
     <ng-container matColumnDef="sC_CODE">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_CODE">
        Code
