@@ -1,7 +1,7 @@
 <h3 mat-dialog-title>FUNDAMENTALS</h3>
 <mat-dialog-content>
     <table class="basic-info">
-        <caption>Basic Info</caption>
+        <caption>Company Basic Info</caption>
         <tr>
             <td>Company:</td>
             <td>{{local_data.BasicDetails.Company}}</td>
@@ -27,17 +27,17 @@
             <td>{{local_data.BasicDetails.Industry}}</td>
         </tr>
         <tr>
-            <td>Script Code:</td>
-            <td>{{local_data.BasicDetails.ScriptCode}}</td>
+            <td>Code / ID:</td>
+            <td>{{local_data.BasicDetails.ScriptCode}} <b style="color:#00bcd4;">&#47;</b> {{local_data.BasicDetails.ScriptID}}</td>
         </tr>
-        <tr>
-            <td>Script Id:</td>
-            <td>{{local_data.BasicDetails.ScriptID}}</td> </tr>
-            <tr><td>Trade Date:</td>
-            <td>{{local_data.BasicDetails.TrdeDate}}</td> </tr>
             <tr> <td>Settlement:</td>
             <td>{{local_data.BasicDetails.SettlementType}}</td> </tr>
-      
+            <tr><td>Intra-day:</td><td>{{intraday}}</td></tr>
+            <tr><td>BTST:</td><td>{{btst}}</td></tr>
+            <tr><td>MIS:</td><td>{{mis}}</td></tr>            
+            <tr><td>Margin %:</td><td>{{margin}}</td></tr>            
+            <tr><td>Leverage:</td><td>{{leverage}}</td></tr>            
+            <tr><td>Trade Date:</td><td>{{local_data.BasicDetails.TrdeDate}}</td></tr>      
     </table>
     <table class="price-movement">
         <caption>Price Movement</caption>
@@ -139,13 +139,48 @@
         </tr>
         <tr>
             <td>Net Profit:</td>
-            <td>{{local_data.FinancialsDetails.NetProfit}}</td>
+            <td [ngClass]="netProfitStyle">{{local_data.FinancialsDetails.NetProfit}}</td>
         </tr>
-    
-    
-    
     </table>
-
+    <table class="margindelivery">
+        <caption>Margin & Delivery</caption>
+        <tr>
+            <td>AMR:</td>
+            <td>{{local_data.MarginDetails.AMR}}</td>
+        </tr>
+        <tr>
+            <td>ELR:</td>
+            <td>{{local_data.MarginDetails.ELR}}</td>
+        </tr>
+        <tr>
+            <td>IV:</td>
+            <td>{{local_data.MarginDetails.IndexVar}}</td>
+        </tr>
+        <tr>
+            <td>VARM:</td>
+            <td>{{local_data.MarginDetails.VRMar}}</td>
+        </tr>
+        <tr>
+            <td>SV:</td>
+            <td>{{local_data.MarginDetails.SecurityVar}}</td>
+        </tr>
+        <tr>
+            <td>Trade Date:</td>
+            <td>{{local_data.DeliveryPosition.TradeDate}}</td>
+        </tr>
+        <tr>
+            <td>Traded Qty:</td>
+            <td>{{local_data.DeliveryPosition.QtyTraded}}</td>
+        </tr>
+        <tr>
+            <td>Deliverable Qty:</td>
+            <td>{{local_data.DeliveryPosition.DeliverableQty}}</td>
+        </tr>
+        <tr>
+            <td>Deliverable(%):</td>
+            <td>{{local_data.DeliveryPosition.PercentDeliverableQty}}</td>
+        </tr> 
+    </table>
 
   
     <table class="news">

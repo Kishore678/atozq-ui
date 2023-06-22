@@ -47,6 +47,8 @@ export class UploadComponent {
   ngOnInit() {
     this.dsArray.push({key:'All',text:'All'});
 this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
+this.dsArray.push({key:'1-2',text:'Penny stocks (B,X,T) under Rs.2'});
+this.dsArray.push({key:'2-5',text:'Penny stocks (B,X,T) under Rs.5'});
 this.dsArray.push({key:'1-10',text:'Group-A b/w Rs.1 and Rs.10'});
 this.dsArray.push({key:'10-20',text:'Group-A b/w Rs.10 and Rs.20'});
 this.dsArray.push({key:'20-50',text:'Group-A b/w Rs.20 and Rs.50'});
@@ -142,6 +144,10 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
       break;     
            case '0-1': this.bseBhavData = this.bseBhavModel.underOneRupeeGroupBXT;
            break;   
+           case '1-2': this.bseBhavData = this.bseBhavModel.underTwoRupeeGroupBXT;
+           break;
+           case '2-5': this.bseBhavData = this.bseBhavModel.underFiveRupeeGroupBXT;
+           break;
            case '1-10': this.bseBhavData = this.bseBhavModel.underTenGroupA;         
            break;   
            case '10-20': this.bseBhavData = this.bseBhavModel.underTwentyGroupA;
@@ -223,6 +229,8 @@ export interface BSEBhavCopyViewModel {
    fileName:string;
    fullData:BSEBhavCopy[];
    underOneRupeeGroupBXT:BSEBhavCopy[];
+   underTwoRupeeGroupBXT:BSEBhavCopy[];
+   underFiveRupeeGroupBXT:BSEBhavCopy[];
    underTenGroupA:BSEBhavCopy[];
    underTwentyGroupA:BSEBhavCopy[];
    underFiftyGroupA:BSEBhavCopy[];

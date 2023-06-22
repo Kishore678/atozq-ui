@@ -8,7 +8,31 @@
   table {
     width: 100%;
     border-left: 1px solid #ddd;
+    font-size: 12px;
   }
+  .filter
+  {
+    font-size: 12px;
+   
+    text-align: left;
+    background: #ffffff;
+    padding: 2px;
+  }
+  .filter b{ color: #0040ff;}
+  .filename{
+    color: #00bcd4;
+    font-weight: bold;
+  }
+  .mat-select{
+    width: 200px;
+    margin-left: 5px;
+    border: 2px solid;
+    border-radius: 4px;
+    padding: 1px;
+    border-color: #00bcd4;
+  }
+
+  
 
   th{background: #00bcd4;
     color: #fff;}
@@ -93,18 +117,7 @@
     width: 33%;
   }
 
-  .filename{
-    color: #297983;
-    font-weight: bold;
-  }
-  .mat-select{
-    width: 200px;
-    margin-left: 5px;
-    border: 1px solid;
-    border-radius: 4px;
-    padding: 1px;
-    border-color: #297983;
-  }
+  
   .mat-table {
     overflow-x: scroll;
   }

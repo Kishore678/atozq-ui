@@ -7,6 +7,7 @@ table
     margin: 5px;
     border-spacing: 0;
     border-left: 1px solid#00bcd4;
+    font-size: 12px;
 }
 
 
@@ -55,6 +56,12 @@ th, td {
   table.financial td{text-align: right;}
   table.financial td:first-child{text-align: left;}
 
+  table.margindelivery td{text-align: right;}
+  table.margindelivery td:first-child{text-align: left;}
+  
   table.news{width:97%;clear:both;height: auto;}
   table.news th{text-align: center;color: #601da1;background-color: lightgreen;}
   table.news td:first-child{text-align: center;}
+
+  .loss{color:red}
+  .profit{color:green}

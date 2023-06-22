@@ -35,6 +35,7 @@ import { LogComponent } from './components/log/log.component';
 import { LogService } from './services/log.service';
 import { ScriptdetailsService } from './services/scriptdetails.service';
 import { ScriptDetailsDialogComponent } from './components/script-details-dialog/script-details-dialog.component';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent],
@@ -48,7 +49,7 @@ import { ScriptDetailsDialogComponent } from './components/script-details-dialog
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService],
+  providers: [DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,9 +2,37 @@ export interface Scriptdetails {
     BasicDetails: BasicDetails
     PriceDetails: PriceDetails
     FinancialsDetails: FinancialsDetails
+    MarginDetails:MarginDetails
+    DeliveryPosition:DeliveryPosition
     Announcements: Announcement[]
   }
   
+  export interface DeliveryPosition {
+    TradeDate: string
+    QtyTraded: string
+    DeliverableQty: string
+    PercentDeliverableQty: string
+  }
+ 
+  export interface MISDetails
+  {
+      IsMIS:boolean
+      VarELMAdhocMargin:string
+      MISMarginPercent:string
+      MISMultiplier:string
+      COMarginPercent:string
+      COUpperTrigger:string
+      COMultiplier:string
+  }
+  export interface MarginDetails {
+    AMR: string
+    ELR: string
+    IndexVar: string
+    VRMar: string
+    SecurityVar: string
+    MISDetails:MISDetails
+  }
+
   export interface BasicDetails {
     Company: string
     ScriptCode: string

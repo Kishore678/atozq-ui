@@ -1,5 +1,5 @@
-<div class="row" style="color: #0040ff;text-align: left;background: #ffffff;padding: 2px;">
-<span style="float:left;padding:1px;"><b style="font-weight:500;">BSE: </b><label class="filename">{{fileName}}</label></span>
+<div class="filter">
+<span style="float:left;padding:1px;"><label class="filename"><b>BSE:&nbsp;</b>{{fileName}}</label></span>
   <mat-select [(value)]="selected" (selectionChange)="handleClick()">    
     <mat-option *ngFor="let b of dsArray" value="{{b.key}}">{{b.text}}</mat-option>   
   </mat-select>  

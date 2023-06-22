@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Scriptdetails } from '../models/scriptdetails.model';
-const scriptetailsApi = "https://atozq.bsite.net/api/script";
+import { environment } from 'src/environments/environment';
+
+const scriptetailsApi = `${environment.bseApiBaseUrl}/api/script`;
+
 @Injectable({
   providedIn: 'root'
 })
