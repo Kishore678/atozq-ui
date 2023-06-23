@@ -159,26 +159,39 @@ mat-form-field + mat-form-field {
   width: 267px;
 }
 
-.mat-column-sC_NAME{
-  width: 50px;
+.mat-column-Nme{
+  min-width: auto;
 }
-.mat-column-sC_GROUP
+
+.mat-column-Flg
 {
   width:10px;
   text-align: center;
 }
-.mat-column-last
+.mat-column-Grp
+{
+  width:10px;
+  text-align: center;
+}
+.mat-column-LTP
 {
   width:50px;
   text-align: right;
 }
-.mat-column-last
-{
-  width:20px;
-  text-align: center;
-}
+
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 {
   padding-left: 5px !important;
   text-align: center;
+}
+
+.red{
+  color: red;
+}
+.orange{
+  color:orange;
+}
+.green
+{
+  color:green;
 }

@@ -11,6 +11,7 @@ import { Scriptdetails } from 'src/app/models/scriptdetails.model';
 import { ScriptdetailsService } from 'src/app/services/scriptdetails.service';
 import { environment } from 'src/environments/environment';
 import { ScriptDetailsDialogComponent } from '../script-details-dialog/script-details-dialog.component';
+import { BSEDetails, Bseanalytic } from 'src/app/models/bseanalytics.model';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -26,19 +27,33 @@ export class UploadComponent {
   fileName:string='';
   size:number=10;
   length!:number;
-  bseBhavData!:BSEBhavCopy[];
-  bseBhavModel!:BSEBhavCopyViewModel;
+  bseBhavData!:Bseanalytic[];
+  bseBhavModel!:BSEDetails;
   @ViewChild(MatSort) sortForDataSource!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns = ['flag','sC_NAME','sC_GROUP','last', 'nO_OF_SHRS','nO_TRADES' ,'open' ,'high' ,'low'
-  ,'close'
-  ,'prevclose'
-  ,'neT_TURNOV'
-  ,'sC_CODE'
-];
-  
-  dataSource = new MatTableDataSource<BSEBhavCopy>();
+//   displayedColumns = ['flag','sC_NAME','sC_GROUP','last', 'nO_OF_SHRS','nO_TRADES' ,'open' ,'high' ,'low'
+//   ,'close'
+//   ,'prevclose'
+//   ,'neT_TURNOV'
+//   ,'sC_CODE'
+// ];
+
+displayedColumns = [    
+    'Flg',
+    'Nme',
+    'Grp',
+    'LTP',
+    'Vol',
+    'Code',
+    'Cnt',
+    'Opn',
+    'Hig',
+    'Low',
+    'Avg',
+    'Prv' ]
+
+  dataSource = new MatTableDataSource<Bseanalytic>();
   selected = '0-1';
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -61,7 +76,7 @@ this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
 this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
 
-    this.http.get(`${apiBaseUrl}/api/file?group=${this.selected}`)
+    this.http.get(`${apiBaseUrl}/api/stock?grp=${this.selected}`)
     .subscribe({
       next: (event:any) => { 
      this.LoadDataSource(event);
@@ -80,7 +95,7 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
   
   handleClick() {
 
-    this.http.get(`${apiBaseUrl}/api/file?group=${this.selected}`)
+    this.http.get(`${apiBaseUrl}/api/stock?grp=${this.selected}`)
     .subscribe({
       next: (event:any) => { 
      this.LoadDataSource(event);
@@ -92,7 +107,7 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
  }
  ViewDetails(element:any)
  {
-   this.scriptDetailService.GetScriptDetails(element.sC_CODE).subscribe(res=>{    
+  //  this.scriptDetailService.GetScriptDetails(element.sC_CODE).subscribe(res=>{    
       const dialogRef = this.dialog.open(ScriptDetailsDialogComponent, {
         maxWidth: '100vw',
         maxHeight: '100vh',
@@ -101,7 +116,7 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
         panelClass: 'full-screen-modal',
         disableClose: false,
         autoFocus: true,
-        data:res
+        data:element
       });
 
       dialogRef.componentInstance.onDoAction.subscribe((d) => {            
@@ -111,7 +126,7 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
       dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
         d.dialog.close();
       }); 
-   });
+  //  });
  }
 
 
@@ -133,44 +148,44 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
 
       // this.dialog.open(ScriptDetailsDialogComponent,{data:model});
     }
-  LoadDataSource(event:any)
+  LoadDataSource(event:BSEDetails)
   { 
     this.dataSource.data  = [];
     this.bseBhavModel = event;
-    this.fileName = this.bseBhavModel.fileName;
-   
-    switch (this.selected) {
-      case 'All': this.bseBhavData = this.bseBhavModel.fullData;
-      break;     
-           case '0-1': this.bseBhavData = this.bseBhavModel.underOneRupeeGroupBXT;
-           break;   
-           case '1-2': this.bseBhavData = this.bseBhavModel.underTwoRupeeGroupBXT;
-           break;
-           case '2-5': this.bseBhavData = this.bseBhavModel.underFiveRupeeGroupBXT;
-           break;
-           case '1-10': this.bseBhavData = this.bseBhavModel.underTenGroupA;         
-           break;   
-           case '10-20': this.bseBhavData = this.bseBhavModel.underTwentyGroupA;
-           break;   
-           case '20-50': this.bseBhavData = this.bseBhavModel.underFiftyGroupA;
-           break;   
-           case '50-100': this.bseBhavData = this.bseBhavModel.underHundredGroupA;
-           break;   
-           case '100-200': this.bseBhavData = this.bseBhavModel.underTwoHundredGroupA;
-           break;   
-           case '200-500': this.bseBhavData = this.bseBhavModel.underFiveHundredGroupA;
-           break;   
-           case '500-1K': this.bseBhavData = this.bseBhavModel.underOneKGroupA;
-           break;   
-           case '1K-5K': this.bseBhavData = this.bseBhavModel.underFiveKGroupA;
-           break;   
-           case '5K-10K': this.bseBhavData = this.bseBhavModel.underTenKGroupA;
-           break;   
-           case '10K-50K': this.bseBhavData = this.bseBhavModel.underFiftyKGroupA;
-           break;   
-           case '50K-1L': this.bseBhavData = this.bseBhavModel.underOneLGroupA;
-           break;  
- }
+    this.fileName = this.bseBhavModel.FileName;
+    this.bseBhavData = this.bseBhavModel.BSEAnalytics;
+//     switch (this.selected) {
+//       case 'All': this.bseBhavData = this.bseBhavModel.fullData;
+//       break;     
+//            case '0-1': this.bseBhavData = this.bseBhavModel.underOneRupeeGroupBXT;
+//            break;   
+//            case '1-2': this.bseBhavData = this.bseBhavModel.underTwoRupeeGroupBXT;
+//            break;
+//            case '2-5': this.bseBhavData = this.bseBhavModel.underFiveRupeeGroupBXT;
+//            break;
+//            case '1-10': this.bseBhavData = this.bseBhavModel.underTenGroupA;         
+//            break;   
+//            case '10-20': this.bseBhavData = this.bseBhavModel.underTwentyGroupA;
+//            break;   
+//            case '20-50': this.bseBhavData = this.bseBhavModel.underFiftyGroupA;
+//            break;   
+//            case '50-100': this.bseBhavData = this.bseBhavModel.underHundredGroupA;
+//            break;   
+//            case '100-200': this.bseBhavData = this.bseBhavModel.underTwoHundredGroupA;
+//            break;   
+//            case '200-500': this.bseBhavData = this.bseBhavModel.underFiveHundredGroupA;
+//            break;   
+//            case '500-1K': this.bseBhavData = this.bseBhavModel.underOneKGroupA;
+//            break;   
+//            case '1K-5K': this.bseBhavData = this.bseBhavModel.underFiveKGroupA;
+//            break;   
+//            case '5K-10K': this.bseBhavData = this.bseBhavModel.underTenKGroupA;
+//            break;   
+//            case '10K-50K': this.bseBhavData = this.bseBhavModel.underFiftyKGroupA;
+//            break;   
+//            case '50K-1L': this.bseBhavData = this.bseBhavModel.underOneLGroupA;
+//            break;  
+//  }
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
   this.dataSource.data = this.bseBhavData;
   this.length = this.bseBhavData.length; 

@@ -4,55 +4,53 @@
         <caption>Company Basic Info</caption>
         <tr>
             <td>Company:</td>
-            <td>{{local_data.BasicDetails.Company}}</td>
+            <td>{{company}}</td>
         </tr>
         <tr>
             <td>Notices:</td>
             <td style="color:red">
-                {{local_data.BasicDetails.ASMText}}
-                {{local_data.BasicDetails.IRPText}}
-                {{local_data.BasicDetails.GSMText}}
+                {{notice}}                
             </td>  
         </tr>
         <tr>
             <td>Category:</td>
-            <td>{{local_data.BasicDetails.Category}}</td>
+            <td>{{category}}</td>
         </tr>
         <tr>
             <td>Group:</td>
-            <td>{{local_data.BasicDetails.Group}}</td>
+            <td>{{group}}</td>
         </tr>
         <tr>
             <td>Industry:</td>
-            <td>{{local_data.BasicDetails.Industry}}</td>
+            <td>{{industry}}</td>
         </tr>
         <tr>
             <td>Code / ID:</td>
-            <td>{{local_data.BasicDetails.ScriptCode}} <b style="color:#00bcd4;">&#47;</b> {{local_data.BasicDetails.ScriptID}}</td>
+            <td>{{code}} <b style="color:#00bcd4;">&#47;</b> {{id}}</td>
         </tr>
             <tr> <td>Settlement:</td>
-            <td>{{local_data.BasicDetails.SettlementType}}</td> </tr>
+            <td>{{settlementType}}</td> </tr>
             <tr><td>Intra-day:</td><td>{{intraday}}</td></tr>
             <tr><td>BTST:</td><td>{{btst}}</td></tr>
             <tr><td>MIS:</td><td>{{mis}}</td></tr>            
             <tr><td>Margin %:</td><td>{{margin}}</td></tr>            
             <tr><td>Leverage:</td><td>{{leverage}}</td></tr>            
-            <tr><td>Trade Date:</td><td>{{local_data.BasicDetails.TrdeDate}}</td></tr>      
+            <tr><td>Trade Date:</td><td>{{trdeDate}}</td></tr>      
     </table>
     <table class="price-movement">
         <caption>Price Movement</caption>
         <tr>
 
             <td>Price:</td>
-            <td>{{local_data.PriceDetails.LTP}}</td>
+            <td>{{ltp}}</td>
         </tr>
         <tr>
             <td>High:</td>
-            <td>{{local_data.PriceDetails.High}}</td>
+            <td>{{high}}</td>
         </tr>
         <tr>
             <td>Low:</td>
-            <td>{{local_data.PriceDetails.Low}}</td>
+            <td>{{low}}</td>
         </tr>
         <!-- <tr>
             <td>Avg:</td>
@@ -60,134 +58,134 @@
         </tr> -->
         <tr>
             <td>Previous:</td>
-            <td>{{local_data.PriceDetails.Previous}}</td>
+            <td>{{previous}}</td>
         </tr>
         <tr>
             <td>52 Weeks High:</td>
-            <td>{{local_data.PriceDetails.Fifty2WksHigh}}</td>
+            <td>{{fifty2WksHigh}}</td>
         </tr>
         <tr>
             <td>52 Weeks Low :</td>
-            <td>{{local_data.PriceDetails.Fifty2WksLow}}</td>
+            <td>{{fifty2WksLow}}</td>
         </tr>
         <tr>
             <td>Upper Circuit:</td>
-            <td>{{local_data.PriceDetails.UpperCktPrice}}</td>
+            <td>{{upperCktPrice}}</td>
         </tr>
         <tr>
             <td>Lower Circuit:</td>
-            <td>{{local_data.PriceDetails.LowerCktPrice}}</td>
+            <td>{{lowerCktPrice}}</td>
         </tr>
         <tr>
             <td>Upper Circuit(%):</td>
-            <td>{{local_data.PriceDetails.UpperCktPercent}}</td>
+            <td>{{upperCktPercent}}</td>
         </tr>
         <tr>
             <td>Lower Circit(%):</td>
-            <td>{{local_data.PriceDetails.LowerCktPercent}}</td>
+            <td>{{lowerCktPercent}}</td>
         </tr>
         <tr>
             <td>Open:</td>
-            <td>{{local_data.PriceDetails.Open}}</td>
+            <td>{{open}}</td>
         </tr>
         <tr>
             <td>Price Change:</td>
-            <td>{{local_data.PriceDetails.PriceChange}}</td>
+            <td>{{priceChange}}</td>
         </tr>
         <tr>
             <td>Price Change(%):</td>
-            <td>{{local_data.PriceDetails.PricePercentChange}}</td>
+            <td>{{pricePercentChange}}</td>
         </tr>
     </table>
     <table class="financial">
         <caption>Financials</caption>
         <tr>
             <td>Market Cap(Cr.):</td>
-            <td>{{local_data.FinancialsDetails.McapFullCr}}</td>
+            <td>{{mcap}}</td>
         </tr>
         <tr>
             <td>Face Value:</td>
-            <td>{{local_data.FinancialsDetails.FaceValue}}</td>
+            <td>{{facevalue}}</td>
         </tr>
         <tr>
             <td>EPS:</td>
-            <td>{{local_data.FinancialsDetails.EPS}}</td>
+            <td>{{eps}}</td>
         </tr>
         <tr>
             <td>CEPS:</td>
-            <td>{{local_data.FinancialsDetails.CEPS}}</td>
+            <td>{{ceps}}</td>
         </tr>
         <tr>
             <td>PE:</td>
-            <td>{{local_data.FinancialsDetails.PE}}</td>
+            <td>{{pe}}</td>
         </tr>
         <tr>
             <td>PB:</td>
-            <td>{{local_data.FinancialsDetails.PB}}</td>
+            <td>{{pb}}</td>
         </tr>
         <tr>
             <td>ROE:</td>
-            <td>{{local_data.FinancialsDetails.ROE}}</td>
+            <td>{{roe}}</td>
         </tr>
         <tr>
             <td>Financial Year:</td>
-            <td>{{local_data.FinancialsDetails.FY}}</td>
+            <td>{{fy}}</td>
         </tr>
         <tr>
             <td>Revenue</td>
-            <td>{{local_data.FinancialsDetails.Revenue}}</td>
+            <td>{{revenue}}</td>
         </tr>
         <tr>
             <td>Net Profit:</td>
-            <td [ngClass]="netProfitStyle">{{local_data.FinancialsDetails.NetProfit}}</td>
+            <td [ngClass]="netProfitStyle">{{profit}}</td>
         </tr>
     </table>
     <table class="margindelivery">
         <caption>Margin & Delivery</caption>
         <tr>
             <td>AMR:</td>
-            <td>{{local_data.MarginDetails.AMR}}</td>
+            <td>{{amr}}</td>
         </tr>
         <tr>
             <td>ELR:</td>
-            <td>{{local_data.MarginDetails.ELR}}</td>
+            <td>{{elr}}</td>
         </tr>
         <tr>
             <td>IV:</td>
-            <td>{{local_data.MarginDetails.IndexVar}}</td>
+            <td>{{indexvar}}</td>
         </tr>
         <tr>
             <td>VARM:</td>
-            <td>{{local_data.MarginDetails.VRMar}}</td>
+            <td>{{varMargin}}</td>
         </tr>
         <tr>
             <td>SV:</td>
-            <td>{{local_data.MarginDetails.SecurityVar}}</td>
+            <td>{{securityVar}}</td>
         </tr>
         <tr>
             <td>Trade Date:</td>
-            <td>{{local_data.DeliveryPosition.TradeDate}}</td>
+            <td>{{tradeDate}}</td>
         </tr>
         <tr>
             <td>Traded Qty:</td>
-            <td>{{local_data.DeliveryPosition.QtyTraded}}</td>
+            <td>{{qtyTraded}}</td>
         </tr>
         <tr>
             <td>Deliverable Qty:</td>
-            <td>{{local_data.DeliveryPosition.DeliverableQty}}</td>
+            <td>{{deliverableQty}}</td>
         </tr>
         <tr>
             <td>Deliverable(%):</td>
-            <td>{{local_data.DeliveryPosition.PercentDeliverableQty}}</td>
+            <td>{{deliverablePercnt}}</td>
         </tr> 
     </table>
 
   
     <table class="news">
         <caption>News</caption>        
-        <tr *ngFor="let n of local_data.Announcements">
-            <td>{{n.Date}}</td>
-            <td>{{n.AnnouncementNote}}</td>
+        <tr *ngFor="let n of news">
+            <td>{{n.NDt}}</td>
+            <td>{{n.Des}}</td>
         </tr>
     </table>
 </mat-dialog-content>

@@ -6,89 +6,89 @@
 </div>
 <section class="table-container mat-elevation-z8" tabindex="0">
 	<table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="flag">
+    <ng-container matColumnDef="Flg">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
        #
       </th>
-      <td mat-cell *matCellDef="let element"> <mat-icon>flag</mat-icon> </td>
+      <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="element.Flg==1?'green':element.Flg==2?'orange':element.Flg==3?'red':''">flag</mat-icon></td>
     </ng-container>
-    <ng-container matColumnDef="sC_CODE">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_CODE">
+    <ng-container matColumnDef="Code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Code">
        Code
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.sC_CODE}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.Code}} </td>
     </ng-container>
-    <ng-container matColumnDef="sC_NAME">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_NAME">
+    <ng-container matColumnDef="Nme">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nme">
         Stock
       </th>
-      <td mat-cell *matCellDef="let element"><a  (click)="ViewDetails(element)"> {{element.sC_NAME}} </a></td>
+      <td mat-cell *matCellDef="let element"><a  (click)="ViewDetails(element)"> {{element.Nme}} </a></td>
     </ng-container>
-    <ng-container matColumnDef="sC_GROUP">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_GROUP">
+    <ng-container matColumnDef="Grp">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Grp">
         Group
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.sC_GROUP}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.Grp}} </td>
     </ng-container>
-    <ng-container matColumnDef="sC_TYPE">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sC_TYPE">
-       Type
+    <ng-container matColumnDef="LTP">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by LTP">
+        LTP
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.sC_TYPE}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.LTP}} </td>
     </ng-container>
-    <ng-container matColumnDef="open">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by open">
-           Open
+    <ng-container matColumnDef="Vol">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vol">
+            Volume
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.open}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Vol}} </td>
      </ng-container>
-      <ng-container matColumnDef="high">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by high">
-           High
+      <ng-container matColumnDef="Cnt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Cnt">
+            Trades
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.high}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Cnt}} </td>
       </ng-container>
-      <ng-container matColumnDef="low">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by low">
-           Low
+      <ng-container matColumnDef="Opn">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Opn">
+            Open
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.low}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Opn}} </td>
       </ng-container>
-      <ng-container matColumnDef="close">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by close">
-           Avg
+      <ng-container matColumnDef="Hig">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Hig">
+            High
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.close}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Hig}} </td>
       </ng-container>
-      <ng-container matColumnDef="last">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by last">
-           LTP
+      <ng-container matColumnDef="Low">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Low">
+            Low
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.last}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Low}} </td>
       </ng-container>
-      <ng-container matColumnDef="prevclose">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by prevclose">
-          Prev
+      <ng-container matColumnDef="Avg">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Avg">
+            Avg
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.prevclose}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Avg}} </td>
       </ng-container>
-      <ng-container matColumnDef="nO_TRADES">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nO_TRADES">
-          Trades(Count)
+      <ng-container matColumnDef="Prv">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Prv">
+            Prev
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.nO_TRADES}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Prv}} </td>
       </ng-container>
-      <ng-container matColumnDef="nO_OF_SHRS">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by nO_OF_SHRS">
-          Volume(Shares)
+      <ng-container matColumnDef="Mst">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Mst">
+            Mst
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.nO_OF_SHRS | number:'1.0-0'}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Mst}} </td>
       </ng-container>
-      <ng-container matColumnDef="neT_TURNOV">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by neT_TURNOV">
-          Turnover(Rs.)
+      <ng-container matColumnDef="Fund">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Fund">
+            Fund
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.neT_TURNOV}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Fund}} </td>
       </ng-container>
 		<tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
 		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>  

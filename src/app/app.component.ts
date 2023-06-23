@@ -10,7 +10,7 @@ import { Subscription, map, share, timeInterval, timer } from 'rxjs';
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
-const apiBaseUrl = environment.apiBaseUrl;
+const onlineUsersApi = environment.onlineUsersApi;
 /** @title Responsive sidenav */
 @Component({
   selector: 'app-root',
@@ -70,7 +70,7 @@ export class AppComponent implements OnDestroy {
     this.deviceInfo.userAgent;
 
     this._hubConnection = new HubConnectionBuilder()
-  .withUrl(`${apiBaseUrl}/onlineUsersHub?userid=${userid}`,{ withCredentials: false})  
+  .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${userid}`,{ withCredentials: false})  
   .build();
 
   this._hubConnection.on('UpdateOnlineUsers', (online,visited) => {
