@@ -10,7 +10,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
        #
       </th>
-      <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="element.Flg==1?'green':element.Flg==2?'orange':element.Flg==3?'red':''">flag</mat-icon></td>
+      <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="flagStyle(element.Flg,false)" matTooltip="{{flagStyle(element.Flg,true)}}"   [matTooltipPosition]="'after'">flag</mat-icon></td>
     </ng-container>
     <ng-container matColumnDef="Code">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Code">

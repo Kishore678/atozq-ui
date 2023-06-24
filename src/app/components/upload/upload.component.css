@@ -185,13 +185,31 @@ th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:
   text-align: center;
 }
 
-.red{
+.risk4{
   color: red;
 }
-.orange{
+.risk3{
+color: #351bff;
+}
+.risk2{
   color:orange;
 }
-.green
+.risk1
 {
-  color:green;
+  color:lightgreen;
 }
+.risk
+{
+  color: lightgray;
+}
+
+
+::ng-deep .mat-tooltip {
+  background: #297983;
+  border:  1px solid lightgray;
+  border-radius:  3px;
+  font-size:  12px;
+  padding:  10px; 
+}
+ 
+

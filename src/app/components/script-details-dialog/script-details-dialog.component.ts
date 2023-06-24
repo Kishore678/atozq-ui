@@ -61,6 +61,7 @@ qtyTraded:string | any;
 deliverableQty:string | any;
 deliverablePercnt:string | any;
 news!:Nw[];
+avg:string | any;
 
 
 
@@ -72,11 +73,12 @@ news!:Nw[];
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Bseanalytic) {  
     this.local_data = {...data};  
     this.netProfitStyle = parseFloat(this.local_data.Fund.Npt)<0?'loss':'profit'; 
+
     this.intraday = this.local_data.Fund.Int;
     this.btst = this.local_data.Fund.Bst;    
     this.mis = this.local_data.Fund.Mis;
-    this.margin = this.local_data.Fund.Mrg;
-    this.leverage = this.local_data.Fund.Lev;   
+    this.margin = this.local_data.Fund.Mrg==''?'-':this.local_data.Fund.Mrg;
+    this.leverage = this.local_data.Fund.Lev==''?'-':this.local_data.Fund.Lev;   
     this.company = this.local_data.Fund.Ful;
     this.notice = this.local_data.Fund.Ntc;
     this.category = this.local_data.Fund.Cat;
@@ -88,7 +90,8 @@ news!:Nw[];
     this.trdeDate = this.local_data.Fund.Tdt;
     this.ltp = this.local_data.Fund.Prc;
     this.high = this.local_data.Fund.Hig;
-    this.low = this.local_data.Fund.Low
+    this.low = this.local_data.Fund.Low;
+    this.avg = this.local_data.Avg;
     this.previous = this.local_data.Fund.Prv;
     this.fifty2WksHigh = this.local_data.Fund.F2H;
     this.fifty2WksLow = this.local_data.Fund.F2L;
@@ -144,6 +147,11 @@ news!:Nw[];
   }
 
   ngOnInit(): void {
+  }
+
+  close()
+  {
+    this.dialogRef.close();
   }
 
 }

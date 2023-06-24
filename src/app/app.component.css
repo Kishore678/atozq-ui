@@ -140,8 +140,8 @@ a {
 
 mat-sidenav-content
 {
-background-image: url(/assets/bg.jpg);
-background-repeat: repeat-x;
+/* background-image: url(/assets/bg.jpg); */
+/* background-repeat: repeat-x; */
 animation: slideleft 20000s infinite linear;
 -webkit-animation: slideleft 20000s infinite linear;
 background-size: cover;

@@ -31,6 +31,7 @@ export class UploadComponent {
   bseBhavModel!:BSEDetails;
   @ViewChild(MatSort) sortForDataSource!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
 
 //   displayedColumns = ['flag','sC_NAME','sC_GROUP','last', 'nO_OF_SHRS','nO_TRADES' ,'open' ,'high' ,'low'
 //   ,'close'
@@ -92,6 +93,29 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
     this.dataSource.filter = filterValue;
   }
 
+  flagStyle(risk:any,isTitle:boolean)
+  {
+    let returnType='';
+    switch(risk)
+    {
+      case 1:
+       isTitle? returnType='No exchange notices. Intra-day, BTST supported. Positive Net Profit.':returnType = 'risk1';
+      break;
+      case 2:
+        isTitle? returnType='No exchange notices. Intra-day, BTST supported. Negative Net-Profit.':returnType = 'risk2';
+      break;
+      case 3:
+        isTitle? returnType='No exchange notices. Trade to Trade stock. No Intra-day and BTST support. Positive Net Profit.':returnType = 'risk3';
+      break;
+      case 4:
+        isTitle? returnType='Exchange Notice. High Risk involved.':returnType = 'risk4';
+      break;         
+      default:
+        isTitle? returnType='Risk not classified. Click on stock to know details.':returnType = 'risk';
+      break;
+    }    
+    return returnType;
+  }
   
   handleClick() {
 
@@ -113,7 +137,7 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
         maxHeight: '100vh',
         height: 'relative',
         width: 'relative',
-        panelClass: 'full-screen-modal',
+        panelClass: 'my-dialog',
         disableClose: false,
         autoFocus: true,
         data:element
