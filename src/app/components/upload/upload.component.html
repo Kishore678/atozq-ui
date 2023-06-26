@@ -10,7 +10,8 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
        #
       </th>
-      <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="flagStyle(element.Flg,false)" matTooltip="{{flagStyle(element.Flg,true)}}"   [matTooltipPosition]="'after'">flag</mat-icon></td>
+      <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="flagStyle(element.Flg)" [matTooltip]="flagContent(element.Flg) | tooltipList" 
+        matTooltipClass="tooltip-list" #tooltip="matTooltip" (click)="tooltip.show()"   [matTooltipPosition]="'after'">flag</mat-icon></td>
     </ng-container>
     <ng-container matColumnDef="Code">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Code">
@@ -34,49 +35,49 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by LTP">
         LTP
       </th>
-      <td mat-cell *matCellDef="let element"> {{element.LTP}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.LTP | number:'.2'}} </td>
     </ng-container>
     <ng-container matColumnDef="Vol">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vol">
             Volume
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.Vol}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Vol | number:'2.'}} </td>
      </ng-container>
       <ng-container matColumnDef="Cnt">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Cnt">
             Trades
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.Cnt}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Cnt | number:'2.'}} </td>
       </ng-container>
       <ng-container matColumnDef="Opn">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Opn">
             Open
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.Opn}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Opn | number:'.2'}} </td>
       </ng-container>
       <ng-container matColumnDef="Hig">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Hig">
             High
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.Hig}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Hig | number:'.2'}} </td>
       </ng-container>
       <ng-container matColumnDef="Low">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Low">
             Low
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.Low}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Low | number:'.2'}} </td>
       </ng-container>
       <ng-container matColumnDef="Avg">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Avg">
             Avg
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.Avg}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Avg | number:'.2'}} </td>
       </ng-container>
       <ng-container matColumnDef="Prv">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Prv">
             Prev
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.Prv}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.Prv | number:'.2'}} </td>
       </ng-container>
       <ng-container matColumnDef="Mst">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Mst">

@@ -13,6 +13,7 @@ export class ScriptDetailsDialogComponent implements OnInit {
 
   local_data:Bseanalytic;
   netProfitStyle:string | any;
+  revenueStyle:string | any;
   intraday:string | any;
   btst:string | any;
   mis:string | any;
@@ -71,8 +72,14 @@ avg:string | any;
  
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Bseanalytic) {  
-    this.local_data = {...data};  
-    this.netProfitStyle = parseFloat(this.local_data.Fund.Npt)<0?'loss':'profit'; 
+    this.local_data = {...data}; 
+    
+    let net = parseFloat(this.local_data.Fund.Npt); 
+    this.netProfitStyle = net==0?'zeroNP':net<0?'loss':net>0?'profit':'';
+
+    let rev = parseFloat(this.local_data.Fund.Rnu);
+    this.revenueStyle = rev==0?'zeroNP':rev<0?'loss':rev>0?'profit':''; 
+    
 
     this.intraday = this.local_data.Fund.Int;
     this.btst = this.local_data.Fund.Bst;    

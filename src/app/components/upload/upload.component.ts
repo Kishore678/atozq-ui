@@ -93,28 +93,64 @@ this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
     this.dataSource.filter = filterValue;
   }
 
-  flagStyle(risk:any,isTitle:boolean)
+
+  flagStyle(risk:any)
   {
-    let returnType='';
+    let returnStyle='';
     switch(risk)
     {
       case 1:
-       isTitle? returnType='No exchange notices. Intra-day, BTST supported. Positive Net Profit.':returnType = 'risk1';
+        returnStyle = 'risk1';
       break;
       case 2:
-        isTitle? returnType='No exchange notices. Intra-day, BTST supported. Negative Net-Profit.':returnType = 'risk2';
+        returnStyle = 'risk2';
       break;
       case 3:
-        isTitle? returnType='No exchange notices. Trade to Trade stock. No Intra-day and BTST support. Positive Net Profit.':returnType = 'risk3';
+        returnStyle = 'risk3';
       break;
       case 4:
-        isTitle? returnType='Exchange Notice. High Risk involved.':returnType = 'risk4';
+        returnStyle = 'risk4';
       break;         
       default:
-        isTitle? returnType='Risk not classified. Click on stock to know details.':returnType = 'risk';
+        returnStyle = 'risk';
       break;
     }    
-    return returnType;
+    return returnStyle;
+  }
+
+  flagContent(risk:any)
+  {
+   var returnContent = new Array();
+
+    switch(risk)
+    {
+      case 1:
+        returnContent.push('No exchange notices.');
+        returnContent.push('Intra-day, BTST supported.');
+        returnContent.push('Positive Net Profit.') ;    
+      break;
+      case 2:
+        returnContent.push('No exchange notices.') ;    
+        returnContent.push('Intra-day, BTST supported.') ;    
+        returnContent.push('Negative Net-Profit.') ;  
+      break;
+      case 3:
+        returnContent.push('No exchange notices.') ;  
+        returnContent.push('Trade to Trade stock.') ;  
+        returnContent.push('No Intra-day and BTST support.') ;  
+        returnContent.push('Positive Net Profit.') ; 
+      break;
+      case 4:
+        returnContent.push('Exchange Notice.') ; 
+        returnContent.push('High Risk involved.') ; 
+      break;         
+      default:
+        returnContent.push('Risk not classified.') ;
+        returnContent.push('Click on stock to know details.') ;
+        
+      break;
+    }    
+    return returnContent;
   }
   
   handleClick() {

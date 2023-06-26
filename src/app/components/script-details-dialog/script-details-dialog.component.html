@@ -9,8 +9,8 @@
         </tr>
         <tr>
             <td>Notices:</td>
-            <td style="color:red">
-                {{notice}}                
+            <td>
+                <b class="loss">{{notice}}</b>
             </td>  
         </tr>
         <tr>
@@ -41,6 +41,19 @@
     <table class="financial">
         <caption>Financials</caption>
         <tr>
+            <td>Financial Year:</td>
+            <td>{{fy}}</td>
+        </tr>
+        <tr>
+            <td>Net Profit:</td>
+            <td><b [ngClass]="netProfitStyle">{{profit}}</b></td>
+        </tr>
+        <tr>
+            <td>Revenue</td>         
+            <td><b [ngClass]="revenueStyle">{{revenue}}</b></td>
+
+        </tr>      
+        <tr>
             <td>Market Cap(Cr.):</td>
             <td>{{mcap}}</td>
         </tr>
@@ -68,78 +81,59 @@
             <td>ROE:</td>
             <td>{{roe}}</td>
         </tr>
-        <tr>
-            <td>Financial Year:</td>
-            <td>{{fy}}</td>
-        </tr>
-        <tr>
-            <td>Revenue</td>
-            <td>{{revenue}}</td>
-        </tr>
-        <tr>
-            <td>Net Profit:</td>
-            <td><b [ngClass]="netProfitStyle">{{profit}}</b></td>
-        </tr>
+ 
     </table>
     <table class="price-movement">
         <caption>Price Movement</caption>
         <tr>
 
             <td>Price:</td>
-            <td>{{ltp}}</td>
+            <td>{{ltp | number:'.2'}}</td>
+        </tr>
+
+        <tr>
+            <td>Price Change:</td>
+            <td>{{priceChange | number:'.2'}} ({{pricePercentChange}}%)</td>
+        </tr>  
+
+        <tr>
+            <td>Open:</td>
+            <td>{{open | number:'.2'}}</td>
         </tr>
         <tr>
             <td>High:</td>
-            <td>{{high}}</td>
+            <td>{{high | number:'.2'}}</td>
         </tr>
         <tr>
             <td>Low:</td>
-            <td>{{low}}</td>
+            <td>{{low | number:'.2'}}</td>
         </tr>
         <tr>
             <td>Avg:</td>
-            <td>{{avg}}</td>
+            <td>{{avg | number:'.2'}}</td>
         </tr>
         <tr>
             <td>Previous:</td>
-            <td>{{previous}}</td>
+            <td>{{previous | number:'.2'}}</td>
         </tr>
-        <tr>
-            <td>52 Weeks High:</td>
-            <td>{{fifty2WksHigh}}</td>
-        </tr>
-        <tr>
-            <td>52 Weeks Low :</td>
-            <td>{{fifty2WksLow}}</td>
-        </tr>
+
         <tr>
             <td>Upper Circuit:</td>
-            <td>{{upperCktPrice}}</td>
+            <td>{{upperCktPrice | number:'.2'}} ({{upperCktPercent}}%)</td>
         </tr>
         <tr>
             <td>Lower Circuit:</td>
-            <td>{{lowerCktPrice}}</td>
+            <td>{{lowerCktPrice | number:'.2'}} ({{lowerCktPercent}}%)</td>
+        </tr>   
+        <tr>
+            <td>52 Weeks High:</td>
+            <td>{{fifty2WksHigh | number:'.2'}} </td>
         </tr>
         <tr>
-            <td>Upper Circuit(%):</td>
-            <td>{{upperCktPercent}}</td>
+            <td>52 Weeks Low :</td>
+            <td>{{fifty2WksLow | number:'.2'}}</td>
         </tr>
-        <tr>
-            <td>Lower Circit(%):</td>
-            <td>{{lowerCktPercent}}</td>
-        </tr>
-        <tr>
-            <td>Open:</td>
-            <td>{{open}}</td>
-        </tr>
-        <tr>
-            <td>Price Change:</td>
-            <td>{{priceChange}}</td>
-        </tr>
-        <tr>
-            <td>Price Change(%):</td>
-            <td>{{pricePercentChange}}</td>
-        </tr>
+
     </table> 
     <table class="margindelivery">
         <caption>Margin & Delivery</caption>

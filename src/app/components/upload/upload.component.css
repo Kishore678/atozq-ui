@@ -37,9 +37,9 @@
   th{background: #00bcd4;
     color: #fff;}
  
-  tr>td>a {color:#218b99;cursor: pointer;text-decoration: underline;}
+  tr>td>a {color:#0040ff;cursor: pointer;text-decoration: underline;font-weight:500;}
   tr:hover,tr>td>a:hover {    background-color: aliceblue;
-    color: #00bcd4;}
+    color: #245afc;}
   
   th.mat-header-cell,
   td.mat-cell,
@@ -131,6 +131,7 @@
   white-space: nowrap;
   overflow: hidden;
   vertical-align: middle;
+  font-size: 12px;
 }
 .mat-row,
 .mat-header-row {
@@ -160,7 +161,7 @@ mat-form-field + mat-form-field {
 }
 
 .mat-column-Nme{
-  min-width: auto;
+ width:25px;
 }
 
 .mat-column-Flg
@@ -178,6 +179,11 @@ mat-form-field + mat-form-field {
   width:50px;
   text-align: right;
 }
+.mat-column-Vol
+{
+  width:15px;
+  text-align: right;
+}
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 {
@@ -189,7 +195,7 @@ th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:
   color: red;
 }
 .risk3{
-color: #351bff;
+color: #ffd382;
 }
 .risk2{
   color:orange;

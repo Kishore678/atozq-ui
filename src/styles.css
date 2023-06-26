@@ -22,3 +22,7 @@ body { margin: 0;}
     line-height: 14px;
     min-width: auto;
   }
+
+  .tooltip-list {
+    white-space: pre;
+  }
