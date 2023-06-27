@@ -1,0 +1,17 @@
+table {
+    margin: 10px;
+    width: 300px;   
+    border-left: 1px solid #ddd;
+    font-size: 12px;    
+  }
+td,th{
+    border-right: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd;
+    border-spacing: 0;
+    display: table-cell;
+}
+th{background: #00bcd4;
+    color: #fff; text-align: center;;}
+
+    .pass{background: green;color: white;}
+    .fail{background: red;color: white;}

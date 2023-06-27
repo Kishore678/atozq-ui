@@ -16,6 +16,7 @@ import { ChangePwdSuccessComponent } from './components/change-pwd-success/chang
 import { DetailComponent } from './components/detail/detail.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { LogComponent } from './components/log/log.component';
+import { DataPortStatusComponent } from './components/data-port-status/data-port-status.component';
 
 const routes: Routes = [
   {path:'',component:UploadComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:'app/detail/:id',component:DetailComponent},
   {path:'app/shopping',component:ShoppingComponent},
   {path:'app/dashboard',component:DashboardComponent,canActivate:[AuthenticationService]},
+  {path:'app/dps',component:DataPortStatusComponent},
   {path:'app/stock',component:UploadComponent},
   {path:'app/log',component:LogComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},

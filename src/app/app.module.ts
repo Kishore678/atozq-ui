@@ -37,9 +37,10 @@ import { ScriptdetailsService } from './services/scriptdetails.service';
 import { ScriptDetailsDialogComponent } from './components/script-details-dialog/script-details-dialog.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { TooltipListPipe } from './pipes/tooltip-list.pipe';
+import { DataPortStatusComponent } from './components/data-port-status/data-port-status.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,

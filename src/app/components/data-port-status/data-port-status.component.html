@@ -1,0 +1,24 @@
+<table>
+    <caption>{{dps.FileName}}</caption>
+<tr>
+    <th>S.No.</th>
+    <th>Group</th>
+    <th>Actual</th>
+    <th>Current</th>
+    <th>Status</th>
+</tr>
+<tr *ngFor="let g of dps.GroupStatus">
+    <td style="text-align: center;">{{g.Id}}</td>
+    <td style="text-align: right;">{{g.Group}}</td>
+    <td style="text-align: right;">{{g.Actual}}</td>
+    <td style="text-align: right;">{{g.Current}}</td>
+    <td style="text-align: center;" ngClass="{{g.Status==true?'pass':'fail'}}">{{g.Status==true?'PASS':'FAIL'}}</td>
+</tr>
+</table>
+
+<table>
+    <tr><td>Actual Total:</td><td style="text-align: right;">{{dps.TotalActual}}</td></tr>
+    <tr><td>Current Total:</td><td style="text-align: right;">{{dps.TotalCurrent}}</td></tr>
+    <tr><td>Overall Status:</td><td style="text-align: center;" ngClass="{{dps.OverallStatus==true?'pass':'fail'}}">{{dps.OverallStatus==true?'PASS':'FAIL'}}</td></tr>
+</table>
+
