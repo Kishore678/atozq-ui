@@ -139,8 +139,11 @@
         <div class="row home-toolbar">        
           <div class="col-md-12"><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span></div>
         </div>
-        <div class="row home-toolbar2">        
-          <div class="col-md-12"><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></div>
+        <div class="row home-toolbar2"> 
+          <div class="col-md-12">
+            <a class="verify" routerLink="/app/dps">Verify Data</a>
+            <span style="margin-left: -58.38px;"><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
+          </div>
         </div>
       <router-outlet></router-outlet>
       </div>

@@ -1,42 +1,38 @@
 <button class="close" mat-button (click)="close()">X</button>
-<h3 mat-dialog-title>FUNDAMENTALS</h3>
+<h3 mat-dialog-title>Fundamentals</h3>
 <mat-dialog-content>
     <table class="basic-info">
-        <caption>Company Basic Info</caption>
+        <caption>About Company</caption>
         <tr>
             <td>Company:</td>
             <td>{{company}}</td>
-        </tr>
-        <tr>
-            <td>Notices:</td>
-            <td>
-                <b class="loss">{{notice}}</b>
-            </td>  
-        </tr>
-        <tr>
-            <td>Category:</td>
-            <td>{{category}}</td>
-        </tr>
-        <tr>
-            <td>Group:</td>
-            <td>{{group}}</td>
         </tr>
         <tr>
             <td>Industry:</td>
             <td>{{industry}}</td>
         </tr>
         <tr>
-            <td>Code / ID:</td>
-            <td>{{code}} <b style="color:#00bcd4;">&#47;</b> {{id}}</td>
+            <td>Group:</td>
+            <td>{{group}}</td>
         </tr>
-            <tr> <td>Settlement:</td>
-            <td>{{settlementType}}</td> </tr>
-            <tr><td>Intra-day:</td><td>{{intraday}}</td></tr>
-            <tr><td>BTST:</td><td>{{btst}}</td></tr>
-            <tr><td>MIS:</td><td>{{mis}}</td></tr>            
-            <tr><td>Margin %:</td><td>{{margin}}</td></tr>            
-            <tr><td>Leverage:</td><td>{{leverage}}</td></tr>            
-            <tr><td>Trade Date:</td><td>{{trdeDate}}</td></tr>      
+        <tr>
+            <td>Script Code:</td>
+            <td>{{code}}</td>
+        </tr> 
+        <tr>
+            <td>Script ID:</td>
+            <td>{{id}}</td>
+        </tr> 
+        <tr>
+            <td>Notices:</td>
+            <td>
+                <b class="loss">{{notice}}</b>
+            </td>  
+        </tr>    
+        <tr>
+            <td>Status:</td>
+            <td>{{category}}</td>
+        </tr>
     </table>
     <table class="financial">
         <caption>Financials</caption>
@@ -56,11 +52,22 @@
         <tr>
             <td>Market Cap(Cr.):</td>
             <td>{{mcap}}</td>
-        </tr>
-        <tr>
-            <td>Face Value:</td>
-            <td>{{facevalue}}</td>
-        </tr>
+        </tr>    
+    </table>
+    <table class="basic-info">
+        <caption>Trading Info</caption>       
+            <tr> <td>Settlement:</td>
+            <td>{{settlementType}}</td> </tr>
+            <tr><td>Intra-day:</td><td>{{intraday}}</td></tr>
+            <tr><td>BTST:</td><td>{{btst}}</td></tr>
+            <tr><td>MIS:</td><td>{{mis}}</td></tr>            
+            <tr><td>Margin %:</td><td>{{margin}}</td></tr>            
+            <tr><td>Leverage:</td><td>{{leverage}}</td></tr>            
+            <tr><td>As On:</td><td>{{trdeDate}}</td></tr>      
+    </table>
+    <table class="financial">
+        <caption>Key Ratio's</caption>      
+        
         <tr>
             <td>EPS:</td>
             <td>{{eps}}</td>
@@ -83,17 +90,24 @@
         </tr>
  
     </table>
+
+   
+
     <table class="price-movement">
-        <caption>Price Movement</caption>
+        <caption>Stock Price</caption>
+        <tr>
+            <td>Face Value:</td>
+            <td>{{facevalue}}</td>
+        </tr>
         <tr>
 
-            <td>Price:</td>
-            <td>{{ltp | number:'.2'}}</td>
+            <td>Current Price:</td>
+            <td style="font-weight:500;">{{ltp | number:'.2'}}</td>
         </tr>
 
         <tr>
-            <td>Price Change:</td>
-            <td>{{priceChange | number:'.2'}} ({{pricePercentChange}}%)</td>
+            <td>Price Change:</td>          
+            <td><b [ngClass]="pcgStyle">{{priceChange | number:'.2'}} ({{pricePercentChange}}%)</b></td>
         </tr>  
 
         <tr>
@@ -115,8 +129,12 @@
         <tr>
             <td>Previous:</td>
             <td>{{previous | number:'.2'}}</td>
-        </tr>
+        </tr>      
 
+    </table> 
+
+    <table class="price-movement">
+        <caption>Price Band</caption>  
         <tr>
             <td>Upper Circuit:</td>
             <td>{{upperCktPrice | number:'.2'}} ({{upperCktPercent}}%)</td>
@@ -135,8 +153,9 @@
         </tr>
 
     </table> 
+
     <table class="margindelivery">
-        <caption>Margin & Delivery</caption>
+        <caption>Margin</caption>
         <tr>
             <td>AMR:</td>
             <td>{{amr}}</td>
@@ -156,7 +175,11 @@
         <tr>
             <td>SV:</td>
             <td>{{securityVar}}</td>
-        </tr>
+        </tr>       
+    </table>
+
+    <table class="margindelivery">
+        <caption>Delivery</caption>       
         <tr>
             <td>Trade Date:</td>
             <td>{{tradeDate}}</td>
@@ -174,7 +197,6 @@
             <td>{{deliverablePercnt}}</td>
         </tr> 
     </table>
-
   
     <table class="news">
         <caption>News</caption>        

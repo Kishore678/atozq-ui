@@ -1,24 +1,46 @@
-<table>
-    <caption>{{dps.FileName}}</caption>
-<tr>
-    <th>S.No.</th>
-    <th>Group</th>
-    <th>Actual</th>
-    <th>Current</th>
-    <th>Status</th>
-</tr>
-<tr *ngFor="let g of dps.GroupStatus">
-    <td style="text-align: center;">{{g.Id}}</td>
-    <td style="text-align: right;">{{g.Group}}</td>
-    <td style="text-align: right;">{{g.Actual}}</td>
-    <td style="text-align: right;">{{g.Current}}</td>
-    <td style="text-align: center;" ngClass="{{g.Status==true?'pass':'fail'}}">{{g.Status==true?'PASS':'FAIL'}}</td>
-</tr>
-</table>
+<div>
+<ng-container *ngIf="true; then displayData;">
+</ng-container>
+</div>
+<ng-template #displayData>  
+    <table>
+        <caption style="font-weight:500;color:black"><b style="color: blue;cursor: pointer;">File:</b> {{fileName}}</caption>
+    <tr>
+        <th>#</th>
+        <th>Group</th>
+        <th>Source</th>
+        <th>Local</th>
+        <th>Cached</th>
+        <th>Sync</th>
+    </tr>
+    <tr *ngFor="let g of list" ngClass="{{g.Status==true?'':g.Status==null?'light-warn':'light-fail'}}">
+        <td style="text-align: center;">{{g.Id}}</td>
+        <td style="text-align: left;">{{g.Group}}</td>
+        <td style="text-align: center;">{{g.Source}}</td>
+        <td style="text-align: center;">{{g.Processed}}</td>
+        <td style="text-align: center;">{{g.Cached}}</td>
+        <td style="text-align: center;border-inline: 5px;" ngClass="{{g.Status==true?'pass':g.Status==null?'warn':'fail'}}">{{g.Status==true?'Pass':g.Status==null?'Warn':'Fail'}}</td>
+    </tr>
+    </table>
+    
+    <table *ngIf="isLoaded" class="total">
+        <tr><td>Source Total:</td><td style="text-align: center;">{{sourceTotal}}</td></tr>
+        <tr><td>Local Total:</td><td style="text-align: center;">{{processedTotal}}</td></tr>
+        <tr><td>Cached Total:</td><td style="text-align: center;">{{cachedTotal}}</td></tr>
+        <tr><td>Overall Status:</td><td style="text-align: center;" ngClass="{{overallStatus==true?'pass':overallStatus==null?'warn':'fail'}}">{{overallStatus==true?'Pass':overallStatus==null?'Warn':'Fail'}}</td></tr>
+        <tr><td style="text-align:center"><button style="background-color: #00bcd4;color:#fff" mat-button (click)="refresh()">Force Process&nbsp;&&nbsp;Cache</button></td><td ></td></tr>
+    </table>
+</ng-template>
 
-<table>
-    <tr><td>Actual Total:</td><td style="text-align: right;">{{dps.TotalActual}}</td></tr>
-    <tr><td>Current Total:</td><td style="text-align: right;">{{dps.TotalCurrent}}</td></tr>
-    <tr><td>Overall Status:</td><td style="text-align: center;" ngClass="{{dps.OverallStatus==true?'pass':'fail'}}">{{dps.OverallStatus==true?'PASS':'FAIL'}}</td></tr>
-</table>
 
+<ng-container *ngIf="error; then displayError;">
+</ng-container>
+<ng-template #displayError>
+    <table>
+        <tr>
+            <td>            
+<!-- <div style="clear:both;text-align: center;display:block;background:#e2e2fa;color: whiet;font-weight:500;"><button style="background-color: #00bcd4;color:#fff" mat-button (click)="refresh()">Resolve Errors/Warnings</button></div> -->
+        </td>
+    </tr>    
+    </table>
+</ng-template>

@@ -43,9 +43,10 @@ export class UploadComponent {
 displayedColumns = [    
     'Flg',
     'Nme',
-    'Grp',
+    'Chat',   
     'LTP',
     'Vol',
+    'Grp',
     'Code',
     'Cnt',
     'Opn',
@@ -75,7 +76,7 @@ this.dsArray.push({key:'500-1K',text:'Group-A b/w Rs.500 and Rs.1,000'});
 this.dsArray.push({key:'1K-5K',text:'Group-A b/w Rs.1,000 and Rs.5,000'});
 this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
-this.dsArray.push({key:'50K-1L',text:'Group-A b/w Rs.50,000 and Rs.1,00,000'});
+this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
     this.http.get(`${apiBaseUrl}/api/stock?grp=${this.selected}`)
     .subscribe({

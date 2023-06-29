@@ -46,6 +46,9 @@
   td.mat-footer-cell {
     border-bottom: 1px solid #ddd;
   }
+  th.mat-header-cell{
+    text-align: center;
+  }
   td,th{
     border-right: 1px solid #ddd; 
     border-bottom: 1px solid #ddd;
@@ -183,6 +186,10 @@ mat-form-field + mat-form-field {
 {
   width:15px;
   text-align: right;
+}
+.mat-column-Chat
+{
+  width: 5px;
 }
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type

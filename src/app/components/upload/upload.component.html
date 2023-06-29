@@ -23,7 +23,13 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nme">
         Stock
       </th>
-      <td mat-cell *matCellDef="let element"><a  (click)="ViewDetails(element)"> {{element.Nme}} </a></td>
+      <td mat-cell *matCellDef="let element"><a  (click)="ViewDetails(element)"> {{element.Nme}}</a></td>
+    </ng-container>
+    <ng-container matColumnDef="Chat">
+      <th mat-header-cell *matHeaderCellDef>
+        Chat
+      </th>
+      <td mat-cell *matCellDef="let element"> <mat-icon> chat</mat-icon> </td>
     </ng-container>
     <ng-container matColumnDef="Grp">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Grp">
@@ -97,9 +103,7 @@
 	<mat-paginator [pageSizeOptions]="[5, 10, 20,30,40,50,100]" [pageSize]="size" showFirstLastButtons></mat-paginator>
 </section>
 
-<a routerLink="/app/dps">      
-  <span>Verify Data</span>      
- </a> 
+
 
 
   

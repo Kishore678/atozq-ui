@@ -108,27 +108,7 @@ a {
   background:#ffffff;
   color: #00bcd4;
 }
-.dot {
-  height: 11px;
-  width: 11px;
-  margin-right: 1px; 
-  border-radius: 50%; 
-  display: inline-block;
-}
-.online{ background: #18e92f;}
-.visited{ background: #768fff;}
-.date{     background: #e91e63;}
-.box{
-  color: #f6ffb3;
-  padding-left: 4px;
-  margin-right: 5px;
-  padding-right: 4px;
-  text-align: center;
-  margin-left: 2px;
-  border-radius: 4px;
-  font-weight: 500;
-  font-size: 12px;
-}
+
 .atozq-app-name
 {
   text-decoration: none;
@@ -174,6 +154,7 @@ min-height: 100vh;
   background:#218b99;
   color: #fff;
   text-align: center;
+  font-size: 13px;
 }
 .home-toolbar2
 {
@@ -181,10 +162,38 @@ min-height: 100vh;
   background: #297983;
   color: #fff;
   text-align: center;
-  font-size: 12px;
+  font-size: 13px;
 }
 .datetime{
   color: #ffffff;
 }
+.dot {
+  height: 11px;
+  width: 11px;
+  margin-right: 1px; 
+  border-radius: 50%; 
+  display: inline-block;
+}
+.online{ background: #18e92f;}
+.visited{ background: #768fff;}
+.date{     background: #e91e63;}
+.box{
+  color: #f6ffb3;
+  padding-left: 4px;
+  margin-right: 5px;
+  padding-right: 4px;
+  text-align: center;
+  margin-left: 2px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 13px;
+}
+.verify
+{
+  color: #f6ffb3;
+  margin-top: 10px;
+  float: left;
+}
+
 
 

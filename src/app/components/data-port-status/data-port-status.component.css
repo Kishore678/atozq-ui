@@ -1,8 +1,8 @@
 table {
     margin: 10px;
-    width: 300px;   
+    width: 350px;   
     border-left: 1px solid #ddd;
-    font-size: 12px;    
+    font-size: 13px;    
   }
 td,th{
     border-right: 1px solid #ddd; 
@@ -15,3 +15,8 @@ th{background: #00bcd4;
 
     .pass{background: green;color: white;}
     .fail{background: red;color: white;}
+    .warn{background:orange;color:white;}
+
+    .light-fail{background: #f8bbbb;}
+    .light-warn{background:#f9c86e;}
+    .total{font-weight: 500;}

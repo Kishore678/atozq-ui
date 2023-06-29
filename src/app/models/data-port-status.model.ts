@@ -1,15 +1,18 @@
-export interface DataPortStatus {
+ 
+  export interface DataPortStatus {
     FileName: string
-    GroupStatus: GroupStatu[]
-    TotalActual: number
-    TotalCurrent: number
-    OverallStatus: boolean
+    GroupDetails: GroupDetail[]
+    SourceTotal: number
+    ProcessedTotal: number
+    CacheddTotal: number
+    OverallStatus: any
   }
   
-  export interface GroupStatu {
+  export interface GroupDetail {
     Id: number
     Group: string
-    Actual: number
-    Current: number
-    Status: boolean
+    Source: number
+    Processed: number
+    Cached: number
+    Status: any
   }

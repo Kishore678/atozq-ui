@@ -14,6 +14,7 @@ export class ScriptDetailsDialogComponent implements OnInit {
   local_data:Bseanalytic;
   netProfitStyle:string | any;
   revenueStyle:string | any;
+  pcgStyle:string | any;
   intraday:string | any;
   btst:string | any;
   mis:string | any;
@@ -78,8 +79,10 @@ avg:string | any;
     this.netProfitStyle = net==0?'zeroNP':net<0?'loss':net>0?'profit':'';
 
     let rev = parseFloat(this.local_data.Fund.Rnu);
-    this.revenueStyle = rev==0?'zeroNP':rev<0?'loss':rev>0?'profit':''; 
-    
+    this.revenueStyle = rev==0?'zeroNP':rev<0?'loss':rev>0?'profit':'';     
+
+    let pcg = parseFloat(this.local_data.Fund.PCg);
+    this.pcgStyle = pcg==0?'zeroNP':pcg<0?'loss':pcg>0?'profit':''; 
 
     this.intraday = this.local_data.Fund.Int;
     this.btst = this.local_data.Fund.Bst;    

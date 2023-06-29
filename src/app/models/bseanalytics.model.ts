@@ -9,6 +9,7 @@ export interface BSEDetails {
     Flg: number
     Nme: string
     Grp: string
+    Chat:string
     LTP: number
     Vol: number
     Cnt: number
