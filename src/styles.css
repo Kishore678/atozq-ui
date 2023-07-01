@@ -26,3 +26,16 @@ body { margin: 0;}
   .tooltip-list {
     white-space: pre;
   }
+
+  .tooltip {
+    position: fixed;
+    background-color: black;
+    border-radius: 4px;
+    color: #ffffff;
+    font-family: Arial;
+    padding: 3px 6px;
+    font-size: 13px;
+    margin-top: 5px;
+    transform:translateX(-50%);
+  }
+ 

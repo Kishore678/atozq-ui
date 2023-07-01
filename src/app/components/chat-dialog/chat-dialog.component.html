@@ -1,0 +1,21 @@
+<button class="close" mat-button (click)="close()">X</button>
+<h3 mat-dialog-title>{{chatTitle}}-Chat Room</h3>
+<mat-dialog-content>    
+    <div class="container" *ngFor="let chat of chatLog;index as i">
+        <img src="{{chat.AvatarUrl}}" alt="Avatar" class="{{i/2==0?'':'right'}}">
+        <span class="user-name {{i/2==0?'left':'right'}}" title="{{chat.UserName}}"><span class="dot online"></span>{{chat.UserName}}</span>
+        <p >{{chat.ChatDescription}}</p>
+        <span class="{{i/2==0?'time-right':'time-left'}}">{{chat.PostedOn}}</span>
+      </div>
+
+      <div class="container">
+        <img src="{{avatarUrl}}" alt="Avatar">
+        <span class="user-name left" title="{{userName}}"><span class="dot online"></span>{{userName}}</span>
+        <textarea [ngModel]="chatDescription"></textarea> 
+        <div class="actions"><button mat-raised-button>Send</button><button mat-raised-button>Clear</button></div>
+        </div>
+      
+</mat-dialog-content>
+<!-- <mat-dialog-actions>
+    <button mat-button (click)="closeDialog()" mat-raised-button color="warn">Close</button>
+</mat-dialog-actions> -->

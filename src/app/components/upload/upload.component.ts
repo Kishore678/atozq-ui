@@ -12,6 +12,8 @@ import { ScriptdetailsService } from 'src/app/services/scriptdetails.service';
 import { environment } from 'src/environments/environment';
 import { ScriptDetailsDialogComponent } from '../script-details-dialog/script-details-dialog.component';
 import { BSEDetails, Bseanalytic } from 'src/app/models/bseanalytics.model';
+import { ChatDialogComponent } from '../chat-dialog/chat-dialog.component';
+import { ChatModel } from 'src/app/models/chat-model.model';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -60,6 +62,30 @@ displayedColumns = [
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sortForDataSource;
+  }
+  OpenChat(element:Bseanalytic)
+  {    
+    let model = new ChatModel();
+    model.Code = element.Code;
+    model.Title = element.Nme+'-'+element.Code;
+    const dialogRef = this.dialog.open(ChatDialogComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: 'relative',
+      width: 'relative',
+      panelClass: 'my-dialog',
+      disableClose: false,
+      autoFocus: true,
+      data:model
+    });
+
+    dialogRef.componentInstance.onDoAction.subscribe((d) => {            
+       //do some action
+    });
+
+    dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+      d.dialog.close();
+    }); 
   }
   ngOnInit() {
     this.dsArray.push({key:'All',text:'All'});
@@ -190,6 +216,10 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   //  });
  }
 
+ chatCountDisplay(count:any)
+ {
+  return parseInt(count)>0?"showChatCount":"hideChatCount";
+ }
 
  Browse(url:string)
  {
@@ -215,38 +245,6 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
     this.bseBhavModel = event;
     this.fileName = this.bseBhavModel.FileName;
     this.bseBhavData = this.bseBhavModel.BSEAnalytics;
-//     switch (this.selected) {
-//       case 'All': this.bseBhavData = this.bseBhavModel.fullData;
-//       break;     
-//            case '0-1': this.bseBhavData = this.bseBhavModel.underOneRupeeGroupBXT;
-//            break;   
-//            case '1-2': this.bseBhavData = this.bseBhavModel.underTwoRupeeGroupBXT;
-//            break;
-//            case '2-5': this.bseBhavData = this.bseBhavModel.underFiveRupeeGroupBXT;
-//            break;
-//            case '1-10': this.bseBhavData = this.bseBhavModel.underTenGroupA;         
-//            break;   
-//            case '10-20': this.bseBhavData = this.bseBhavModel.underTwentyGroupA;
-//            break;   
-//            case '20-50': this.bseBhavData = this.bseBhavModel.underFiftyGroupA;
-//            break;   
-//            case '50-100': this.bseBhavData = this.bseBhavModel.underHundredGroupA;
-//            break;   
-//            case '100-200': this.bseBhavData = this.bseBhavModel.underTwoHundredGroupA;
-//            break;   
-//            case '200-500': this.bseBhavData = this.bseBhavModel.underFiveHundredGroupA;
-//            break;   
-//            case '500-1K': this.bseBhavData = this.bseBhavModel.underOneKGroupA;
-//            break;   
-//            case '1K-5K': this.bseBhavData = this.bseBhavModel.underFiveKGroupA;
-//            break;   
-//            case '5K-10K': this.bseBhavData = this.bseBhavModel.underTenKGroupA;
-//            break;   
-//            case '10K-50K': this.bseBhavData = this.bseBhavModel.underFiftyKGroupA;
-//            break;   
-//            case '50K-1L': this.bseBhavData = this.bseBhavModel.underOneLGroupA;
-//            break;  
-//  }
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
   this.dataSource.data = this.bseBhavData;
   this.length = this.bseBhavData.length; 

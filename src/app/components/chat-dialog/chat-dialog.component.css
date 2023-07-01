@@ -1,0 +1,126 @@
+.mat-dialog-container{
+    background: #fdffff;
+}
+  .mat-dialog-title{
+    margin: -15px 5px 0px !important;
+    display: block;
+    color: #297983;
+    font-weight: 500 !important;
+  }
+
+  .close{color: white;
+    background-color: red;
+    margin: 5px;
+    width: 26px;
+    font-size: 16px;
+    font-weight: 500;}
+
+
+    /* Chat containers */
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  /* Darker chat container */
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+
+  .darker img{
+    margin-left: 5px;
+  }
+  
+  /* Clear floats */
+  .container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Style images */
+  .container img{
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 50%;
+  }
+  .container .right{
+    float: right;
+    clear: right;
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .container .left{
+    padding-left: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    float: left;
+    clear: left;
+  }
+  .container .user-name{
+    max-width: 55px;
+    width: 100%;   
+    font-size: 11px;
+    color: white;
+    font-weight: 500;
+    background: #2044af;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid;
+  }
+
+  .container p{
+    text-align:justify;
+    padding: 5px;
+  }
+  
+  /* Style the right image */
+  .container img.right {
+    float: right;
+    margin-right:5px;
+  }
+  
+  /* Style time text */
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }
+
+  .dot {
+    height: 11px;
+    width: 11px;
+    margin-right: 1px; 
+    border-radius: 50%; 
+    display: inline-block;
+  }
+  .online{ background: #18e92f;}
+  .offline{ background: #d7d7d7;}
+  .container textarea
+  {
+    min-width: 200px;
+    height: 76px;
+  }
+  .actions{
+    clear: left;
+    display: block;
+    width: 90%;
+    margin-left: 73px;
+  }
+  .actions button{
+    margin-right: 10px;
+  }

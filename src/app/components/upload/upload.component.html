@@ -29,7 +29,7 @@
       <th mat-header-cell *matHeaderCellDef>
         Chat
       </th>
-      <td mat-cell *matCellDef="let element"> <mat-icon> chat</mat-icon> </td>
+      <td mat-cell *matCellDef="let element" (click)="OpenChat(element)"> <mat-icon>chat</mat-icon><span [ngClass]="chatCountDisplay(element.Chat)">({{element.Chat | number:'2.' }})</span></td>
     </ng-container>
     <ng-container matColumnDef="Grp">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Grp">

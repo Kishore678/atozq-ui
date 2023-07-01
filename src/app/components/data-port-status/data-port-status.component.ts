@@ -45,9 +45,9 @@ refresh()
  if(ok)
  {
   this.http.get(`${apiBaseUrl}/api/stock/refresh`).subscribe({
-    next(value) {     
+    next:(event:any) => {  
+      this.LoadReport();    
       alert('Process Completed.');
-      window.location.reload();      
     },
     error(err)
     {
@@ -56,7 +56,6 @@ refresh()
   });
 }
 }
-
   ViewData(event: DataPortStatus) {
 
     this.fileName = event.FileName;
