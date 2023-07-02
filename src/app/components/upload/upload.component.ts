@@ -68,24 +68,38 @@ displayedColumns = [
     let model = new ChatModel();
     model.Code = element.Code;
     model.Title = element.Nme+'-'+element.Code;
-    const dialogRef = this.dialog.open(ChatDialogComponent, {
-      width: '100%',
-      height: '100%',  
-      maxWidth:'100%',
-      maxHeight:'100%',    
-      disableClose: true,
-      panelClass: 'chat-dialog',
-      autoFocus: true,
-      data:model
-    });
 
-    dialogRef.componentInstance.onDoAction.subscribe((d) => {            
-       //do some action
-    });
+    this.http.get(`${apiBaseUrl}/api/stock/chat`)
+    .subscribe({
+      next: (event:any) => {  
+                 debugger;    
+           model.ChatLog = event;           
+           const dialogRef = this.dialog.open(ChatDialogComponent, {
+            width: '100%',
+            height: '100%',  
+            maxWidth:'100%',
+            maxHeight:'100%',    
+            disableClose: true,
+            panelClass: 'chat-dialog',
+            autoFocus: true,
+            data:model
+          });
+      
+          dialogRef.componentInstance.onDoAction.subscribe((d) => {            
+             //do some action
+          });
+      
+          dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+            d.dialog.close();
+          });
+    },
+    error: (err: HttpErrorResponse) => 
+    {   
+      console.log(err);
+    }
+  });
 
-    dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
-      d.dialog.close();
-    }); 
+    
   }
   ngOnInit() {
     this.dsArray.push({key:'All',text:'All'});

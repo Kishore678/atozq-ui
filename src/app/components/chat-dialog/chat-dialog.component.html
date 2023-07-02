@@ -2,10 +2,10 @@
 <h3 mat-dialog-title>{{chatTitle}}-Chat Room</h3>
 <mat-dialog-content> 
     <div [ngClass]="(i%2===0?'container':'container darker')" *ngFor="let chat of chatLog;index as i;">
-         <img src="{{chat.AvatarUrl}}" alt="Avatar" [ngClass]="(i%2===0?'':'right')">
-        <span [ngClass]="(i%2===0?'user-name left':'user-name right')" title="{{chat.UserName}}"><span [ngClass]="IsOnline(chat.UserName)"></span>{{chat.UserName}}</span>
-        <p >{{chat.ChatDescription}}</p>
-        <span [ngClass]="(i%2===0?'time-right':'time-left')">{{chat.PostedOn}}</span>  
+         <img src="{{chat.avatarUrl}}" alt="Avatar" [ngClass]="(i%2===0?'':'right')">
+        <span [ngClass]="(i%2===0?'user-name left':'user-name right')" title="{{chat.userName}}"><span [ngClass]="IsOnline(chat.userName)"></span>{{chat.userName}}</span>
+        <p >{{chat.message}}</p>
+        <span [ngClass]="(i%2===0?'time-right':'time-left')">{{chat.postedOn | date:'dd-MMM-yyyy h:mm a'}}</span>  
       </div>
 </mat-dialog-content>
 <mat-dialog-actions>

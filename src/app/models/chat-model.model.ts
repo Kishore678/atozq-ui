@@ -2,12 +2,16 @@ export class ChatModel {
     Code!:string
     Title!:string
     Company!:string
-    ChatLog!:ChatLog[]
+    ChatLog!:MessageModel[]
 }
-export interface ChatLog
-{
-    AvatarUrl:string;
-    UserName:string;
-    ChatDescription:string;
-    PostedOn:string;
-}
+
+export class MessageModel  
+   {  
+    userId!:string;
+    type!:string;
+    message!:string;
+    avatarUrl!:string;
+    userName!:string;
+    postedOn!:Date;
+    }
+   

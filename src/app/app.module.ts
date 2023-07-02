@@ -39,6 +39,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { TooltipListPipe } from './pipes/tooltip-list.pipe';
 import { DataPortStatusComponent } from './components/data-port-status/data-port-status.component';
 import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
+import { ChatService } from './services/chat.service';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent],
@@ -52,7 +53,7 @@ import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.compon
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService],
+  providers: [DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
