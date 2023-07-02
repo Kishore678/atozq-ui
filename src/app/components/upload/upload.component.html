@@ -1,3 +1,4 @@
+	<div class="bg-layer">
 <div class="filter">
 <span style="float:left;padding:1px;"><label class="filename"><b>BSE:&nbsp;</b>{{fileName}}</label></span>
   <mat-select [(value)]="selected" (selectionChange)="handleClick()">    
@@ -102,6 +103,9 @@
 	</table>
 	<mat-paginator [pageSizeOptions]="[5, 10, 20,30,40,50,100]" [pageSize]="size" showFirstLastButtons></mat-paginator>
 </section>
+
+</div>
+
 
 
 

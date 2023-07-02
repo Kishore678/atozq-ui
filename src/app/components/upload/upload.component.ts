@@ -69,12 +69,12 @@ displayedColumns = [
     model.Code = element.Code;
     model.Title = element.Nme+'-'+element.Code;
     const dialogRef = this.dialog.open(ChatDialogComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      height: 'relative',
-      width: 'relative',
-      panelClass: 'my-dialog',
-      disableClose: false,
+      width: '100%',
+      height: '100%',  
+      maxWidth:'100%',
+      maxHeight:'100%',    
+      disableClose: true,
+      panelClass: 'my-panel-class',
       autoFocus: true,
       data:model
     });

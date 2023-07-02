@@ -11,13 +11,14 @@
   position: relative;
 min-height: 100vh;
 }
-.link{
-  font:inherit;
-}
 .bg-layer {
   background: rgba(255, 255, 255, 0.7);
 min-height: 100vh;
 }
+.link{
+  font:inherit;
+}
+
 /*-- //slide --*/
 
 /*--header start here--*/

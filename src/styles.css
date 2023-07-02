@@ -38,4 +38,18 @@ body { margin: 0;}
     margin-top: 5px;
     transform:translateX(-50%);
   }
- 
+
+.mat-app-background {
+    background-color: #ffffff;
+    color: rgba(0,0,0,.87);
+}
+
+.my-panel-class .mat-dialog-container{ 
+  border: 5px double rgba(0, 0, 0, .4);
+  background-color: aquamarine;
+  color: rgba(0,0,0,0.8);
+  font-style: italic;
+  overflow: hidden;
+  position: absolute;
+  /* Add more styles */
+}
