@@ -11,9 +11,9 @@ body { margin: 0;}
     color: #fff!important;
   }
 
-  .cdk-overlay-pane.my-dialog {
+  /* .cdk-overlay-pane.my-dialog {
     position: relative!important;
-  }
+  } */
   .close.mat-button {
     position: absolute;
     top: 0;
@@ -44,11 +44,18 @@ body { margin: 0;}
     color: rgba(0,0,0,.87);
 }
 
-.my-panel-class .mat-dialog-container{ 
+.chat-dialog .mat-dialog-container{ 
   border: 5px double rgba(0, 0, 0, .4);
   background-color: aquamarine;
   color: rgba(0,0,0,0.8);
   font-style: italic;
+  overflow: hidden;
+  position: absolute;
+  /* Add more styles */
+}
+
+.fundamental-dialog .mat-dialog-container{ 
+  border: 5px double rgba(0, 0, 0, .4);  
   overflow: hidden;
   position: absolute;
   /* Add more styles */

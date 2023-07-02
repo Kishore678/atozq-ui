@@ -84,3 +84,6 @@ th, td {
     width: 26px;
     font-size: 16px;
     font-weight: 500;}
+    .mat-dialog-content{
+      max-height: 100%;
+    }

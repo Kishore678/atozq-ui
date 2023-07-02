@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Bseanalytic, Nw } from 'src/app/models/bseanalytics.model';
-import { Scriptdetails } from 'src/app/models/scriptdetails.model';
 
 @Component({
   selector: 'app-script-details-dialog',
@@ -154,14 +153,17 @@ avg:string | any;
 
   closeDialog(){
     this.onCloseDialog.emit({dialog:this.dialogRef});
+    document.body.style.overflow = 'hidden';
   }
 
   ngOnInit(): void {
+    document.body.style.overflow = 'hidden';
   }
 
   close()
   {
     this.dialogRef.close();
+    document.body.style.overflow = 'scroll';
   }
 
 }

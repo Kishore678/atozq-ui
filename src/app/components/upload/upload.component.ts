@@ -74,7 +74,7 @@ displayedColumns = [
       maxWidth:'100%',
       maxHeight:'100%',    
       disableClose: true,
-      panelClass: 'my-panel-class',
+      panelClass: 'chat-dialog',
       autoFocus: true,
       data:model
     });
@@ -196,12 +196,12 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
  {
   //  this.scriptDetailService.GetScriptDetails(element.sC_CODE).subscribe(res=>{    
       const dialogRef = this.dialog.open(ScriptDetailsDialogComponent, {
-        maxWidth: '100vw',
-        maxHeight: '100vh',
-        height: 'relative',
-        width: 'relative',
-        panelClass: 'my-dialog',
-        disableClose: false,
+        width: '100%',
+        height: '100%',  
+        maxWidth:'100%',
+        maxHeight:'100%',    
+        disableClose: true,
+        panelClass: 'fundamental-dialog',
         autoFocus: true,
         data:element
       });
