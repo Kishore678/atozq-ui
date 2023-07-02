@@ -14,9 +14,13 @@
     <span class="user-name left" title="{{userName}}"><span class="dot online"></span>{{userName}}</span>
     <textarea [(ngModel)]="chatDescription"></textarea> 
     <div class="actions">
-      <button mat-button mat-raised-button color="primary" (click)="Send()">Send</button>
-      <button mat-button mat-raised-button color="accent" (click)="Clear()">Clear</button>
-      <button mat-button mat-raised-button color="warn" (click)="closeDialog()">Close</button> 
+      <section class="pull-left" align="start">
+        <button mat-raised-button color="warn" (click)="closeDialog()"> Cancel </button>
+        <button mat-raised-button color="primary" (click)="Send()"> Submit </button>
+      </section>      
+      <!-- <button mat-button mat-raised-button color="primary" (click)="Send()">Send</button>
+      <button mat-button mat-raised-button color="accent" (click)="Clear()">Clear</button> -->
+      <!-- <button mat-button mat-raised-button color="warn" (click)="closeDialog()">Close</button>  -->
     </div>
   </div>
 </mat-dialog-actions>

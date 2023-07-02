@@ -71,9 +71,9 @@
   max-width: 55px;
   width: 100%;
   font-size: 11px;
-  color: white;
+  color: #ffffff;
   font-weight: 500;
-  background: #2044af;
+  background: #297983;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -122,19 +122,19 @@
 
 .mat-dialog-actions .container {
   width: 100%;
+  background: beige;
 }
 
 .mat-dialog-actions .container textarea {
-  width: 70%;
-  height: 70px;
+  width: 50%;
+  height: 40px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   resize: none;
 }
 
-.mat-dialog-actions .container .actions {
-  clear: left;
+.mat-dialog-actions .container .actions { 
   display: block;
   width: 90%;
   margin-left: 73px;
