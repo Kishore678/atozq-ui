@@ -22,6 +22,7 @@
     "@angular/router": "^14.2.0",
     "@auth0/angular-jwt": "^5.1.0",
     "@microsoft/signalr": "^7.0.7",
+    "@rajesh896/broprint.js": "^2.1.1",
     "ngx-device-detector": "^4.0.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

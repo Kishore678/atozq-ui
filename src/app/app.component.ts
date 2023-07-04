@@ -6,10 +6,12 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { SpinnerService } from './services/spinner.service';
 import { DatePipe } from '@angular/common';
-import { Subscription, map, share, timeInterval, timer } from 'rxjs';
+import { Subscription, map, share, timeInterval, timeout, timer } from 'rxjs';
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
+import { UserIDService } from './services/user-id.service';
+import {ATOZQSettings} from 'src/constants/ATOZQSettings'
 const onlineUsersApi = environment.onlineUsersApi;
 /** @title Responsive sidenav */
 @Component({
@@ -34,11 +36,15 @@ export class AppComponent implements OnDestroy {
   subscription: Subscription | undefined;
   deviceInfo:DeviceInfo | undefined;
   
-  constructor(private deviceDetectorService: DeviceDetectorService,private datepipe:DatePipe,public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
+  constructor(private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService,private datepipe:DatePipe,public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
-    
+    userIdService.getUserId().then((userId)=>{
+      ATOZQSettings.userid = userId;
+      ATOZQSettings.username = 'Anonymous-'+userId;
+
+    });
     // this.dt =this.datepipe.transform((new Date), 'MM/dd/yyyy hh:mm:ss');
     // // Using Basic Interval
     // this.intervalId = setInterval(() => {
@@ -60,27 +66,20 @@ export class AppComponent implements OnDestroy {
        this.dt = time;
      });
 
-    this.deviceInfo = this.deviceDetectorService.getDeviceInfo();
-    var userid = this.deviceInfo.browser+
-    this.deviceInfo.browser_version+
-    this.deviceInfo.device+
-    this.deviceInfo.deviceType+
-    this.deviceInfo.os+
-    this.deviceInfo.os_version+
-    this.deviceInfo.userAgent;
 
-    this._hubConnection = new HubConnectionBuilder()
-  .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${userid}`,{ withCredentials: false})  
-  .build();
+     setTimeout(()=>{                          
+      this._hubConnection = new HubConnectionBuilder()
+      .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
+      .build();      
+      this._hubConnection.on('UpdateOnlineUsers', (online,visited) => {
+        this.online=online;
+        this.visited=visited;
+      });      
+      this._hubConnection.start();
+  }, 3000);
 
-  this._hubConnection.on('UpdateOnlineUsers', (online,visited) => {
-    this.online=online;
-    this.visited=visited;
-  });
-
-  this._hubConnection.start();
-
-   
+        
+     
   }
   
   ngAfterContentChecked(): void {   

@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
 import { ChatModel, MessageModel, UpdateChatModel } from 'src/app/models/chat-model.model';
 import { ChatService } from 'src/app/services/chat.service';
-
+import {ATOZQSettings} from 'src/constants/ATOZQSettings'
 import { environment } from 'src/environments/environment';
 const apiBaseUrl = environment.apiBaseUrl;
 @Component({
@@ -15,7 +15,7 @@ const apiBaseUrl = environment.apiBaseUrl;
 export class ChatDialogComponent  {
   userid!:string;
   chatTitle!:string;
-  avatarUrl!:string;
+  avatar!:string;
   userName!:string;
   chatDescription!:string;
   postedOn!:string;  
@@ -27,16 +27,16 @@ export class ChatDialogComponent  {
   constructor(private http:HttpClient,private chatService:ChatService, private _ngZone: NgZone  , private deviceDetectorService: DeviceDetectorService,
 
     public dialogRef: MatDialogRef<ChatDialogComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
-    { 
+    {
       this.messages = data.Messages;
       this.chatTitle = data.Title;
-      this.userid = this.userid;
-      this.avatarUrl = 'https://img.freepik.com/free-icon/user_318-159711.jpg';
-      this.userName = 'Anonymous-'+this.userid;  
+      this.userid = ATOZQSettings.userid;
+      this.avatar = ATOZQSettings.avatar;
+      this.userName = ATOZQSettings.username;  
       
       let updateStatus = new UpdateChatModel();
       this.messages.forEach((value)=>{
-        if(value.status!=4 && value.userId!=this.userid)
+        if(value.status!=4 && value.userId!=ATOZQSettings.userid)
         updateStatus.Ids.push(value.messageid);
       });
     
@@ -51,11 +51,6 @@ export class ChatDialogComponent  {
     this.subscribeToEvents(); 
     }
 
-    ngAfterViewInit()
-    {
-      
-     
-    }
 generate_uuidv4() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
       function(c) {
@@ -64,13 +59,12 @@ generate_uuidv4() {
       });
    }
 Send()
-{
-  debugger;
+{   
   if (this.chatDescription) {  
     this.message = new MessageModel();  
-    this.message.userId = this.userid;
-    this.message.avatarUrl='https://img.freepik.com/free-icon/user_318-159711.jpg';  
-    this.message.userName = 'Anonymous-'+this.userid;  
+    this.message.userId = `${this.userid}`;
+    this.message.avatarUrl= this.avatar;  
+    this.message.userName = this.userName;  
     this.message.type = "sent";  
     this.message.status = 1; 
     this.message.message = this.chatDescription;  
@@ -79,14 +73,15 @@ Send()
     this.messages.unshift(this.message);
     this.chatService.sendMessage(this.message);     
   }  
-
   this.Clear();
 }
+
 Clear()
 {
 this.chatDescription='';
 }
-deviceInfo:DeviceInfo | undefined;
+
+
 
   ngOnInit(): void {
   document.body.style.overflow = 'hidden';
@@ -119,7 +114,7 @@ IsOnline(userName:string)
 
   private subscribeToEvents(): void { 
     this.chatService.messageReceived.subscribe((message: MessageModel) => {  
-      this._ngZone.run(() => {   
+      this._ngZone.run(() => {  
         if(message.userId!=this.userid)
         {     
         this.messages.unshift(message); 
@@ -130,7 +125,7 @@ IsOnline(userName:string)
             {
             value.status = message.status; 
             }
-          });
+          });       
         
       });  
     });  

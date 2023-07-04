@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';  
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';  
+import { HubConnection, HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';  
 import { MessageModel } from '../models/chat-model.model';  
 import { environment } from 'src/environments/environment';
 const onlineUsersApi = environment.onlineUsersApi;
@@ -33,6 +33,14 @@ export class ChatService {
   }  
   
   private startConnection(): void {  
+
+    if(this._hubConnection.state==HubConnectionState.Connected)
+    {
+
+    }
+    else
+    {    
+    this._hubConnection.stop();
     const _self = this;
     this._hubConnection  
       .start()  
@@ -46,6 +54,7 @@ export class ChatService {
         console.log('Error while establishing connection, retrying...');  
         setTimeout(function () { _self.startConnection(); }, 5000);  
       });  
+    }
   }  
   
   private registerOnServerEvents(): void {  

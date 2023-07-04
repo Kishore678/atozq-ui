@@ -71,8 +71,7 @@ displayedColumns = [
 
     this.http.get(`${apiBaseUrl}/api/stock/chat`)
     .subscribe({
-      next: (event:any) => {  
-                 debugger;    
+      next: (event:any) => {                  
            model.Messages = event;           
            const dialogRef = this.dialog.open(ChatDialogComponent, {
             width: '100%',
