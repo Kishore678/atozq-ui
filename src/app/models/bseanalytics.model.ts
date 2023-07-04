@@ -1,8 +1,13 @@
 export interface BSEDetails {
     FileName: string
-    BSEAnalytics: Bseanalytic[]
+    BSEAnalytics: Bseanalytic[],
+    ChatCount:ChatCount[]
   }
-  
+  export interface ChatCount
+  {
+    ChatID:string  
+    Count:number
+  }
   export interface Bseanalytic {
     Id: number
     Code: string

@@ -192,7 +192,7 @@ mat-form-field + mat-form-field {
 }
 .mat-column-Chat
 {
-width: 5px;
+width: 50px;
 }
 .mat-column-Chat .mat-icon
 {
@@ -208,10 +208,19 @@ width: 5px;
 .showChatCount
 {
   display: block;
+  color:black;
+  font-weight: 500;
 }
 .hideChatCount
 {
   display: none;
+}
+
+.chat-icon
+{
+  vertical-align: middle;
+  float:left;
+  color:#25ec25;
 }
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type

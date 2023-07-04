@@ -14,6 +14,7 @@ export class MessageModel
     avatarUrl!:string;
     userName!:string;
     status!:number;//1-sent, 2-delivered
+    chatId!:string;
     postedOn!:Date;
     }
 

@@ -11,7 +11,7 @@ import { Scriptdetails } from 'src/app/models/scriptdetails.model';
 import { ScriptdetailsService } from 'src/app/services/scriptdetails.service';
 import { environment } from 'src/environments/environment';
 import { ScriptDetailsDialogComponent } from '../script-details-dialog/script-details-dialog.component';
-import { BSEDetails, Bseanalytic } from 'src/app/models/bseanalytics.model';
+import { BSEDetails, Bseanalytic, ChatCount } from 'src/app/models/bseanalytics.model';
 import { ChatDialogComponent } from '../chat-dialog/chat-dialog.component';
 import { ChatModel } from 'src/app/models/chat-model.model';
 
@@ -59,6 +59,7 @@ displayedColumns = [
 
   dataSource = new MatTableDataSource<Bseanalytic>();
   selected = '0-1';
+  ChatCount!: ChatCount[];
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sortForDataSource;
@@ -69,7 +70,7 @@ displayedColumns = [
     model.Code = element.Code;
     model.Title = element.Nme+'-'+element.Code;
 
-    this.http.get(`${apiBaseUrl}/api/stock/chat`)
+    this.http.get(`${apiBaseUrl}/api/chat/log?code=${element.Code}`)
     .subscribe({
       next: (event:any) => {                  
            model.Messages = event;           
@@ -117,7 +118,7 @@ this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
 this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
-    this.http.get(`${apiBaseUrl}/api/stock?grp=${this.selected}`)
+    this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}`)
     .subscribe({
       next: (event:any) => { 
      this.LoadDataSource(event);
@@ -193,9 +194,9 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
     return returnContent;
   }
   
-  handleClick() {
+  SelectionChanged() {
 
-    this.http.get(`${apiBaseUrl}/api/stock?grp=${this.selected}`)
+    this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}`)
     .subscribe({
       next: (event:any) => { 
      this.LoadDataSource(event);
@@ -205,6 +206,12 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   
   
  }
+
+ GetChatCount(code:string)
+ {
+  return this.ChatCount.find(f=>f.ChatID==code)?.Count??0;
+ }
+
  ViewDetails(element:any)
  {
   //  this.scriptDetailService.GetScriptDetails(element.sC_CODE).subscribe(res=>{    
@@ -229,9 +236,9 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   //  });
  }
 
- chatCountDisplay(count:any)
+ chatCountDisplay(count:number)
  {
-  return parseInt(count)>0?"showChatCount":"hideChatCount";
+  return count>0?"showChatCount":"hideChatCount";
  }
 
  Browse(url:string)
@@ -256,6 +263,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   { 
     this.dataSource.data  = [];
     this.bseBhavModel = event;
+    this.ChatCount = this.bseBhavModel.ChatCount;
     this.fileName = this.bseBhavModel.FileName;
     this.bseBhavData = this.bseBhavModel.BSEAnalytics;
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {

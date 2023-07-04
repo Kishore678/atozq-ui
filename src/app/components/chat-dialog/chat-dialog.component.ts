@@ -14,6 +14,7 @@ const apiBaseUrl = environment.apiBaseUrl;
 })
 export class ChatDialogComponent  {
   userid!:string;
+  chatId!:string;
   chatTitle!:string;
   avatar!:string;
   userName!:string;
@@ -28,6 +29,7 @@ export class ChatDialogComponent  {
 
     public dialogRef: MatDialogRef<ChatDialogComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
     {
+      this.chatId = data.Code;
       this.messages = data.Messages;
       this.chatTitle = data.Title;
       this.userid = ATOZQSettings.userid;
@@ -41,7 +43,7 @@ export class ChatDialogComponent  {
       });
     
       if(updateStatus.Ids.length>0){    
-        this.http.post<UpdateChatModel>(`${apiBaseUrl}/api/chat`,updateStatus).subscribe({          
+        this.http.post<UpdateChatModel>(`${apiBaseUrl}/api/chat/update`,updateStatus).subscribe({          
             next:(event:any) => { }, 
             error:(err)=>{}
         });
@@ -62,6 +64,7 @@ Send()
 {   
   if (this.chatDescription) {  
     this.message = new MessageModel();  
+    this.message.chatId = `${this.chatId}`;
     this.message.userId = `${this.userid}`;
     this.message.avatarUrl= this.avatar;  
     this.message.userName = this.userName;  
