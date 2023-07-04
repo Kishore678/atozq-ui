@@ -97,6 +97,14 @@
   color: #aaa;
 }
 
+.container .time-right .mat-icon{
+  vertical-align: middle;
+}
+.container .time-left .mat-icon{
+  vertical-align: middle;  
+}
+
+
 /* Style time text */
 .time-left {
   float: left;

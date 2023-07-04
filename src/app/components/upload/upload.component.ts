@@ -73,7 +73,7 @@ displayedColumns = [
     .subscribe({
       next: (event:any) => {  
                  debugger;    
-           model.ChatLog = event;           
+           model.Messages = event;           
            const dialogRef = this.dialog.open(ChatDialogComponent, {
             width: '100%',
             height: '100%',  

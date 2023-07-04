@@ -2,8 +2,9 @@ import { HttpErrorResponse,HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Inject, NgZone, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
-import { ChatModel, MessageModel } from 'src/app/models/chat-model.model';
+import { ChatModel, MessageModel, UpdateChatModel } from 'src/app/models/chat-model.model';
 import { ChatService } from 'src/app/services/chat.service';
+
 import { environment } from 'src/environments/environment';
 const apiBaseUrl = environment.apiBaseUrl;
 @Component({
@@ -14,13 +15,10 @@ const apiBaseUrl = environment.apiBaseUrl;
 export class ChatDialogComponent  {
   userid!:string;
   chatTitle!:string;
-  chatLog!:MessageModel[];
   avatarUrl!:string;
   userName!:string;
   chatDescription!:string;
   postedOn!:string;  
-  
-  uniqueID: string = new Date().getTime().toString();  
   messages = new Array<MessageModel>();  
   message = new MessageModel();  
   messageReceived = new EventEmitter<MessageModel>(); 
@@ -28,37 +26,57 @@ export class ChatDialogComponent  {
 
   constructor(private http:HttpClient,private chatService:ChatService, private _ngZone: NgZone  , private deviceDetectorService: DeviceDetectorService,
 
-    public dialogRef: MatDialogRef<ChatDialogComponent>,
- 
-    //@Optional() is used to prevent error if no data is passed
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
+    public dialogRef: MatDialogRef<ChatDialogComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
     { 
-      this.chatLog = data.ChatLog;
-      this.chatTitle = data.Title; 
+      this.messages = data.Messages;
+      this.chatTitle = data.Title;
+      this.userid = this.userid;
       this.avatarUrl = 'https://img.freepik.com/free-icon/user_318-159711.jpg';
-      this.userName = 'Anonymous';  
+      this.userName = 'Anonymous-'+this.userid;  
+      
+      let updateStatus = new UpdateChatModel();
+      this.messages.forEach((value)=>{
+        if(value.status!=4 && value.userId!=this.userid)
+        updateStatus.Ids.push(value.messageid);
+      });
+    
+      if(updateStatus.Ids.length>0){    
+        this.http.post<UpdateChatModel>(`${apiBaseUrl}/api/chat`,updateStatus).subscribe({          
+            next:(event:any) => { }, 
+            error:(err)=>{}
+        });
+      }
+  
 
-    this.deviceInfo = this.deviceDetectorService.getDeviceInfo();
-    this.userid = this.deviceInfo.browser+
-    this.deviceInfo.browser_version+
-    this.deviceInfo.device+
-    this.deviceInfo.deviceType+
-    this.deviceInfo.os+
-    this.deviceInfo.os_version+
-    this.deviceInfo.userAgent;
     this.subscribeToEvents(); 
     }
 
-
+    ngAfterViewInit()
+    {
+      
+     
+    }
+generate_uuidv4() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
+      function(c) {
+         var uuid = Math.random() * 16 | 0, v = c == 'x' ? uuid : (uuid & 0x3 | 0x8);
+         return uuid.toString(16);
+      });
+   }
 Send()
 {
+  debugger;
   if (this.chatDescription) {  
     this.message = new MessageModel();  
     this.message.userId = this.userid;
-    this.message.userName='Anonymous';  
+    this.message.avatarUrl='https://img.freepik.com/free-icon/user_318-159711.jpg';  
+    this.message.userName = 'Anonymous-'+this.userid;  
     this.message.type = "sent";  
+    this.message.status = 1; 
     this.message.message = this.chatDescription;  
+    this.message.messageid = this.generate_uuidv4();
     this.message.postedOn = new Date();
+    this.messages.unshift(this.message);
     this.chatService.sendMessage(this.message);     
   }  
 
@@ -101,8 +119,19 @@ IsOnline(userName:string)
 
   private subscribeToEvents(): void { 
     this.chatService.messageReceived.subscribe((message: MessageModel) => {  
-      this._ngZone.run(() => {        
-        this.chatLog.unshift(message); 
+      this._ngZone.run(() => {   
+        if(message.userId!=this.userid)
+        {     
+        this.messages.unshift(message); 
+        }
+     
+          this.messages.forEach((value)=>{
+            if(message.messageid==value.messageid)
+            {
+            value.status = message.status; 
+            }
+          });
+        
       });  
     });  
   }    
