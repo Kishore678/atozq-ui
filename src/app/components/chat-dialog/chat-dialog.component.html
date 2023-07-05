@@ -1,5 +1,5 @@
 <button class="close" mat-button (click)="close()">X</button>
-<h3 mat-dialog-title>{{chatTitle}}-Chat Room</h3>
+<h3 mat-dialog-title>{{chatTitle}} - <span class="dot online"></span>&nbsp;Live Chat Room</h3>
 <mat-dialog-content> 
     <div [ngClass]="(i%2===0?'container':'container darker')" *ngFor="let message of messages;index as i;">
          <img src="{{message.avatarUrl}}" alt="Avatar" [ngClass]="(i%2===0?'':'right')">
@@ -13,16 +13,13 @@
 <mat-dialog-actions>
   <div class="container">
     <img src="{{avatar}}" alt="Avatar">
-    <span class="user-name left" title="{{userName}}"><span class="dot online"></span>{{userName}}</span>
-    <textarea [(ngModel)]="chatDescription"></textarea> 
-    <div class="actions">
+    <span class="user-name left" title="{{userName}}"><span class="dot online"></span>{{userName}}</span>    
       <section class="pull-left" align="start">
-        <button mat-raised-button color="warn" (click)="closeDialog()"> Cancel </button>
-        <button mat-raised-button color="primary" (click)="Send()"> Submit </button>
-      </section>      
-      <!-- <button mat-button mat-raised-button color="primary" (click)="Send()">Send</button>
-      <button mat-button mat-raised-button color="accent" (click)="Clear()">Clear</button> -->
-      <!-- <button mat-button mat-raised-button color="warn" (click)="closeDialog()">Close</button>  -->
+        <form class="msger-inputarea">         
+          <input type="text" class="msger-input" name="chatDescription" [(ngModel)]="chatDescription" placeholder="Enter your message...">
+          <button class="msger-send-btn" (click)="Send()"><mat-icon>send</mat-icon></button>
+        </form>      
+      </section> 
     </div>
-  </div>
+
 </mat-dialog-actions>

@@ -42,7 +42,7 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener); 
     userIdService.getUserId().then((userId)=>{
       ATOZQSettings.userid = userId;
-      ATOZQSettings.username = 'Anonymous-'+userId;
+      ATOZQSettings.username = userId+'-'+'Anonymous';
 
     });
     // this.dt =this.datepipe.transform((new Date), 'MM/dd/yyyy hh:mm:ss');

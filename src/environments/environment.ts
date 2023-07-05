@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiBaseUrl:'http://localhost:59816',
-  onlineUsersApi:'http://localhost:24288'
+  onlineUsersApi:'http://localhost:5059'
 };
 
 /*

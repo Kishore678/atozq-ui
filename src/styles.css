@@ -44,13 +44,18 @@ body { margin: 0;}
     color: rgba(0,0,0,.87);
 }
 
+.cdk-overlay-pane .chat-dialog
+{
+  background: #ffffff;
+}
 .chat-dialog .mat-dialog-container{ 
-  border: 5px double rgba(0, 0, 0, .4);
-  background-color: #ffffff;
-  color: rgba(0,0,0,0.8);
-  font-family: Arial, Helvetica, sans-serif;
+  border: 5px double #ffffffd4;
+  background: #297983;
+  color: #000c;
+  font-family: Arial,Helvetica,sans-serif;
   overflow: hidden;
   position: absolute;
+  border-radius: 19px;
   /* Add more styles */
 }
 
