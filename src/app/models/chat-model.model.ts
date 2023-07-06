@@ -2,6 +2,7 @@ export class ChatModel {
     Code!:string
     Title!:string
     Company!:string
+    partyId!:string
     Messages!:MessageModel[]
 }
 
@@ -15,6 +16,7 @@ export class MessageModel
     userName!:string;
     status!:number;//1-sent, 2-delivered
     chatId!:string;
+    partyId!:string;
     postedOn!:Date;
     }
 

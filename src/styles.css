@@ -44,8 +44,7 @@ body { margin: 0;}
     color: rgba(0,0,0,.87);
 }
 
-.cdk-overlay-pane .chat-dialog
-{
+.chat-dialog{
   background: #ffffff;
 }
 .chat-dialog .mat-dialog-container{ 

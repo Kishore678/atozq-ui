@@ -15,6 +15,7 @@ const apiBaseUrl = environment.apiBaseUrl;
 export class ChatDialogComponent  {
   userid!:string;
   chatId!:string;
+  partyId!:string;
   chatTitle!:string;
   avatar!:string;
   userName!:string;
@@ -30,6 +31,7 @@ export class ChatDialogComponent  {
     public dialogRef: MatDialogRef<ChatDialogComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
     {
       this.chatId = data.Code;
+      this.partyId = data.partyId;
       this.messages = data.Messages;
       this.chatTitle = data.Title;
       this.userid = ATOZQSettings.userid;
@@ -65,6 +67,7 @@ Send()
   if (this.chatDescription) {  
     this.message = new MessageModel();  
     this.message.chatId = `${this.chatId}`;
+    this.message.partyId = `${this.partyId}`;
     this.message.userId = `${this.userid}`;
     this.message.avatarUrl= this.avatar;  
     this.message.userName = this.userName;  
@@ -118,9 +121,14 @@ IsOnline(userName:string)
   private subscribeToEvents(): void { 
     this.chatService.messageReceived.subscribe((message: MessageModel) => {  
       this._ngZone.run(() => {  
-        if(message.userId!=this.userid)
+        if(message.userId!=this.userid && this.partyId==null)
         {     
         this.messages.unshift(message); 
+        }
+
+        if(message.userId!=this.userid && message.partyId!=null && this.partyId==message.partyId)
+        {
+        this.messages.unshift(message);           
         }
      
           this.messages.forEach((value)=>{

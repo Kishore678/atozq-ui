@@ -68,7 +68,7 @@ displayedColumns = [
   {    
     let model = new ChatModel();
     model.Code = element.Code;
-    model.Title = element.Nme+'-'+element.Code;
+    model.Title = element.Nme;
 
     this.http.get(`${apiBaseUrl}/api/chat/log?code=${element.Code}`)
     .subscribe({
@@ -263,14 +263,27 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   { 
     this.dataSource.data  = [];
     this.bseBhavModel = event;
-    this.ChatCount = this.bseBhavModel.ChatCount;
-    this.fileName = this.bseBhavModel.FileName;
+    this.ChatCount = this.bseBhavModel.ChatCount;    
     this.bseBhavData = this.bseBhavModel.BSEAnalytics;
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
   this.dataSource.data = this.bseBhavData;
   this.length = this.bseBhavData.length; 
+  this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(2,8),2);
 }); 
 
+  }
+formateToDate(inputString:string,n:number)
+  {   
+let insertChar = "-";
+let outputString = "";
+for (let i = 0; i < inputString.length; i += n) {
+   let slice = inputString.slice(i, i + n);
+   if(slice.length==n)
+      outputString += slice + insertChar;
+   else
+      outputString += slice;
+}
+return outputString;
   }
 
   sorter = (a:any, b:any) => {

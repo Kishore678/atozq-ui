@@ -12,7 +12,12 @@ import { environment } from 'src/environments/environment';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
 import { UserIDService } from './services/user-id.service';
 import {ATOZQSettings} from 'src/constants/ATOZQSettings'
+import { ChatModel } from './models/chat-model.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 const onlineUsersApi = environment.onlineUsersApi;
+const apiBaseUrl = environment.apiBaseUrl;
 /** @title Responsive sidenav */
 @Component({
   selector: 'app-root',
@@ -36,7 +41,7 @@ export class AppComponent implements OnDestroy {
   subscription: Subscription | undefined;
   deviceInfo:DeviceInfo | undefined;
   
-  constructor(private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService,private datepipe:DatePipe,public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
+  constructor(private http:HttpClient, private dialog: MatDialog,private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService,private datepipe:DatePipe,public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
@@ -53,7 +58,49 @@ export class AppComponent implements OnDestroy {
 
     
   }
+  OpenAskChat(model: ChatModel) {
+    const dialogRef = this.dialog.open(ChatDialogComponent, {
+      width: '100%',
+      height: '100%',  
+      maxWidth:'100%',
+      maxHeight:'100%',    
+      disableClose: true,
+      panelClass: 'chat-dialog',
+      autoFocus: true,
+      data:model
+    });
+  
+    dialogRef.componentInstance.onDoAction.subscribe((d) => {            
+       //do some action
+    });
+  
+    dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+      d.dialog.close();
+    });
+  }
 
+  OpenChat()
+  {    
+    let model = new ChatModel();
+    model.Code = 'ASK-ATOZQ';
+    model.Title = 'ASK';
+    model.partyId = ATOZQSettings.userid;
+    this.http.get(`${apiBaseUrl}/api/chat/log?code=${'ASK-ATOZQ'}&partyId=${ATOZQSettings.userid}`)
+    .subscribe({
+      next: (event:any) => {                  
+           model.Messages = event;           
+           this.OpenAskChat(model);
+    },
+    error: (err: HttpErrorResponse) => 
+    {   
+      console.log(err);
+      model.Messages = [];
+      this.OpenAskChat(model);
+    }
+  });
+
+    
+  }
   ngOnInit()
   {
      // Using RxJS Timer
@@ -100,4 +147,6 @@ export class AppComponent implements OnDestroy {
     this.router.navigate(["/account/logout"]);
   }
 }
+
+
 
