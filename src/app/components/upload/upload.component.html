@@ -1,11 +1,18 @@
 	<div class="bg-layer">
 <div class="filter">
-<span style="float:left;padding:1px;"><label class="filename"><b>BSE EQ:&nbsp;</b></label></span>
+<div style="float:left;display:block;">
+  <label class="filename"><b>BSE EQ:&nbsp;</b></label>
+</div>
+<div style="float:left;display:block;">
   <mat-select [(value)]="selected" (selectionChange)="SelectionChanged()">    
     <mat-option *ngFor="let b of dsArray" value="{{b.key}}">{{b.text}}</mat-option>   
   </mat-select> 
-  <span>&nbsp;{{fileName|date}}</span>
 </div>
+<div style="float:left;display:block;">
+    <label class="filename"><b>&nbsp;Date:&nbsp;</b></label>{{fileName}}
+</div>
+</div>
+<div style="clear:both;"></div>
 <section class="table-container mat-elevation-z8" tabindex="0">
 	<table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="Flg">

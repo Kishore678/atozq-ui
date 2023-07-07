@@ -278,7 +278,7 @@ let insertChar = "-";
 let outputString = "";
 for (let i = 0; i < inputString.length; i += n) {
    let slice = inputString.slice(i, i + n);
-   if(slice.length==n)
+   if(slice.length==n && i + n < inputString.length)
       outputString += slice + insertChar;
    else
       outputString += slice;

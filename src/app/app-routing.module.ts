@@ -17,6 +17,7 @@ import { DetailComponent } from './components/detail/detail.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { LogComponent } from './components/log/log.component';
 import { DataPortStatusComponent } from './components/data-port-status/data-port-status.component';
+import { AnonymousComponent } from './components/anonymous/anonymous.component';
 
 const routes: Routes = [
   {path:'',component:UploadComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:'account/profile',component:ResetpassComponent},
   {path:'account/resetpass/:user/:token',component:ResetpassComponent},
   {path:'account/logout',component:LogoutComponent},
+  {path:'account/anonymous',component:AnonymousComponent},
   {path:'app/referral',component:ReferralComponent},
   {path:'app/detail/:id',component:DetailComponent},
   {path:'app/shopping',component:ShoppingComponent},

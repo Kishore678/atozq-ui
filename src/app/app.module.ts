@@ -41,9 +41,10 @@ import { DataPortStatusComponent } from './components/data-port-status/data-port
 import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
 import { ChatService } from './services/chat.service';
 import { UserIDService } from './services/user-id.service';
+import { AnonymousComponent } from './components/anonymous/anonymous.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,

@@ -16,6 +16,7 @@ import { ChatModel } from './models/chat-model.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { UserModel } from './models/user.model';
 const onlineUsersApi = environment.onlineUsersApi;
 const apiBaseUrl = environment.apiBaseUrl;
 /** @title Responsive sidenav */
@@ -41,15 +42,30 @@ export class AppComponent implements OnDestroy {
   subscription: Subscription | undefined;
   deviceInfo:DeviceInfo | undefined;
   
+  LoadData(m:UserModel)
+{
+
+      ATOZQSettings.userid = m.AnonymousID;
+      ATOZQSettings.username =m.UserName??m.AnonymousID;
+
+}
+
   constructor(private http:HttpClient, private dialog: MatDialog,private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService,private datepipe:DatePipe,public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
-    userIdService.getUserId().then((userId)=>{
-      ATOZQSettings.userid = userId;
-      ATOZQSettings.username = userId+'-'+'Anonymous';
-
+    this.userIdService.getUserId().then((userId)=>{
+      this.userIdService.GetUser(userId).subscribe({
+        next:(event)=>{
+          this.LoadData(event);
+        },
+        error:(err)=>{
+      alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
+          console.log(err);
+        }
+      });      
     });
+
     // this.dt =this.datepipe.transform((new Date), 'MM/dd/yyyy hh:mm:ss');
     // // Using Basic Interval
     // this.intervalId = setInterval(() => {
@@ -83,7 +99,7 @@ export class AppComponent implements OnDestroy {
   {    
     let model = new ChatModel();
     model.Code = 'ASK-ATOZQ';
-    model.Title = 'ASK';
+    model.Title = 'Ask';
     model.partyId = ATOZQSettings.userid;
     this.http.get(`${apiBaseUrl}/api/chat/log?code=${'ASK-ATOZQ'}&partyId=${ATOZQSettings.userid}`)
     .subscribe({

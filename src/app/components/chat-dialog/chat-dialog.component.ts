@@ -30,6 +30,7 @@ export class ChatDialogComponent  {
 
     public dialogRef: MatDialogRef<ChatDialogComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
     {
+      debugger;
       this.chatId = data.Code;
       this.partyId = data.partyId;
       this.messages = data.Messages;
@@ -40,8 +41,16 @@ export class ChatDialogComponent  {
       
       let updateStatus = new UpdateChatModel();
       this.messages.forEach((value)=>{
+        
         if(value.status!=4 && value.userId!=ATOZQSettings.userid)
+        {
         updateStatus.Ids.push(value.messageid);
+        }
+        else if(value.userId==ATOZQSettings.userid)
+        {
+          value.userName = ATOZQSettings.username;
+        }
+
       });
     
       if(updateStatus.Ids.length>0){    

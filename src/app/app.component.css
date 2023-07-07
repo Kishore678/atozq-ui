@@ -192,12 +192,11 @@ min-height: 100vh;
 {
   color: #31ff00;
   /* margin-top: 10px; */
-  float: left;
+  float: right;
   cursor: pointer;
   display: block;
   font-size: 16px;
-  font-weight: 500;
-  margin-left: 10px;
+  font-weight: 500; 
 }
 
 .verify .mat-icon
