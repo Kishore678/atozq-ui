@@ -1,4 +1,6 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
 import { UserModel } from 'src/app/models/user.model';
 import { UserIDService } from 'src/app/services/user-id.service';
 import { ATOZQSettings } from 'src/constants/ATOZQSettings';
@@ -20,10 +22,13 @@ export class AnonymousComponent implements OnInit {
 
   editEmailMode:boolean=false;
   editEmailStyle!:string;
+  deviceInfo!:DeviceInfo;
+  device!:string;
 
-  constructor(private userIdService:UserIDService) 
+  constructor(private titlecasePipe:TitleCasePipe,private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService) 
   { 
-   
+    this.deviceInfo = deviceDetectorService.getDeviceInfo();  
+    this.device = this.titlecasePipe.transform(this.deviceInfo.deviceType);
   }
 
 onEmailCancel()

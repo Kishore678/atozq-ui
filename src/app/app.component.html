@@ -1,15 +1,21 @@
 
 <div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="atozq-toolbar">
-      <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button>
+      <!-- <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button> -->
       <a class="atozq-app-name" routerLink="/">        
-        ATOZQ.com
+        &nbsp;ATOZQ.com
       </a>
       <span class="spacer"></span>
-      
       <a class="menuitems" mat-list-item routerLink="/" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Home" fontIcon="home"></mat-icon><span class="menutext">Home</span>      
        </a> 
+      <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
+        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
+       </a> 
+       <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
+        <mat-icon aria-hidden="false" aria-label="Help" fontIcon="help"></mat-icon><span class="menutext">Help</span>      
+       </a> 
+        <!--
        <a class="menuitems" mat-list-item routerLink="/app/dashboard" *ngIf="auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Dashboard" fontIcon="dashboard"></mat-icon><span class="menutext">Dashboard</span>      
        </a> 
@@ -17,9 +23,7 @@
         <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Login</span>      
        </a>    
 
-        <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
-       </a> 
+
        <a style="padding: 8px;" class="menuitems bblack" mat-list-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span class="menutext">Logout</span>      
        </a> 
@@ -71,7 +75,7 @@
           <mat-icon class="sidemenu bblack">remove_from_queue</mat-icon>
           <span class="sidemenu bblack">Logout</span>
         </button>
-      </mat-menu>
+      </mat-menu> -->
           
     </mat-toolbar>
     <div class="wrapper">
@@ -84,7 +88,7 @@
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">                 
-      <mat-nav-list>
+      <!-- <mat-nav-list>
        <mat-selection-list id="account" title="account" #menu [multiple]="false">
           <mat-list-option *ngIf="auth.user().IsLoggedIn">
             <a mat-list-item  class="sidemenu" mat-list-item routerLink="/account/profile">      
@@ -135,7 +139,7 @@
              </a>            
           </mat-list-option>         
         </mat-selection-list>     
-      </mat-nav-list>
+      </mat-nav-list> -->
     </mat-sidenav>
 
     <mat-sidenav-content>  

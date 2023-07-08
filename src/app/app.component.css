@@ -11,6 +11,7 @@
     position: fixed;
     /* Make sure the toolbar will stay on top of the content as it scrolls past. */
     z-index: 2;
+    border-bottom: 4px solid #00bcd4;
   }
   .example-container { 
     margin-bottom: 1px;
@@ -36,8 +37,8 @@
 }
 .menuitems
 {
-  color: #00bcd4;
-  padding: 8px;
+  color: #218b99;
+  padding: 4px;
   text-decoration: none;
   font-size: 14px;
   cursor: pointer;
@@ -81,16 +82,19 @@ a {
   line-height:0;
 }
 
-.copyright
+.copyright p
 {
-  color: #00bcd4;
-  line-height: 65px; 
+  background:#297983;
+  color:#ffffff;
+  padding:5px;
+  font-size:12px;
 }
 
 .copyright a:link,.copyright a:visited,.copyright a:hover,.copyright a:active {
   color: #00bcd4;
   background-color: transparent;
   text-decoration: underline;
+  font-weight: 500;
 }
 
 .wrapper {

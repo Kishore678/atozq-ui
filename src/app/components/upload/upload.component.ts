@@ -14,6 +14,10 @@ import { ScriptDetailsDialogComponent } from '../script-details-dialog/script-de
 import { BSEDetails, Bseanalytic, ChatCount } from 'src/app/models/bseanalytics.model';
 import { ChatDialogComponent } from '../chat-dialog/chat-dialog.component';
 import { ChatModel } from 'src/app/models/chat-model.model';
+import { ScriptWarnModel } from 'src/app/models/script-wrn.model';
+import { WarnDialogComponent } from '../warn-dialog/warn-dialog.component';
+import { ATOZQSettings } from 'src/constants/ATOZQSettings';
+import { UserIDService } from 'src/app/services/user-id.service';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -22,8 +26,8 @@ const apiBaseUrl = environment.apiBaseUrl;
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent {
-  
+export class UploadComponent {  
+
   isTrue:boolean=false;
   dsArray:any[]=[];
   fileName:string='';
@@ -55,15 +59,55 @@ displayedColumns = [
     'Hig',
     'Low',
     'Avg',
-    'Prv' ]
+    'Prv' ];
+   
 
   dataSource = new MatTableDataSource<Bseanalytic>();
   selected = '0-1';
   ChatCount!: ChatCount[];
+
   ngAfterViewInit() {
+ 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sortForDataSource;
   }
+
+  AddWrn(element:Bseanalytic)
+  {
+    let model = new ScriptWarnModel();
+    model.AnalyticsId = element.BSEAnalyticsId;
+    model.Warning = element.Wrn;
+
+    const dialogRef = this.dialog.open(WarnDialogComponent, {
+      width: '100%',
+      height: '100%',  
+      maxWidth:'100%',
+      maxHeight:'100%',    
+      disableClose: true,
+      panelClass: 'warn-dialog',
+      autoFocus: true,
+      data:model
+    });
+
+    dialogRef.componentInstance.onDoAction.subscribe((d) => {            
+       //do some action
+    });
+
+    dialogRef.componentInstance.onCloseDialog.subscribe((d) => {
+
+      this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${false}`)
+      .subscribe({
+        next: (event:any) => { 
+       this.LoadDataSource(event);
+      },
+      error: (err: HttpErrorResponse) => console.log(err)
+    });
+
+      d.dialog.close();
+    });
+
+  }
+
   OpenChat(element:Bseanalytic)
   {    
     let model = new ChatModel();
@@ -102,6 +146,7 @@ displayedColumns = [
     
   }
   ngOnInit() {
+
     this.dsArray.push({key:'All',text:'All'});
 this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
 this.dsArray.push({key:'1-2',text:'Penny stocks (B,X,T) under Rs.2'});
@@ -118,13 +163,27 @@ this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
 this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
-    this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}`)
-    .subscribe({
-      next: (event:any) => { 
-     this.LoadDataSource(event);
-    },
-    error: (err: HttpErrorResponse) => console.log(err)
-  });
+    this.useridService.getUserId().then((userid)=>{ 
+
+    let item = ['7572969910637412','1773899756110990'].filter(id => id == userid);
+
+         debugger;
+        if(item.length>0)
+        {
+         this.displayedColumns.push('Wrn');
+        } 
+
+        this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}`)
+        .subscribe({
+          next: (event:any) => { 
+         this.LoadDataSource(event);
+        },
+        error: (err: HttpErrorResponse) => console.log(err)
+      });     
+
+    });
+
+   
 
   }
 
@@ -135,10 +194,10 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   }
 
 
-  flagStyle(risk:any)
+  flagStyle(analytic:Bseanalytic)
   {
     let returnStyle='';
-    switch(risk)
+    switch(analytic.Flg)
     {
       case 1:
         returnStyle = 'risk1';
@@ -156,34 +215,39 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
         returnStyle = 'risk';
       break;
     }    
+
+    if(analytic.Flg==1 && analytic.Wrn!=null && analytic.Wrn!='')
+    {
+      returnStyle = 'risk3';
+    }
     return returnStyle;
   }
 
-  flagContent(risk:any)
+  flagContent(analytic:Bseanalytic)
   {
    var returnContent = new Array();
 
-    switch(risk)
+    switch(analytic.Flg)
     {
       case 1:
-        returnContent.push('No exchange notices.');
-        returnContent.push('Intra-day, BTST supported.');
-        returnContent.push('Positive Net Profit.') ;    
+        returnContent.push('Good: No exchange notices.');
+        returnContent.push('Good: Intra-day, BTST supported.');
+        returnContent.push('Good: Positive Net Profit.') ;    
       break;
       case 2:
-        returnContent.push('No exchange notices.') ;    
-        returnContent.push('Intra-day, BTST supported.') ;    
-        returnContent.push('Negative Net-Profit.') ;  
+        returnContent.push('Good: No exchange notices.') ;    
+        returnContent.push('Good: Intra-day, BTST supported.') ;    
+        returnContent.push('Bad: Negative Net-Profit.') ;  
       break;
       case 3:
-        returnContent.push('No exchange notices.') ;  
-        returnContent.push('Trade to Trade stock.') ;  
-        returnContent.push('No Intra-day and BTST support.') ;  
-        returnContent.push('Positive Net Profit.') ; 
+        returnContent.push('Good: No exchange notices.') ;  
+        returnContent.push('Bad: Trade to Trade stock.') ;  
+        returnContent.push('Bad: No Intra-day and BTST support.') ;  
+        returnContent.push('Good: Positive Net Profit.') ; 
       break;
       case 4:
-        returnContent.push('Exchange Notice.') ; 
-        returnContent.push('High Risk involved.') ; 
+        returnContent.push('Bad: Exchange Notice.') ; 
+        returnContent.push('Bad: High Risk involved.') ; 
       break;         
       default:
         returnContent.push('Risk not classified.') ;
@@ -191,6 +255,11 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
         
       break;
     }    
+
+    if(analytic.Wrn)
+    {
+      returnContent.push('Good: '+analytic.Wrn);
+    }
     return returnContent;
   }
   
@@ -249,6 +318,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   message!: string;
   
   constructor(
+    private useridService:UserIDService,
     private http: HttpClient,
     private _liveAnnouncer: LiveAnnouncer,
     private scriptDetailService:ScriptdetailsService,

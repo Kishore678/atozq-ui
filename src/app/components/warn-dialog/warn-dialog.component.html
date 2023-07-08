@@ -1,0 +1,15 @@
+<section class="container">    
+    <form align="center">  
+  
+     <div class="msger-inputarea">
+        <img src="{{avatar}}" alt="Avatar">       
+      <input type="text" [ngClass]="editStyle" name="txtWarn" placeholder="Enter your warning" [(ngModel)]="warning" [readonly]="!editMode" [disabled]="!editMode">   
+      <button class="msger-send-btn" *ngIf="!editMode" (click)="onEdit()">Change</button>
+      <button class="msger-send-btn warn" *ngIf="editMode" (click)="onCancel()">Cancel</button>
+      &nbsp;
+      <button class="msger-send-btn save" *ngIf="editMode" (click)="onSave()">Save</button>
+      <button class="msger-send-btn warn" *ngIf="!editMode" (click)="closeDialog()">Close</button>
+
+    </div>   
+    </form>   
+  </section> 

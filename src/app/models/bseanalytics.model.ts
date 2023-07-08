@@ -9,7 +9,7 @@ export interface BSEDetails {
     Count:number
   }
   export interface Bseanalytic {
-    Id: number
+    BSEAnalyticsId: number
     Code: string
     Flg: number
     Nme: string
@@ -24,6 +24,7 @@ export interface BSEDetails {
     Avg: number
     Prv: number
     Mst: boolean
+    Wrn: string
     Fund: Fund
   }
   

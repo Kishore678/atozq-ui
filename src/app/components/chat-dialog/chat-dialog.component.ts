@@ -1,6 +1,7 @@
 import { HttpErrorResponse,HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Inject, NgZone, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { matSelectAnimations } from '@angular/material/select';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
 import { ChatModel, MessageModel, UpdateChatModel } from 'src/app/models/chat-model.model';
 import { ChatService } from 'src/app/services/chat.service';
@@ -29,8 +30,7 @@ export class ChatDialogComponent  {
   constructor(private http:HttpClient,private chatService:ChatService, private _ngZone: NgZone  , private deviceDetectorService: DeviceDetectorService,
 
     public dialogRef: MatDialogRef<ChatDialogComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
-    {
-      debugger;
+    {  
       this.chatId = data.Code;
       this.partyId = data.partyId;
       this.messages = data.Messages;
@@ -63,7 +63,7 @@ export class ChatDialogComponent  {
 
     this.subscribeToEvents(); 
     }
-
+  
 generate_uuidv4() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
       function(c) {

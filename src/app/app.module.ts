@@ -15,7 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReferralComponent } from './components/referral/referral.component';
 import { ShoppingComponent } from './components/shopping/shopping.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { DatePipe, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { DatePipe, LocationStrategy, PathLocationStrategy, TitleCasePipe } from '@angular/common';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { JwtHelper } from './helpers/jwt-helper';
 import { SpinnerService } from './services/spinner.service';
@@ -42,9 +42,10 @@ import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.compon
 import { ChatService } from './services/chat.service';
 import { UserIDService } from './services/user-id.service';
 import { AnonymousComponent } from './components/anonymous/anonymous.component';
+import { WarnDialogComponent } from './components/warn-dialog/warn-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,
@@ -55,7 +56,7 @@ import { AnonymousComponent } from './components/anonymous/anonymous.component';
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService],
+  providers: [TitleCasePipe,DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
