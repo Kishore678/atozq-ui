@@ -15,15 +15,33 @@ export class ChatService {
     this.createConnection();  
     this.registerOnServerEvents();  
     this.startConnection();  
+    this._hubConnection.onclose(()=>{
+      this.startConnection();
+    });
   }  
   
-  sendMessage(message: MessageModel) { 
-    let _self = this; 
-    this._hubConnection.invoke('NewMessage', message).catch(err=>
-      {
-        _self.startConnection(); 
-        _self._hubConnection.invoke('NewMessage', message);
-      });  
+  
+
+  sendMessage(message: MessageModel) {     
+
+    if(this._hubConnection.state != HubConnectionState.Connected)
+    {
+      console.log('Hub connection not active. Trying to reconnect.');  
+      this.startConnection;
+      setTimeout(()=>{
+        this._hubConnection.invoke('NewMessage', message).catch(err=>
+          {
+            console.log(err);
+          });
+      },2000);            
+    }
+    else
+    {      
+      this._hubConnection.invoke('NewMessage', message).catch(err=>
+        {
+          console.log(err);
+        });  
+    }    
   }  
   
   private createConnection() {  
@@ -36,7 +54,8 @@ export class ChatService {
 
     if(this._hubConnection.state==HubConnectionState.Connected)
     {
-
+      this.connectionIsEstablished = true;  
+      console.log('Hub connection active.');  
     }
     else
     {    
