@@ -52,18 +52,7 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
-
-    this.userIdService.getUserId().then((userId)=>{
-      this.userIdService.GetUser(userId).subscribe({
-        next:(event)=>{
-          this.LoadData(event);
-        },
-        error:(err)=>{
-      alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
-          console.log(err);
-        }
-      });      
-    });
+   
 
     // this.dt =this.datepipe.transform((new Date), 'MM/dd/yyyy hh:mm:ss');
     // // Using Basic Interval
@@ -73,7 +62,7 @@ export class AppComponent implements OnDestroy {
 
     
   }
-  OpenAskChat(model: ChatModel) {
+  OpenAskChat(model: ChatModel) {  
     const dialogRef = this.dialog.open(ChatDialogComponent, {
       width: '100%',
       height: '100%',  
@@ -129,8 +118,12 @@ export class AppComponent implements OnDestroy {
      .subscribe(time => {
        this.dt = time;
      });
-
-     setTimeout(()=>{
+ 
+  }
+  
+  ngAfterViewInit()
+  {
+    setTimeout(()=>{  
       this._hubConnection = new HubConnectionBuilder()
       .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
       .build();      
@@ -139,9 +132,22 @@ export class AppComponent implements OnDestroy {
         this.visited=visited;
       });      
       this._hubConnection.start();
-    },1000);
+
+      this.userIdService.getUserId().then((userId)=>{    
+     
+        this.userIdService.GetUser(userId).subscribe({
+          next:(event)=>{                   
+            this.LoadData(event);
+          },
+          error:(err)=>{
+        alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
+            console.log(err);
+          }
+        });     
+      });
+
+    },3000);
   }
-  
   ngAfterContentChecked(): void {   
    this.changeDetectorRef.detectChanges();
   }

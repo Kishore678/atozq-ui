@@ -12,7 +12,7 @@
       <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
        </a> 
-       <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
+       <a style="display:none;" class="menuitems" mat-list-item routerLink="/app/help" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Help" fontIcon="help"></mat-icon><span class="menutext">Help</span>      
        </a> 
         <!--
