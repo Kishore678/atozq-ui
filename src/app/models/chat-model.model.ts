@@ -1,4 +1,6 @@
 export class ChatModel {
+    UserId!:string
+    UserName!:string
     Code!:string
     Title!:string
     Company!:string

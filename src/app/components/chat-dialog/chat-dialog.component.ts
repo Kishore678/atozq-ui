@@ -7,6 +7,7 @@ import { ChatModel, MessageModel, UpdateChatModel } from 'src/app/models/chat-mo
 import { ChatService } from 'src/app/services/chat.service';
 import {ATOZQSettings} from 'src/constants/ATOZQSettings'
 import { environment } from 'src/environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 const apiBaseUrl = environment.apiBaseUrl;
 @Component({
   selector: 'app-chat-dialog',
@@ -27,17 +28,19 @@ export class ChatDialogComponent  {
   messageReceived = new EventEmitter<MessageModel>(); 
 
 
-  constructor(private http:HttpClient,private chatService:ChatService, private _ngZone: NgZone  , private deviceDetectorService: DeviceDetectorService,
+  constructor(private doms : DomSanitizer,private http:HttpClient,private chatService:ChatService, private _ngZone: NgZone  , private deviceDetectorService: DeviceDetectorService,
 
     public dialogRef: MatDialogRef<ChatDialogComponent>, @Optional() @Inject(MAT_DIALOG_DATA) public data: ChatModel) 
-    {  
+    { 
       this.chatId = data.Code;
       this.partyId = data.partyId;
       this.messages = data.Messages;
       this.chatTitle = data.Title;
-      this.userid = ATOZQSettings.userid;
+      this.userid = data.UserId;
       this.avatar = ATOZQSettings.avatar;
-      this.userName = ATOZQSettings.username;  
+      this.userName = data.UserName??data.UserId;  
+
+   
       
       let updateStatus = new UpdateChatModel();
       this.messages.forEach((value)=>{
@@ -46,9 +49,9 @@ export class ChatDialogComponent  {
         {
         updateStatus.Ids.push(value.messageid);
         }
-        else if(value.userId==ATOZQSettings.userid)
+        else if(value.userId==data.UserId)
         {
-          value.userName = ATOZQSettings.username;
+          value.userName = data.UserName;
         }
 
       });
@@ -63,6 +66,13 @@ export class ChatDialogComponent  {
 
     this.subscribeToEvents(); 
     }
+
+
+    RenderHtml(str:string)
+    {      
+    return this.doms.bypassSecurityTrustHtml(str);
+    }
+    
   
 generate_uuidv4() {
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,

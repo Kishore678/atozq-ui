@@ -43,17 +43,16 @@ export class AppComponent implements OnDestroy {
   deviceInfo:DeviceInfo | undefined;
   
   LoadData(m:UserModel)
-{
-
-      ATOZQSettings.userid = m.AnonymousID;
-      ATOZQSettings.username =m.UserName??m.AnonymousID;
-
-}
+  {
+  ATOZQSettings.userid = m.AnonymousID;
+  ATOZQSettings.username =m.UserName??m.AnonymousID;
+  }
 
   constructor(private http:HttpClient, private dialog: MatDialog,private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService,private datepipe:DatePipe,public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
+
     this.userIdService.getUserId().then((userId)=>{
       this.userIdService.GetUser(userId).subscribe({
         next:(event)=>{
@@ -100,6 +99,8 @@ export class AppComponent implements OnDestroy {
     let model = new ChatModel();
     model.Code = 'ASK-ATOZQ';
     model.Title = 'Ask';
+    model.UserId = ATOZQSettings.userid;
+    model.UserName = ATOZQSettings.username;
     model.partyId = ATOZQSettings.userid;
     this.http.get(`${apiBaseUrl}/api/chat/log?code=${'ASK-ATOZQ'}&partyId=${ATOZQSettings.userid}`)
     .subscribe({
@@ -129,8 +130,7 @@ export class AppComponent implements OnDestroy {
        this.dt = time;
      });
 
-
-     setTimeout(()=>{                          
+     setTimeout(()=>{
       this._hubConnection = new HubConnectionBuilder()
       .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
       .build();      
@@ -139,10 +139,7 @@ export class AppComponent implements OnDestroy {
         this.visited=visited;
       });      
       this._hubConnection.start();
-  }, 3000);
-
-        
-     
+    },1000);
   }
   
   ngAfterContentChecked(): void {   

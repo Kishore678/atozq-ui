@@ -18,6 +18,7 @@ import { ScriptWarnModel } from 'src/app/models/script-wrn.model';
 import { WarnDialogComponent } from '../warn-dialog/warn-dialog.component';
 import { ATOZQSettings } from 'src/constants/ATOZQSettings';
 import { UserIDService } from 'src/app/services/user-id.service';
+import { UserModel } from 'src/app/models/user.model';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -27,7 +28,7 @@ const apiBaseUrl = environment.apiBaseUrl;
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent {  
-
+  user!:UserModel;
   isTrue:boolean=false;
   dsArray:any[]=[];
   fileName:string='';
@@ -113,6 +114,8 @@ displayedColumns = [
     let model = new ChatModel();
     model.Code = element.Code;
     model.Title = element.Nme;
+    model.UserId = this.user.AnonymousID;
+    model.UserName = this.user.UserName;
 
     this.http.get(`${apiBaseUrl}/api/chat/log?code=${element.Code}`)
     .subscribe({
@@ -145,6 +148,12 @@ displayedColumns = [
 
     
   }
+
+  LoadUser(user:UserModel)
+  {
+    this.user = user;
+  }
+
   ngOnInit() {
 
     this.dsArray.push({key:'All',text:'All'});
@@ -163,11 +172,10 @@ this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
 this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
-    this.useridService.getUserId().then((userid)=>{ 
+    this.useridService.getUserId().then((userid)=>{       
 
     let item = ['7572969910637412','1773899756110990'].filter(id => id == userid);
-
-         debugger;
+        
         if(item.length>0)
         {
          this.displayedColumns.push('Wrn');
@@ -179,7 +187,14 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
          this.LoadDataSource(event);
         },
         error: (err: HttpErrorResponse) => console.log(err)
-      });     
+      });    
+      
+      this.useridService.GetUser(userid).subscribe({
+        next:(event)=>{
+          this.LoadUser(event);
+        },
+        error:(err)=>{console.log(err);}
+      })
 
     });
 
@@ -258,13 +273,12 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
     if(analytic.Wrn)
     {
-      returnContent.push('Good: '+analytic.Wrn);
+      returnContent.push('Bad: '+analytic.Wrn);
     }
     return returnContent;
   }
   
   SelectionChanged() {
-
     this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}`)
     .subscribe({
       next: (event:any) => { 

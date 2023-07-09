@@ -4,7 +4,7 @@
     <div [ngClass]="(i%2===0?'container':'container darker')" *ngFor="let message of messages;index as i;">
          <img src="{{message.avatarUrl}}" alt="Avatar" [ngClass]="(i%2===0?'':'right')">
         <span [ngClass]="(i%2===0?'user-name left':'user-name right')" title="{{message.userName}}"><span [ngClass]="IsOnline(message.userName)"></span>{{message.userName}}</span>
-        <p >{{message.message}}</p>
+        <p [innerHTML]="RenderHtml(message.message)"></p>
          
         <span [ngClass]="(i%2===0?'time-right':'time-left')"> {{message.postedOn | date:'dd-MMM-yy h:mm a'}} <mat-icon [style.color]="message.status==4?'blue':''">{{message.status==1?'done':message.status==2 || message.status==3 || message.status==4?'done_all':''}}</mat-icon></span>  
 
