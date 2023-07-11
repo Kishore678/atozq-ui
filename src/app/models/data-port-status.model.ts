@@ -5,6 +5,7 @@
     SourceTotal: number
     ProcessedTotal: number
     CacheddTotal: number
+    PostTotal: number
     OverallStatus: any
   }
   
@@ -14,5 +15,6 @@
     Source: number
     Processed: number
     Cached: number
+    Post: number
     Status: any
   }

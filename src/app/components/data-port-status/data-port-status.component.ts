@@ -39,6 +39,27 @@ export class DataPortStatusComponent {
   ngAfterViewInit(): void {    
     this.LoadReport();
   }
+
+  postMessages()
+  {
+    let ok = confirm('Click Ok to proceed.'); 
+ if(ok)
+ {
+  this.http.get(`${apiBaseUrl}/api/stock/admin-post`).subscribe({
+    next:(event:any) => {  
+      if(event == true)
+      {
+      this.LoadReport();    
+      alert('Process Completed.');
+      }
+    },
+    error(err)
+    {
+      alert('Something went wrong. Contact Help Desk.'); 
+    }
+  });
+}
+  }
 refresh()
 {
  let ok = confirm('Click Ok to proceed.'); 
