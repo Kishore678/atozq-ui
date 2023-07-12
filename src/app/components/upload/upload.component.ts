@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { of } from 'rxjs/internal/observable/of';
-import { delay} from 'rxjs/operators';
+import { delay, timeout} from 'rxjs/operators';
 import { Scriptdetails } from 'src/app/models/scriptdetails.model';
 import { ScriptdetailsService } from 'src/app/services/scriptdetails.service';
 import { environment } from 'src/environments/environment';
@@ -149,9 +149,11 @@ displayedColumns = [
     
   }
 
-  LoadUser(user:UserModel)
+  LoadUser()
   {
-    this.user = user;
+    this.user = new UserModel();
+    this.user.AnonymousID = ATOZQSettings.userid;
+    this.user.UserName=ATOZQSettings.username;
   }
 
   ngOnInit() {
@@ -189,12 +191,15 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
         error: (err: HttpErrorResponse) => console.log(err)
       });    
       
-      this.useridService.GetUser(userid).subscribe({
-        next:(event)=>{
-          this.LoadUser(event);
-        },
-        error:(err)=>{console.log(err);}
-      })
+      setTimeout(()=>{
+        this.LoadUser();
+      },2000);
+      // this.useridService.GetUser(userid).subscribe({
+      //   next:(event)=>{
+      //     this.LoadUser(event);
+      //   },
+      //   error:(err)=>{console.log(err);}
+      // })
 
     });
 

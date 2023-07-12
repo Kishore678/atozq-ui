@@ -124,20 +124,21 @@ export class AppComponent implements OnDestroy {
   ngAfterViewInit()
   {
     setTimeout(()=>{  
-      this._hubConnection = new HubConnectionBuilder()
-      .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
-      .build();      
-      this._hubConnection.on('UpdateOnlineUsers', (online,visited) => {
-        this.online=online;
-        this.visited=visited;
-      });      
-      this._hubConnection.start();
+
 
       this.userIdService.getUserId().then((userId)=>{    
      
         this.userIdService.GetUser(userId).subscribe({
           next:(event)=>{                   
             this.LoadData(event);
+            this._hubConnection = new HubConnectionBuilder()
+            .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
+            .build();      
+            this._hubConnection.on('UpdateOnlineUsers', (online,visited) => {
+              this.online=online;
+              this.visited=visited;
+            });      
+            this._hubConnection.start();
           },
           error:(err)=>{
         alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
