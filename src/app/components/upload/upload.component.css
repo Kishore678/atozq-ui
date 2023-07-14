@@ -26,16 +26,16 @@
     color: #00bcd4;
     font-weight: bold;
   }
-  .mat-select{
+
+  .mat-select{ 
     width: 200px;
     margin-left: 5px;
     border: 2px solid;
     border-radius: 4px;
-    padding: 1px;
-    border-color: #00bcd4;
+    padding: 2px;
+    font-weight: 500;
+    border-color: #757575; 
   }
-
-  
 
   th{background: #00bcd4;
     color: #fff;}

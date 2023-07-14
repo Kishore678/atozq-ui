@@ -34,6 +34,7 @@ export class AppComponent implements OnDestroy {
   online:number=0;
   visited:number=0;
   dt:any;
+  isReady:boolean=false;
   private _mobileQueryListener: () => void;
   private _hubConnection:HubConnection | undefined;
   // time = new Date();
@@ -43,7 +44,7 @@ export class AppComponent implements OnDestroy {
   deviceInfo:DeviceInfo | undefined;
   
   LoadData(m:UserModel)
-  {
+  { 
   ATOZQSettings.userid = m.AnonymousID;
   ATOZQSettings.username =m.UserName??m.AnonymousID;
   }
@@ -52,7 +53,6 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
-   
 
     // this.dt =this.datepipe.transform((new Date), 'MM/dd/yyyy hh:mm:ss');
     // // Using Basic Interval
@@ -108,7 +108,7 @@ export class AppComponent implements OnDestroy {
     
   }
   ngOnInit()
-  {
+  { 
      // Using RxJS Timer
      this.subscription = timer(0, 1000)
      .pipe(
@@ -122,15 +122,12 @@ export class AppComponent implements OnDestroy {
   }
   
   ngAfterViewInit()
-  {
-    setTimeout(()=>{  
-
-
-      this.userIdService.getUserId().then((userId)=>{    
-     
+  {   
+      this.userIdService.getUserId().then((userId)=>{  
         this.userIdService.GetUser(userId).subscribe({
           next:(event)=>{                   
             this.LoadData(event);
+            this.isReady=true;
             this._hubConnection = new HubConnectionBuilder()
             .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
             .build();      
@@ -145,9 +142,7 @@ export class AppComponent implements OnDestroy {
             console.log(err);
           }
         });     
-      });
-
-    },3000);
+      }); 
   }
   ngAfterContentChecked(): void {   
    this.changeDetectorRef.detectChanges();

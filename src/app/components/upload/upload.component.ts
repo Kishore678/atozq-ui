@@ -110,7 +110,7 @@ displayedColumns = [
   }
 
   OpenChat(element:Bseanalytic)
-  {    
+  {  
     let model = new ChatModel();
     model.Code = element.Code;
     model.Title = element.Nme;
@@ -150,14 +150,14 @@ displayedColumns = [
   }
 
   LoadUser()
-  {
+  {   
     this.user = new UserModel();
     this.user.AnonymousID = ATOZQSettings.userid;
     this.user.UserName=ATOZQSettings.username;
   }
 
   ngOnInit() {
-
+    this.LoadUser();
     this.dsArray.push({key:'All',text:'All'});
 this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
 this.dsArray.push({key:'1-2',text:'Penny stocks (B,X,T) under Rs.2'});
@@ -174,9 +174,9 @@ this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
 this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
-    this.useridService.getUserId().then((userid)=>{       
+       
 
-    let item = ['7572969910637412','1773899756110990'].filter(id => id == userid);
+    let item = ['7572969910637412','1773899756110990'].filter(id => id == ATOZQSettings.userid);
         
         if(item.length>0)
         {
@@ -191,9 +191,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
         error: (err: HttpErrorResponse) => console.log(err)
       });    
       
-      setTimeout(()=>{
-        this.LoadUser();
-      },2000);
+ 
       // this.useridService.GetUser(userid).subscribe({
       //   next:(event)=>{
       //     this.LoadUser(event);
@@ -201,7 +199,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
       //   error:(err)=>{console.log(err);}
       // })
 
-    });
+
 
    
 

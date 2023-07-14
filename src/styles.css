@@ -62,6 +62,11 @@ body { margin: 0;}
   /* Add more styles */
 }
 
+
+.mat-select .mat-select-value {
+color: #757575;
+}
+
 .fundamental-dialog .mat-dialog-container{ 
   border: 5px double rgba(0, 0, 0, .4);  
   overflow: hidden;
