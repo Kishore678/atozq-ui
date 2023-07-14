@@ -123,9 +123,9 @@ export class AppComponent implements OnDestroy {
   
   ngAfterViewInit()
   {   
-      this.userIdService.getUserId().then((userId)=>{  
+      this.userIdService.getUserId().then((userId)=>{         
         this.userIdService.GetUser(userId).subscribe({
-          next:(event)=>{                   
+          next:(event)=>{                             
             this.LoadData(event);
             this.isReady=true;
             this._hubConnection = new HubConnectionBuilder()
@@ -135,7 +135,7 @@ export class AppComponent implements OnDestroy {
               this.online=online;
               this.visited=visited;
             });      
-            this._hubConnection.start();
+            this._hubConnection.start();  
           },
           error:(err)=>{
         alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
@@ -143,7 +143,13 @@ export class AppComponent implements OnDestroy {
           }
         });     
       }); 
+
+
+      setTimeout(()=>{
+        this.userIdService.UpdateIPAddress(ATOZQSettings.userid);
+       },5000);
   }
+
   ngAfterContentChecked(): void {   
    this.changeDetectorRef.detectChanges();
   }

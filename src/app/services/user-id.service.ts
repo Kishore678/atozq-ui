@@ -4,6 +4,7 @@ import {getCurrentBrowserFingerPrint} from '@rajesh896/broprint.js';
 import { Observable } from 'rxjs';
 import { UserModel } from '../models/user.model';
 import { environment } from 'src/environments/environment';
+import { UserLocation } from '../models/user-location.model';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -25,5 +26,26 @@ export class UserIDService {
   GetUser(userId:string):Observable<UserModel>
   {
     return this.http.get<UserModel>(`${apiBaseUrl}/api/user/session/${userId}`);
+  }
+
+
+  UpdateIPAddress(userId:string)
+  {
+       
+    this.http.get<any>('https://api.ipify.org/?format=json').subscribe({
+      next:(location)=>{
+        var user = new UserModel();      
+        user.IPAddress = location.ip;
+        user.AnonymousID = userId;
+        this.http.post<any>(`${apiBaseUrl}/api/user/track`,user).subscribe({
+          next:(res)=>{},
+          error:(err)=>{console.log(err);}
+        }); 
+      },
+      error:(err)=>{console.log(err);}
+    });
+
+  
+   
   }
 }
