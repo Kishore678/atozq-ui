@@ -21,7 +21,7 @@
     background: #ffffff;
     padding: 2px;
   }
-  .filter b{ color: #0040ff;}
+  .filter b{ color: #00bcd4}
   .filename{
     color: #00bcd4;
     font-weight: bold;
@@ -34,7 +34,7 @@
     border-radius: 4px;
     padding: 2px;
     font-weight: 500;
-    border-color: #757575; 
+    border-color:#245bff; 
   }
 
   th{background: #00bcd4;

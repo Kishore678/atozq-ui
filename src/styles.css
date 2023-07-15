@@ -62,14 +62,45 @@ body { margin: 0;}
   /* Add more styles */
 }
 
-
+.mat-select .mat-option {
+  color: rgb(41 121 131);
+  font-size: 13px !important;
+  font-weight: 500;
+  text-align: center;
+}
 .mat-select .mat-select-value {
-color: #757575;
+color: #245bff;
+text-align: center;
 }
 
+.mat-select-arrow {
+  color: #245bff;
+}
+.mat-option.mat-active {
+  background:#f0f8ff !important;
+  color: #245bff;
+}
 .fundamental-dialog .mat-dialog-container{ 
   border: 5px double rgba(0, 0, 0, .4);  
   overflow: hidden;
   position: absolute;
   /* Add more styles */
+}
+
+.page-container{
+  clear: left;
+  font-weight: 400;
+  display: block;
+  margin: 5px;
+  border: 5px solid #e8e6e6;
+  text-align: justify;
+  padding: 5px;
+}
+.page-container a {color: #218b99;}
+.page-container .page-header{ 
+display: block;
+margin-bottom:5px;
+font-weight:500;
+text-align: center;
+color: #00bcd4;
 }

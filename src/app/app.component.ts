@@ -31,6 +31,7 @@ export class AppComponent implements OnDestroy {
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
+  users:number=0;
   online:number=0;
   visited:number=0;
   dt:any;
@@ -131,9 +132,10 @@ export class AppComponent implements OnDestroy {
             this._hubConnection = new HubConnectionBuilder()
             .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
             .build();      
-            this._hubConnection.on('UpdateOnlineUsers', (online,visited) => {
+            this._hubConnection.on('UpdateOnlineUsers', (online,visited,users) => {
               this.online=online;
               this.visited=visited;
+              this.users = users;
             });      
             this._hubConnection.start();  
           },

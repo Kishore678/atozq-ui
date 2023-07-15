@@ -1,5 +1,5 @@
 
-<div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches" *ngIf="isReady">
+<div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches" *ngIf="isReady; else loading">
     <mat-toolbar color="primary" class="atozq-toolbar">
       <!-- <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button> -->
       <a class="atozq-app-name" routerLink="/">        
@@ -12,7 +12,7 @@
       <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
        </a> 
-       <a style="display:none;" class="menuitems" mat-list-item routerLink="/app/help" *ngIf="!auth.user().IsLoggedIn">      
+       <a class="menuitems" mat-list-item routerLink="/app/help" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Help" fontIcon="help"></mat-icon><span class="menutext">Help</span>      
        </a> 
         <!--
@@ -75,14 +75,8 @@
           <mat-icon class="sidemenu bblack">remove_from_queue</mat-icon>
           <span class="sidemenu bblack">Logout</span>
         </button>
-      </mat-menu> -->
-          
+      </mat-menu> -->          
     </mat-toolbar>
-    <div class="wrapper">
-      <div class="inner">
-        <mat-progress-spinner [diameter]="100" *ngIf="spinnerService.visibility | async" class="spinner" [color]="color" [mode]="mode"></mat-progress-spinner>
-      </div>
-    </div>
 
   <mat-sidenav-container class="atozq-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -146,13 +140,13 @@
       <div class="container">
         <div class="row home-toolbar">        
           <div class="col-md-12">
-            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: bold;color:#00f0ff">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span></div>
+            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: bold;color:#2bea00">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span></div>
         </div>
         <div class="row home-toolbar2"> 
           <div class="col-md-12">
             <a class="verify" style="cursor:pointer" (click)="OpenChat()">Ask<mat-icon> live_help</mat-icon></a>
             <!-- <a class="verify" routerLink="/app/dps">Verify Data</a> -->
-            <span style="margin-left: 54.62px;"><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
+            <span style="margin-left: 54.62px;"><span class="dot users"></span>Users:<span class="box">{{users|number:'1.0-0'}}</span><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
           </div>
         </div>
       <router-outlet></router-outlet>
@@ -160,12 +154,36 @@
      
     </mat-sidenav-content>    
   </mat-sidenav-container>
+ 
+  <div class="row">        
+    <div class="col-md-12"> 
+  <span class="license">    
+    <p style="text-align: center;"><a routerLink="/app/disclaimer">Disclaimer</a>&nbsp;|&nbsp;<a routerLink="/app/privacy" >Privacy Policy</a>&nbsp;|&nbsp;<a routerLink="/app/terms">Terms & Conditions</a>
+    </p>
+  </span>
+    </div>
+  </div>
   <div class="row">        
     <div class="col-md-12"> 
   <span class="copyright">
-    <p>© 2022 ATOZQ.com . All rights reserved | Design by <a href="https://atozq.com/" target="_blank">ATOZQ.com</a></p>
+    <p>© 2023 ATOZQ.com . All rights reserved.<a target="_blank" style="float:right" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>.  
+    </p>        
   </span>
     </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="wrapper center">
+    <div class="inner">      
+      <mat-progress-spinner [diameter]="100" class="spinner" [color]="color" [mode]="mode"></mat-progress-spinner>
+    </div>
+  </div>
+</ng-template>
+
+<div class="wrapper center">
+  <div class="inner">
+    <mat-progress-spinner [diameter]="100" *ngIf="spinnerService.visibility | async" class="spinner" [color]="color" [mode]="mode"></mat-progress-spinner>
   </div>
 </div>
 

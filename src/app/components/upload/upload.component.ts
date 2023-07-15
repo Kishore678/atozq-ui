@@ -158,7 +158,7 @@ displayedColumns = [
 
   ngOnInit() {
     this.LoadUser();
-    this.dsArray.push({key:'All',text:'All'});
+    this.dsArray.push({key:'All',text:'All Categories'});
 this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
 this.dsArray.push({key:'1-2',text:'Penny stocks (B,X,T) under Rs.2'});
 this.dsArray.push({key:'2-5',text:'Penny stocks (B,X,T) under Rs.5'});

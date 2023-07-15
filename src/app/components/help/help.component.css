@@ -1,0 +1,18 @@
+img {
+    width: 100%;
+    height: auto; 
+  }
+  #decimal {
+    list-style-type: decimal;
+    font-weight: bold;
+    padding-left: 25px;
+  }
+
+  #decimal li{
+    margin: 5px;
+    font-weight: normal;
+  }
+
+  ol > li::marker {
+    font-weight: bold;
+  }

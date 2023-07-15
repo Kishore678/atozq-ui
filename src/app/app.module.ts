@@ -43,9 +43,13 @@ import { ChatService } from './services/chat.service';
 import { UserIDService } from './services/user-id.service';
 import { AnonymousComponent } from './components/anonymous/anonymous.component';
 import { WarnDialogComponent } from './components/warn-dialog/warn-dialog.component';
+import { HelpComponent } from './components/help/help.component';
+import { TermsComponent } from './components/terms/terms.component';
+import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,

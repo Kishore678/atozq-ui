@@ -18,6 +18,10 @@ import { UploadComponent } from './components/upload/upload.component';
 import { LogComponent } from './components/log/log.component';
 import { DataPortStatusComponent } from './components/data-port-status/data-port-status.component';
 import { AnonymousComponent } from './components/anonymous/anonymous.component';
+import { HelpComponent } from './components/help/help.component';
+import { TermsComponent } from './components/terms/terms.component';
+import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
 
 const routes: Routes = [
   {path:'',component:UploadComponent},
@@ -39,6 +43,10 @@ const routes: Routes = [
   {path:'app/dps',component:DataPortStatusComponent},
   {path:'app/stock',component:UploadComponent},
   {path:'app/log',component:LogComponent},
+  {path:'app/help',component:HelpComponent},
+  {path:'app/terms',component:TermsComponent},
+  {path:'app/disclaimer',component:DisclaimerComponent},
+  {path:'app/privacy',component:PrivacyComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];
