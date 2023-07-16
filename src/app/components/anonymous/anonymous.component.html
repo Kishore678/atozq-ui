@@ -28,4 +28,18 @@
     </div> 
     </form> 
   </section> 
+
+  <h3><span class="page-header">WATCH LIST</span></h3>
+  <section class="container">
+<table style="width:330px;margin:0 auto;">
+  <tr style="text-align: center;">
+    <th>S.No.</th>
+    <th>Code</th>
+  </tr>
+  <tr style="text-align: center;" *ngFor="let w of watchList;let i=index;">
+   <td>{{i+1}}</td>
+   <td>{{w.Code}}</td>
+  </tr>
+</table>
+</section>
 </div>

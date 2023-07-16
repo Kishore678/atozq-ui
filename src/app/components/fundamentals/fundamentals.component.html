@@ -1,0 +1,209 @@
+<div class="fundamentals" *ngIf="isReady"> 
+
+    <h2><span class="page-header">{{company}} - FUNDAMENTALS</span></h2>
+
+    <table class="basic-info">
+        <caption>About Company</caption>
+        <tr>
+            <td>Company:</td>
+            <td>{{company}}</td>
+        </tr>
+        <tr>
+            <td>Industry:</td>
+            <td>{{industry}}</td>
+        </tr>
+        <tr>
+            <td>Group:</td>
+            <td>{{group}}</td>
+        </tr>
+        <tr>
+            <td>Script Code:</td>
+            <td>{{code}}</td>
+        </tr> 
+        <tr>
+            <td>Script ID:</td>
+            <td>{{id}}</td>
+        </tr> 
+        <tr>
+            <td>Notices:</td>
+            <td>
+                <b class="loss">{{notice}}</b>
+            </td>  
+        </tr>    
+        <tr>
+            <td>Status:</td>
+            <td>{{category}}</td>
+        </tr>
+    </table>
+    <table class="financial">
+        <caption>Financials</caption>
+        <tr>
+            <td>Financial Year:</td>
+            <td>{{fy}}</td>
+        </tr>
+        <tr>
+            <td>Net Profit:</td>
+            <td><b [ngClass]="netProfitStyle">{{profit}}</b></td>
+        </tr>
+        <tr>
+            <td>Revenue</td>         
+            <td><b [ngClass]="revenueStyle">{{revenue}}</b></td>
+
+        </tr>      
+        <tr>
+            <td>Market Cap(Cr.):</td>
+            <td>{{mcap}}</td>
+        </tr>    
+    </table>
+    <table class="basic-info">
+        <caption>Trading Info</caption>       
+            <tr> <td>Settlement:</td>
+            <td>{{settlementType}}</td> </tr>
+            <tr><td>Intra-day:</td><td>{{intraday}}</td></tr>
+            <tr><td>BTST:</td><td>{{btst}}</td></tr>
+            <tr><td>MIS:</td><td>{{mis}}</td></tr>            
+            <tr><td>Margin %:</td><td>{{margin}}</td></tr>            
+            <tr><td>Leverage:</td><td>{{leverage}}</td></tr>            
+            <tr><td>As On:</td><td>{{trdeDate}}</td></tr>      
+    </table>
+    <table class="financial">
+        <caption>Key Ratio's</caption>      
+        
+        <tr>
+            <td>EPS:</td>
+            <td>{{eps}}</td>
+        </tr>
+        <tr>
+            <td>CEPS:</td>
+            <td>{{ceps}}</td>
+        </tr>
+        <tr>
+            <td>PE:</td>
+            <td>{{pe}}</td>
+        </tr>
+        <tr>
+            <td>PB:</td>
+            <td>{{pb}}</td>
+        </tr>
+        <tr>
+            <td>ROE:</td>
+            <td>{{roe}}</td>
+        </tr>
+ 
+    </table>
+
+   
+
+    <table class="price-movement">
+        <caption>Stock Price</caption>
+        <tr>
+            <td>Face Value:</td>
+            <td>{{facevalue}}</td>
+        </tr>
+        <tr>
+
+            <td>Current Price:</td>
+            <td style="font-weight:500;">{{ltp | number:'.2'}}</td>
+        </tr>
+
+        <tr>
+            <td>Price Change:</td>          
+            <td><b [ngClass]="pcgStyle">{{priceChange | number:'.2'}} ({{pricePercentChange}}%)</b></td>
+        </tr>  
+
+        <tr>
+            <td>Open:</td>
+            <td>{{open | number:'.2'}}</td>
+        </tr>
+        <tr>
+            <td>High:</td>
+            <td>{{high | number:'.2'}}</td>
+        </tr>
+        <tr>
+            <td>Low:</td>
+            <td>{{low | number:'.2'}}</td>
+        </tr>
+        <tr>
+            <td>Avg:</td>
+            <td>{{avg | number:'.2'}}</td>
+        </tr>
+        <tr>
+            <td>Previous:</td>
+            <td>{{previous | number:'.2'}}</td>
+        </tr>      
+
+    </table> 
+
+    <table class="price-movement">
+        <caption>Price Band</caption>  
+        <tr>
+            <td>Upper Circuit:</td>
+            <td>{{upperCktPrice | number:'.2'}} ({{upperCktPercent}}%)</td>
+        </tr>
+        <tr>
+            <td>Lower Circuit:</td>
+            <td>{{lowerCktPrice | number:'.2'}} ({{lowerCktPercent}}%)</td>
+        </tr>   
+        <tr>
+            <td>52 Weeks High:</td>
+            <td>{{fifty2WksHigh | number:'.2'}} </td>
+        </tr>
+        <tr>
+            <td>52 Weeks Low :</td>
+            <td>{{fifty2WksLow | number:'.2'}}</td>
+        </tr>
+
+    </table> 
+
+    <table class="margindelivery">
+        <caption>Margin</caption>
+        <tr>
+            <td>AMR:</td>
+            <td>{{amr}}</td>
+        </tr>
+        <tr>
+            <td>ELR:</td>
+            <td>{{elr}}</td>
+        </tr>
+        <tr>
+            <td>IV:</td>
+            <td>{{indexvar}}</td>
+        </tr>
+        <tr>
+            <td>VARM:</td>
+            <td>{{varMargin}}</td>
+        </tr>
+        <tr>
+            <td>SV:</td>
+            <td>{{securityVar}}</td>
+        </tr>       
+    </table>
+
+    <table class="margindelivery">
+        <caption>Delivery</caption>       
+        <tr>
+            <td>Trade Date:</td>
+            <td>{{tradeDate}}</td>
+        </tr>
+        <tr>
+            <td>Traded Qty:</td>
+            <td>{{qtyTraded}}</td>
+        </tr>
+        <tr>
+            <td>Deliverable Qty:</td>
+            <td>{{deliverableQty}}</td>
+        </tr>
+        <tr>
+            <td>Deliverable(%):</td>
+            <td>{{deliverablePercnt}}</td>
+        </tr> 
+    </table>
+  
+    <table class="news">
+        <caption>News</caption>        
+        <tr *ngFor="let n of news">
+            <td>{{n.NDt}}</td>
+            <td>{{n.Des}}</td>
+        </tr>
+    </table>
+</div>

@@ -2,6 +2,7 @@ import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DeviceDetectorService, DeviceInfo } from 'ngx-device-detector';
 import { UserModel } from 'src/app/models/user.model';
+import { WatchModel } from 'src/app/models/watch.model';
 import { UserIDService } from 'src/app/services/user-id.service';
 import { ATOZQSettings } from 'src/constants/ATOZQSettings';
 
@@ -26,6 +27,7 @@ export class AnonymousComponent implements OnInit {
   deviceInfo!:DeviceInfo;
   device!:string;
   browser!:string;
+  watchList!:WatchModel[];
 
   constructor(private titlecasePipe:TitleCasePipe,private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService) 
   { 
@@ -99,7 +101,10 @@ onSave()
   });
   
 }
-
+LoadWatch(wList:WatchModel[])
+{
+  this.watchList=wList;
+}
 LoadData(m:UserModel)
 {
       this.anonymousID = m.AnonymousID;
@@ -109,7 +114,14 @@ LoadData(m:UserModel)
       ATOZQSettings.userid = m.AnonymousID;
       ATOZQSettings.username =this.userName;
       this.tempUserName = m.UserName??m.AnonymousID;
-      this.tempEmail = this.Email;     
+      this.tempEmail = this.Email; 
+      
+      this.userIdService.GetWatchList(m.AnonymousID).subscribe({
+        next:(event)=>{          
+          this.LoadWatch(event);
+        },
+        error:(err)=>{console.log(err);}
+      });
 }
   ngOnInit(): void {
     this.userIdService.getUserId().then((userId)=>{

@@ -17,6 +17,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UserModel } from './models/user.model';
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 const onlineUsersApi = environment.onlineUsersApi;
 const apiBaseUrl = environment.apiBaseUrl;
 /** @title Responsive sidenav */
@@ -50,7 +52,20 @@ export class AppComponent implements OnDestroy {
   ATOZQSettings.username =m.UserName??m.AnonymousID;
   }
 
-  constructor(private http:HttpClient, private dialog: MatDialog,private userIdService:UserIDService,private deviceDetectorService: DeviceDetectorService,private datepipe:DatePipe,public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,public auth:AuthenticationService,private router:Router,public spinnerService:SpinnerService) {
+  constructor(
+    private http:HttpClient, 
+    private dialog: MatDialog,
+    private userIdService:UserIDService,
+    private deviceDetectorService: DeviceDetectorService,
+    private datepipe:DatePipe,
+    public changeDetectorRef: ChangeDetectorRef, 
+    media: MediaMatcher,
+    public auth:AuthenticationService,
+    private router:Router,
+    public spinnerService:SpinnerService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+    ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener); 
@@ -60,6 +75,16 @@ export class AppComponent implements OnDestroy {
     // this.intervalId = setInterval(() => {
     //   this.dt = new Date();
     // }, 1000);
+
+    this.matIconRegistry.addSvgIcon(
+      "community",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/community.svg")
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      "whatsapp",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/whatsapp_icon.svg")
+    );
 
     
   }
@@ -129,6 +154,14 @@ export class AppComponent implements OnDestroy {
           next:(event)=>{                             
             this.LoadData(event);
             this.isReady=true;
+
+             if(userId!=undefined && userId!=null)
+             {
+            setTimeout(()=>{
+              this.userIdService.UpdateIPAddress(userId);
+             },5000);
+            }
+
             this._hubConnection = new HubConnectionBuilder()
             .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
             .build();      
@@ -146,10 +179,6 @@ export class AppComponent implements OnDestroy {
         });     
       }); 
 
-
-      setTimeout(()=>{
-        this.userIdService.UpdateIPAddress(ATOZQSettings.userid);
-       },5000);
   }
 
   ngAfterContentChecked(): void {   

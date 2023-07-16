@@ -22,6 +22,7 @@ import { HelpComponent } from './components/help/help.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
+import { FundamentalsComponent } from './components/fundamentals/fundamentals.component';
 
 const routes: Routes = [
   {path:'',component:UploadComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path:'app/terms',component:TermsComponent},
   {path:'app/disclaimer',component:DisclaimerComponent},
   {path:'app/privacy',component:PrivacyComponent},
+  {path:'app/stock/:id',component:FundamentalsComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];

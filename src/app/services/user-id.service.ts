@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { UserModel } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { UserLocation } from '../models/user-location.model';
+import { WatchModel } from '../models/watch.model';
 
 const apiBaseUrl = environment.apiBaseUrl;
 
@@ -43,9 +44,17 @@ export class UserIDService {
         }); 
       },
       error:(err)=>{console.log(err);}
-    });
-
-  
+    });  
    
+  }
+
+  AddorRemoveWatch(watch:WatchModel):Observable<WatchModel>
+  {    
+    return this.http.post<WatchModel>(`${apiBaseUrl}/api/user/watch-add-remove`,watch);
+  }
+
+  GetWatchList(id:string):Observable<WatchModel[]>
+  {    
+   return this.http.get<WatchModel[]>(`${apiBaseUrl}/api/user/watch-list?id=${id}`);
   }
 }

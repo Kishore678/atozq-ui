@@ -14,7 +14,7 @@
 </div>
 <div style="clear:both;"></div>
 <section class="table-container mat-elevation-z8" tabindex="0">
-	<table mat-table [dataSource]="dataSource" matSort>
+	<table id="main" mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="Flg">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
        #
@@ -32,13 +32,22 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nme">
         Stock
       </th>
-      <td mat-cell *matCellDef="let element"><a  (click)="ViewDetails(element)"> {{element.Nme}}</a></td>
+      <td mat-cell *matCellDef="let element"><a (click)="ViewDetails(element)"> {{element.Nme}}</a></td>
     </ng-container>
-    <ng-container matColumnDef="Chat">
+    <ng-container matColumnDef="Actions">
       <th mat-header-cell *matHeaderCellDef>
-        Chat
+        Actions
       </th>
-      <td mat-cell *matCellDef="let element" (click)="OpenChat(element)"><mat-icon style="color:blue;float:left;vertical-align:middle;">chat</mat-icon><div [ngClass]="GetChatCount(element.Code)>0?'showChatCount':'hideChatCount'">({{GetChatCount(element.Code) | number:'2.' }})</div> <span class="clear"></span></td>
+      <td mat-cell *matCellDef="let element">
+
+        <span style="display:inline-block;">
+          <mat-icon community (click)="AddOrRemoveWatch(element.Nme,element.Code)" [ngClass]="element.IsWatch?'watch':''">favorite</mat-icon>
+          &nbsp;<mat-icon (click)="share(element)" svgIcon="whatsapp"></mat-icon>
+          &nbsp;<mat-icon svgIcon="community" (click)="OpenChat(element)" style="vertical-align:middle;">community</mat-icon>
+          <spna [ngClass]="GetChatCount(element.Code)>0?'showChatCount':'hideChatCount'">({{GetChatCount(element.Code) | number:'2.' }})</spna>
+        </span>
+      
+      </td>
     </ng-container>
     <ng-container matColumnDef="Grp">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Grp">

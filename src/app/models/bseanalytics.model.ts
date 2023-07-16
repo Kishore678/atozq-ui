@@ -1,7 +1,10 @@
+import { WatchModel } from "./watch.model"
+
 export interface BSEDetails {
     FileName: string
     BSEAnalytics: Bseanalytic[],
     ChatCount:ChatCount[]
+    Watches:WatchModel[]
   }
   export interface ChatCount
   {
@@ -25,7 +28,8 @@ export interface BSEDetails {
     Prv: number
     Mst: boolean
     Wrn: string
-    Fund: Fund
+    Fund: Fund,
+    IsWatch:boolean
   }
   
   export interface Fund {
