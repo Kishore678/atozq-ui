@@ -143,7 +143,7 @@ displayedColumns = [
   let domain = loc.protocol+"//"+(host=="localhost"?host+":"+loc.port:host);  
 
   let url = 
-  (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/app/stock/fund/"+prod.Code;
+  (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +titleText+" "+category+" Secured Link: "+domain+"/app/stock/"+prod.Code;
 
   
   // this.service.share(id).subscribe(result=>{
@@ -415,14 +415,14 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
       if(rw.IsWatch)
       {
         // this.watchList.push(rw);        
-        alert('Added to My Account --> Watch List.');
+        alert(name+' added to My Account --> Watch List.');
       }
       else
       {
         this.watchList = this.watchList.filter((value,index,arr)=>{
           return value.Code!=w?.Code;
         });
-        alert('Removed from My Account --> Watch List.')
+        alert(name+' removed from My Account --> Watch List.')
       }   
    
 

@@ -41,9 +41,9 @@
       <td mat-cell *matCellDef="let element">
 
         <span style="display:inline-block;">
-          <mat-icon community (click)="AddOrRemoveWatch(element.Nme,element.Code)" [ngClass]="element.IsWatch?'watch':''">favorite</mat-icon>
+          <mat-icon community (click)="AddOrRemoveWatch(element.Nme,element.Code)" [ngClass]="element.IsWatch?'watch':'watch-default'">favorite</mat-icon>
           &nbsp;<mat-icon (click)="share(element)" svgIcon="whatsapp"></mat-icon>
-          &nbsp;<mat-icon svgIcon="community" (click)="OpenChat(element)" style="vertical-align:middle;">community</mat-icon>
+          &nbsp;<mat-icon (click)="OpenChat(element)" svgIcon="community"></mat-icon>
           <spna [ngClass]="GetChatCount(element.Code)>0?'showChatCount':'hideChatCount'">({{GetChatCount(element.Code) | number:'2.' }})</spna>
         </span>
       
