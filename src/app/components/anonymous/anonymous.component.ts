@@ -105,6 +105,25 @@ LoadWatch(wList:WatchModel[])
 {
   this.watchList=wList;
 }
+DeleteWatchListItem(w:WatchModel)
+{
+  let yes = confirm('Are you sure want to delete '+w.Nme+'?');
+  if(yes)
+  {
+    this.userIdService.AddorRemoveWatch(w).subscribe({
+      next:(event)=>{
+        if(event.IsWatch==false)
+        {
+          this.watchList = this.watchList.filter((value,index,arr)=>{
+            return value.Code!=w?.Code;
+          });
+          alert(w.Nme.trim()+' removed from My Account --> Watch List.')
+        }
+      },
+      error:(err)=>{console.log(err);alert('Something went wrong. Please try again.')}
+    });
+  }
+}
 LoadData(m:UserModel)
 {
       this.anonymousID = m.AnonymousID;

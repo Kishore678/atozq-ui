@@ -9,7 +9,7 @@ export class UtcToLocalTimePipe implements PipeTransform {
     constructor(private _dateConverter: UtcConverterService) {
     }
 
-    transform(date: string, args?: any): string {
+    transform(date: Date, args?: any): string {
         return this._dateConverter.convertUtcToLocalTime(date, args);
     }
 }

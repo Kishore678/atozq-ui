@@ -49,6 +49,7 @@ import { DisclaimerComponent } from './components/disclaimer/disclaimer.componen
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { UtcToLocalTimePipe } from './pipes/utc-to-local-time.pipe';
 import { FundamentalsComponent } from './components/fundamentals/fundamentals.component';
+import { UtcConverterService } from './pipes/utc-converter.service';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent],
@@ -62,7 +63,7 @@ import { FundamentalsComponent } from './components/fundamentals/fundamentals.co
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
-  providers: [TitleCasePipe,DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService],
+  providers: [UtcToLocalTimePipe,TitleCasePipe,DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService,UtcConverterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

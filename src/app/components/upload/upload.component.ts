@@ -393,16 +393,17 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
  {
    return watch;
  }
- AddOrRemoveWatch(name:string,code:string)
+ AddOrRemoveWatch(elem:Bseanalytic)
  {
   
-  let w = this.watchList.find(f=>f.Code==code);
+  let w = this.watchList.find(f=>f.Code==elem.Code);
 
   if(!w)
   {
     w = new WatchModel();
     w.AnonymousID=this.user.AnonymousID;
-    w.Code=code;
+    w.Code=elem.Code;
+    w.CreatedLTP =elem.LTP; 
     w.IsWatch=false;
   }
   else if(w.WatchId>0)
@@ -415,20 +416,20 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
       if(rw.IsWatch)
       {
         // this.watchList.push(rw);        
-        alert(name+' added to My Account --> Watch List.');
+        alert(elem.Nme.trim()+' added to My Account --> Watch List.');
       }
       else
       {
         this.watchList = this.watchList.filter((value,index,arr)=>{
           return value.Code!=w?.Code;
         });
-        alert(name+' removed from My Account --> Watch List.')
+        alert(elem.Nme.trim()+' removed from My Account --> Watch List.')
       }   
    
 
       this.dataSource.data = this.dataSource.data.filter((value,idx,arr)=>
       {
-        if(value.Code==code)
+        if(value.Code==elem.Code)
         {
           value.IsWatch = rw.IsWatch;          
         }

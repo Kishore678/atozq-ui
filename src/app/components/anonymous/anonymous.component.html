@@ -31,14 +31,30 @@
 
   <h3><span class="page-header">WATCH LIST</span></h3>
   <section class="container">
-<table style="width:330px;margin:0 auto;">
+<table style="width:100%;font-weight: 500;">
   <tr style="text-align: center;">
-    <th>S.No.</th>
-    <th>Code</th>
+    <th style="width:35px;">S.No.</th>
+    <!-- <th>Code</th> -->
+    <th style="width:95px;">Stock</th>
+    <!-- <th>Created Price</th> -->
+    <!-- <th>Created On</th> -->
+    <th style="width:50px;">Price</th>
+    <!-- <th>Modified On</th> -->
+    <th style="width:50px;">Change</th>
+    <th style="width:50px;">% Change</th>
+    <th></th>
   </tr>
   <tr style="text-align: center;" *ngFor="let w of watchList;let i=index;">
    <td>{{i+1}}</td>
-   <td>{{w.Code}}</td>
+   <!-- <td>{{w.Code}}</td> -->
+   <td>{{w.Nme}}</td>
+   <!-- <td>{{w.CreatedLTP}}</td> -->
+   <!-- <td>{{w.CreatedLTPAsOn | utcToLocalTime:'short'}}</td> -->
+   <td>{{w.ModifiedLTP}}</td>
+   <!-- <td>{{w.ModifiedLTPAsOn | utcToLocalTime:'short'}}</td> -->
+   <td>{{w.Change}}</td>
+   <td>{{w.PercentChange}}</td>
+   <td style="text-align:left"><mat-icon style="color: #db2c2c;cursor: pointer;" (click)="DeleteWatchListItem(w)">delete</mat-icon></td>
   </tr>
 </table>
 </section>

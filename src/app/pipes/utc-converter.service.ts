@@ -7,7 +7,7 @@ export enum UtcToLocalTimeFormat {
 
 export class UtcConverterService {
     public convertUtcToLocalTime(
-        utcDate: string,    // UTC ISO-8601
+        utcDate: Date,    // UTC ISO-8601
         format: UtcToLocalTimeFormat = UtcToLocalTimeFormat.FULL
     ): string {
 

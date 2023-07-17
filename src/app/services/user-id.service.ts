@@ -33,7 +33,7 @@ export class UserIDService {
   UpdateIPAddress(userId:string)
   {
        
-    this.http.get<any>('https://api.ipify.org/?format=json').subscribe({
+    this.http.get<any>('https://api64.ipify.org/?format=json').subscribe({
       next:(location)=>{
         var user = new UserModel();      
         user.IPAddress = location.ip;
