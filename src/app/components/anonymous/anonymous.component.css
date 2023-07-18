@@ -384,6 +384,21 @@
       margin-top: 5px;
       transform:translateX(-50%);
   }
+
+
+table#watchlist{
+  width:100%;font-weight: 500;
+}
+#watchlist tr{
+  text-align: center;
+}
+  #watchlist .mat-icon{
+    color: #db2c2c;cursor: pointer;vertical-align: middle;
+  }
+  #watchlist .mat-icon:hover
+  {
+    color: #f14343;
+  }
    
   
   

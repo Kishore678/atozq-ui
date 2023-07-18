@@ -44,7 +44,7 @@
           <mat-icon community (click)="AddOrRemoveWatch(element)" [ngClass]="element.IsWatch?'watch':'watch-default'">favorite</mat-icon>
           &nbsp;<mat-icon (click)="share(element)" svgIcon="whatsapp"></mat-icon>
           &nbsp;<mat-icon (click)="OpenChat(element)" svgIcon="community"></mat-icon>
-          <spna [ngClass]="GetChatCount(element.Code)>0?'showChatCount':'hideChatCount'">({{GetChatCount(element.Code) | number:'2.' }})</spna>
+          &nbsp;<span [ngClass]="element.ChatCnt>0?'showChatCount':'hideChatCount'">({{element.ChatCnt | number:'2.' }})</span>
         </span>
       
       </td>

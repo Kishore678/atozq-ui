@@ -29,7 +29,7 @@ const apiBaseUrl = environment.apiBaseUrl;
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent {  
-  watchList:WatchModel[]=new Array<WatchModel>();
+  // watchList:WatchModel[]=new Array<WatchModel>();
   user!:UserModel;
   isTrue:boolean=false;
   dsArray:any[]=[];
@@ -68,7 +68,7 @@ displayedColumns = [
 
   dataSource = new MatTableDataSource<Bseanalytic>();
   selected = '0-1';
-  ChatCount!: ChatCount[];
+  // ChatCount!: ChatCount[];
 
   ngAfterViewInit() {
  
@@ -374,55 +374,48 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   //  });
  }
 
- GetChatCount(code:string)
- {
-  return this.ChatCount.find(f=>f.ChatID==code)?.Count??0;
- }
- chatCountDisplay(count:number)
- {
-  return count>0?"showChatCount":"hideChatCount";
- }
+//  GetChatCount(code:string)
+//  {
+//   return this.ChatCount.find(f=>f.ChatID==code)?.Count??0;
+//  }
+//  chatCountDisplay(count:number)
+//  {
+//   return count>0?"showChatCount":"hideChatCount";
+//  }
 
- DisplayWatch(code:string)
- {
-  let watchStyle = this.watchList.find(f=>f.Code==code)!=undefined?'watch':'';
-  return watchStyle;
- }
+//  DisplayWatch(code:string)
+//  {
+//   let watchStyle = this.watchList.find(f=>f.Code==code)!=undefined?'watch':'';
+//   return watchStyle;
+//  }
 
- LoadWatch(watch:WatchModel)
- {
-   return watch;
- }
+//  LoadWatch(watch:WatchModel)
+//  {
+//    return watch;
+//  }
  AddOrRemoveWatch(elem:Bseanalytic)
  {
   
-  let w = this.watchList.find(f=>f.Code==elem.Code);
-
-  if(!w)
-  {
-    w = new WatchModel();
+  // let w = this.watchList.find(f=>f.Code==elem.Code);
+  let w = new WatchModel();  
     w.AnonymousID=this.user.AnonymousID;
     w.Code=elem.Code;
     w.CreatedLTP =elem.LTP; 
-    w.IsWatch=false;
-  }
-  else if(w.WatchId>0)
-  {
-    w.IsWatch = true;
-  }
+    w.IsWatch=elem.IsWatch; 
+ 
   this.useridService.AddorRemoveWatch(w).subscribe({
     next:(event)=>{
-      let rw = this.LoadWatch(event);
-      if(rw.IsWatch)
+      // let rw = this.LoadWatch(event);
+      if(event.IsWatch)
       {
         // this.watchList.push(rw);        
         alert(elem.Nme.trim()+' added to My Account --> Watch List.');
       }
       else
       {
-        this.watchList = this.watchList.filter((value,index,arr)=>{
-          return value.Code!=w?.Code;
-        });
+        // this.watchList = this.watchList.filter((value,index,arr)=>{
+        //   return value.Code!=w?.Code;
+        // });
         alert(elem.Nme.trim()+' removed from My Account --> Watch List.')
       }   
    
@@ -431,7 +424,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
       {
         if(value.Code==elem.Code)
         {
-          value.IsWatch = rw.IsWatch;          
+          value.IsWatch = event.IsWatch;          
         }
         return true;
       }); 
@@ -467,8 +460,8 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   { 
     this.dataSource.data  = [];
     this.bseBhavModel = event;
-    this.ChatCount = this.bseBhavModel.ChatCount;   
-    this.watchList = this.bseBhavModel.Watches; 
+    // this.ChatCount = this.bseBhavModel.ChatCount;   
+    // this.watchList = this.bseBhavModel.Watches; 
     this.bseBhavData = this.bseBhavModel.BSEAnalytics;
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
   this.dataSource.data = this.bseBhavData;

@@ -1,7 +1,7 @@
 
 table
 {      
-   width: 317px;
+   width: 365px;
    height: 200px;
     float: left;   
     margin: 5px;
@@ -51,6 +51,7 @@ th, td {
   }
   table td{
     color: #001dff;
+    text-align: center;
     display: table-cell;
   }
   table td:first-child{
@@ -62,17 +63,18 @@ th, td {
   
 
 
-  table.price-movement td{text-align: right;}
+  table.price-movement td{text-align: center;}
   table.price-movement td:first-child{text-align: center;}
 
-  table.financial td{text-align: right;}
+  table.financial td{text-align: center;}
   table.financial td:first-child{text-align: center;}
 
-  table.margindelivery td{text-align: right;}
+  table.margindelivery td{text-align: center;}
   table.margindelivery td:first-child{text-align: center;}
   
   table.news{width:97%;clear:both;height: auto;}
   table.news th{text-align: center;color: #601da1;background-color: lightgreen;}
+  table.news td{text-align: justify;}
   table.news td:first-child{text-align: center;}
 
   .loss{color:red; font-weight: 500;}
@@ -91,7 +93,7 @@ th, td {
     .fundamentals 
     .page-header{ 
         display: block;
-        margin-bottom:5px;
+        margin:16px;
         font-weight:500;
         text-align: center;
         color: #00bcd4;

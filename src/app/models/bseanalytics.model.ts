@@ -28,8 +28,9 @@ export interface BSEDetails {
     Prv: number
     Mst: boolean
     Wrn: string
-    Fund: Fund,
+    Fund: Fund
     IsWatch:boolean
+    ChatCnt:number
   }
   
   export interface Fund {
