@@ -33,7 +33,7 @@
   <section class="container">
 <table id="watchlist">
   <tr>
-    <th style="width:35px;">S.No.</th>
+    <th style="width:35px;">#</th>
     <!-- <th>Code</th> -->
     <th style="width:95px;">Stock</th>
     <!-- <th>Created Price</th> -->
@@ -54,7 +54,7 @@
    <!-- <td>{{w.ModifiedLTPAsOn | utcToLocalTime:'short'}}</td> -->
    <td>{{w.Change | number:'1.2-2'}}</td>
    <td>{{w.PercentChange | number:'1.2-2'}}</td>
-   <td style="text-align:center"><mat-icon (click)="DeleteWatchListItem(w)">delete</mat-icon></td>
+   <td style="text-align:center"><mat-icon svgIcon="delete" (click)="DeleteWatchListItem(w)"></mat-icon></td>
   </tr>
 </table>
 </section>

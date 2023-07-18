@@ -1,130 +1,167 @@
-	<div class="bg-layer">
-<div class="filter">
-<div style="float:left;display:block;margin: 7px 0px 7px 5px;">
-  <label class="filename"><b>BSE EQ:&nbsp;</b></label>
-</div>
-<div style="float:left;display:block;margin: 5px 0 5px 0;">
-  <mat-select [(value)]="selected" (selectionChange)="SelectionChanged()">    
-    <mat-option *ngFor="let b of dsArray" value="{{b.key}}">{{b.text}}</mat-option>   
-  </mat-select> 
-</div>
-<div style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">
-    <label class="filename"><b>&nbsp;Date:&nbsp;</b></label>{{fileName}}
-</div>
-</div>
-<div style="clear:both;"></div>
-<section class="table-container mat-elevation-z8" tabindex="0">
-	<table id="main" mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="Flg">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
-       #
-      </th>
-      <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="flagStyle(element)" [matTooltip]="flagContent(element) | tooltipList" 
-        matTooltipClass="tooltip-list" #tooltip="matTooltip" (click)="tooltip.show()"   [matTooltipPosition]="'after'">flag</mat-icon></td>
-    </ng-container>
-    <ng-container matColumnDef="Code">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Code">
-       Code
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.Code}} </td>
-    </ng-container>
-    <ng-container matColumnDef="Nme">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nme">
-        Stock
-      </th>
-      <td mat-cell *matCellDef="let element"><a (click)="ViewDetails(element)"> {{element.Nme}}</a></td>
-    </ng-container>
-    <ng-container matColumnDef="Actions">
-      <th mat-header-cell *matHeaderCellDef>
-        Actions
-      </th>
-      <td mat-cell *matCellDef="let element">
+<mat-tab-group>
+<mat-tab>
+<ng-template mat-tab-label>
+  <mat-icon svgIcon="star" class="example-tab-icon">star</mat-icon>
+  Today Active
+</ng-template>
+<div class="bg-layer">
+  <div class="filter">
+  <div style="float:left;display:block;margin: 7px 0px 7px 5px;">
+    <label class="filename"><b>BSE EQ:&nbsp;</b></label>
+  </div>
+  <div style="float:left;display:block;margin: 5px 0 5px 0;">
+    <mat-select [(value)]="selected" (selectionChange)="SelectionChanged()">    
+      <mat-option *ngFor="let b of dsArray" value="{{b.key}}">{{b.text}}</mat-option>   
+    </mat-select> 
+  </div>
+  <div style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">
+      <label class="filename"><b>&nbsp;Date:&nbsp;</b></label>{{fileName}}
+  </div>
+  </div>
+  <div style="clear:both;"></div>
+  <section class="table-container mat-elevation-z8" tabindex="0">
+    <table id="main" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="Flg">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
+         #
+        </th>
+        <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="flagStyle(element)" [matTooltip]="flagContent(element) | tooltipList" 
+          matTooltipClass="tooltip-list" #tooltip="matTooltip" (click)="tooltip.show()"   [matTooltipPosition]="'after'">flag</mat-icon></td>
+      </ng-container>
+      <ng-container matColumnDef="Code">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Code">
+         Code
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.Code}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Nme">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Nme">
+          Stock
+        </th>
+        <td mat-cell *matCellDef="let element"><a (click)="ViewDetails(element)"> {{element.Nme}}</a></td>
+      </ng-container>
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>
+          Actions
+        </th>
+        <td mat-cell *matCellDef="let element">
+  
+          <span style="display:inline-block;">
+            <mat-icon (click)="AddOrRemoveWatch(element)" [ngClass]="element.IsWatch?'watch':'watch-default'">favorite</mat-icon>
+            &nbsp;<mat-icon (click)="share(element)" svgIcon="whatsapp"></mat-icon>
+            &nbsp;<mat-icon (click)="OpenChat(element)" svgIcon="community"></mat-icon>
+            &nbsp;<span [ngClass]="element.ChatCnt>0?'showChatCount':'hideChatCount'">({{element.ChatCnt | number:'2.' }})</span>
+          </span>
+        
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="Grp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Grp">
+          Group
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.Grp}} </td>
+      </ng-container>
+      <ng-container matColumnDef="LTP">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by LTP">
+          LTP
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.LTP | number:'.2'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Vol">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vol">
+              Volume
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Vol | number:'2.'}} </td>
+       </ng-container>
+        <ng-container matColumnDef="Cnt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Cnt">
+              Trades
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Cnt | number:'2.'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Opn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Opn">
+              Open
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Opn | number:'.2'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Hig">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Hig">
+              High
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Hig | number:'.2'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Low">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Low">
+              Low
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Low | number:'.2'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Avg">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Avg">
+              Avg
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Avg | number:'.2'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Prv">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Prv">
+              Prev
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Prv | number:'.2'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Wrn">        
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Wrn">
+              Wrn
+            </th>
+            <td mat-cell *matCellDef="let element" (click)="AddWrn(element)">
+              <mat-icon style="color:orange;float:left;vertical-align:middle;">edit</mat-icon>
+              <span class="clear"></span>
+            </td>       
+        </ng-container>
+        <ng-container matColumnDef="Fund">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Fund">
+              Fund
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element.Fund}} </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>  
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20,30,40,50,100]" [pageSize]="size" showFirstLastButtons></mat-paginator>
+  </section>
+  
+  </div>
+</mat-tab>
 
-        <span style="display:inline-block;">
-          <mat-icon community (click)="AddOrRemoveWatch(element)" [ngClass]="element.IsWatch?'watch':'watch-default'">favorite</mat-icon>
-          &nbsp;<mat-icon (click)="share(element)" svgIcon="whatsapp"></mat-icon>
-          &nbsp;<mat-icon (click)="OpenChat(element)" svgIcon="community"></mat-icon>
-          &nbsp;<span [ngClass]="element.ChatCnt>0?'showChatCount':'hideChatCount'">({{element.ChatCnt | number:'2.' }})</span>
-        </span>
-      
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="Grp">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Grp">
-        Group
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.Grp}} </td>
-    </ng-container>
-    <ng-container matColumnDef="LTP">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by LTP">
-        LTP
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.LTP | number:'.2'}} </td>
-    </ng-container>
-    <ng-container matColumnDef="Vol">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vol">
-            Volume
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Vol | number:'2.'}} </td>
-     </ng-container>
-      <ng-container matColumnDef="Cnt">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Cnt">
-            Trades
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Cnt | number:'2.'}} </td>
-      </ng-container>
-      <ng-container matColumnDef="Opn">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Opn">
-            Open
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Opn | number:'.2'}} </td>
-      </ng-container>
-      <ng-container matColumnDef="Hig">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Hig">
-            High
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Hig | number:'.2'}} </td>
-      </ng-container>
-      <ng-container matColumnDef="Low">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Low">
-            Low
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Low | number:'.2'}} </td>
-      </ng-container>
-      <ng-container matColumnDef="Avg">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Avg">
-            Avg
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Avg | number:'.2'}} </td>
-      </ng-container>
-      <ng-container matColumnDef="Prv">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Prv">
-            Prev
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Prv | number:'.2'}} </td>
-      </ng-container>
-      <ng-container matColumnDef="Wrn">        
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Wrn">
-            Wrn
-          </th>
-          <td mat-cell *matCellDef="let element" (click)="AddWrn(element)">
-            <mat-icon style="color:orange;float:left;vertical-align:middle;">edit</mat-icon>
-            <span class="clear"></span>
-          </td>       
-      </ng-container>
-      <ng-container matColumnDef="Fund">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Fund">
-            Fund
-          </th>
-          <td mat-cell *matCellDef="let element"> {{element.Fund}} </td>
-      </ng-container>
-		<tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
-		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>  
-	</table>
-	<mat-paginator [pageSizeOptions]="[5, 10, 20,30,40,50,100]" [pageSize]="size" showFirstLastButtons></mat-paginator>
-</section>
+<mat-tab>
+<ng-template mat-tab-label>
+  <mat-icon svgIcon="date" class="example-tab-icon"></mat-icon>
+  Week Active
+</ng-template>
+Content 2
+</mat-tab>
 
-</div>
+<mat-tab>
+<ng-template mat-tab-label>
+  <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
+   Circuit Breakout
+</ng-template>
+
+Content 3
+</mat-tab>
+</mat-tab-group>
+
+
+<!-- 
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="Today Most Active">
+    <mat-icon>book</mat-icon>
+
+  </mat-tab>
+  <mat-tab label="Week Active">Content 2</mat-tab>
+  <mat-tab label="Circuit Breakout">Content 3</mat-tab>
+</mat-tab-group> -->
+
 
 
 

@@ -85,8 +85,23 @@ export class AppComponent implements OnDestroy {
       "whatsapp",
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/whatsapp_icon.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      "stockmarket",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/stockmarket.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "date",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/date.svg")
+    );
 
-    
+    this.matIconRegistry.addSvgIcon(
+      "star",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/star.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "delete",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/delete.svg")
+    );
   }
   OpenAskChat(model: ChatModel) {  
     const dialogRef = this.dialog.open(ChatDialogComponent, {
