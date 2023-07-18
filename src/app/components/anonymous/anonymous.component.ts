@@ -5,7 +5,7 @@ import { UserModel } from 'src/app/models/user.model';
 import { WatchModel } from 'src/app/models/watch.model';
 import { UserIDService } from 'src/app/services/user-id.service';
 import { ATOZQSettings } from 'src/constants/ATOZQSettings';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-anonymous',
   templateUrl: './anonymous.component.html',
@@ -90,11 +90,11 @@ onSave()
       }
       else
       {
-        alert(this.user.ErrorMessage);
+        Swal.fire(this.user.ErrorMessage);
       }
     },
     error:(err)=>{
-      alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');    
+      Swal.fire('Something went wrong. Try again (or) Click on Ask to raise an issue.');    
       console.log(err);
     }
 
@@ -107,22 +107,34 @@ LoadWatch(wList:WatchModel[])
 }
 DeleteWatchListItem(w:WatchModel)
 {
-  let yes = confirm('Are you sure want to delete '+w.Nme+'?');
-  if(yes)
-  {
-    this.userIdService.AddorRemoveWatch(w).subscribe({
-      next:(event)=>{
-        if(event.IsWatch==false)
-        {
-          this.watchList = this.watchList.filter((value,index,arr)=>{
-            return value.Code!=w?.Code;
-          });
-          alert(w.Nme.trim()+' removed from My Account --> Watch List.')
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Delete '+w.Nme.trim()+' from watchlist.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, go ahead.',
+    cancelButtonText: 'No, let me think',
+  }).then((result) => {
+    if (result.value) {
+
+      this.userIdService.AddorRemoveWatch(w).subscribe({
+        next:(event)=>{
+          if(event.IsWatch==false)
+          {
+            this.watchList = this.watchList.filter((value,index,arr)=>{
+              return value.Code!=w?.Code;
+            });
+            Swal.fire('Removed!', w.Nme.trim()+' removed from Watchlist.','success');       
+          }
+        },
+        error:(err)=>{console.log(err);
+          Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
         }
-      },
-      error:(err)=>{console.log(err);alert('Something went wrong. Please try again.')}
-    });
-  }
+      });
+      
+    } 
+  });
+
 }
 LoadData(m:UserModel)
 {
@@ -149,7 +161,7 @@ LoadData(m:UserModel)
           this.LoadData(event);
         },
         error:(err)=>{
-      alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
+          Swal.fire('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
           console.log(err);
         }
       });      

@@ -20,7 +20,7 @@ import { ATOZQSettings } from 'src/constants/ATOZQSettings';
 import { UserIDService } from 'src/app/services/user-id.service';
 import { UserModel } from 'src/app/models/user.model';
 import { WatchModel } from 'src/app/models/watch.model';
-
+import Swal from 'sweetalert2';
 const apiBaseUrl = environment.apiBaseUrl;
 
 @Component({
@@ -409,14 +409,14 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
       if(event.IsWatch)
       {
         // this.watchList.push(rw);        
-        alert(elem.Nme.trim()+' added to My Account --> Watch List.');
+        Swal.fire('Hi',elem.Nme.trim()+' added to Watchlist.','success');
       }
       else
       {
         // this.watchList = this.watchList.filter((value,index,arr)=>{
         //   return value.Code!=w?.Code;
         // });
-        alert(elem.Nme.trim()+' removed from My Account --> Watch List.')
+        Swal.fire('Hi',elem.Nme.trim()+' removed from Watchlist.','error')
       }   
    
 
@@ -432,7 +432,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
     },
     error:(err)=>{
       console.log(err);
-      alert('Something went wrong. Please try again.');
+      Swal.fire('Something went wrong. Please try again.');
     }
   });
  }
