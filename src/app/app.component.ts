@@ -100,7 +100,11 @@ export class AppComponent implements OnDestroy {
     );
     this.matIconRegistry.addSvgIcon(
       "delete",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/delete.svg")
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/recycle-bin.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "elearning",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/books.svg")
     );
   }
   OpenAskChat(model: ChatModel) {  

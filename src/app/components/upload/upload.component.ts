@@ -405,7 +405,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
       if(event.IsWatch)
       {
         // this.watchList.push(rw);        
-        Swal.fire('Hi',elem.Nme.trim()+' added to Watchlist.','success');
+        Swal.fire('Done',elem.Nme.trim()+' added to Watchlist.','success');
       }
       else
       {
