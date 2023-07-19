@@ -391,6 +391,8 @@ table#watchlist{
 }
 #watchlist tr{
   text-align: center;
+  color: #297983;
+  font-weight: 500;
 }
   #watchlist .mat-icon{
     color: #db2c2c;cursor: pointer;vertical-align: middle;
@@ -399,6 +401,22 @@ table#watchlist{
   {
     color: #f14343;
   }
-   
+
+  .profit
+  {
+    color: #35df11;
+    font-weight: 500;
+  }
+
+  .loss
+  {
+    color: #ec4d29;
+    font-weight: 500;
+  }
+.neutral
+{
+  color: #5e5959;
+  font-weight: 500;
+}
   
   

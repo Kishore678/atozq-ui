@@ -69,12 +69,12 @@ body { margin: 0;}
   text-align: center;
 }
 .mat-select .mat-select-value {
-color: #245bff;
+color: #ffffff;
 text-align: center;
 }
 
 .mat-select-arrow {
-  color: #245bff;
+  color: #ffffff;
 }
 .mat-option.mat-active {
   background:#f0f8ff !important;

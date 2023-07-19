@@ -27,14 +27,32 @@
     font-weight: bold;
   }
 
-  .mat-select{ 
+  .mat-select
+  {
     width: 200px;
     margin-left: 5px;
-    border: 1px solid;
+    border: 2px solid;
     border-radius: 4px;
-    padding: 2px;
+    padding: 5px;
     font-weight: 500;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #00bcd4);
     border-color: #dddddd;
+  }
+
+  :host ::ng-deep.mat-paginator .mat-paginator-container{   
+    font-weight: 500;
+    color: #297983;  
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    width: 100%;  
+  }
+
+  :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select-value
+  {
+    color: #297983; 
   }
 
   th{background: #00bcd4;
@@ -194,6 +212,11 @@ mat-form-field + mat-form-field {
   width:10px;
   text-align: center;
 }
+.mat-column-Flg .mat-icon
+{
+vertical-align: middle;
+}
+
 .mat-column-Grp
 {
   width:10px;
@@ -202,8 +225,6 @@ mat-form-field + mat-form-field {
 .mat-column-LTP
 {
   width:50px;
-  font-weight:500;
-  text-align: center;
 }
 .mat-column-Vol
 {
@@ -226,31 +247,21 @@ mat-form-field + mat-form-field {
   text-align: center;
   width: 25px;
 }
-.mat-column-Cnt,.mat-column-Opn,.mat-column-Hig,.mat-column-Low,.mat-column-Avg,.mat-column-Prv
+td.mat-column-Vol,
+td.mat-column-Grp,
+td.mat-column-Code,
+td.mat-column-Actions,
+td.mat-column-LTP,
+td.mat-column-Cnt,
+td.mat-column-Opn,
+td.mat-column-Hig,
+td.mat-column-Low,
+td.mat-column-Avg,
+td.mat-column-Prv
 {
   text-align: center;
-}
-.mat-column-Chat .mat-icon:hover
-{
-  color: #25ec25; 
-}
-.showChatCount
-{
-  color: black;
+  color: #297983;
   font-weight: 500;
-  /* width: 48px; */
-  white-space: nowrap;
-}
-.hideChatCount
-{
-  display: none;
-}
-
-.chat-icon
-{
-  vertical-align: middle;
-  float:left;
-  color:#25ec25;
 }
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
@@ -280,23 +291,27 @@ table #main .mat-cell {
   border: 1px solid #dddddd; 
 }
 .risk4{
-  color: red; 
+  color: #ff0b0b; 
 }
 .risk3{
 color: #ffd382;
 }
 .risk2{
-  color:orange;
+  color:#ffa500;
 }
 .risk1
 {
-  color:lightgreen;
+  color:#55cd6c;
 }
 .risk
 {
   color: lightgray;
 }
 
+
+::ng-deep .mat-tab-label-active {
+  opacity: 1 !important;
+  }
 
 
 ::ng-deep .mat-tooltip {
@@ -336,4 +351,16 @@ width:100%;
 
 .example-tab-icon {
   margin-right: 8px;
+}
+
+.notification
+{
+  text-align: center;
+  padding: 10px;
+  border: 3px solid #ffa300;
+  margin: 5px;
+}
+.notification a{  
+    color: #245afc;
+    cursor: pointer;
 }

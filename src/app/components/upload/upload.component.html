@@ -2,7 +2,7 @@
 <mat-tab>
 <ng-template mat-tab-label>
   <mat-icon svgIcon="star" class="example-tab-icon">star</mat-icon>
-  Today Active
+  Most Active
 </ng-template>
 <div class="bg-layer">
   <div class="filter">
@@ -50,7 +50,7 @@
             <mat-icon (click)="AddOrRemoveWatch(element)" [ngClass]="element.IsWatch?'watch':'watch-default'">favorite</mat-icon>
             &nbsp;<mat-icon (click)="share(element)" svgIcon="whatsapp"></mat-icon>
             &nbsp;<mat-icon (click)="OpenChat(element)" svgIcon="community"></mat-icon>
-            &nbsp;<span [ngClass]="element.ChatCnt>0?'showChatCount':'hideChatCount'">({{element.ChatCnt | number:'2.' }})</span>
+            &nbsp;(<span>{{element.ChatCnt | number:'2.' }}</span>)
           </span>
         
         </td>
@@ -127,7 +127,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>  
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20,30,40,50,100]" [pageSize]="size" showFirstLastButtons></mat-paginator>
+    <mat-paginator #paginator showFirstLastButtons hidePageSize></mat-paginator>
   </section>
   
   </div>
@@ -138,7 +138,11 @@
   <mat-icon svgIcon="date" class="example-tab-icon"></mat-icon>
   Week Active
 </ng-template>
-Coming soon...
+<div class="bg-layer notification">
+Coming soon... Please do support and share.<mat-icon style="cursor: pointer;vertical-align:super;" (click)="whatsAppShare('ATOZQ.com stock analysis made simple and automated. Secure Link: https://atozq.com')" svgIcon="whatsapp"></mat-icon> <br>Tag your email under   <a style="color:#218b99;font-weight:500;" mat-list-item routerLink="/account/anonymous">      
+  <mat-icon style="vertical-align:bottom;" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
+ </a> We will notify when new feature available.
+</div>
 </mat-tab>
 
 <mat-tab>
@@ -146,7 +150,11 @@ Coming soon...
   <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
    Circuit Breakout
 </ng-template>
-Coming soon...
+<div class="bg-layer notification">
+  Coming soon... Please do support and share.<mat-icon style="cursor: pointer;vertical-align:super;" (click)="whatsAppShare('ATOZQ.com stock analysis made simple and automated. Secure Link: https://atozq.com')" svgIcon="whatsapp"></mat-icon> <br>Tag your email under   <a style="color:#218b99;font-weight:500;" mat-list-item routerLink="/account/anonymous">      
+    <mat-icon style="vertical-align:bottom;" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
+   </a> We will notify when new feature available.
+</div>
 </mat-tab>
 </mat-tab-group>
 

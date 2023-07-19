@@ -36,9 +36,9 @@
     <th style="width:35px;">#</th>
     <!-- <th>Code</th> -->
     <th style="width:95px;">Stock</th>
-    <!-- <th>Created Price</th> -->
+    <th style="width:50px;">Listed</th>
     <!-- <th>Created On</th> -->
-    <th style="width:50px;">Price</th>
+    <th style="width:50px;">LTP</th>
     <!-- <th>Modified On</th> -->
     <th style="width:50px;">Change</th>
     <th style="width:50px;">% Change</th>
@@ -48,12 +48,12 @@
    <td>{{i+1}}</td>
    <!-- <td>{{w.Code}}</td> -->
    <td>{{w.Nme}}</td>
-   <!-- <td>{{w.CreatedLTP}}</td> -->
+   <td>{{w.CreatedLTP}}</td>
    <!-- <td>{{w.CreatedLTPAsOn | utcToLocalTime:'short'}}</td> -->
    <td>{{w.ModifiedLTP | number:'1.2-2'}}</td>
    <!-- <td>{{w.ModifiedLTPAsOn | utcToLocalTime:'short'}}</td> -->
-   <td>{{w.Change | number:'1.2-2'}}</td>
-   <td>{{w.PercentChange | number:'1.2-2'}}</td>
+   <td [ngClass]="w.Change>0?'profit':'loss'">{{w.Change | number:'1.2-2'}}</td>
+   <td [ngClass]="w.PercentChange>0?'profit':w.PercentChange<0?'loss':'neutral'">{{w.PercentChange | number:'1.2-2'}}</td>
    <td style="text-align:center"><mat-icon svgIcon="delete" (click)="DeleteWatchListItem(w)"></mat-icon></td>
   </tr>
 </table>
