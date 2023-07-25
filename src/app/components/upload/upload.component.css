@@ -282,7 +282,7 @@ table #main .mat-cell {
 }
 
 .risk1,.risk2,.risk3,.risk4,.risk{
-  background-image:linear-gradient(to right, #fdfdfd 0%, #ffffff  51%, #fdfdfd  100%);   
+  /* background-image:linear-gradient(to right, #fdfdfd 0%, #ffffff  51%, #fdfdfd  100%);    */
   transition: 0.5s;
   background-size: 200% auto;
   box-shadow: 0 0 20px #eee;
@@ -305,7 +305,8 @@ color: #ffd382;
 }
 .risk
 {
-  color: lightgray;
+  /* color: lightgray; */
+  text-decoration: none;
 }
 
 

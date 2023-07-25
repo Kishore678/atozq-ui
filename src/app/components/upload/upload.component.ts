@@ -147,15 +147,11 @@ whatsAppShare(message:string)
 
 share(prod:Bseanalytic)
 {
-  let id = prod.Code;
-  let category = 'Stock Fundamentals';
-  let titleText = prod.Nme.trim();
-
   let loc = window.location;
   let host = loc.hostname;
   let domain = loc.protocol+"//"+(host=="localhost"?host+":"+loc.port:host);  
 
-  let message = +titleText+" "+category+" Secure Link: "+domain+"/app/stock/"+prod.Code;  
+  let message = "Secure Link: " + domain;  
   this.whatsAppShare(message);
 }
 

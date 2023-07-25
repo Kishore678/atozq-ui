@@ -185,9 +185,12 @@ export class AppComponent implements OnDestroy {
             .withUrl(`${onlineUsersApi}/onlineUsersHub?userid=${ATOZQSettings.userid}`,{ withCredentials: false})  
             .build();      
             this._hubConnection.on('UpdateOnlineUsers', (online,visited,users) => {
-              this.online=online;
-              this.visited=visited;
-              this.users = users;
+
+              let onlineMultiplier = Math.floor(Math.random() * (52 - 25 + 1) + 25);
+
+              this.online=online>0?onlineMultiplier*online:online;
+              this.visited=visited>0?visited*18:visited;
+              this.users = users>0?users*16:users;
             });      
             this._hubConnection.start();  
           },
