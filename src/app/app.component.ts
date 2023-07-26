@@ -188,9 +188,9 @@ export class AppComponent implements OnDestroy {
 
               let onlineMultiplier = Math.floor(Math.random() * (52 - 25 + 1) + 25);
 
-              this.online=online>0?onlineMultiplier*online:online;
+              this.online=online>0?onlineMultiplier*online:onlineMultiplier;
               this.visited=visited>0?visited*18:visited;
-              this.users = users>0?users*16:users;
+              this.users = users>0?users*16:1*users;
             });      
             this._hubConnection.start();  
           },

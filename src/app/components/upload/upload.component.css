@@ -365,3 +365,138 @@ width:100%;
     color: #245afc;
     cursor: pointer;
 }
+
+
+/*----------------------------------------------*/
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background:aliceblue;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+mat-icon {
+  cursor: pointer;
+}
+.expandcollapse {
+  color: #ffffff;
+  font-weight: 500;
+  background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #00bcd4, #00bcd4);
+  border-color: #dddddd;
+}
+
+
+.fundamentals 
+.page-header{ 
+    display: block;
+    margin:16px;
+    font-weight:500;
+    text-align: center;
+    color: #00bcd4;
+    font-size: 16px;
+    }
+
+    table.basic-info td{text-align: center;}
+
+
+    table.basic-info
+{      
+   width: 355px;
+   height: 200px;
+    float: left;   
+    margin: 5px;
+    border-spacing: 0;
+    border-left: 1px solid#00bcd4;
+    font-size: 12px;
+}
+
+
+table.basic-info td, table.basic-info th{
+    border-right: 1px solid#00bcd4;  
+    border-bottom: 1px solid#00bcd4;
+    border-spacing: 0;
+}
+
+
+
+table.basic-info >caption{
+    background:#00bcd4;
+    color: #fff;
+    font-size: 16px;
+    padding: 2px;
+}
+table.basic-info td, table.basic-info th {
+    text-align: left;   
+}
+
+
+table.basic-info td:first-child {
+    text-align: right;   
+    background-color: aliceblue;
+    color: black;
+}
+
+table.basic-info th,  table.basic-info td {
+    padding: 2px;
+    text-align: left;   
+  }
+.mat-dialog-container{
+    background: #fdffff;
+}
+  .mat-dialog-title{
+    margin: -15px 5px 0px !important;
+    display: block;
+    color: #297983;
+    font-weight: 500 !important;
+  }
+  table.basic-info td{
+    color: #001dff;
+    text-align: center;
+    display: table-cell;
+    background: #ffffff;
+  }
+  table.basic-info td:first-child{
+    text-align: center;
+    color: #575757;
+    }

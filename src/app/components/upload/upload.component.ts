@@ -21,15 +21,26 @@ import { UserIDService } from 'src/app/services/user-id.service';
 import { UserModel } from 'src/app/models/user.model';
 import { WatchModel } from 'src/app/models/watch.model';
 import Swal from 'sweetalert2';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 const apiBaseUrl = environment.apiBaseUrl;
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.css']
+  styleUrls: ['./upload.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class UploadComponent {  
   // watchList:WatchModel[]=new Array<WatchModel>();
+  expandcollapse:string="expandcollapse";
+  expandedElement!: Bseanalytic | null;
+  
   user!:UserModel;
   isTrue:boolean=false;
   dsArray:any[]=[];
@@ -54,16 +65,15 @@ displayedColumns = [
     'Flg',
     'Nme',
     'LTP',
-    'Actions',    
-    'Vol',
-    'Grp',
-    'Code',
-    'Cnt',
-    'Opn',
-    'Hig',
-    'Low',
-    'Avg',
-    'Prv' ];
+    'Actions' 
+    // 'Code',
+    // 'Cnt',
+    // 'Opn',
+    // 'Hig',
+    // 'Low',
+    // 'Avg',
+    // 'Prv' 
+  ];
    
 
   dataSource = new MatTableDataSource<Bseanalytic>();
