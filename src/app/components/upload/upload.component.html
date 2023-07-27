@@ -29,7 +29,7 @@
           matTooltipClass="tooltip-list" #tooltip="matTooltip" (click)="tooltip.show()"   [matTooltipPosition]="'after'">flag</mat-icon></td> -->
           <td mat-cell *matCellDef="let element"> 
             <mat-icon *ngIf="element.error" class="error icon">error</mat-icon>
-            <mat-icon [ngClass]="expandcollapse">{{expandedElement === element ? 'expand_less' : 'expand_more'}}</mat-icon>
+            <mat-icon [ngClass]="expandedElement === element ? 'expand' : 'collapse'">{{expandedElement === element ? 'expand_less' : 'expand_more'}}</mat-icon>
             
             <!-- <mat-icon svgIcon="stockmarket" [ngClass]="flagStyle(element)" 
             ></mat-icon> -->
@@ -73,7 +73,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by LTP">
           LTP
         </th>
-        <td mat-cell *matCellDef="let element"> {{element.LTP | number:'.2'}} </td>
+        <td mat-cell *matCellDef="let element"><span [ngClass]="element.Chg>0?'profit':element.Chg<0?'loss':'neutral'"><b>{{element.LTP | number:'1.2-2'}}</b></span>&nbsp;<small>{{element.Chg | number:'1.2-2'}}&nbsp;({{element.Cpg | number:'1.2-2'}}%)</small></td>
       </ng-container>
       <ng-container matColumnDef="Vol">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Vol">
@@ -139,50 +139,70 @@
                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
              
                  <div class="fundamentals"> 
-                  <h4><span class="page-header"><mat-icon svgIcon="stockmarket"></mat-icon>&nbsp;&nbsp;{{element.Nme}}&nbsp;-&nbsp;FUNDAMENTALS</span></h4>              
+                  
                   <table class="basic-info">
-                      <caption>Overview</caption>                               
-                      <tr>
-                          <td>Group:</td>
-                          <td>{{element.Grp}}</td>
-                      </tr>
+                      <caption><span class="page-header"><mat-icon svgIcon="stockmarket"></mat-icon>&nbsp;&nbsp;{{element.Nme}}&nbsp;-&nbsp;FUNDAMENTALS</span></caption>                               
+                
                       <tr>
                           <td>Script Code:</td>
                           <td>{{element.Code}}</td>
                       </tr> 
                       <tr>
-                          <td>Script ID:</td>
-                          <td>{{element.Nme}}</td>
-                      </tr>                       
-                      <tr>
-                        <td>Volume:</td>
-                        <td>{{element.Vol | number:'2.'}}</td>
-                    </tr>                  
+                        <td>Group:</td>
+                        <td>{{element.Grp}}</td>
+                    </tr>
+                                           
                     <tr>
-                      <tr>
-                        <td>Trades:</td>
-                        <td>{{element.Cnt | number:'2.'}}</td>
-                    </tr>                  
+                      <td>Prev:</td>
+                      <td>{{element.Prv | number:'1.2-2'}}</td>
+                  </tr>               
                     <tr>
                       <td>Open:</td>
-                      <td>{{element.Hig | number:'.2'}}</td>
+                      <td>{{element.Hig | number:'1.2-2'}}</td>
                   </tr>
                    <tr>
                     <td>High:</td>
-                    <td>{{element.Hig | number:'.2'}}</td>
+                    <td>{{element.Hig | number:'1.2-2'}}</td>
                 </tr>
                     <tr>
                         <td>Low:</td>
-                        <td>{{element.Low | number:'.2'}}</td>
+                        <td>{{element.Low | number:'1.2-2'}}</td>
                     </tr> 
+
                     <tr>
-                        <td>Average:</td>
-                        <td>{{element.Avg | number:'.2'}}</td>
-                    </tr>  
-                    <tr>
-                      <td>Last Traded:</td>
-                      <td>{{element.LTP | number:'.2'}}</td>
+                      <td>LTP:</td>
+                      <td>{{element.LTP | number:'1.2-2'}}</td>
                   </tr>  
+
+                  <tr>
+                    <td>Change:</td>
+                    <td [ngClass]="element.Chg>0?'profit':element.Chg<0?'loss':'neutral'">{{element.Chg | number:'1.2-2'}}</td>
+                </tr>  
+                <tr>
+                  <td>Change(%):</td>
+                  <td [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'neutral'">{{element.Cpg | number:'1.2-2'}}</td>
+              </tr>  
+
+                    <tr>
+                      <td>Volume (V):</td>
+                      <td>{{element.Vol | number:'2.'}}</td>
+                  </tr>                  
+                  <tr>
+                    <tr>
+                      <td>No of Trades:</td>
+                      <td>{{element.Cnt | number:'2.'}}</td>
+                  </tr>   
+                  <tr>
+                    <td>Turnover (T):</td>
+                    <td>{{element.Tvr | number:'.2'}}</td>
+                </tr> 
+
+                    <tr>
+                        <td>Average (T/V):</td>
+                        <td>{{element.Avg | number:'1.2-2'}}</td>
+                    </tr>  
+                   
+                
                   </table>
                
               

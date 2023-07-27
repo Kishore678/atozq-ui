@@ -26,6 +26,9 @@ export interface BSEDetails {
     Low: number
     Avg: number
     Prv: number
+    Tvr: number
+    Chg: number
+    Cpg: number
     Mst: boolean
     Wrn: string
     Fund: Fund

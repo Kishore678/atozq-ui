@@ -403,38 +403,20 @@ tr.example-element-row:not(.example-expanded-row):active {
   height: 104px;
 }
 
-.example-element-symbol {
-  font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
-}
 
-.example-element-description {
-  padding: 16px;
-}
-
-.example-element-description-attribution {
-  opacity: 0.5;
-}
 mat-icon {
   cursor: pointer;
-}
-.expandcollapse {
-  color: #ffffff;
-  font-weight: 500;
-  background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #00bcd4, #00bcd4);
-  border-color: #dddddd;
 }
 
 
 .fundamentals 
 .page-header{ 
-    display: block;
-    margin:16px;
-    font-weight:500;
-    text-align: center;
-    color: #00bcd4;
-    font-size: 16px;
+  display: block;
+  margin: 5px;
+  font-weight: 500;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
     }
 
     table.basic-info td{text-align: center;}
@@ -461,7 +443,7 @@ table.basic-info td, table.basic-info th{
 
 
 table.basic-info >caption{
-    background:#00bcd4;
+    background:#7ac8f9;
     color: #fff;
     font-size: 16px;
     padding: 2px;
@@ -500,3 +482,36 @@ table.basic-info th,  table.basic-info td {
     text-align: center;
     color: #575757;
     }
+
+
+    
+    .expand {      
+      background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #00bcd4, #6e78cd);  
+      color: #ffffff;
+      font-weight: 500; 
+      border-color: #dddddd;    
+  }
+
+  .collapse {      
+    background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #00bcd4, #00bcd4);   
+    color: #ffffff;
+    font-weight: 500; 
+    border-color: #dddddd; 
+}
+
+.profit
+  {
+    color: #35df11!important;
+    font-weight: 500!important;
+  }
+
+  .loss
+  {
+    color: #ec4d29!important;
+    font-weight: 500!important;
+  }
+.neutral
+{
+  color: #5e5959!important;
+  font-weight: 500!important;
+}
