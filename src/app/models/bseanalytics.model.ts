@@ -29,6 +29,13 @@ export interface BSEDetails {
     Tvr: number
     Chg: number
     Cpg: number
+    Cpg1: number
+    Cpg2: number
+    Cpg3: number
+    Cpg4: number
+    Cpg5: number
+    VPT:number,
+    CreatedDate:Date,
     Mst: boolean
     Wrn: string
     Fund: Fund
