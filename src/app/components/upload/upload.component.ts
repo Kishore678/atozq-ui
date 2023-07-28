@@ -65,6 +65,7 @@ displayedColumns = [
     'Flg',
     'Nme',
     'LTP',
+    'Cpg',
     'Actions' 
     // 'Code',
     // 'Cnt',
@@ -376,35 +377,16 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   //  });
  }
 
-//  GetChatCount(code:string)
-//  {
-//   return this.ChatCount.find(f=>f.ChatID==code)?.Count??0;
-//  }
-//  chatCountDisplay(count:number)
-//  {
-//   return count>0?"showChatCount":"hideChatCount";
-//  }
 
-//  DisplayWatch(code:string)
-//  {
-//   let watchStyle = this.watchList.find(f=>f.Code==code)!=undefined?'watch':'';
-//   return watchStyle;
-//  }
-
-//  LoadWatch(watch:WatchModel)
-//  {
-//    return watch;
-//  }
- AddOrRemoveWatch(elem:Bseanalytic)
+ DoAddorDeleteFromWatchList(elem:Bseanalytic)
  {
-  
-  // let w = this.watchList.find(f=>f.Code==elem.Code);
   let w = new WatchModel();  
-    w.AnonymousID=this.user.AnonymousID;
-    w.Code=elem.Code;
-    w.CreatedLTP =elem.LTP; 
-    w.IsWatch=elem.IsWatch; 
- 
+  w.AnonymousID=this.user.AnonymousID;
+  w.Code=elem.Code;
+  w.CreatedLTP =elem.LTP; 
+  w.IsWatch=elem.IsWatch; 
+  w.Nme = elem.Nme;
+
   this.useridService.AddorRemoveWatch(w).subscribe({
     next:(event)=>{
       // let rw = this.LoadWatch(event);
@@ -418,7 +400,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
         // this.watchList = this.watchList.filter((value,index,arr)=>{
         //   return value.Code!=w?.Code;
         // });
-        Swal.fire('Hi',elem.Nme.trim()+' removed from Watchlist.','error')
+        Swal.fire('Done',elem.Nme.trim()+' removed from Watchlist.','success')
       }   
    
 
@@ -437,6 +419,40 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
       this.generalError();
     }
   });
+ }
+
+ AddOrRemoveWatch(elem:Bseanalytic)
+ {
+  
+  // let w = this.watchList.find(f=>f.Code==elem.Code);
+  let w = new WatchModel();  
+    w.AnonymousID=this.user.AnonymousID;
+    w.Code=elem.Code;
+    w.CreatedLTP =elem.LTP; 
+    w.IsWatch=elem.IsWatch; 
+    w.Nme = elem.Nme;
+
+    if(w.IsWatch)
+    {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Remove '+w.Nme.trim()+' from watchlist.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, go ahead.',
+        cancelButtonText: 'No, let me think',
+      }).then((result) => {
+        if (result.value) {
+       this.DoAddorDeleteFromWatchList(elem);
+          
+        }});
+    }
+    else
+    {
+      this.DoAddorDeleteFromWatchList(elem);
+    }
+ 
+
  }
 
  Browse(url:string)

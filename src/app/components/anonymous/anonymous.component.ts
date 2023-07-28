@@ -109,7 +109,7 @@ DeleteWatchListItem(w:WatchModel)
 {
   Swal.fire({
     title: 'Are you sure?',
-    text: 'Delete '+w.Nme.trim()+' from watchlist.',
+    text: 'Remove '+w.Nme.trim()+' from watchlist.',
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Yes, go ahead.',

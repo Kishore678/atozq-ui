@@ -404,19 +404,16 @@ table#watchlist{
 
   .profit
   {
-    color: #35df11;
-    font-weight: 500;
+    color: #070!important;
   }
 
   .loss
   {
-    color: #ec4d29;
-    font-weight: 500;
+    color: #c00!important;   
   }
 .neutral
-{
-  color: #5e5959;
-  font-weight: 500;
+{  
+  font-weight: 500!important;
 }
   
   

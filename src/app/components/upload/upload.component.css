@@ -58,9 +58,21 @@
   th{background: #00bcd4;
     color: #fff;}
  
-  tr>td>a {color:#0040ff;cursor: pointer;text-decoration: underline;font-weight:500;}
-  tr:hover,tr>td>a:hover {    background-color: aliceblue;
-    color: #245afc;}
+  tr>td>a {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+  }
+  tr>td>a.mat-column-Nme:hover {
+  
+    text-decoration: underline;
+    color: #245afc;
+  }
+  tr:hover{
+    background-color: aliceblue;
+  }
   
   th.mat-header-cell,
   td.mat-cell,
@@ -204,7 +216,7 @@ mat-form-field + mat-form-field {
 
 .mat-column-Nme{
  width:25px;
- text-align: center;
+ text-align: left;
 }
 
 .mat-column-Flg
@@ -224,13 +236,17 @@ vertical-align: middle;
 }
 .mat-column-LTP
 {
-  width:50px;
+  width:50px; 
+    text-align: right;   
+    font-family: 'Roboto', sans-serif;
 }
-.mat-column-Vol
+.mat-column-Cpg
 {
   width:15px;
-  text-align: center;
+  text-align: right;
+  font-weight: 500;
 }
+
 .mat-column-Actions
 {
   width: 25px;
@@ -259,9 +275,8 @@ td.mat-column-Low,
 td.mat-column-Avg,
 td.mat-column-Prv
 {
-  text-align: center;
-  color: #297983;
-  font-weight: 500;
+  text-align: right;
+  color:#333333;
 }
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
@@ -493,25 +508,42 @@ table.basic-info th,  table.basic-info td {
   }
 
   .collapse {      
-    background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #00bcd4, #00bcd4);   
+    background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #297983, #00bcd4);
     color: #ffffff;
     font-weight: 500; 
     border-color: #dddddd; 
+    width: 22px;
+    height: 22px;
 }
 
 .profit
   {
-    color: #35df11!important;
-    font-weight: 500!important;
+    color: #070!important;
   }
 
   .loss
   {
-    color: #ec4d29!important;
-    font-weight: 500!important;
+    color: #c00!important;   
   }
 .neutral
-{
-  color: #5e5959!important;
+{  
   font-weight: 500!important;
+}
+.fiveDays
+{
+  text-align: center; position: relative;
+}
+.fiveDays .mat-icon{
+  font-size: 20px;
+  width: 20px;
+  height: 18px;
+}
+
+.gray
+{
+  color:#dddddd;
+}
+
+tr.mat-row, tr.mat-footer-row {
+  height: 0px;
 }
