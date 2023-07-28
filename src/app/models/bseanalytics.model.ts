@@ -34,7 +34,7 @@ export interface BSEDetails {
     Cpg3: number
     Cpg4: number
     Cpg5: number
-    VPT:number,
+    Rating:number,
     CreatedDate:Date,
     Mst: boolean
     Wrn: string
