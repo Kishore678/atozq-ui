@@ -176,11 +176,15 @@
 
                   <tr>
                     <td>Change:</td>
-                    <td [ngClass]="element.Chg>0?'profit':element.Chg<0?'loss':'neutral'">{{element.Chg | number:'1.2-2'}}</td>
+                    <td [ngClass]="element.Chg>0?'profit':element.Chg<0?'loss':'neutral'">
+                      <span *ngIf="element.Chg>0">+</span> {{element.Chg | number:'1.2-2'}}
+                    </td>
                 </tr>  
                 <tr>
                   <td>Change(%):</td>
-                  <td [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'neutral'">{{element.Cpg | number:'1.2-2'}}</td>
+                  <td [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'neutral'">
+                    <span *ngIf="element.Cpg>0">+</span>{{element.Cpg | number:'1.2-2'}}%
+                  </td>
               </tr>  
 
                     <tr>
@@ -203,23 +207,23 @@
                     </tr>  
                    <tr>
                     <td> 
-                      5-days Trend                     
+                      6-days Trend                     
                     </td>
                     <td>
                       <div class="fiveDays">                       
-                        <mat-icon [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'neutral'">star</mat-icon>
-                        <mat-icon [ngClass]="element.Cpg1>0?'profit':element.Cpg1<0?'loss':'neutral'">star</mat-icon>
-                        <mat-icon [ngClass]="element.Cpg2>0?'profit':element.Cpg2<0?'loss':'neutral'">star</mat-icon>
-                        <mat-icon [ngClass]="element.Cpg3>0?'profit':element.Cpg3<0?'loss':'neutral'">star</mat-icon>
-                        <mat-icon [ngClass]="element.Cpg4>0?'profit':element.Cpg4<0?'loss':'neutral'">star</mat-icon>                      
-                        <mat-icon [ngClass]="element.Cpg5>0?'profit':element.Cpg5<0?'loss':'neutral'">star</mat-icon>                      
+                        <mat-icon [matTooltip]="element.Cpg5>0?'+'+(element.Cpg5| number:'1.2-2')+'%':(element.Cpg5 | number:'1.2-2')+'%'" [ngClass]="element.Cpg5>0?'profit':element.Cpg5<0?'loss':'neutral'">star</mat-icon>
+                        <mat-icon [matTooltip]="element.Cpg4>0?'+'+(element.Cpg4| number:'1.2-2')+'%':(element.Cpg4 | number:'1.2-2')+'%'" [ngClass]="element.Cpg4>0?'profit':element.Cpg4<0?'loss':'neutral'">star</mat-icon>
+                        <mat-icon [matTooltip]="element.Cpg3>0?'+'+(element.Cpg3| number:'1.2-2')+'%':(element.Cpg3 | number:'1.2-2')+'%'" [ngClass]="element.Cpg3>0?'profit':element.Cpg3<0?'loss':'neutral'">star</mat-icon>
+                        <mat-icon [matTooltip]="element.Cpg2>0?'+'+(element.Cpg2| number:'1.2-2')+'%':(element.Cpg2 | number:'1.2-2')+'%'" [ngClass]="element.Cpg2>0?'profit':element.Cpg2<0?'loss':'neutral'">star</mat-icon>
+                        <mat-icon [matTooltip]="element.Cpg1>0?'+'+(element.Cpg1| number:'1.2-2')+'%':(element.Cpg1 | number:'1.2-2')+'%'" [ngClass]="element.Cpg1>0?'profit':element.Cpg1<0?'loss':'neutral'">star</mat-icon>                      
+                        <mat-icon [matTooltip]="element.Cpg>0?'+'+(element.Cpg| number:'1.2-2')+'%':(element.Cpg | number:'1.2-2')+'%'" [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'neutral'">star</mat-icon>                      
                       </div>
                     </td>
                    </tr>
-                   <tr>
+                   <!-- <tr>
                     <td>1 Week Trend:</td>
-                    <td>{{element.Rating>=4?'Bullish':element.Rating<3?'Bearish':element.Rating==3?'Neutral':'Neutral'}}</td>
-                </tr> 
+                    <td>{{element.Rating}}{{element.Rating>=4?'Bullish':element.Rating<3?'Bearish':element.Rating==3?'Neutral':'Neutral'}}</td>
+                </tr>  -->
                   </table>
                
               
