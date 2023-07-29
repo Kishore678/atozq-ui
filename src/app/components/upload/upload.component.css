@@ -508,10 +508,11 @@ table.basic-info th,  table.basic-info td {
   }
 
   .collapse {      
-    background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #297983, #00bcd4);
-    color: #ffffff;
-    font-weight: 500; 
-    border-color: #dddddd; 
+    background-image: linear-gradient(#ffffff00, #ffffff00), linear-gradient(101deg, #eafdff, #e0e0e0);
+    color: #00bcd4;
+    font-weight: 500;
+    border-color: #000000;
+    border: 1px;
     width: 22px;
     height: 22px;
 }
@@ -538,12 +539,23 @@ table.basic-info th,  table.basic-info td {
   width: 20px;
   height: 18px;
 }
+small.fiveDays .mat-icon{
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}
+
+small.fiveDays span{
+  border: 1px solid #00bcd4;
+  margin: 5px;
+  padding: 5px;
+}
 
 .gray
 {
-  color:#dddddd;
+  color:#dddddd!important;  
 }
 
-tr.mat-row, tr.mat-footer-row {
-  height: 0px;
+tr.mat-header-row {
+  height: 36px;
 }
