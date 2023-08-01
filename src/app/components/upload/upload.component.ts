@@ -87,7 +87,7 @@ displayedColumns = [
 
   generalError()
   {
-    Swal.fire('Something went wrong. Please try again or report us on Ask Support Chat');
+    Swal.fire('Something went wrong, please try after sometime.');
   }
   ngAfterViewInit() {
  

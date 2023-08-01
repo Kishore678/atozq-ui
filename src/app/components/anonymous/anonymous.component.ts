@@ -94,7 +94,7 @@ onSave()
       }
     },
     error:(err)=>{
-      Swal.fire('Something went wrong. Try again (or) Click on Ask to raise an issue.');    
+      Swal.fire('Something went wrong. Please try again after sometime.');  
       console.log(err);
     }
 
@@ -151,7 +151,10 @@ LoadData(m:UserModel)
         next:(event)=>{          
           this.LoadWatch(event);
         },
-        error:(err)=>{console.log(err);}
+        error:(err)=>{
+          Swal.fire('Something went wrong. Please try again after sometime.');   
+          console.log(err);
+        }
       });
 }
   ngOnInit(): void {
@@ -161,7 +164,7 @@ LoadData(m:UserModel)
           this.LoadData(event);
         },
         error:(err)=>{
-          Swal.fire('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
+          Swal.fire('Something went wrong. Please try again after sometime.');   
           console.log(err);
         }
       });      

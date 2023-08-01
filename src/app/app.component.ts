@@ -195,7 +195,7 @@ export class AppComponent implements OnDestroy {
             this._hubConnection.start();  
           },
           error:(err)=>{
-        alert('Something went wrong. Try again (or) Click on Ask to raise an issue.');   
+        alert('Something went wrong. Please try again after sometime.');   
             console.log(err);
           }
         });     
