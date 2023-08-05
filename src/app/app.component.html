@@ -140,13 +140,15 @@
       <div class="container">
         <div class="row home-toolbar">        
           <div class="col-md-12">
-            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: 500;color:#2bea00">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span></div>
+            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: 500;color:#2bea00">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
+            <a class="verify" style="cursor:pointer" (click)="OpenChat()">Ask<mat-icon> live_help</mat-icon></a>
+          </div>            
         </div>
         <div class="row home-toolbar2"> 
           <div class="col-md-12">
-            <a class="verify" style="cursor:pointer" (click)="OpenChat()">Ask<mat-icon> live_help</mat-icon></a>
+           
             <!-- <a class="verify" routerLink="/app/dps">Verify Data</a> -->
-            <span style="margin-left: 54.62px;"><span class="dot users"></span>Users:<span class="box">{{users|number:'1.0-0'}}</span><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
+            <span><span class="dot users"></span>Users:<span class="box">{{users|number:'1.0-0'}}</span><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
           </div>
         </div>
       <router-outlet></router-outlet>

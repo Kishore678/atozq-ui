@@ -168,8 +168,7 @@ min-height: 100vh;
   font-size: 13px;
 }
 .datetime{
-  color: #ffffff;
-  margin-right: 70px!important;
+text-align: center;
 }
 .dot {
   height: 11px;

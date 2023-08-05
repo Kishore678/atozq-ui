@@ -375,6 +375,7 @@ width:100%;
   padding: 10px;
   border: 3px solid #ffa300;
   margin: 5px;
+  font-size: 12px;
 }
 .notification a{  
     color: #245afc;
@@ -558,4 +559,24 @@ small.fiveDays span{
 
 tr.mat-header-row {
   height: 36px;
+}
+
+.profit-bg
+  {
+    background-color: #070!important;
+    color: #ffffff!important;
+    border: 1px solid #ffffff;
+  }
+
+  .loss-bg
+  {
+    background-color: #c00!important;  
+    color: #ffffff!important; 
+    border: 1px solid #ffffff;
+  }
+  .gray-bg
+{
+  background-color:#dddddd!important;  
+  color: #444444!important;
+  border: 1px solid #ffffff;
 }

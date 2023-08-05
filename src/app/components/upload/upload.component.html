@@ -58,6 +58,9 @@
             <mat-icon [matTooltipPosition]="'after'" #tooltip5="matTooltip" (click)="tooltip5.show()" [matTooltip]="element.Cpg1>0?'+'+(element.Cpg1| number:'1.2-2')+'%':(element.Cpg1 | number:'1.2-2')+'%'" [ngClass]="element.Cpg1>0?'profit':element.Cpg1<0?'loss':'gray'">star</mat-icon>                      
             <mat-icon [matTooltipPosition]="'after'" #tooltip6="matTooltip" (click)="tooltip6.show()" [matTooltip]="element.Cpg>0?'+'+(element.Cpg| number:'1.2-2')+'%':(element.Cpg | number:'1.2-2')+'%'" [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'gray'">star</mat-icon>                      
           </small>     
+          <small class="fiveDays" style="text-align: right;">  
+            ({{element.Rating}}/6)
+            </small>
         </td>
       </ng-container>
       <ng-container matColumnDef="Actions">
@@ -236,7 +239,7 @@
 
                    <tr>
                     <td></td>
-                    <td style="background:#ffffff">
+                    <td style="background:#ffffff;padding:5px;">
                       <small class="fiveDays">  
                       <span [ngClass]="element.Cpg5>0?'profit':element.Cpg5<0?'loss':'gray'">{{element.Cpg5>0?'+'+(element.Cpg5| number:'1.2-2')+'%':(element.Cpg5 | number:'1.2-2')+'%'}}</span>
                       <span [ngClass]="element.Cpg4>0?'profit':element.Cpg4<0?'loss':'gray'">{{element.Cpg4>0?'+'+(element.Cpg4| number:'1.2-2')+'%':(element.Cpg4 | number:'1.2-2')+'%'}}</span>
@@ -252,7 +255,7 @@
 
                 <tr>
                   <td>Price Volume Trend (PVT):</td>
-                  <td [ngClass]="element.SignalIndicator>0?'profit':element.SignalIndicator<0?'loss':'gray'">{{element.Signal}} ({{element.SignalDays}} day's)</td>
+                  <td [ngClass]="element.SignalIndicator>0?'profit-bg':element.SignalIndicator<0?'loss-bg':'gray-bg'">{{element.Signal}} ({{element.SignalDays}} day's)</td>
               </tr> 
               <tr>
                 <td>Overall Score :</td>
