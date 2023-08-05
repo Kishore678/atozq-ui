@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl:'https://localhost:44378',  
-  onlineUsersApi:'https://localhost:7105'
+  apiBaseUrl:'https://atozq.bsite.net',  
+  onlineUsersApi:'https://www.atozq.somee.com'
 };
 
 /*

@@ -235,12 +235,14 @@
                    </tr>
 
                    <tr>
-                    
-                    <td colspan="2" style="background:#ffffff">
+                    <td></td>
+                    <td style="background:#ffffff">
                       <small class="fiveDays">  
                       <span [ngClass]="element.Cpg5>0?'profit':element.Cpg5<0?'loss':'gray'">{{element.Cpg5>0?'+'+(element.Cpg5| number:'1.2-2')+'%':(element.Cpg5 | number:'1.2-2')+'%'}}</span>
                       <span [ngClass]="element.Cpg4>0?'profit':element.Cpg4<0?'loss':'gray'">{{element.Cpg4>0?'+'+(element.Cpg4| number:'1.2-2')+'%':(element.Cpg4 | number:'1.2-2')+'%'}}</span>
                       <span [ngClass]="element.Cpg3>0?'profit':element.Cpg3<0?'loss':'gray'">{{element.Cpg3>0?'+'+(element.Cpg3| number:'1.2-2')+'%':(element.Cpg3 | number:'1.2-2')+'%'}}</span>
+                      <br>
+                      <div style="margin-top:10px;display:block"></div>
                       <span [ngClass]="element.Cpg2>0?'profit':element.Cpg2<0?'loss':'gray'">{{element.Cpg2>0?'+'+(element.Cpg2| number:'1.2-2')+'%':(element.Cpg2 | number:'1.2-2')+'%'}}</span>
                       <span [ngClass]="element.Cpg1>0?'profit':element.Cpg1<0?'loss':'gray'">{{element.Cpg1>0?'+'+(element.Cpg1| number:'1.2-2')+'%':(element.Cpg1 | number:'1.2-2')+'%'}}</span>
                       <span style="border: 2px solid;" [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'gray'">{{element.Cpg>0?'+'+(element.Cpg| number:'1.2-2')+'%':(element.Cpg | number:'1.2-2')+'%'}}</span>
@@ -250,7 +252,7 @@
 
                 <tr>
                   <td>Price Volume Trend (PVT):</td>
-                  <td [ngClass]="element.Indicator>0?'profit':element.Indicator<0?'loss':'gray'">{{element.Signal}} ({{element.SignalDays}} day's)</td>
+                  <td [ngClass]="element.SignalIndicator>0?'profit':element.SignalIndicator<0?'loss':'gray'">{{element.Signal}} ({{element.SignalDays}} day's)</td>
               </tr> 
               <tr>
                 <td>Overall Score :</td>
