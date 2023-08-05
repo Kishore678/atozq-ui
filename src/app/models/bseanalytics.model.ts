@@ -36,7 +36,8 @@ export interface BSEDetails {
     Cpg5: number
     Rating:number,
     Signal:string,
-    Indicator:number,
+    SignalDays:number,
+    SignalIndicator:number,
     CreatedDate:Date,
     Mst: boolean
     Wrn: string

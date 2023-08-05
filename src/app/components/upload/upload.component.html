@@ -217,16 +217,7 @@
                     <tr>
                         <td>Average (T/V):</td>
                         <td>{{element.Avg | number:'1.2-2'}}</td>
-                    </tr>                   
-    
-                    <tr>
-                      <td>Price Volume Trend (PVT):</td>
-                      <td [ngClass]="element.Indicator>0?'profit':element.Indicator<0?'loss':'neutral'">{{element.Signal}}</td>
-                  </tr> 
-                  <tr>
-                    <td>Score :</td>
-                    <td>{{element.Rating}} out of 6</td>
-                </tr> 
+                    </tr>   
                    <tr>
                     <td> 
                       6-days Gain & Loss                     
@@ -242,6 +233,7 @@
                       </div>
                     </td>
                    </tr>
+
                    <tr>
                     
                     <td colspan="2" style="background:#ffffff">
@@ -255,6 +247,15 @@
                       </small>
                     </td>
                 </tr> 
+
+                <tr>
+                  <td>Price Volume Trend (PVT):</td>
+                  <td [ngClass]="element.Indicator>0?'profit':element.Indicator<0?'loss':'gray'">{{element.Signal}} ({{element.SignalDays}} day's)</td>
+              </tr> 
+              <tr>
+                <td>Overall Score :</td>
+                <td>{{element.Rating}} out of 6</td>
+            </tr> 
                   </table>
                
               
