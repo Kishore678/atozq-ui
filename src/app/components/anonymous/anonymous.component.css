@@ -388,6 +388,7 @@
 
 table#watchlist{
   width:100%;font-weight: 500;
+  background: #feffff;
 }
 #watchlist tr{
   text-align: center;

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {getCurrentBrowserFingerPrint} from '@rajesh896/broprint.js';
 import { Observable } from 'rxjs';
-import { UserModel } from '../models/user.model';
+import { User, UserModel } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { UserLocation } from '../models/user-location.model';
 import { WatchModel } from '../models/watch.model';
@@ -46,6 +46,12 @@ export class UserIDService {
       error:(err)=>{console.log(err);}
     });  
    
+  }
+
+
+  GetUsers():Observable<User[]>
+  {
+    return this.http.get<User[]>(`${apiBaseUrl}/api/user/session`);
   }
 
   AddorRemoveWatch(watch:WatchModel):Observable<WatchModel>

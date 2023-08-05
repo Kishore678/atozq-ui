@@ -1,6 +1,28 @@
 <div>
 <ng-container *ngIf="true; then displayData;">
 </ng-container>
+<table>
+    <tr>
+        <th>AnonymousID</th>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>Visited</th>
+        <th>TotalVisits</th>
+        <th>IPAddress</th>
+        <th>CreatedDate</th>
+        <th>ModifiedDate</th>      
+    </tr>
+    <tr *ngFor="let user of users">
+        <td>{{user.AnonymousID}}</td>
+        <td>{{user.UserName}}</td>
+        <td>{{user.Email}}</td>
+        <td>{{user.Visited}}</td>
+        <td>{{user.TotalVisits}}</td>
+        <td>{{user.IPAddress}}</td>
+        <td>{{user.CreatedDate | utcToLocalTime:'short'}}</td>
+        <td>{{user.ModifiedDate | utcToLocalTime:'short'}}</td>  
+    </tr>
+</table>
 </div>
 <ng-template #displayData>  
     <table>

@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DataPortStatus, GroupDetail } from 'src/app/models/data-port-status.model';
 import { Router } from '@angular/router';
+import { UserIDService } from 'src/app/services/user-id.service';
+import { User } from 'src/app/models/user.model';
 const apiBaseUrl = environment.apiBaseUrl;
 @Component({
   selector: 'app-data-port-status',
@@ -16,11 +18,11 @@ export class DataPortStatusComponent {
   cachedTotal!:number;
   overallStatus! :boolean;
   list!:GroupDetail[]
-
+  users!:User[];
   isLoaded:boolean=false;
   error:boolean=false;
 
-  constructor(public router:Router,public http:HttpClient,public changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private userService:UserIDService,public router:Router,public http:HttpClient,public changeDetectorRef: ChangeDetectorRef) { }
   
   LoadReport()
   {
@@ -38,6 +40,7 @@ export class DataPortStatusComponent {
   }
   ngAfterViewInit(): void {    
     this.LoadReport();
+    this. loadUsers();
   }
 
   postMessages()
@@ -88,6 +91,21 @@ refresh()
         
     this.isLoaded = true; 
     this.error =this.overallStatus==false || this.overallStatus==null;
+  }
+
+
+  loadUsers()
+  {
+    this.userService.GetUsers().subscribe({
+      next:(event)=>{
+        this.users=event.filter((val,index,arr)=>{
+          return val.UserName!='Admin'&&val.UserName!='ATOZQcom'&& val.UserName!='K1001';
+        });
+      },
+      error:(err)=>{
+        
+      }
+    });
   }
 }
 

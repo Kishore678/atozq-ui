@@ -53,7 +53,7 @@
    <td>{{w.ModifiedLTP | number:'1.2-2'}}</td>
    <!-- <td>{{w.ModifiedLTPAsOn | utcToLocalTime:'short'}}</td> -->
    <td [ngClass]="w.Change>0?'profit':w.Change<0?'loss':'neutral'">{{w.Change | number:'1.2-2'}}</td>
-   <td [ngClass]="w.PercentChange>0?'profit':w.PercentChange<0?'loss':'neutral'">{{w.PercentChange | number:'1.2-2'}}</td>
+   <td [ngClass]="w.PercentChange>0?'profit':w.PercentChange<0?'loss':'neutral'">{{w.PercentChange | number:'1.2-2'}}%</td>
    <td style="text-align:center"><mat-icon svgIcon="delete" (click)="DeleteWatchListItem(w)"></mat-icon></td>
   </tr>
 </table>
