@@ -34,7 +34,8 @@ export interface BSEDetails {
     Cpg3: number
     Cpg4: number
     Cpg5: number
-    Rating:number,
+    Growth: number    
+    Rank:number,
     Signal:string,
     SignalDays:number,
     SignalIndicator:number,

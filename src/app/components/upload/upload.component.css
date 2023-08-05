@@ -281,9 +281,9 @@ td.mat-column-Prv
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
 {
-  padding-left: 5px !important;
+  padding-left: 2px !important;
   text-align: center;
-  padding-right: 5px !important;
+  padding-right: 2px !important;
 }
 
 table #main .mat-header-cell {
@@ -520,12 +520,12 @@ table.basic-info th,  table.basic-info td {
 
 .profit
   {
-    color: #070!important;
+    color: #007700!important;
   }
 
   .loss
   {
-    color: #c00!important;   
+    color: #cc0000!important;   
   }
 .neutral
 {  

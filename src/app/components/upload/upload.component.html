@@ -22,7 +22,7 @@
   <section class="table-container mat-elevation-z8" tabindex="0">
     <table id="main" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" multiTemplateDataRows>
       <ng-container matColumnDef="Flg">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Flag Indicator">
+        <th mat-header-cell *matHeaderCellDef>
          #
         </th>
         <!-- <td mat-cell *matCellDef="let element"> <mat-icon [ngClass]="flagStyle(element)" [matTooltip]="flagContent(element) | tooltipList" 
@@ -59,8 +59,9 @@
             <mat-icon [matTooltipPosition]="'after'" #tooltip6="matTooltip" (click)="tooltip6.show()" [matTooltip]="element.Cpg>0?'+'+(element.Cpg| number:'1.2-2')+'%':(element.Cpg | number:'1.2-2')+'%'" [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'gray'">star</mat-icon>                      
           </small>     
           <small class="fiveDays" style="text-align: right;">  
-            ({{element.Rating}}/6)
+            R:({{element.Rank}})
             </small>
+            &nbsp;<mat-icon [ngClass]="element.SignalIndicator>0?'profit':element.SignalIndicator<0?'loss':'gray'" style="vertical-align: middle;" [fontIcon]="element.SignalIndicator>0?'trending_up':element.SignalIndicator<0?'trending_down':'trending_flat'"></mat-icon>
         </td>
       </ng-container>
       <ng-container matColumnDef="Actions">
@@ -238,7 +239,9 @@
                    </tr>
 
                    <tr>
-                    <td></td>
+                    <td>
+                      <span [ngClass]="element.Growth>0?'profit':element.Growth<0?'loss':'gray'">{{element.Growth>0?'+'+(element.Growth| number:'1.2-2')+'%':(element.Growth | number:'1.2-2')+'%'}}</span>                      
+                    </td>
                     <td style="background:#ffffff;padding:5px;">
                       <small class="fiveDays">  
                       <span [ngClass]="element.Cpg5>0?'profit':element.Cpg5<0?'loss':'gray'">{{element.Cpg5>0?'+'+(element.Cpg5| number:'1.2-2')+'%':(element.Cpg5 | number:'1.2-2')+'%'}}</span>
@@ -258,8 +261,8 @@
                   <td [ngClass]="element.SignalIndicator>0?'profit-bg':element.SignalIndicator<0?'loss-bg':'gray-bg'">{{element.Signal}} ({{element.SignalDays}} day's)</td>
               </tr> 
               <tr>
-                <td>Overall Score :</td>
-                <td>{{element.Rating}} out of 6</td>
+                <td>Rank :</td>
+                <td>{{element.Rank}} out of 4,000+</td>
             </tr> 
                   </table>
                

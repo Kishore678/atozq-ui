@@ -105,7 +105,7 @@ export class AppComponent implements OnDestroy {
     this.matIconRegistry.addSvgIcon(
       "elearning",
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/books.svg")
-    );
+    );    
   }
   OpenAskChat(model: ChatModel) {  
     const dialogRef = this.dialog.open(ChatDialogComponent, {
