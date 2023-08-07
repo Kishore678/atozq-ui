@@ -207,7 +207,25 @@ text-align: center;
   vertical-align: middle;
     font-size: 19px;
 }
-
+.youtube
+{
+  float: right;
+  cursor: pointer;
+  display: block;
+  font-weight: 500;  
+}
+.youtube .mat-icon
+{
+  color: red;
+  vertical-align: middle;
+  font-size: 19px;
+  height: 19px;
+  border-radius: 2px;
+  width: 19px;
+  border: 0.5px solid;
+  border-color: red;
+  background: #ffffff;
+}
 .license a{
   color: #297983;
   font-weight: 500;

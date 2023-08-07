@@ -41,7 +41,7 @@ export class UploadComponent {
   // watchList:WatchModel[]=new Array<WatchModel>();
   expandcollapse:string="expandcollapse";
   expandedElement!: Bseanalytic | null;
-  
+  isShow:boolean=false;
   user!:UserModel;
   isTrue:boolean=false;
   dsArray:any[]=[];
@@ -211,7 +211,7 @@ share(prod:Bseanalytic)
   {   
     this.user = new UserModel();
     this.user.AnonymousID = ATOZQSettings.userid;
-    this.user.UserName=ATOZQSettings.username;
+    this.user.UserName=ATOZQSettings.username;    
   }
 
   ngOnInit() {
@@ -234,11 +234,12 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
        
 
-    let item = ['7572969910637412'].filter(id => id == ATOZQSettings.userid);
+    let item = ['7572969910637412','1773899756110990','1520163408368941'].filter(id => id == ATOZQSettings.userid);
         
         if(item.length>0)
         {
          this.displayedColumns.push('Wrn');
+         this.isShow=true;
         } 
 
         this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
@@ -260,6 +261,20 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
 
    
+
+  }
+
+
+  loadFullData()
+  {
+    this.http.get(`${apiBaseUrl}/api/stock/all?userid=${this.user.AnonymousID}`)
+    .subscribe({
+      next: (event:any) => { 
+     this.LoadDataSource(event);
+     Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check Volume and No of Trades before proceed.','warning')
+    },
+    error: (err: HttpErrorResponse) => {console.log(err);this.generalError();}
+  });  
 
   }
 
@@ -474,6 +489,8 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
 
       // this.dialog.open(ScriptDetailsDialogComponent,{data:model});
     }
+
+    
   LoadDataSource(event:BSEDetails)
   { 
     this.dataSource.data  = [];

@@ -107,6 +107,11 @@ export class AppComponent implements OnDestroy {
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/books.svg")
     );    
   }
+
+  OpenYT()
+  {
+    window.open('https://www.youtube.com/@ATOZQcom','_blank');
+  }
   OpenAskChat(model: ChatModel) {  
     const dialogRef = this.dialog.open(ChatDialogComponent, {
       width: '100%',
