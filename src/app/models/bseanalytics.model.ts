@@ -2,8 +2,9 @@ import { WatchModel } from "./watch.model"
 
 export interface BSEDetails {
     FileName: string
-    BSEAnalytics: Bseanalytic[],
+    BSEAnalytics: Bseanalytic[]
     ChatCount:ChatCount[]
+    StockCount:number
     Watches:WatchModel[]
   }
   export interface ChatCount

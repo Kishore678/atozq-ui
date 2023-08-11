@@ -39,6 +39,7 @@ const apiBaseUrl = environment.apiBaseUrl;
 })
 export class UploadComponent {  
   // watchList:WatchModel[]=new Array<WatchModel>();
+  stockCount:number=0;
   expandcollapse:string="expandcollapse";
   expandedElement!: Bseanalytic | null;
   isShow:boolean=false;
@@ -216,7 +217,7 @@ share(prod:Bseanalytic)
 
   ngOnInit() {
     this.LoadUser();
-    this.dsArray.push({key:'All',text:'All Categories'});
+    this.dsArray.push({key:'All',text:'All Stocks'});
 this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
 this.dsArray.push({key:'1-2',text:'Penny stocks (B,X,T) under Rs.2'});
 this.dsArray.push({key:'2-5',text:'Penny stocks (B,X,T) under Rs.5'});
@@ -242,10 +243,11 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
          this.isShow=true;
         } 
 
-        this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
+        this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
         .subscribe({
           next: (event:any) => { 
          this.LoadDataSource(event);
+         Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');
         },
         error: (err: HttpErrorResponse) => {console.log(err);this.generalError();}
       });    
@@ -271,7 +273,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
     .subscribe({
       next: (event:any) => { 
      this.LoadDataSource(event);
-     Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check Volume and No of Trades before proceed.','warning')
+     Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');
     },
     error: (err: HttpErrorResponse) => {console.log(err);this.generalError();}
   });  
@@ -355,10 +357,11 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   }
   
   SelectionChanged() {
-    this.http.get(`${apiBaseUrl}/api/stock/view?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
+    this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
     .subscribe({
       next: (event:any) => { 
      this.LoadDataSource(event);
+     Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');
     },
     error: (err: HttpErrorResponse) => {console.log(err);this.generalError();}
   });
@@ -495,13 +498,15 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   { 
     this.dataSource.data  = [];
     this.bseBhavModel = event;
+
     // this.ChatCount = this.bseBhavModel.ChatCount;   
     // this.watchList = this.bseBhavModel.Watches; 
     this.bseBhavData = this.bseBhavModel.BSEAnalytics;
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
   this.dataSource.data = this.bseBhavData;
-  this.length = this.bseBhavData.length; 
+  this.length = this.bseBhavModel.StockCount; 
   this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(2,8),2);
+  this.stockCount = this.bseBhavModel.StockCount;
 }); 
 
   }

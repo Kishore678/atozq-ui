@@ -13,11 +13,11 @@
     <mat-select [(value)]="selected" (selectionChange)="SelectionChanged()">    
       <mat-option *ngFor="let b of dsArray" value="{{b.key}}">{{b.text}}</mat-option>   
     </mat-select> 
-    <button class="btn-all" *ngIf="isShow" (click)="loadFullData()">Get All</button>
+    <!-- <button class="btn-all" *ngIf="isShow" (click)="loadFullData()">Get All</button> -->
   </div>
-  <div style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">
-      <label class="filename"><b>&nbsp;Date:&nbsp;</b></label>{{fileName}}
-  </div>
+  <div style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">
+    <label class="filename"><b>Date:&nbsp;</b></label>{{fileName}}&nbsp;&nbsp;&nbsp;<label class="filename"><b>&nbsp;Found:&nbsp;</b></label>{{stockCount | number:'2.' }}&nbsp;<small style="color:#000000de">stocks</small>
+</div>
   </div>
   <div style="clear:both;"></div>
   <section class="table-container mat-elevation-z8" tabindex="0">
@@ -48,21 +48,21 @@
           Stock
         </th>
         <td mat-cell *matCellDef="let element">
-          <span style="font-family:'Roboto', sans-serif;font-size:12px;color:#333;"> 
-          {{element.Nme}}</span> 
+          <div style="font-family:'Roboto', sans-serif;font-size:12px;color:#333;display:inline"> 
+          {{element.Nme}} &nbsp;<small style="float:right"><mat-icon [ngClass]="element.SignalIndicator>0?'profit':element.SignalIndicator<0?'loss':'gray'" style="vertical-align: middle;" [fontIcon]="element.SignalIndicator>0?'trending_up':element.SignalIndicator<0?'trending_down':'trending_flat'"></mat-icon></small></div> 
           <br>
-          <small class="fiveDays" style="text-align: left;">                       
+          
+          <small class="fiveDays" style="text-align: left;">  
             <mat-icon [matTooltipPosition]="'after'" #tooltip1="matTooltip" (click)="tooltip1.show()" [matTooltip]="element.Cpg5>0?'+'+(element.Cpg5| number:'1.2-2')+'%':(element.Cpg5 | number:'1.2-2')+'%'" [ngClass]="element.Cpg5>0?'profit':element.Cpg5<0?'loss':'gray'">star</mat-icon>
             <mat-icon [matTooltipPosition]="'after'" #tooltip2="matTooltip" (click)="tooltip2.show()" [matTooltip]="element.Cpg4>0?'+'+(element.Cpg4| number:'1.2-2')+'%':(element.Cpg4 | number:'1.2-2')+'%'" [ngClass]="element.Cpg4>0?'profit':element.Cpg4<0?'loss':'gray'">star</mat-icon>
             <mat-icon [matTooltipPosition]="'after'" #tooltip3="matTooltip" (click)="tooltip3.show()" [matTooltip]="element.Cpg3>0?'+'+(element.Cpg3| number:'1.2-2')+'%':(element.Cpg3 | number:'1.2-2')+'%'" [ngClass]="element.Cpg3>0?'profit':element.Cpg3<0?'loss':'gray'">star</mat-icon>
             <mat-icon [matTooltipPosition]="'after'" #tooltip4="matTooltip" (click)="tooltip4.show()" [matTooltip]="element.Cpg2>0?'+'+(element.Cpg2| number:'1.2-2')+'%':(element.Cpg2 | number:'1.2-2')+'%'" [ngClass]="element.Cpg2>0?'profit':element.Cpg2<0?'loss':'gray'">star</mat-icon>
             <mat-icon [matTooltipPosition]="'after'" #tooltip5="matTooltip" (click)="tooltip5.show()" [matTooltip]="element.Cpg1>0?'+'+(element.Cpg1| number:'1.2-2')+'%':(element.Cpg1 | number:'1.2-2')+'%'" [ngClass]="element.Cpg1>0?'profit':element.Cpg1<0?'loss':'gray'">star</mat-icon>                      
             <mat-icon [matTooltipPosition]="'after'" #tooltip6="matTooltip" (click)="tooltip6.show()" [matTooltip]="element.Cpg>0?'+'+(element.Cpg| number:'1.2-2')+'%':(element.Cpg | number:'1.2-2')+'%'" [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'gray'">star</mat-icon>                      
-          </small>     
-          <small class="fiveDays" style="text-align: right;">  
-            R:({{element.Rank}})
-            </small>
-            &nbsp;<mat-icon [ngClass]="element.SignalIndicator>0?'profit':element.SignalIndicator<0?'loss':'gray'" style="vertical-align: middle;" [fontIcon]="element.SignalIndicator>0?'trending_up':element.SignalIndicator<0?'trending_down':'trending_flat'"></mat-icon>
+          </small>                
+            <small class="fiveDays" style="text-align: left;vertical-align: unset;">  
+              Rank:{{element.Rank | number:'2.' }}
+              </small>
         </td>
       </ng-container>
       <ng-container matColumnDef="Actions">
