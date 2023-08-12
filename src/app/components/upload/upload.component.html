@@ -15,8 +15,11 @@
     </mat-select> 
     <!-- <button class="btn-all" *ngIf="isShow" (click)="loadFullData()">Get All</button> -->
   </div>
-  <div style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">
+  <div *ngIf="!spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
     <label class="filename"><b>Date:&nbsp;</b></label>{{fileName}}&nbsp;&nbsp;&nbsp;<label class="filename"><b>&nbsp;Found:&nbsp;</b></label>{{stockCount | number:'2.' }}&nbsp;<small style="color:#000000de">stocks</small>
+</div>
+<div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+  <label class="filename"><b>Loading&nbsp;</b></label> <img style="vertical-align:bottom;" src="assets/spinner.gif"/>
 </div>
   </div>
   <div style="clear:both;"></div>
@@ -61,7 +64,7 @@
             <mat-icon [matTooltipPosition]="'after'" #tooltip6="matTooltip" (click)="tooltip6.show()" [matTooltip]="element.Cpg>0?'+'+(element.Cpg| number:'1.2-2')+'%':(element.Cpg | number:'1.2-2')+'%'" [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'gray'">star</mat-icon>                      
           </small>                
             <small class="fiveDays" style="text-align: left;vertical-align: unset;">  
-              Rank:{{element.Rank | number:'2.' }}
+              Rank:<b style="font-weight:400;color: #07b1c7;">{{element.Rank | number:'2.' }}</b>
               </small>
         </td>
       </ng-container>

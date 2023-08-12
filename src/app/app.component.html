@@ -3,7 +3,7 @@
     <mat-toolbar color="primary" class="atozq-toolbar">
       <!-- <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button> -->
       <a class="atozq-app-name" routerLink="/">        
-        &nbsp;ATOZQ.com
+        &nbsp;<img src="assets/favicon-32x32.png"/><span style="margin-top:16px;">ATOZQ.com</span>
       </a>
       <span class="spacer"></span>
       <a class="menuitems" mat-list-item routerLink="/" *ngIf="!auth.user().IsLoggedIn">      
@@ -142,7 +142,7 @@
           <div class="col-md-12">
             <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: 500;color:#2bea00">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
             <!-- <a class="verify" style="cursor:pointer" (click)="OpenChat()">Ask<mat-icon> live_help</mat-icon></a> -->
-            <a class="youtube" style="cursor:pointer" (click)="OpenYT()">Follow:&nbsp;<mat-icon>subscriptions</mat-icon></a>
+            <a class="youtube" style="cursor:pointer" (click)="OpenYT()">Follow us:&nbsp;<mat-icon>play_circle_filled</mat-icon></a>
           </div>            
         </div>
         <div class="row home-toolbar2"> 

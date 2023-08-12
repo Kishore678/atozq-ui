@@ -39,6 +39,7 @@ const apiBaseUrl = environment.apiBaseUrl;
 })
 export class UploadComponent {  
   // watchList:WatchModel[]=new Array<WatchModel>();
+  spinner:boolean=false;
   stockCount:number=0;
   expandcollapse:string="expandcollapse";
   expandedElement!: Bseanalytic | null;
@@ -242,7 +243,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
          this.displayedColumns.push('Wrn');
          this.isShow=true;
         } 
-
+        this.spinner = true;
         this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
         .subscribe({
           next: (event:any) => { 
@@ -357,6 +358,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   }
   
   SelectionChanged() {
+    this.spinner = true;
     this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
     .subscribe({
       next: (event:any) => { 
@@ -507,6 +509,7 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
   this.length = this.bseBhavModel.StockCount; 
   this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(2,8),2);
   this.stockCount = this.bseBhavModel.StockCount;
+  this.spinner = false;
 }); 
 
   }
