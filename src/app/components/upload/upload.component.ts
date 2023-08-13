@@ -240,7 +240,7 @@ this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
 this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});       
 
-    let item = ['7572969910637412','1773899756110990','1520163408368941'].filter(id => id == ATOZQSettings.userid);
+    let item = ['7572969910637412'].filter(id => id == ATOZQSettings.userid);
         
         if(item.length>0)
         {
