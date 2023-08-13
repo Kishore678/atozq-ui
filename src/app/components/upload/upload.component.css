@@ -27,7 +27,7 @@
     font-weight: bold;
   }
 
-  .mat-select
+  .mat-select, :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select
   {
     width: 200px;
     margin-left: 5px;
@@ -50,9 +50,32 @@
     width: 100%;  
   }
 
+  :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select
+  {
+    width:60px;
+    display: inline;
+  }  
+
+  :host ::ng-deep.mat-paginator .mat-paginator-container .mat-paginator-range-label {
+    margin: 18px 0 18px 17px;
+}
+  :host ::ng-deep.mat-paginator .mat-paginator-container .mat-paginator-page-size-label,
+  :host ::ng-deep.mat-paginator .mat-paginator-container .mat-form-field-underline
+  {
+    display: none;
+  }
+
+  
+  :host ::ng-deep.mat-paginator .mat-paginator-container .mat-paginator-range-action
+  {
+    display: flex;
+    align-items: center;
+    height: 68px;
+  }
+  
   :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select-value
   {
-    color: #297983; 
+    color: #fff; 
   }
 
   th{background: #00bcd4;

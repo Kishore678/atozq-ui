@@ -2,7 +2,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { HttpClient, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { of } from 'rxjs/internal/observable/of';
@@ -48,7 +48,7 @@ export class UploadComponent {
   isTrue:boolean=false;
   dsArray:any[]=[];
   fileName:string='';
-  size:number=25;
+  size:number=10;
   length!:number;
   bseBhavData!:Bseanalytic[];
   bseBhavModel!:BSEDetails;
@@ -84,7 +84,8 @@ displayedColumns = [
   // ChatCount!: ChatCount[];
   pageChangeEvent(event:any)
   {
-
+    window.scrollTo(0,0);
+    this.loadData();
   }
 
   generalError()
@@ -93,7 +94,12 @@ displayedColumns = [
   }
   ngAfterViewInit() {
  
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
+
+    this.paginator.pageIndex = this.pageNo;
+    this.paginator.length = this.stockCount;
+  
+
     this.dataSource.sort = this.sortForDataSource;
   }
 
@@ -232,9 +238,7 @@ this.dsArray.push({key:'500-1K',text:'Group-A b/w Rs.500 and Rs.1,000'});
 this.dsArray.push({key:'1K-5K',text:'Group-A b/w Rs.1,000 and Rs.5,000'});
 this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
 this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
-this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
-
-       
+this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});       
 
     let item = ['7572969910637412','1773899756110990','1520163408368941'].filter(id => id == ATOZQSettings.userid);
         
@@ -243,40 +247,32 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
          this.displayedColumns.push('Wrn');
          this.isShow=true;
         } 
-        this.spinner = true;
-        this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
-        .subscribe({
-          next: (event:any) => { 
-         this.LoadDataSource(event);
-         Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');
-        },
-        error: (err: HttpErrorResponse) => {console.log(err);this.generalError();}
-      });    
-      
- 
-      // this.useridService.GetUser(userid).subscribe({
-      //   next:(event)=>{
-      //     this.LoadUser(event);
-      //   },
-      //   error:(err)=>{console.log(err);}
-      // })
 
-
-
-   
-
+        this.loadData();   
   }
 
+pageNo:number=0;
+
+   pageChanged(event: PageEvent) {
+    console.log({ event });
+    this.size = event.pageSize;
+    this.pageNo = event.pageIndex;
+    this.loadData(); 
+  }
 
   loadFullData()
   {
-    this.http.get(`${apiBaseUrl}/api/stock/all?userid=${this.user.AnonymousID}`)
+    this.http.get(`${apiBaseUrl}/api/stock/all?userid=${this.user.AnonymousID}&pageNo=${this.pageNo}&pageSize=${this.size}`)
     .subscribe({
       next: (event:any) => { 
-     this.LoadDataSource(event);
-     Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');
+     this.LoadDataSource(event);     
+    //  Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');    
     },
-    error: (err: HttpErrorResponse) => {console.log(err);this.generalError();}
+    error: (err: HttpErrorResponse) => {
+      console.log(err);
+      this.generalError();
+      window.location.reload();
+    }
   });  
 
   }
@@ -357,18 +353,33 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
     return returnContent;
   }
   
-  SelectionChanged() {
-    this.spinner = true;
-    this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}`)
-    .subscribe({
-      next: (event:any) => { 
-     this.LoadDataSource(event);
-     Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');
-    },
-    error: (err: HttpErrorResponse) => {console.log(err);this.generalError();}
-  });
+loadData()
+{
+  this.spinner = true;
+  this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}&pageNo=${this.pageNo}&pageSize=${this.size}`)
+  .subscribe({
+    next: (event:any) => { 
+   this.LoadDataSource(event);   
+   
   
-  
+   this.paginator.pageIndex = this.pageNo;
+   this.paginator.length = this.stockCount;
+   window.scrollTo(0,0);
+  //  this.dataSource.paginator = this.paginator;
+  //  Swal.fire('Warning','Ranking based on 6-days Gain & Loss. Please cross check "Volume", "No of Trades" and "Trend" before proceed.','warning');
+  },
+  error: (err: HttpErrorResponse) => {
+    console.log(err);
+    this.generalError();
+    window.location.reload();
+  }
+});
+}
+
+  SelectionChanged() {       
+  this.loadData();  
+  this.length=this.stockCount;  
+  this.pageNo=0;
  }
 
 
@@ -498,15 +509,12 @@ this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});
     
   LoadDataSource(event:BSEDetails)
   { 
-    this.dataSource.data  = [];
+    this.dataSource.data  = [];  
     this.bseBhavModel = event;
-
-    // this.ChatCount = this.bseBhavModel.ChatCount;   
-    // this.watchList = this.bseBhavModel.Watches; 
     this.bseBhavData = this.bseBhavModel.BSEAnalytics;
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
-  this.dataSource.data = this.bseBhavData;
   this.length = this.bseBhavModel.StockCount; 
+  this.dataSource.data = this.bseBhavData;
   this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(2,8),2);
   this.stockCount = this.bseBhavModel.StockCount;
   this.spinner = false;

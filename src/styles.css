@@ -80,6 +80,7 @@ text-align: center;
   background:#f0f8ff !important;
   color: #245bff;
 }
+
 .fundamental-dialog .mat-dialog-container{ 
   border: 5px double rgba(0, 0, 0, .4);  
   overflow: hidden;
