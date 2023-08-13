@@ -54,10 +54,16 @@
   {
     width:60px;
     display: inline;
+    margin-left: 0px;
   }  
 
+  :host ::ng-deep.mat-paginator .mat-paginator-container .mat-icon-button
+  {
+    width:35px;
+  }
+
   :host ::ng-deep.mat-paginator .mat-paginator-container .mat-paginator-range-label {
-    margin: 18px 0 18px 17px;
+    margin: 18px 0 18px 8px;
 }
   :host ::ng-deep.mat-paginator .mat-paginator-container .mat-paginator-page-size-label,
   :host ::ng-deep.mat-paginator .mat-paginator-container .mat-form-field-underline

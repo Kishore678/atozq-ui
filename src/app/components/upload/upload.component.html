@@ -1,8 +1,8 @@
 <mat-tab-group>
 <mat-tab>
 <ng-template mat-tab-label>
-  <mat-icon svgIcon="star" class="example-tab-icon">star</mat-icon>
-  Most Active
+  <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
+  Stocks
 </ng-template>
 <div class="bg-layer">
   <div class="filter">
@@ -15,8 +15,8 @@
     </mat-select> 
     <!-- <button class="btn-all" *ngIf="isShow" (click)="loadFullData()">Get All</button> -->
   </div>
-  <div *ngIf="!spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
-    <label class="filename"><b>Date:&nbsp;</b></label>{{fileName}}&nbsp;&nbsp;&nbsp;<label class="filename"><b>&nbsp;Found:&nbsp;</b></label>{{stockCount | number:'2.' }}&nbsp;<small style="color:#000000de">stocks</small>
+  <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+    <label class="filename"><b>Date:&nbsp;</b></label><span>{{fileName}}</span>
 </div>
 <div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
   <label class="filename"><b>Loading&nbsp;</b></label> <img style="vertical-align:bottom;" src="assets/spinner.gif"/>
@@ -24,6 +24,9 @@
   </div>
   <div style="clear:both;"></div>
   <section class="table-container mat-elevation-z8" tabindex="0">
+    <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100]"
+    (page)="pageChanged($event)" showFirstLastButtons="" aria-label="Select page">
+  </mat-paginator>
     <table id="main" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" multiTemplateDataRows>
       <ng-container matColumnDef="Flg">
         <th mat-header-cell *matHeaderCellDef>
@@ -286,7 +289,7 @@
     </table>
     <!-- <mat-paginator #paginator showFirstLastButtons hidePageSize></mat-paginator> -->
 
-    <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100,1000,length]"
+    <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100]"
     (page)="pageChanged($event)" showFirstLastButtons="" aria-label="Select page">
   </mat-paginator>
   </section>
@@ -323,10 +326,29 @@ Coming soon... Please do support and share.<mat-icon style="cursor: pointer;vert
     <mat-icon svgIcon="elearning" class="example-tab-icon"></mat-icon>
      Learning
   </ng-template>
-  <div class="bg-layer notification">
+  <div class="bg-layer notification" style="display:none">
     Coming soon... Please do support and share.<mat-icon style="cursor: pointer;vertical-align:super;" (click)="whatsAppShare('Secure Link: https://atozq.com')" svgIcon="whatsapp"></mat-icon> <br>Tag your email under   <a style="color:#218b99;font-weight:500;" mat-list-item routerLink="/account/anonymous">      
       <mat-icon style="vertical-align:bottom;" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
      </a> We will notify when new feature available.
+  </div>
+  <div class="page-container"> 
+    <h3 style="margin-bottom:0px;"><span class="page-header">MY LEARNINGS</span></h3>
+    <section class="container"> 
+      <ol style="margin: 0;padding: 0 10px 0 10px;">
+        <li>
+          <a href="https://www1.nseindia.com/invest/resources/download/Basics_of_finmkts.pdf" target="_blank">Handbook on Basics of Financial Markets</a> (Source: nseindia.com)
+        </li>
+        <li>
+          <a href="https://www.flame.edu.in/pdfs/fil/presentations/FIL_Stock%20Market.pdf" target="_blank">Basics Of Stock Market By Ronak Nangalia Sohrab Kothari</a> (Source: flame.edu.in)
+        </li>
+        <li>
+          <a href="https://www.teachmint.com/tfile/studymaterial/directtradeworld/trading/basicofsharemarketpdf/a1b56ee3-2e6e-48e7-9b55-b65d1497969b" target="_blank">Basics Of Stock Market By Techmint</a> (Source: teachmint.com)
+        </li>
+        <li>
+          <a href="https://delistedstocks.in/5-financial-ratios-every-stock-investor-should-know-pe-roe-roa-d-e-pb-dividend-payout-ratio/" target="_blank">Five financial ratios every stock investor should know (PE, ROE, ROA, D/E, PB, DIVIDEND PAYOUT RATIO)</a> (Source: delistedstocks.in)
+        </li>
+      </ol>  
+    </section>
   </div>
   </mat-tab>
 </mat-tab-group>

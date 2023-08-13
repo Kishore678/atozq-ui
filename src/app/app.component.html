@@ -3,7 +3,8 @@
     <mat-toolbar color="primary" class="atozq-toolbar">
       <!-- <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button> -->
       <a class="atozq-app-name" routerLink="/">        
-        &nbsp;<img src="assets/favicon-32x32.png"/><span style="margin-top:16px;">ATOZQ.com</span>
+        &nbsp;<img src="assets/favicon-32x32.png"/><span style="margin-top:16px;">ATOZQ</span>
+        <small style="margin: 29px 0 0 -33px;font-size: 14px;color: black;">.com</small>
       </a>
       <span class="spacer"></span>
       <a class="menuitems" mat-list-item routerLink="/" *ngIf="!auth.user().IsLoggedIn">      

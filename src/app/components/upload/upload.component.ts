@@ -359,9 +359,7 @@ loadData()
   this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}&pageNo=${this.pageNo}&pageSize=${this.size}`)
   .subscribe({
     next: (event:any) => { 
-   this.LoadDataSource(event);   
-   
-  
+   this.LoadDataSource(event);
    this.paginator.pageIndex = this.pageNo;
    this.paginator.length = this.stockCount;
    window.scrollTo(0,0);
@@ -376,10 +374,10 @@ loadData()
 });
 }
 
-  SelectionChanged() {       
-  this.loadData();  
-  this.length=this.stockCount;  
-  this.pageNo=0;
+  SelectionChanged() {    
+    this.length=this.stockCount;  
+    this.pageNo=0;   
+  this.loadData();
  }
 
 
