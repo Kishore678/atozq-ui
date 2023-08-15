@@ -119,10 +119,10 @@ a {
   font-size: 20px;
   font-family: sans-serif;
   border-radius: 2px;
-  font-weight: bold;
-  padding: 5px 5px 5px 0px;
+  font-weight: 700;
+  padding: 5px 5px 5px 0;
   background: #ffffff;
-  border: 2px solid #00bcd4;
+  border: 5px solid #ffffff;
 }
 
 mat-sidenav-content
