@@ -30,31 +30,31 @@
     <tr>
         <th>#</th>
         <th>Group</th>
-        <th>Source</th>
-        <th>Local</th>
+        <th>Data</th>
+        <!-- <th>Local</th> -->
         <th>Cached</th>
-        <th>Post</th>
+        <!-- <th>Post</th> -->
         <th>Sync</th>
     </tr>
     <tr *ngFor="let g of list" ngClass="{{g.Status==true?'':g.Status==null?'light-warn':'light-fail'}}">
         <td style="text-align: center;">{{g.Id}}</td>
         <td style="text-align: left;">{{g.Group}}</td>
         <td style="text-align: center;">{{g.Source}}</td>
-        <td style="text-align: center;">{{g.Processed}}</td>
+        <!-- <td style="text-align: center;">{{g.Processed}}</td> -->
         <td style="text-align: center;">{{g.Cached}}</td>
-        <td style="text-align: center;">{{g.Post}}</td>
+        <!-- <td style="text-align: center;">{{g.Post}}</td> -->
         <td style="text-align: center;border-inline: 5px;" ngClass="{{g.Status==true?'pass':g.Status==null?'warn':'fail'}}">{{g.Status==true?'Pass':g.Status==null?'Warn':'Fail'}}</td>
     </tr>
     </table>
     
     <table *ngIf="isLoaded" class="total">
-        <tr><td>Source Total:</td><td style="text-align: center;">{{sourceTotal}}</td></tr>
-        <tr><td>Local Total:</td><td style="text-align: center;">{{processedTotal}}</td></tr>
+        <tr><td>Data Total:</td><td style="text-align: center;">{{sourceTotal}}</td></tr>
+        <!-- <tr><td>Local Total:</td><td style="text-align: center;">{{processedTotal}}</td></tr> -->
         <tr><td>Cached Total:</td><td style="text-align: center;">{{cachedTotal}}</td></tr>
         <tr><td>Overall Status:</td><td style="text-align: center;" ngClass="{{overallStatus==true?'pass':overallStatus==null?'warn':'fail'}}">{{overallStatus==true?'Pass':overallStatus==null?'Warn':'Fail'}}</td></tr>
         <tr><td style="text-align:center;float:left">
             <button style="background-color: #00d435;color:#fff;margin-right:5px;" mat-button (click)="refresh()">Refresh Data</button>
-            <button style="background-color: #00a2d4;color:#fff" mat-button (click)="postMessages()">Send Post</button>
+            <!-- <button style="background-color: #00a2d4;color:#fff" mat-button (click)="postMessages()">Send Post</button> -->
         </td><td ></td></tr>
     </table>
 </ng-template>

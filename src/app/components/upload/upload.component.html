@@ -67,7 +67,7 @@
             <mat-icon [matTooltipPosition]="'after'" #tooltip6="matTooltip" (click)="tooltip6.show()" [matTooltip]="element.Cpg>0?'+'+(element.Cpg| number:'1.2-2')+'%':(element.Cpg | number:'1.2-2')+'%'" [ngClass]="element.Cpg>0?'profit':element.Cpg<0?'loss':'gray'">star</mat-icon>                      
           </small>                
             <small class="fiveDays" style="text-align: left;vertical-align: unset;">  
-              Rank:<b style="font-weight:400;color: #07b1c7;">{{element.Rank | number:'2.' }}</b>
+              Rank:<b style="font-weight:400;color: #07b1c7;">{{element.Grp}}-{{element.Rank}}</b>
               </small>
         </td>
       </ng-container>
@@ -269,7 +269,7 @@
               </tr> 
               <tr>
                 <td>Rank :</td>
-                <td>{{element.Rank}} out of 4,000+</td>
+                <td>{{element.Grp}}-{{element.Rank}}</td>
             </tr> 
                   </table>
                

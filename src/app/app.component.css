@@ -118,9 +118,11 @@ a {
   color: #00bcd4;
   font-size: 20px;
   font-family: sans-serif;
+  border-radius: 2px;
   font-weight: bold;
   padding: 5px 5px 5px 0px;
-  background: #00a0ec05;
+  background: #ffffff;
+  border: 2px solid #00bcd4;
 }
 
 mat-sidenav-content

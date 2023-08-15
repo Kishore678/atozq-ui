@@ -4,7 +4,12 @@
       <!-- <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button> -->
       <a class="atozq-app-name" routerLink="/">        
         &nbsp;<img src="assets/favicon-32x32.png"/><span style="margin-top:16px;">ATOZQ</span>
-        <small style="margin: 29px 0 0 -33px;font-size: 14px;color: black;">.com</small>
+        <small style="margin: 29px 0 0 -95px;
+        font-size: 14px;
+        color: #55cd6c;
+        border-left: 62px solid;
+        border-color: #00bcd4;
+        border-bottom-width: thin;">.com</small>
       </a>
       <span class="spacer"></span>
       <a class="menuitems" mat-list-item routerLink="/" *ngIf="!auth.user().IsLoggedIn">      
@@ -141,7 +146,7 @@
       <div class="container">
         <div class="row home-toolbar">        
           <div class="col-md-12">
-            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: 500;color:#2bea00">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
+            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: 500;color:#ffffff">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
             <!-- <a class="verify" style="cursor:pointer" (click)="OpenChat()">Ask<mat-icon> live_help</mat-icon></a> -->
             <a class="youtube" style="cursor:pointer" (click)="OpenYT()">Follow us:&nbsp;<mat-icon>play_circle_filled</mat-icon></a>
           </div>            
