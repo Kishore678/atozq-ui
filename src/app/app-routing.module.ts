@@ -23,6 +23,7 @@ import { TermsComponent } from './components/terms/terms.component';
 import { DisclaimerComponent } from './components/disclaimer/disclaimer.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { FundamentalsComponent } from './components/fundamentals/fundamentals.component';
+import { LearnComponent } from './components/learn/learn.component';
 
 const routes: Routes = [
   {path:'',component:UploadComponent},
@@ -49,6 +50,7 @@ const routes: Routes = [
   {path:'app/disclaimer',component:DisclaimerComponent},
   {path:'app/privacy',component:PrivacyComponent},
   {path:'app/stock/:id',component:FundamentalsComponent},
+  {path:'app/learn',component:LearnComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];

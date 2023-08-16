@@ -171,6 +171,26 @@ min-height: 100vh;
   text-align: center;
   font-size: 13px;
 }
+.home-toolbar3
+{
+  padding: 2px;
+  background: #f9feff;
+  color: #fff;
+  text-align: left;
+  font-size: 13px;
+  display: table;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+.example-button-row .mat-raised-button
+{
+  padding: 0 5px;
+ margin: 0 2px;
+}
+
 .datetime{
 text-align: center;
 }

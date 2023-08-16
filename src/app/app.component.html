@@ -158,6 +158,18 @@
             <span><span class="dot users"></span>Users:<span class="box">{{users|number:'1.0-0'}}</span><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
           </div>
         </div>
+        <section class="row home-toolbar3"> 
+          <div class="example-button-row">
+            <button  mat-raised-button routerLink="/">
+              <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
+              Stocks
+            </button>
+            <button mat-raised-button routerLink="/app/learn">
+              <mat-icon svgIcon="elearning" class="example-tab-icon"></mat-icon>
+              Learnings
+            </button>
+          </div>
+        </section>
       <router-outlet></router-outlet>
       </div>
      

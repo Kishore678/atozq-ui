@@ -50,8 +50,9 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { UtcToLocalTimePipe } from './pipes/utc-to-local-time.pipe';
 import { FundamentalsComponent } from './components/fundamentals/fundamentals.component';
 import { UtcConverterService } from './pipes/utc-converter.service';
+import { LearnComponent } from './components/learn/learn.component';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,

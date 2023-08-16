@@ -106,6 +106,14 @@ export class AppComponent implements OnDestroy {
       "elearning",
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/books.svg")
     );    
+    this.matIconRegistry.addSvgIcon(
+      "bookopen",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/book-open.svg")
+    );   
+    this.matIconRegistry.addSvgIcon(
+      "bookclose",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/book-close.svg")
+    );   
   }
 
   OpenYT()
