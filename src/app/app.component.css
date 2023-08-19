@@ -255,4 +255,32 @@ text-align: center;
   font-weight: 500;
 }
 
+.mat-button-toggle-group { 
+  height: 30px;
+}
+.mat-button-toggle {
+  margin-top: 0px !important;
+  width: 100px;
+  height: 34px;
+}
+.mat-button-toggle:hover {
+  /* color: red; */
+  background-color: #edfdff;
+}
+.mat-button-toggle-checked {
+  background-color:#edfdff;
+} 
 
+:host::ng-deep .mat-button-toggle-label-content { 
+  line-height: 26px !important; 
+}
+
+.toggle-button-menutext{
+  position: relative;
+  top: 3px;
+  margin-left: 3px;
+}
+:host::ng-deep .mat-paginator {
+  height: 50px;
+  background: #f6f6f6;
+}

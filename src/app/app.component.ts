@@ -115,7 +115,17 @@ export class AppComponent implements OnDestroy {
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/book-close.svg")
     );   
   }
-
+  toggleSelected:string='';
+  changeInToggleGroup(val: string) {
+   
+  }
+  changeInToggle(val: string) {
+    console.log(val);
+  } 
+  SubMenu($event:any)
+  {
+    debugger;
+  }
   OpenYT()
   {
     window.open('https://www.youtube.com/@ATOZQcom','_blank');
@@ -176,6 +186,8 @@ export class AppComponent implements OnDestroy {
      .subscribe(time => {
        this.dt = time;
      });
+
+   
  
   }
   
@@ -213,6 +225,15 @@ export class AppComponent implements OnDestroy {
           }
         });     
       }); 
+      
+      if(location.href.indexOf('stock')!=-1)
+      {
+       this.toggleSelected = 'stock';
+      }
+      else if(location.href.indexOf('learn')!=-1)
+      {
+       this.toggleSelected = 'learn';    
+      }
 
   }
 

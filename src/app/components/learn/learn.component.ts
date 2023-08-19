@@ -28,7 +28,7 @@ export class LearnComponent implements OnInit {
 pageNo:number=0;
 expandcollapse:string="expandcollapse";
 expandedElement!: Learning | null;
-size:number=2;
+size:number=10;
 spinner:boolean=false;
 learningsCount!:number;
 learningModel!:LearningModel;
