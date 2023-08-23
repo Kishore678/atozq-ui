@@ -22,7 +22,7 @@
 
       <ng-container matColumnDef="Flg">
         <th mat-header-cell *matHeaderCellDef>
-         Read
+         #
         </th>
         <td mat-cell *matCellDef="let element"> 
             <mat-icon *ngIf="element.error" class="error icon">error</mat-icon>
@@ -59,8 +59,21 @@
                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
              
                 
-                  <a style="float:left;" [href]="element.ItemUrl" target="_blank" mat-raised-button>Read Full</a>                 
-                  <small style="float:right;">(Source: {{element.Source}})</small>
+                  <a style=
+                  "
+                  float: left;
+    width: 60px;
+    font-size: 11px;
+    text-align: center;
+    height: 24px;
+    line-height: 27px;
+    margin-left: 40px;
+    margin-bottom: 12px;
+    padding: 0;
+    background: limegreen;
+                  " [href]="element.ItemUrl" target="_blank" mat-raised-button>Read Full</a>                 
+                  <small style="float: right;
+                  color: #00bcd4;">(Source: {{element.Source}})</small>
                   <div style="clear: both;"></div>
                 
             </div>

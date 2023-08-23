@@ -379,7 +379,7 @@ share(page:string)
   let domain = loc.protocol+"//"+(host=="localhost"?host+":"+loc.port:host);  
 
   window.open(
-    (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +"ATOZQ.com"+" Secured Link: "+page,
+    (this.isMobile?"whatsapp://send?text=":"https://web.whatsapp.com/send?text=") +"AZNET.in"+" Secured Link: "+page,
     '_blank' 
 );
 }

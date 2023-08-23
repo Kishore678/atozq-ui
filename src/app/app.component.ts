@@ -114,6 +114,10 @@ export class AppComponent implements OnDestroy {
       "bookclose",
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/book-close.svg")
     );   
+    this.matIconRegistry.addSvgIcon(
+      "youtube",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/youtube.svg")
+    );  
   }
   toggleSelected:string='';
   changeInToggleGroup(val: string) {
@@ -128,7 +132,7 @@ export class AppComponent implements OnDestroy {
   }
   OpenYT()
   {
-    window.open('https://www.youtube.com/@ATOZQcom','_blank');
+    window.open('https://www.youtube.com/@AZNETin','_blank');
   }
   OpenAskChat(model: ChatModel) {  
     const dialogRef = this.dialog.open(ChatDialogComponent, {

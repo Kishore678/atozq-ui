@@ -5,7 +5,7 @@
      <div class="msger-inputarea">
       <img alt="User" src="/assets/user.jpg" />
       <input type="text" [ngClass]="'msger-input'+' '+(editMode?'':'input-style')" name="txtUserName" placeholder="Enter username" [(ngModel)]="userName" [readonly]="!editMode" [disabled]="!editMode">   
-      <button class="msger-send-btn" *ngIf="!editMode" (click)="onEdit()">Change</button>
+      <button class="msger-send-btn" *ngIf="!editMode" (click)="onEdit()">Update</button>
       <button class="msger-send-btn warn" *ngIf="editMode" (click)="onCancel()">Cancel</button>
       &nbsp;
       <button class="msger-send-btn save" *ngIf="editMode" (click)="onSave()">Save</button>
@@ -13,19 +13,19 @@
     <div class="msger-inputarea">
       <img alt="Email" src="/assets/email.png" />
       <input type="text" [ngClass]="('msger-input'+' '+(editEmailMode?'':'input-style'))" name="txtEmail" placeholder="Enter email address" [(ngModel)]="Email" [readonly]="!editEmailMode" [disabled]="!editEmailMode">   
-      <button class="msger-send-btn" *ngIf="!editEmailMode" (click)="onEmailEdit()">Change</button>
+      <button class="msger-send-btn" *ngIf="!editEmailMode" (click)="onEmailEdit()">Update</button>
       <button class="msger-send-btn warn" *ngIf="editEmailMode" (click)="onEmailCancel()">Cancel</button>
       &nbsp;
       <button class="msger-send-btn save" *ngIf="editEmailMode" (click)="onSave()">Save</button>
     </div> 
-    <div class="msger-inputarea">
+    <!-- <div class="msger-inputarea">
       <img alt="Device" src="/assets/device.jpg" />
       <input type="text"  name="txtDevice" [(ngModel)]="device" [readonly]="true" [disabled]="true">
     </div>   
     <div class="msger-inputarea">
       <img alt="Browser" src="/assets/browser.png" />
       <input type="text"  name="txtBrowser" [(ngModel)]="browser" [readonly]="true" [disabled]="true">
-    </div> 
+    </div>  -->
     </form> 
   </section> 
 

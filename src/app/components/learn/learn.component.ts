@@ -41,8 +41,9 @@ dataSource = new MatTableDataSource<Learning>();
 
 
 displayedColumns = [  
-  'ItemText',
-  'Flg'    
+  'Flg'  ,
+  'ItemText'
+  
 ];
 
 LoadDataSource(event:LearningModel)

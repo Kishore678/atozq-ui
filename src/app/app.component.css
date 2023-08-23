@@ -240,15 +240,11 @@ text-align: center;
 }
 .youtube .mat-icon
 {
-  color: white;
   vertical-align: middle;
-  font-size: 18px;
-  height: 18px;
+  height: 19px;
   border-radius: 4px;
-  width: 28px;
-  border: 0.5px solid;
-  border-color: #ff8b8b;
-  background: #ff0000;
+  width: 22px;
+  background: #ffffff;
 }
 .license a{
   color: #297983;

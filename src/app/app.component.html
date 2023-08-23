@@ -3,20 +3,21 @@
     <mat-toolbar color="primary" class="atozq-toolbar">
       <!-- <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button> -->
       <a class="atozq-app-name" routerLink="/">        
-        &nbsp;<img src="assets/favicon-32x32.png"/><span style="margin-top:16px;">ATOZQ</span>
-        <small style="margin: 29px 0 0 -95px;
+        &nbsp;<img src="assets/favicon-32x32.png"/><span style="margin-top: 16px;
+        margin-left: -5px;">AZNET</span>
+        <small style="margin: 29px 0 0 -84px;
         font-size: 14px;
         color: #55cd6c;
-        border-left: 62px solid;
+        border-left: 67px solid;
         border-color: #00bcd4;
-        border-bottom-width: thin;">.com</small>
+        border-bottom-width: thin;">.in</small>
       </a>
       <span class="spacer"></span>
-      <a class="menuitems" mat-list-item routerLink="/" *ngIf="!auth.user().IsLoggedIn">      
+      <!-- <a class="menuitems" mat-list-item routerLink="/" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Home" fontIcon="home"></mat-icon><span class="menutext">Home</span>      
-       </a> 
+       </a>  -->
       <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
+        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Dashboard</span>      
        </a> 
        <!-- <a class="menuitems" mat-list-item routerLink="/app/help" *ngIf="!auth.user().IsLoggedIn">      
         <mat-icon aria-hidden="false" aria-label="Help" fontIcon="help"></mat-icon><span class="menutext">Help</span>      
@@ -148,7 +149,7 @@
           <div class="col-md-12">
             <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: 500;color:#ffffff">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
             <!-- <a class="verify" style="cursor:pointer" (click)="OpenChat()">Ask<mat-icon> live_help</mat-icon></a> -->
-            <a class="youtube" style="cursor:pointer" (click)="OpenYT()">Follow us:&nbsp;<mat-icon>play_circle_filled</mat-icon></a>
+            <a class="youtube" style="cursor:pointer" (click)="OpenYT()"><mat-icon svgIcon="youtube"></mat-icon></a>
           </div>            
         </div>
         <div class="row home-toolbar2"> 
@@ -198,7 +199,7 @@
   <div class="row">        
     <div class="col-md-12"> 
   <span class="copyright">
-    <p>© 2023 ATOZQ.com. All rights reserved.<a target="_blank" style="float:right" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> 
+    <p>© 2023 AZNET.in. All rights reserved.<a target="_blank" style="float:right" rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a> 
     </p>        
   </span>
     </div>

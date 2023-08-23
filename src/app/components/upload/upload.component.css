@@ -295,7 +295,6 @@ vertical-align: middle;
 td.mat-column-Vol,
 td.mat-column-Grp,
 td.mat-column-Code,
-td.mat-column-Actions,
 td.mat-column-LTP,
 td.mat-column-Cnt,
 td.mat-column-Opn,
@@ -306,6 +305,10 @@ td.mat-column-Prv
 {
   text-align: right;
   color:#333333;
+}
+td.mat-column-Actions
+{
+  text-align: center;
 }
 
 th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type
