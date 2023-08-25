@@ -229,8 +229,11 @@ export class AppComponent implements OnDestroy {
           }
         });     
       }); 
-      
-      if(location.href.indexOf('stock')!=-1)
+      if(location.pathname=="/")
+      {
+       this.toggleSelected = 'stock';
+      }      
+      else if(location.href.indexOf('stock')!=-1)
       {
        this.toggleSelected = 'stock';
       }
@@ -242,6 +245,19 @@ export class AppComponent implements OnDestroy {
   }
 
   ngAfterContentChecked(): void {   
+    if(location.pathname=="/")
+    {
+     this.toggleSelected = 'stock';
+    }      
+    else if(location.href.indexOf('stock')!=-1)
+    {
+     this.toggleSelected = 'stock';
+    }
+    else if(location.href.indexOf('learn')!=-1)
+    {
+     this.toggleSelected = 'learn';    
+    }
+    else{this.toggleSelected = ''; }
    this.changeDetectorRef.detectChanges();
   }
   ngOnDestroy(): void {

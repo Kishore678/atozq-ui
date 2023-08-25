@@ -11,7 +11,7 @@
     position: fixed;
     /* Make sure the toolbar will stay on top of the content as it scrolls past. */
     z-index: 2;
-    border-bottom: 4px solid #00bcd4;
+    /* border-bottom: 4px solid #00bcd4; */
   }
   .example-container { 
     margin-bottom: 1px;
@@ -78,7 +78,7 @@ a {
 
 .copyright p
 {
-  background:#297983;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #00bcd4);
   color:#ffffff;
   padding:5px;
   font-size:12px;
@@ -116,13 +116,13 @@ a {
 {
   text-decoration: none;
   color: #00bcd4;
-  font-size: 20px;
-  font-family: sans-serif;
+  font-size: 28px;
   border-radius: 2px;
+  font-family: fangsong;
   font-weight: 700;
-  padding: 5px 5px 5px 0;
-  background: #ffffff;
-  border: 5px solid #ffffff;
+  padding: 4px;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 mat-sidenav-content
@@ -166,7 +166,7 @@ min-height: 100vh;
 .home-toolbar2
 {
   padding: 2px;
-  background: #00bcd4;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #00bcd4);
   color: #fff;
   text-align: center;
   font-size: 13px;
@@ -233,6 +233,7 @@ text-align: center;
 }
 .youtube
 {
+  margin-right:5px;
   float: right;
   cursor: pointer;
   display: block;
@@ -241,9 +242,9 @@ text-align: center;
 .youtube .mat-icon
 {
   vertical-align: middle;
-  height: 19px;
+  height: 24px;
   border-radius: 4px;
-  width: 22px;
+  width: 24px;
   background: #ffffff;
 }
 .license a{

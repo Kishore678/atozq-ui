@@ -1,180 +1,42 @@
 
 <div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches" *ngIf="isReady; else loading">
-    <mat-toolbar color="primary" class="atozq-toolbar">
-      <!-- <button id="menu" mat-icon-button (click)="snav.toggle()" title="menu"><mat-icon>menu</mat-icon></button> -->
-      <a class="atozq-app-name" routerLink="/">        
-        &nbsp;<img src="assets/favicon-32x32.png"/><span style="margin-top: 16px;
-        margin-left: -5px;">AZNET</span>
-        <small style="margin: 29px 0 0 -84px;
-        font-size: 14px;
-        color: #55cd6c;
-        border-left: 67px solid;
-        border-color: #00bcd4;
-        border-bottom-width: thin;">.in</small>
-      </a>
+    <mat-toolbar color="primary" class="atozq-toolbar">     
+      <a class="atozq-app-name" routerLink="/"><span>AZNET<span style="color: #f75685;">.IN</span></span></a>
       <span class="spacer"></span>
-      <!-- <a class="menuitems" mat-list-item routerLink="/" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Home" fontIcon="home"></mat-icon><span class="menutext">Home</span>      
-       </a>  -->
-      <a class="menuitems" mat-list-item routerLink="/account/anonymous" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Dashboard</span>      
+
+      <a class="menuitems" mat-list-item routerLink="/account" *ngIf="!auth.user().IsLoggedIn">      
+        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
        </a> 
-       <!-- <a class="menuitems" mat-list-item routerLink="/app/help" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Help" fontIcon="help"></mat-icon><span class="menutext">Help</span>      
-       </a>  -->
-        <!--
-       <a class="menuitems" mat-list-item routerLink="/app/dashboard" *ngIf="auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Dashboard" fontIcon="dashboard"></mat-icon><span class="menutext">Dashboard</span>      
-       </a> 
-       <a style="display:none" class="menuitems" mat-list-item routerLink="/account/login" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Login</span>      
-       </a>    
-
-
-       <a style="padding: 8px;" class="menuitems bblack" mat-list-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span class="menutext">Logout</span>      
-       </a> 
-     
-       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">  
-        <button class="profile" mat-menu-item *ngIf="auth.user().IsLoggedIn" [disabled]="true">
-          <mat-icon class="sidemenu">account_circle</mat-icon>
-          <span>{{auth.user().UserName | titlecase}}</span>
-        </button>
-        <button mat-menu-item routerLink="/account/profile"  *ngIf="auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu">settings</mat-icon>
-          <span class="sidemenu">Settings</span>
-        </button>
-        <button mat-menu-item routerLink="/app/dashboard"  *ngIf="auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu">dashboard</mat-icon>
-          <span class="sidemenu">Dashboard</span>
-        </button>
-        <button mat-menu-item routerLink="/app/referral" *ngIf="auth.user().IsAdmin">
-          <mat-icon class="sidemenu">group_add</mat-icon>
-          <span class="sidemenu">Referrals</span>
-        </button>
-        <button mat-menu-item routerLink="/app/shopping" *ngIf="auth.user().IsAdmin">
-          <mat-icon class="sidemenu">shopping_basket</mat-icon>
-          <span class="sidemenu">Shopping</span>
-        </button>
-
-        <button mat-menu-item routerLink="/app/stock"  *ngIf="auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu">bar_chart</mat-icon>
-          <span class="sidemenu">Stock Market</span>
-        </button>
-
-        <button mat-menu-item routerLink="/app/log"  *ngIf="auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu">error</mat-icon>
-          <span class="sidemenu">Web Log</span>
-        </button>
-
-        <button style="display:none" mat-menu-item routerLink="/account/login" *ngIf="!auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu">account_circle</mat-icon>
-          <span class="sidemenu">Login</span>
-        </button>
-        <button style="display:none" mat-menu-item routerLink="/account/register" *ngIf="!auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu">how_to_reg</mat-icon>
-          <span class="sidemenu">Register</span>
-        </button>
-        <button class="bblack" mat-menu-item (click)="logOut()" *ngIf="auth.user().IsLoggedIn">
-          <mat-icon class="sidemenu bblack">remove_from_queue</mat-icon>
-          <span class="sidemenu bblack">Logout</span>
-        </button>
-      </mat-menu> -->          
+       <a class="youtube" (click)="OpenYT()"><mat-icon svgIcon="youtube"></mat-icon></a>       
     </mat-toolbar>
 
   <mat-sidenav-container class="atozq-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">                 
-      <!-- <mat-nav-list>
-       <mat-selection-list id="account" title="account" #menu [multiple]="false">
-          <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/account/profile">      
-              <mat-icon aria-hidden="false" aria-label="settings" fontIcon="settings"></mat-icon><span>Settings</span>      
-             </a>            
-          </mat-list-option>
-          <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/dashboard">      
-              <mat-icon aria-hidden="false" aria-label="Dashboard" fontIcon="dashboard"></mat-icon><span>Dashboard</span>      
-             </a>            
-          </mat-list-option>
-          <mat-list-option *ngIf="auth.user().IsAdmin">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/referral">      
-              <mat-icon aria-hidden="false" aria-label="Referral" fontIcon="group_add"></mat-icon><span>Referrals</span>      
-             </a>            
-          </mat-list-option>
-          <mat-list-option  *ngIf="auth.user().IsAdmin">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/shopping">      
-              <mat-icon aria-hidden="false" aria-label="Shopping" fontIcon="shopping_basket"></mat-icon><span>Shopping</span>      
-             </a>            
-          </mat-list-option>
-          <mat-list-option *ngIf="!auth.user().IsLoggedIn" style="display:none">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/account/login">      
-              <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span>Login</span>      
-             </a>            
-          </mat-list-option>
-          <mat-list-option *ngIf="!auth.user().IsLoggedIn" style="display:none">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/account/register">      
-              <mat-icon aria-hidden="false" aria-label="Register" fontIcon="how_to_reg"></mat-icon><span>Register</span>      
-             </a>            
-          </mat-list-option>
-
-          <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/stock">      
-              <mat-icon aria-hidden="false" aria-label="BSE" fontIcon="bar_chart">bar_chart</mat-icon><span>Stock Market</span>      
-             </a>            
-          </mat-list-option>
-          <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu" mat-list-item routerLink="/app/log">      
-              <mat-icon aria-hidden="false" aria-label="Log" fontIcon="error">error</mat-icon><span>Web Log</span>      
-             </a>            
-          </mat-list-option>
-          
-
-          <mat-list-option *ngIf="auth.user().IsLoggedIn">
-            <a mat-list-item  class="sidemenu bblack" mat-list-item (click)="logOut()">      
-              <mat-icon aria-hidden="false" aria-label="Logout" fontIcon="remove_from_queue"></mat-icon><span>Logout</span>      
-             </a>            
-          </mat-list-option>         
-        </mat-selection-list>     
-      </mat-nav-list> -->
+   
     </mat-sidenav>
 
     <mat-sidenav-content>  
       <div class="container">
-        <div class="row home-toolbar">        
+        <!-- <div class="row home-toolbar">        
           <div class="col-md-12">
-            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px 0px 3px 3px;font-weight: 500;color:#ffffff">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
-            <!-- <a class="verify" style="cursor:pointer" (click)="OpenChat()">Ask<mat-icon> live_help</mat-icon></a> -->
-            <a class="youtube" style="cursor:pointer" (click)="OpenYT()"><mat-icon svgIcon="youtube"></mat-icon></a>
+            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px -57px 3px 3px;font-weight: 500;color:#ffffff">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
           </div>            
-        </div>
+        </div> -->
         <div class="row home-toolbar2"> 
           <div class="col-md-12">
-           
-            <!-- <a class="verify" routerLink="/app/dps">Verify Data</a> -->
             <span><span class="dot users"></span>Users:<span class="box">{{users|number:'1.0-0'}}</span><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
           </div>
         </div>
         <section class="row home-toolbar3"> 
-          <div class="example-button-row">
-            <!-- <button [ngClass]="" mat-raised-button routerLink="/" (click)="SubMenu($event)">
-              <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-              Stocks
-            </button>
-            <button  [ngClass]="" mat-raised-button routerLink="/app/learn" (click)="SubMenu($event)">
-              <mat-icon svgIcon="elearning" class="example-tab-icon"></mat-icon>
-              Learnings
-            </button> -->
+          <div class="example-button-row">         
             <mat-button-toggle-group (change)="changeInToggleGroup(cityGroup.value)" [(ngModel)]="toggleSelected" #cityGroup="matButtonToggleGroup">
-              <mat-button-toggle routerLink="/"  value="stock">
+              <mat-button-toggle routerLink="/stock"  value="stock">
                 <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
                 <span class="toggle-button-menutext">Stocks</span>
               </mat-button-toggle>
-              <mat-button-toggle routerLink="/app/learn" value="learn" (change)="changeInToggle(toggleVal.value)" #toggleVal>
+              <mat-button-toggle routerLink="/learn" value="learn" (change)="changeInToggle(toggleVal.value)" #toggleVal>
                 <mat-icon svgIcon="elearning" class="example-tab-icon"></mat-icon>
                 <span class="toggle-button-menutext">Learnings</span>
               </mat-button-toggle>         
@@ -191,7 +53,7 @@
   <div class="row">        
     <div class="col-md-12"> 
   <span class="license">    
-    <p style="text-align: center;margin: 10px 0 10px 0;"><a routerLink="/app/disclaimer">Disclaimer</a>&nbsp;|&nbsp;<a routerLink="/app/privacy" >Privacy Policy</a>&nbsp;|&nbsp;<a routerLink="/app/terms">Terms & Conditions</a>
+    <p style="text-align: center;margin: 10px 0 10px 0;"><a routerLink="/disclaimer">Disclaimer</a>&nbsp;|&nbsp;<a routerLink="/privacypolicy" >Privacy Policy</a>&nbsp;|&nbsp;<a routerLink="/termsofuse">Terms & Conditions</a>
     </p>
   </span>
     </div>

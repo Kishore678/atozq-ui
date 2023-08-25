@@ -100,7 +100,7 @@
       color: #245afc;
     }
     tr:hover{
-      background-color: #ffff0052;
+      background-color: eefff1ef;
     }
     
     th.mat-header-cell,
@@ -423,7 +423,7 @@
   }
   
   tr.example-element-row:not(.example-expanded-row):hover {
-    background:#ffff0052;
+    background:eefff1ef;
   }
   
   tr.example-element-row:not(.example-expanded-row):active {
