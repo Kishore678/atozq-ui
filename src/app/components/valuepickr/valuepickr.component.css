@@ -207,15 +207,8 @@
   display: table-row;
 }
 
-.mat-button-toggle-appearance-standard {
-  color: #fff;
-  background:#1c971d;
-  padding: 0 10px;
-  line-height: 35px;
-}
-.mat-button-toggle-checked{
-  color: #fff;
-  background:#15e52a;
+.mat-button-toggle-checked {
+  background-color: #edfdff;
 }
 
 mat-button-toggle-group {

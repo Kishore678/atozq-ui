@@ -225,19 +225,19 @@ share(prod:Bseanalytic)
   ngOnInit() {
     this.LoadUser();
     this.dsArray.push({key:'All',text:'All Stocks'});
-this.dsArray.push({key:'0-1',text:'Penny stocks (B,X,T) under Rs.1'});
-this.dsArray.push({key:'1-2',text:'Penny stocks (B,X,T) under Rs.2'});
-this.dsArray.push({key:'2-5',text:'Penny stocks (B,X,T) under Rs.5'});
-this.dsArray.push({key:'1-10',text:'Group-A b/w Rs.1 and Rs.10'});
-this.dsArray.push({key:'10-20',text:'Group-A b/w Rs.10 and Rs.20'});
-this.dsArray.push({key:'20-50',text:'Group-A b/w Rs.20 and Rs.50'});
-this.dsArray.push({key:'50-100',text:'Group-A b/w Rs.50 and Rs.100'});
-this.dsArray.push({key:'100-200',text:'Group-A b/w Rs.100 and Rs.200'});
-this.dsArray.push({key:'200-500',text:'Group-A b/w Rs.200 and Rs.500'});
-this.dsArray.push({key:'500-1K',text:'Group-A b/w Rs.500 and Rs.1,000'});
-this.dsArray.push({key:'1K-5K',text:'Group-A b/w Rs.1,000 and Rs.5,000'});
-this.dsArray.push({key:'5K-10K',text:'Group-A b/w Rs.5,000 and Rs.10,000'});
-this.dsArray.push({key:'10K-50K',text:'Group-A b/w Rs.10,000 and Rs.50,000'});
+this.dsArray.push({key:'0-1',text:'Penny stocks under Rs.1'});
+this.dsArray.push({key:'1-2',text:'Penny stocks under Rs.2'});
+this.dsArray.push({key:'2-5',text:'Penny stocks under Rs.5'});
+this.dsArray.push({key:'1-10',text:'Group-A stocks Rs.1 - 10'});
+this.dsArray.push({key:'10-20',text:'Group-A stocks Rs.10 - 20'});
+this.dsArray.push({key:'20-50',text:'Group-A stocks Rs.20 - 50'});
+this.dsArray.push({key:'50-100',text:'Group-A stocks Rs.50 - 100'});
+this.dsArray.push({key:'100-200',text:'Group-A stocks Rs.100 - 200'});
+this.dsArray.push({key:'200-500',text:'Group-A stocks Rs.200 - 500'});
+this.dsArray.push({key:'500-1K',text:'Group-A stocks Rs.500 - 1,000'});
+this.dsArray.push({key:'1K-5K',text:'Group-A stocks Rs.1,000 - 5,000'});
+this.dsArray.push({key:'5K-10K',text:'Group-A stocks Rs.5,000 - 10,000'});
+this.dsArray.push({key:'10K-50K',text:'Group-A stocks Rs.10,000 - 50,000'});
 this.dsArray.push({key:'Above-50K',text:'Group-A Above Rs.50,000'});       
 
     let item = ['7572969910637412'].filter(id => id == ATOZQSettings.userid);

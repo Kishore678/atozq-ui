@@ -1,13 +1,18 @@
 
 <div class="atozq-container" [class.atozq-is-mobile]="mobileQuery.matches" *ngIf="isReady; else loading">
     <mat-toolbar color="primary" class="atozq-toolbar">     
-      <a class="atozq-app-name" routerLink="/"><span>AZNET<span style="color: #f75685;">.IN</span></span></a>
+      <a class="atozq-app-name" routerLink="/"><mat-icon style="color: #ff5722;
+        font-size: 27px;
+        padding-right: 3px;">label_important</mat-icon><span>aznet<span style="font-size: 24px;
+        color: #38f84d;">.in</span></span></a>
       <span class="spacer"></span>
 
       <a class="menuitems" mat-list-item routerLink="/account" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
+        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Account</span>      
        </a> 
-       <a class="youtube" (click)="OpenYT()"><mat-icon svgIcon="youtube"></mat-icon></a>       
+       <a class="menuitems" mat-list-item (click)="OpenYT()">      
+        <mat-icon svgIcon="youtube"></mat-icon><span class="menutext">YouTube</span>      
+       </a>      
     </mat-toolbar>
 
   <mat-sidenav-container class="atozq-sidenav-container"
@@ -34,12 +39,16 @@
             <mat-button-toggle-group (change)="changeInToggleGroup(cityGroup.value)" [(ngModel)]="toggleSelected" #cityGroup="matButtonToggleGroup">
               <mat-button-toggle routerLink="/stock"  value="stock">
                 <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">Stocks</span>
+                <span class="toggle-button-menutext">All Stocks</span>
               </mat-button-toggle>
               <mat-button-toggle routerLink="/learn" value="learn" (change)="changeInToggle(toggleVal.value)" #toggleVal>
                 <mat-icon svgIcon="elearning" class="example-tab-icon"></mat-icon>
                 <span class="toggle-button-menutext">Learnings</span>
-              </mat-button-toggle>         
+              </mat-button-toggle>      
+              <mat-button-toggle routerLink="/valuepickr" value="valuepickr" (change)="changeInToggle(toggleVal.value)" #toggleVal>
+                <mat-icon svgIcon="worldwide-value" class="example-tab-icon"></mat-icon>
+                <span class="toggle-button-menutext">ValuePickr</span>
+              </mat-button-toggle>      
             </mat-button-toggle-group> 
           </div>
         </section>

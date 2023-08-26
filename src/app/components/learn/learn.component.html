@@ -1,11 +1,11 @@
 <section class="table-container mat-elevation-z8" tabindex="0">
-
-    <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,50,100]"
-    (page)="pageChanged($event)" showFirstLastButtons="" aria-label="Select page">
-  </mat-paginator>
   <div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
     <label class="filename"><b>Loading&nbsp;</b></label> <img style="vertical-align:bottom;" src="assets/spinner.gif"/>
   </div>
+    <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,50,100]"
+    (page)="pageChanged($event)" showFirstLastButtons="" aria-label="Select page">
+  </mat-paginator>
+ 
     <table id="main" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" multiTemplateDataRows>
 
   

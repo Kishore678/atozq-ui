@@ -118,6 +118,34 @@ export class AppComponent implements OnDestroy {
       "youtube",
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/youtube.svg")
     );  
+    this.matIconRegistry.addSvgIcon(
+      "checkmarkss",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/checkmarkss.svg")
+    );  
+    this.matIconRegistry.addSvgIcon(
+      "worldwide-value",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/worldwide-value.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "best-achievement",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/best-achievement.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "business-insurance",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/business-insurance.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "money-bag",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/money-bag.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "money-box",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/money-box.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "star-alliance",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/star-alliance.svg")
+    ); 
   }
   toggleSelected:string='';
   changeInToggleGroup(val: string) {
@@ -228,23 +256,12 @@ export class AppComponent implements OnDestroy {
             console.log(err);
           }
         });     
-      }); 
-      if(location.pathname=="/")
-      {
-       this.toggleSelected = 'stock';
-      }      
-      else if(location.href.indexOf('stock')!=-1)
-      {
-       this.toggleSelected = 'stock';
-      }
-      else if(location.href.indexOf('learn')!=-1)
-      {
-       this.toggleSelected = 'learn';    
-      }
-
+      });     
+      this.UpdateToggleButtons();
   }
 
-  ngAfterContentChecked(): void {   
+  UpdateToggleButtons()
+  {
     if(location.pathname=="/")
     {
      this.toggleSelected = 'stock';
@@ -257,7 +274,18 @@ export class AppComponent implements OnDestroy {
     {
      this.toggleSelected = 'learn';    
     }
-    else{this.toggleSelected = ''; }
+    else if(location.href.indexOf('valuepickr')!=-1)
+    {
+     this.toggleSelected = 'valuepickr';    
+    }
+    else
+    {
+     this.toggleSelected = '';   
+    }
+  }
+
+  ngAfterContentChecked(): void {   
+    this.UpdateToggleButtons();
    this.changeDetectorRef.detectChanges();
   }
   ngOnDestroy(): void {

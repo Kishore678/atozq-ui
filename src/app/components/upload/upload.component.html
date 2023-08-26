@@ -1,14 +1,9 @@
-<!-- <mat-tab-group>
-<mat-tab> -->
-<!-- <ng-template mat-tab-label>
-  <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-  Stocks
-</ng-template> -->
+
 <div class="bg-layer">
   <div class="filter">
-  <div style="float:left;display:block;margin: 7px 0px 7px 5px;">
-    <label class="filename"><b>BSE EQ:&nbsp;</b></label>
-  </div>
+    <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+      <label class="filename"><b>BSE:&nbsp;</b></label><span>EQ</span>
+  </div>   
   <div style="float:left;display:block;margin: 5px 0 5px 0;">
     <mat-select [(value)]="selected" (selectionChange)="SelectionChanged()">    
       <mat-option *ngFor="let b of dsArray" value="{{b.key}}">{{b.text}}</mat-option>   
@@ -294,75 +289,8 @@
   </mat-paginator>
   </section>
   
-  </div>
-<!-- </mat-tab> -->
-
-<!-- <mat-tab>
-<ng-template mat-tab-label>
-  <mat-icon svgIcon="date" class="example-tab-icon"></mat-icon>
-  Week Active
-</ng-template>
-<div class="bg-layer notification">
-Coming soon... Please do support and share.<mat-icon style="cursor: pointer;vertical-align:super;" (click)="whatsAppShare('Secure Link: https://atozq.com')" svgIcon="whatsapp"></mat-icon> <br>Tag your email under   <a style="color:#218b99;font-weight:500;" mat-list-item routerLink="/account/anonymous">      
-  <mat-icon style="vertical-align:bottom;" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
- </a> We will notify when new feature available.
 </div>
-</mat-tab>
 
-<mat-tab>
-<ng-template mat-tab-label>
-  <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-   Circuit Breakout
-</ng-template>
-<div class="bg-layer notification">
-  Coming soon... Please do support and share.<mat-icon style="cursor: pointer;vertical-align:super;" (click)="whatsAppShare('Secure Link: https://atozq.com')" svgIcon="whatsapp"></mat-icon> <br>Tag your email under   <a style="color:#218b99;font-weight:500;" mat-list-item routerLink="/account/anonymous">      
-    <mat-icon style="vertical-align:bottom;" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
-   </a> We will notify when new feature available.
-</div>
-</mat-tab> -->
-
-<!-- <mat-tab>
-  <ng-template mat-tab-label>
-    <mat-icon routerLink="/app/learn" svgIcon="elearning" class="example-tab-icon"></mat-icon>
-     Learning
-  </ng-template>
-  <div class="bg-layer notification" style="display:none">
-    Coming soon... Please do support and share.<mat-icon style="cursor: pointer;vertical-align:super;" (click)="whatsAppShare('Secure Link: https://atozq.com')" svgIcon="whatsapp"></mat-icon> <br>Tag your email under   <a style="color:#218b99;font-weight:500;" mat-list-item routerLink="/account/anonymous">      
-      <mat-icon style="vertical-align:bottom;" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
-     </a> We will notify when new feature available.
-  </div>
-  <div class="page-container"> 
-    <h3 style="margin-bottom:0px;"><span class="page-header">MY LEARNINGS</span></h3>
-    <section class="container"> 
-       <ol style="margin: 0;padding: 0 10px 0 10px;">
-        <li>
-          <a href="https://www1.nseindia.com/invest/resources/download/Basics_of_finmkts.pdf" target="_blank">Handbook on Basics of Financial Markets</a> (Source: nseindia.com)
-        </li>
-        <li>
-          <a href="https://www.flame.edu.in/pdfs/fil/presentations/FIL_Stock%20Market.pdf" target="_blank">Basics Of Stock Market By Ronak Nangalia Sohrab Kothari</a> (Source: flame.edu.in)
-        </li>
-        <li>
-          <a href="https://www.teachmint.com/tfile/studymaterial/directtradeworld/trading/basicofsharemarketpdf/a1b56ee3-2e6e-48e7-9b55-b65d1497969b" target="_blank">Basics Of Stock Market By Techmint</a> (Source: teachmint.com)
-        </li>
-        <li>
-          <a href="https://delistedstocks.in/5-financial-ratios-every-stock-investor-should-know-pe-roe-roa-d-e-pb-dividend-payout-ratio/" target="_blank">Five financial ratios every stock investor should know (PE, ROE, ROA, D/E, PB, DIVIDEND PAYOUT RATIO)</a> (Source: delistedstocks.in)
-        </li>
-      </ol>    
-    </section>
-  </div>
-  </mat-tab> -->
-<!-- </mat-tab-group> -->
-
-
-<!-- 
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-  <mat-tab label="Today Most Active">
-    <mat-icon>book</mat-icon>
-
-  </mat-tab>
-  <mat-tab label="Week Active">Content 2</mat-tab>
-  <mat-tab label="Circuit Breakout">Content 3</mat-tab>
-</mat-tab-group> -->
 
 
 
