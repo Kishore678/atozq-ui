@@ -117,7 +117,7 @@ a {
 {
   text-decoration: none;
   color:#00bed7;
-  font-size: 33px;
+  font-size: 32px;
   border-radius: 2px;
   font-family: sans-serif;
   font-weight: 700;
@@ -243,19 +243,19 @@ text-align: center;
   font-weight: 500;
 }
 
-.mat-button-toggle-group { 
+:host ::ng-deep.mat-button-toggle-group { 
   height: 30px;
 }
-.mat-button-toggle {
+/* :host ::ng-deep.mat-button-toggle {
   margin-top: 0px !important;
   width: 100px;
   height: 34px;
-}
-.mat-button-toggle:hover {
+} */
+:host ::ng-deep.mat-button-toggle:hover {
   /* color: red; */
   background-color: #edfdff;
 }
-.mat-button-toggle-checked {
+:host ::ng-deep.mat-button-toggle-checked {
   background-color:#edfdff;
 } 
 
@@ -263,11 +263,17 @@ text-align: center;
   line-height: 26px !important; 
 }
 
-.toggle-button-menutext{
+:host ::ng-deep.toggle-button-menutext{
   position: relative;
   top: 3px;
   margin-left: 3px;
 }
+
+:host ::ng-deep.mat-button-toggle-button
+{
+  margin:1px;
+}
+
 :host::ng-deep .mat-paginator {
   height: 50px;
   background: #f6f6f6;
@@ -275,4 +281,10 @@ text-align: center;
 
 :host::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
   padding: 0px 5px;
+}
+
+:host::ng-deep .hrStyle{
+  margin: 0.25px;
+  border-top:1px solid #eee;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
 }

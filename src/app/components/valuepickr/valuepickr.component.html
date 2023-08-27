@@ -1,39 +1,40 @@
-
+<hr class="hrStyle">
 <div class="bg-layer">
     <div class="filter">
         <section class="row home-toolbar3"> 
             <div class="example-button-row">         
               <mat-button-toggle-group [(ngModel)]="toggleSelected" (change)="changeInToggleGroup(cityGroup.value)" #cityGroup="matButtonToggleGroup">
                 <mat-button-toggle value="All" #toggleVal>
-                  <mat-icon svgIcon="star-alliance" class="example-tab-icon"></mat-icon>
+                  <mat-icon svgIcon="star-alliance"></mat-icon>
                   <span class="toggle-button-menutext">All</span>
                 </mat-button-toggle>
                    <mat-button-toggle value="Penny" #toggleVal>
-                  <mat-icon svgIcon="best-achievement" class="example-tab-icon"></mat-icon>
+                  <mat-icon svgIcon="best-achievement"></mat-icon>
                   <span class="toggle-button-menutext">Penny</span>
                 </mat-button-toggle>
                 <mat-button-toggle value="Small" #toggleVal>
-                  <mat-icon svgIcon="business-insurance" class="example-tab-icon"></mat-icon>
+                  <mat-icon svgIcon="business-insurance"></mat-icon>
                   <span class="toggle-button-menutext">Small</span>
                 </mat-button-toggle>      
                 <mat-button-toggle value="Mid" #toggleVal>
-                  <mat-icon svgIcon="money-bag" class="example-tab-icon"></mat-icon>
+                  <mat-icon svgIcon="money-bag"></mat-icon>
                   <span class="toggle-button-menutext">Mid</span>
                 </mat-button-toggle>      
                 <mat-button-toggle value="Large" #toggleVal>
-                    <mat-icon svgIcon="money-box" class="example-tab-icon"></mat-icon>
+                    <mat-icon svgIcon="money-box"></mat-icon>
                     <span class="toggle-button-menutext">Large</span>
                   </mat-button-toggle>    
               </mat-button-toggle-group> 
             </div>
           </section>
-    </div>
-    <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
-        <label class="filename"><b>BSE:&nbsp;</b></label><span>EQ</span>
-    </div>    
-    <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
-        <label class="filename"><b>Date:&nbsp;</b></label><span>{{fileName}}</span>
-    </div>
+          <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+            <label class="filename"><b>BSE:&nbsp;</b></label><span>EQ</span>
+        </div>    
+        <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+            <label class="filename"><b>Date:&nbsp;</b></label><span>{{fileName}}</span>
+        </div>
+        </div>
+
     <div style="clear:both;"></div>
     <section class="table-container mat-elevation-z8" tabindex="0">
         <div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
