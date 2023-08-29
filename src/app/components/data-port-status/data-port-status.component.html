@@ -9,6 +9,11 @@
         <th>Visited</th>
         <th>TotalVisits</th>
         <th>IPAddress</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Country</th>
+        <th>ISP</th>
+        <th>IPValidated</th>
         <th>CreatedDate</th>
         <th>ModifiedDate</th>      
     </tr>
@@ -19,6 +24,11 @@
         <td>{{user.Visited}}</td>
         <td>{{user.TotalVisits}}</td>
         <td>{{user.IPAddress}}</td>
+        <td>{{user.City}}</td>
+        <td>{{user.State}}</td>
+        <td>{{user.Country}}</td>
+        <td>{{user.ISP}}</td>
+        <td>{{user.IsIPValidated?'Yes':'No'}}</td>
         <td>{{user.CreatedDate | utcToLocalTime:'short'}}</td>
         <td>{{user.ModifiedDate | utcToLocalTime:'short'}}</td>  
     </tr>

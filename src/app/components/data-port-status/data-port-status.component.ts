@@ -97,9 +97,9 @@ refresh()
   loadUsers()
   {
     this.userService.GetUsers().subscribe({
-      next:(event)=>{
+      next:(event)=>{       
         this.users=event.filter((val,index,arr)=>{
-          return val.UserName!='Admin'&&val.UserName!='ATOZQcom'&& val.UserName!='K1001';
+          return val.UserName!='Admin'&&val.UserName!='Aznet'&& val.UserName!='K1001';
         });
       },
       error:(err)=>{

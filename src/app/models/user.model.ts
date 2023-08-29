@@ -17,4 +17,9 @@ export interface User {
     IPAddress: string
     CreatedDate: Date
     ModifiedDate: Date
+    City: string
+Country: string
+ISP: string
+IsIPValidated:boolean
+State: string
   }
