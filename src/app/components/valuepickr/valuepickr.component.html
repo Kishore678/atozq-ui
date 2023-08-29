@@ -4,23 +4,23 @@
         <section class="row home-toolbar3"> 
             <div class="example-button-row">         
               <mat-button-toggle-group [(ngModel)]="toggleSelected" (change)="changeInToggleGroup(cityGroup.value)" #cityGroup="matButtonToggleGroup">
-                <mat-button-toggle value="All" #toggleVal>
+                <mat-button-toggle value="all" #toggleVal>
                   <mat-icon svgIcon="star-alliance"></mat-icon>
                   <span class="toggle-button-menutext">All</span>
                 </mat-button-toggle>
-                   <mat-button-toggle value="Penny" #toggleVal>
+                   <mat-button-toggle value="penny" #toggleVal>
                   <mat-icon svgIcon="best-achievement"></mat-icon>
                   <span class="toggle-button-menutext">Penny</span>
                 </mat-button-toggle>
-                <mat-button-toggle value="Small" #toggleVal>
+                <mat-button-toggle value="small" #toggleVal>
                   <mat-icon svgIcon="business-insurance"></mat-icon>
                   <span class="toggle-button-menutext">Small</span>
                 </mat-button-toggle>      
-                <mat-button-toggle value="Mid" #toggleVal>
+                <mat-button-toggle value="mid" #toggleVal>
                   <mat-icon svgIcon="money-bag"></mat-icon>
                   <span class="toggle-button-menutext">Mid</span>
                 </mat-button-toggle>      
-                <mat-button-toggle value="Large" #toggleVal>
+                <mat-button-toggle value="large" #toggleVal>
                     <mat-icon svgIcon="money-box"></mat-icon>
                     <span class="toggle-button-menutext">Large</span>
                   </mat-button-toggle>    
@@ -184,7 +184,10 @@
                     
                     <table class="basic-info">
                         <caption><span class="page-header"><mat-icon svgIcon="stockmarket"></mat-icon>&nbsp;&nbsp;{{element.Nme}}&nbsp;-&nbsp;FUNDAMENTALS</span></caption>                               
-                  
+                        <tr>
+                          <td>Market Cap(Cr.):</td>
+                          <td>{{element.MarketCap | number:'1.2-2'}}</td>
+                      </tr> 
                         <tr>
                             <td>Script Code:</td>
                             <td>{{element.Code}}</td>
@@ -193,7 +196,11 @@
                           <td>Group:</td>
                           <td>{{element.Grp}}</td>
                       </tr>
-                                             
+                      <tr>
+                        <td>Trade Date:</td>
+                        <td>{{element.TradDt}}</td>
+                    </tr>
+                                          
                       <tr>
                         <td>Prev:</td>
                         <td>{{element.Prv | number:'1.2-2'}}</td>
@@ -215,7 +222,10 @@
                         <td>LTP:</td>
                         <td>{{element.LTP | number:'1.2-2'}}</td>
                     </tr>  
-  
+                    <tr>
+                      <td>Settlement:</td>
+                      <td>{{element.SttlmPric | number:'1.2-2'}}</td>
+                  </tr> 
                     <tr>
                       <td>Change:</td>
                       <td [ngClass]="element.Chg>0?'profit':element.Chg<0?'loss':'neutral'">

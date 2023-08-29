@@ -37,7 +37,7 @@ const apiBaseUrl = environment.apiBaseUrl;
   ],
 })
 export class ValuepickrComponent implements OnInit {
-  toggleSelected:string='All';
+  toggleSelected:string='all';
   spinner:boolean=false;
   stockCount:number=0;
   expandcollapse:string="expandcollapse";
@@ -94,7 +94,6 @@ ngAfterViewInit() {
 
   this.dataSource.sort = this.sortForDataSource;
 
-  Swal.fire('ValuePickr feature under developement.');
 }
 ngAfterContentChecked(): void {   
   // this.UpdateToggleButtons();
@@ -102,7 +101,7 @@ ngAfterContentChecked(): void {
 
 changeInToggleGroup(val:string)
 {
- Swal.fire(val+' '+'ValuePickr feature under developement.');
+this.loadData();
 }
 
 AddWrn(element:Bseanalytic)
@@ -358,7 +357,7 @@ flagContent(analytic:Bseanalytic)
 loadData()
 {
 this.spinner = true;
-this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}&pageNo=${this.pageNo}&pageSize=${this.size}`)
+this.http.get(`${apiBaseUrl}/api/stock/all?grp=${this.selected}&cache=${true}&userid=${this.user.AnonymousID}&pageNo=${this.pageNo}&pageSize=${this.size}&val=${this.toggleSelected}`)
 .subscribe({
   next: (event:any) => { 
  this.LoadDataSource(event);
@@ -537,7 +536,7 @@ LoadDataSource(event:BSEDetails)
 of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
 this.length = this.bseBhavModel.StockCount; 
 this.dataSource.data = this.bseBhavData;
-this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(2,8),2);
+this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(16,24),2);
 this.stockCount = this.bseBhavModel.StockCount;
 this.spinner = false;
 }); 
@@ -547,10 +546,14 @@ formateToDate(inputString:string,n:number)
 {   
 let insertChar = "-";
 let outputString = "";
+let limit = 2;
 for (let i = 0; i < inputString.length; i += n) {
  let slice = inputString.slice(i, i + n);
- if(slice.length==n && i + n < inputString.length)
+ if(limit>0 && slice.length==n && i + n < inputString.length)
+ {    
     outputString += slice + insertChar;
+    limit--;
+ }
  else
     outputString += slice;
 }

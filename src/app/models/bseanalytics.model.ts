@@ -46,6 +46,11 @@ export interface BSEDetails {
     Fund: Fund
     IsWatch:boolean
     ChatCnt:number
+    SttlmPric:number
+    TradDt:string
+    MarketCap:number
+    AvgVol3M:number
+    SC_SYMBOL:string
   }
   
   export interface Fund {

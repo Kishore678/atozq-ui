@@ -164,6 +164,11 @@
                       <caption><span class="page-header"><mat-icon svgIcon="stockmarket"></mat-icon>&nbsp;&nbsp;{{element.Nme}}&nbsp;-&nbsp;FUNDAMENTALS</span></caption>                               
                 
                       <tr>
+                        <td>Market Cap(Cr.):</td>
+                        <td>{{element.MarketCap | number:'1.2-2'}}</td>
+                    </tr> 
+
+                      <tr>
                           <td>Script Code:</td>
                           <td>{{element.Code}}</td>
                       </tr> 
@@ -171,7 +176,10 @@
                         <td>Group:</td>
                         <td>{{element.Grp}}</td>
                     </tr>
-                                           
+                    <tr>
+                      <td>Trade Date:</td>
+                      <td>{{element.TradDt}}</td>
+                  </tr>                  
                     <tr>
                       <td>Prev:</td>
                       <td>{{element.Prv | number:'1.2-2'}}</td>
@@ -193,7 +201,10 @@
                       <td>LTP:</td>
                       <td>{{element.LTP | number:'1.2-2'}}</td>
                   </tr>  
-
+                  <tr>
+                    <td>Settlement:</td>
+                    <td>{{element.SttlmPric | number:'1.2-2'}}</td>
+                </tr>  
                   <tr>
                     <td>Change:</td>
                     <td [ngClass]="element.Chg>0?'profit':element.Chg<0?'loss':'neutral'">

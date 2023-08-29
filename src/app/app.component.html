@@ -39,11 +39,11 @@
             <mat-button-toggle-group (change)="changeInToggleGroup(cityGroup.value)" [(ngModel)]="toggleSelected" #cityGroup="matButtonToggleGroup">
               <mat-button-toggle routerLink="/stock"  value="stock">
                 <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">All Stocks</span>
+                <span class="toggle-button-menutext">All Stock</span>
               </mat-button-toggle>
               <mat-button-toggle routerLink="/learn" value="learn" (change)="changeInToggle(toggleVal.value)" #toggleVal>
                 <mat-icon svgIcon="elearning" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">Learnings</span>
+                <span class="toggle-button-menutext">Learning</span>
               </mat-button-toggle>      
               <mat-button-toggle routerLink="/valuepickr" value="valuepickr" (change)="changeInToggle(toggleVal.value)" #toggleVal>
                 <mat-icon svgIcon="worldwide-value" class="example-tab-icon"></mat-icon>

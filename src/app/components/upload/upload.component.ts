@@ -224,7 +224,7 @@ share(prod:Bseanalytic)
 
   ngOnInit() {
     this.LoadUser();
-    this.dsArray.push({key:'All',text:'All Stocks'});
+    this.dsArray.push({key:'All',text:'All Stock'});
 this.dsArray.push({key:'0-1',text:'Penny stocks under Rs.1'});
 this.dsArray.push({key:'1-2',text:'Penny stocks under Rs.2'});
 this.dsArray.push({key:'2-5',text:'Penny stocks under Rs.5'});
@@ -513,24 +513,28 @@ loadData()
  of(this.bseBhavData).pipe(delay(1250)).subscribe(x => {
   this.length = this.bseBhavModel.StockCount; 
   this.dataSource.data = this.bseBhavData;
-  this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(2,8),2);
+  this.fileName = this.formateToDate(this.bseBhavModel.FileName.substring(16,24),2);
   this.stockCount = this.bseBhavModel.StockCount;
   this.spinner = false;
 }); 
 
   }
-formateToDate(inputString:string,n:number)
+  formateToDate(inputString:string,n:number)
   {   
-let insertChar = "-";
-let outputString = "";
-for (let i = 0; i < inputString.length; i += n) {
+  let insertChar = "-";
+  let outputString = "";
+  let limit = 2;
+  for (let i = 0; i < inputString.length; i += n) {
    let slice = inputString.slice(i, i + n);
-   if(slice.length==n && i + n < inputString.length)
+   if(limit>0 && slice.length==n && i + n < inputString.length)
+   {    
       outputString += slice + insertChar;
+      limit--;
+   }
    else
       outputString += slice;
-}
-return outputString;
+  }
+  return outputString;
   }
 
   sorter = (a:any, b:any) => {
