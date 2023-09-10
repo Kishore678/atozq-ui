@@ -4,10 +4,10 @@
         <section class="row home-toolbar3"> 
             <div class="example-button-row">         
               <mat-button-toggle-group [(ngModel)]="toggleSelected" (change)="changeInToggleGroup(cityGroup.value)" #cityGroup="matButtonToggleGroup">
-                <mat-button-toggle value="all" #toggleVal>
+                <!-- <mat-button-toggle value="all" #toggleVal>
                   <mat-icon svgIcon="star-alliance"></mat-icon>
                   <span class="toggle-button-menutext">All</span>
-                </mat-button-toggle>
+                </mat-button-toggle> -->
                    <mat-button-toggle value="penny" #toggleVal>
                   <mat-icon svgIcon="best-achievement"></mat-icon>
                   <span class="toggle-button-menutext">Penny</span>
@@ -40,7 +40,7 @@
         <div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
             <label class="filename"><b>Loading&nbsp;</b></label> <img style="vertical-align:bottom;" src="assets/spinner.gif"/>
           </div>
-      <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100]"
+      <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100,500,1000]"
       (page)="pageChanged($event)" showFirstLastButtons="" aria-label="Select page">
     </mat-paginator>
 
@@ -316,7 +316,7 @@
       </table>
       <!-- <mat-paginator #paginator showFirstLastButtons hidePageSize></mat-paginator> -->
   
-      <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100]"
+      <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100,500,1000]"
       (page)="pageChanged($event)" showFirstLastButtons="" aria-label="Select page">
     </mat-paginator>
     </section>

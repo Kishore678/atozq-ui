@@ -37,7 +37,7 @@ const apiBaseUrl = environment.apiBaseUrl;
   ],
 })
 export class ValuepickrComponent implements OnInit {
-  toggleSelected:string='all';
+  toggleSelected:string='penny';
   spinner:boolean=false;
   stockCount:number=0;
   expandcollapse:string="expandcollapse";
