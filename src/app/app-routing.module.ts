@@ -25,6 +25,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { FundamentalsComponent } from './components/fundamentals/fundamentals.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ValuepickrComponent } from './components/valuepickr/valuepickr.component';
+import { P2pComponent } from './components/p2p/p2p.component';
 
 const routes: Routes = [
   {path:'',component:UploadComponent},
@@ -55,6 +56,7 @@ const routes: Routes = [
   // {path:'app/stock/:id',component:FundamentalsComponent},
   {path:'learn',component:LearnComponent},
   {path:'valuepickr',component:ValuepickrComponent},
+  {path:'p2p',component:P2pComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];

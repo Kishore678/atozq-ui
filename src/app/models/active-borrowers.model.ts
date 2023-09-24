@@ -1,0 +1,31 @@
+export class ActiveBorrowers {
+        activeBorrowersId!:number;
+        loadId!:number;
+        riskCategory!:string;
+        creditBureauScore!:number;
+        interestRate!:string;
+        product!:string;
+        tenure!:number;
+        employment!:string;
+        monthlyIncome!:string;
+        createdDate!:Date;
+        avgBankAccBal!:number;
+        loanDescription!:string;
+        loanAmount!:string;
+        borrowerAge!:string;
+        borrowerFName!:string;
+        borrowerLName!:string;
+        borrowerMName!:string;
+        loanPurpose!:number;
+        borrowerLocation!:string;
+        borrowerProfession!:string;
+        interestCurrentRate!:string;
+        tenureType!:string;
+        loanPostedDate!:string;
+        borrowerLoanCount!:number;
+        borrowerRunningLoans!:string;
+        extraDetails!:string;
+        isInvested!:boolean;
+        autoInvestStatus!:string;
+        isInvestEligible!:boolean;
+}

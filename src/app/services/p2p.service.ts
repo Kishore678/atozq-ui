@@ -1,0 +1,37 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { P2PModel } from '../models/p2-pmodel.model';
+import { environment } from 'src/environments/environment';
+import { ActiveBorrowers } from '../models/active-borrowers.model';
+
+const baseUrl = environment.onlineUsersApi;
+
+@Injectable({
+  providedIn: 'root'
+})
+export class P2pService {
+
+  constructor(private http:HttpClient) { }
+
+  GetSettings():Observable<P2PModel[]>
+  {
+    return this.http.get<P2PModel[]>(`${baseUrl}/api/AutoInvestSettings`);
+  }
+
+  SaveSettings(id:number,settings:P2PModel):Observable<P2PModel[]>
+  {
+    return this.http.put<P2PModel[]>(`${baseUrl}/api/AutoInvestSettings/${id}`,settings);
+  }
+
+  GetActiveBorrowers():Observable<ActiveBorrowers[]>
+  {
+    return this.http.get<ActiveBorrowers[]>(`${baseUrl}/api/ManageBorrowers`);
+  }
+
+  DeleteBorrower(id:number):Observable<ActiveBorrowers[]>
+  {
+    return this.http.delete<ActiveBorrowers[]>(`${baseUrl}/api/ManageBorrowers/${id}`);
+  }
+
+}
