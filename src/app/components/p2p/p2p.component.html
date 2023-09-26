@@ -37,8 +37,68 @@
 			<td>
 				<input formControlName="tPin" type="text">
 			</td>
+		</tr>
+		<tr>
+			<td>CIBIL POOR:</td>
+			<td>
+				<input formControlName="cibilPoor" type="text">
+			</td>
 		</tr>	
-    <tr>
+		<tr>
+			<td>CIBIL AVERAGE:</td>
+			<td>
+				<input formControlName="cibilAverage" type="text">
+			</td>
+		</tr>	
+		<tr>
+			<td>CIBIL GOOD:</td>
+			<td>
+				<input formControlName="cibilGood" type="text">
+			</td>
+		</tr>		
+		<tr>
+			<td>CIBIL Excellent:</td>
+			<td>
+				<input formControlName="cibilExcellent" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>SMTP From User:</td>
+			<td>
+				<input formControlName="smtpFromUser" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>SMTP From Email:</td>
+			<td>
+				<input formControlName="smtpFromEmailAddress" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>SMTP Host:</td>
+			<td>
+				<input formControlName="smtpHost" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>SMTP Port:</td>
+			<td>
+				<input formControlName="smtpPort" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td>SMTP UserName:</td>
+			<td>
+				<input formControlName="smtpUserName" type="text">
+			</td>
+		</tr>	
+		<tr>
+			<td>SMTP Password:</td>
+			<td>
+				<input formControlName="smtpPassword" type="text">
+			</td>
+		</tr>	
+		<tr>
 			<td>Created On:</td>
 			<td>
 				<input readonly formControlName="createdOn" type="text">
@@ -62,6 +122,7 @@
 
 <div style="display:block;margin:10px;"> 
 <h3><span class="page-header">Active Borrowers</span></h3>
+<button type="button" (click)="LoadBorrowers()">Refresh</button>
 </div>
   <section class="container">
 <table id="watchlist">

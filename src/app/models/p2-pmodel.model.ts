@@ -1,10 +1,21 @@
-export class P2PModel {
+export class P2PModel 
+{
      settingsId!:number;
      isEnabled!:boolean;
      limitPerDay!:number;
      investAmt!:number;
      minInvestAmt!:number;
+     tPin!:string;
+     cibilPoor!:number;
+     cibilAverage!:number;
+     cibilGood!:number;
+     cibilExcellent!:number;
+     smtpFromUser!:string;
+     smtpFromEmailAddress!:string;
+     smtpHost!:string;
+     smtpPort!:number;
+     smtpUserName!:string;
+     smtpPassword!:string;
      createdOn!:Date;
      modifiedDate!:Date;
-     tPin!:string;
 }

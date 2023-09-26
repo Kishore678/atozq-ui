@@ -1,75 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { P2PModel } from 'src/app/models/p2-pmodel.model';
-// import { P2pService } from 'src/app/services/p2p.service';
-// import Swal from 'sweetalert2';
-// // #docplaster
-// import { JsonPipe, NgFor } from '@angular/common';
-
-// import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-// // #docregion validator-imports
-// import { Validators } from '@angular/forms';
-// // #enddocregion validator-imports
-// import { FormArray } from '@angular/forms';
-
-// @Component({ 
-//   selector: 'app-p2p',
-//   templateUrl: './p2p.component.html',
-//   styleUrls: ['./p2p.component.css']
-// })
-// export class P2pComponent implements OnInit {
-// p2pSettings!:P2PModel;
-//   constructor(private p2pService:P2pService,private fb: FormBuilder) { }
-
-//   ngOnInit(): void {
-//     this.p2pService.GetSettings().subscribe({
-//       next:(res)=> { this.p2pSettings = res;},
-//       error:(err)=>{console.log(err);}
-//     });
-//   }
-
-//   ngAfterViewInIt()
-//   {
-//     this.profileForm.patchValue({
-//       SettingsId:this.p2pSettings.SettingsId,
-//       isEnabled:this.p2pSettings.IsEnabled,
-//       limitPerDay:this.p2pSettings.LimitPerDay,
-//       investAmt:this.p2pSettings.InvestAmt,
-//       minInvestAmt:this.p2pSettings.MinInvestAmt,
-//       createdOn:this.p2pSettings.CreatedOn,
-//       modifiedDate:this.p2pSettings.ModifiedDate,
-//       TPin:this.p2pSettings.TPin
-//     }); 
-//   }
-
-//   ResetProfile() {
-//     this.profileForm.patchValue({
-//       SettingsId: '1'  
-//     });
-//   }
-
-
- 
-
-//   onSubmit() {
-//     console.warn(this.profileForm.value);
-//   }
-
-//   profileForm = this.fb.group({
-//     SettingsId: ['', Validators.required],
-//     IsEnabled: [''],
-    
-//       LimitPerDay: [''],
-//       InvestAmt: [''],
-//       MinInvestAmt: [''],
-//       TPin: [''],
-//       CreatedOn: [''],
-//       ModifiedDate: ['']
-//   });
-// }
-
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActiveBorrowers } from 'src/app/models/active-borrowers.model';
@@ -97,9 +25,19 @@ export class P2pComponent implements OnInit {
       limitPerDay: 0,
       investAmt: 0,
       minInvestAmt: 0,
-      createdOn: 0,
-      modifiedDate: 0,
-      tPin: ''			
+      cibilPoor:0,
+      cibilAverage:0,
+      cibilGood:0,
+      cibilExcellent:0,
+      tPin: '',	
+      smtpFromUser:'',
+      smtpFromEmailAddress:'',
+      smtpHost:'',
+      smtpPort:0,
+      smtpUserName:'',
+      smtpPassword:'',
+      createdOn: new Date(),
+      modifiedDate: new Date()   		
     });
 
   	
@@ -110,16 +48,26 @@ export class P2pComponent implements OnInit {
     this.p2pService.GetSettings().subscribe({
       next:(res)=> { 
 this.settings = res;
-
+debugger;
 this.userForm.patchValue({
   settingsId: this.settings[0].settingsId,
   isEnabled: this.settings[0].isEnabled,
   limitPerDay: this.settings[0].limitPerDay,
   investAmt: this.settings[0].investAmt,
   minInvestAmt: this.settings[0].minInvestAmt,
+  tPin: this.settings[0].tPin,
+  cibilPoor: this.settings[0].cibilPoor,
+  cibilAverage: this.settings[0].cibilAverage,
+  cibilGood: this.settings[0].cibilGood,
+  cibilExcellent: this.settings[0].cibilExcellent,
+  smtpFromUser: this.settings[0].smtpFromUser,
+  smtpFromEmailAddress: this.settings[0].smtpFromEmailAddress,
+  smtpHost:this.settings[0].smtpHost,
+  smtpPort:this.settings[0].smtpPort,
+  smtpUserName:this.settings[0].smtpUserName,
+  smtpPassword:this.settings[0].smtpPassword, 
   createdOn: this.settings[0].createdOn,
-  modifiedDate: this.settings[0].modifiedDate,
-  tPin: this.settings[0].tPin		
+  modifiedDate: this.settings[0].modifiedDate
 });
 
       },
@@ -151,6 +99,36 @@ this.userForm.patchValue({
 	}
   get tPin() {
 		return this.userForm.get('tPin');
+	}  
+  get cibilPoor() {
+		return this.userForm.get('cibilPoor');
+	}
+  get cibilAverage() {
+		return this.userForm.get('cibilAverage');
+	}
+  get cibilGood() {
+		return this.userForm.get('cibilGood');
+	}
+  get cibilExcellent() {
+		return this.userForm.get('cibilExcellent');
+	}
+  get smtpFromUser() {
+		return this.userForm.get('smtpFromUser');
+	}
+  get smtpFromEmailAddress() {
+		return this.userForm.get('smtpFromEmailAddress');
+	}
+  get smtpHost() {
+		return this.userForm.get('smtpHost');
+	}
+  get smtpPort() {
+		return this.userForm.get('smtpPort');
+	}
+  get smtpUserName() {
+		return this.userForm.get('smtpUserName');
+	}
+  get smtpPassword() {
+		return this.userForm.get('smtpPassword');
 	}
 
 	onFormSubmit() {
@@ -167,6 +145,16 @@ this.userForm.patchValue({
     model.investAmt = this.userForm.get('investAmt')?.value;
     model.minInvestAmt = this.userForm.get('minInvestAmt')?.value;
     model.tPin = this.userForm.get('tPin')?.value;
+    model.cibilPoor = this.userForm.get('cibilPoor')?.value;
+    model.cibilAverage = this.userForm.get('cibilAverage')?.value;
+    model.cibilGood = this.userForm.get('cibilGood')?.value;
+    model.cibilExcellent = this.userForm.get('cibilExcellent')?.value;
+    model.smtpFromUser = this.userForm.get('smtpFromUser')?.value;
+    model.smtpFromEmailAddress = this.userForm.get('smtpFromEmailAddress')?.value;
+    model.smtpHost = this.userForm.get('smtpHost')?.value;
+    model.smtpPort = this.userForm.get('smtpPort')?.value;
+    model.smtpUserName = this.userForm.get('smtpUserName')?.value;
+    model.smtpPassword = this.userForm.get('smtpPassword')?.value;
     model.createdOn = this.userForm.get('createdOn')?.value;
     model.modifiedDate = this.userForm.get('modifiedDate')?.value;
 
@@ -179,9 +167,20 @@ this.userForm.patchValue({
   limitPerDay: this.settings[0].limitPerDay,
   investAmt: this.settings[0].investAmt,
   minInvestAmt: this.settings[0].minInvestAmt,
+  tPin: this.settings[0].tPin,
+  cibilPoor: this.settings[0].cibilPoor,
+  cibilAverage: this.settings[0].cibilAverage,
+  cibilGood: this.settings[0].cibilGood,
+  cibilExcellent: this.settings[0].cibilExcellent,
+  smtpFromUser: this.settings[0].smtpFromUser,
+  smtpFromEmailAddress: this.settings[0].smtpFromEmailAddress,
+  smtpHost: this.settings[0].smtpHost,
+  smtpPort: this.settings[0].smtpPort,
+  smtpUserName: this.settings[0].smtpUserName,
+  smtpPassword: this.settings[0].smtpPassword,
   createdOn: this.settings[0].createdOn,
-  modifiedDate: this.settings[0].modifiedDate,
-  tPin: this.settings[0].tPin		
+  modifiedDate: this.settings[0].modifiedDate
+ 
 });
       },
       error:(err)=>{
@@ -196,8 +195,18 @@ this.userForm.patchValue({
       isEnabled:this.settings[0].isEnabled,
       limitPerDay: this.settings[0].limitPerDay,
       investAmt: this.settings[0].investAmt,
-      minInvestAmt:this.settings[0].minInvestAmt,    
-      tPin: this.settings[0].tPin			
+      minInvestAmt:this.settings[0].minInvestAmt,
+      tPin: this.settings[0].tPin,
+      cibilPoor: this.settings[0].cibilPoor,
+      cibilAverage: this.settings[0].cibilAverage,
+      cibilGood: this.settings[0].cibilGood,
+      cibilExcellent: this.settings[0].cibilExcellent,
+      smtpFromUser: this.settings[0].smtpFromUser,
+      smtpFromEmailAddress: this.settings[0].smtpFromEmailAddress,
+      smtpHost: this.settings[0].smtpHost,
+      smtpPort: this.settings[0].smtpPort,
+      smtpUserName: this.settings[0].smtpUserName,
+      smtpPassword: this.settings[0].smtpPassword, 
     });
 	}
 
@@ -207,16 +216,23 @@ this.userForm.patchValue({
       limitPerDay: 5,
       investAmt: 1000,
       minInvestAmt: 1000,      
-      tPin: '2898'		
+      tPin: '2898',
+      smtpFromUser:'i2i Live',
+      smtpFromEmailAddress:'noreply@aznet.in',
+      smtpHost:'smtppro.zoho.in',
+      smtpPort:587,
+      smtpUserName:'noreply@aznet.in',
+      smtpPassword:'t@x$!m%uC2EFZxg'		
     });
 	}
 
 
   LoadBorrowers()
-  {
+  {    
     this.p2pService.GetActiveBorrowers().subscribe({
       next:(event)=>{
-        this.borrowers = event;
+        this.borrowers = [];        
+        this.borrowers = event;        
       },
       error:(err)=>{
         Swal.fire('Something went wrong. Please try again after sometime.');   
