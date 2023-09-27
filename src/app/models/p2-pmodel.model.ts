@@ -3,9 +3,15 @@ export class P2PModel
      settingsId!:number;
      isEnabled!:boolean;
      limitPerDay!:number;
-     investAmt!:number;
-     minInvestAmt!:number;
      tPin!:string;
+     investAmt!:number;
+     minInvestAmt!:number;   
+     investAmtA!:number;
+     investAmtB!:number;
+     investAmtC!:number;
+     investAmtD!:number; 
+     investAmtE!:number; 
+     investAmtX!:number;
      cibilPoor!:number;
      cibilAverage!:number;
      cibilGood!:number;
@@ -19,3 +25,6 @@ export class P2PModel
      createdOn!:Date;
      modifiedDate!:Date;
 }
+
+
+

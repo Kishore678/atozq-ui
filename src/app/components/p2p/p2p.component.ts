@@ -25,6 +25,12 @@ export class P2pComponent implements OnInit {
       limitPerDay: 0,
       investAmt: 0,
       minInvestAmt: 0,
+      investAmtA:0,
+      investAmtB:0,
+      investAmtC:0,
+      investAmtD:0, 
+      investAmtE:0, 
+      investAmtX:0,
       cibilPoor:0,
       cibilAverage:0,
       cibilGood:0,
@@ -46,7 +52,7 @@ export class P2pComponent implements OnInit {
   LoadSettings()
   {
     this.p2pService.GetSettings().subscribe({
-      next:(res)=> { 
+      next:(res)=> {         
         this.settings=[];
 this.settings = res;
 this.userForm.patchValue({
@@ -56,6 +62,12 @@ this.userForm.patchValue({
   investAmt: this.settings[0].investAmt,
   minInvestAmt: this.settings[0].minInvestAmt,
   tPin: this.settings[0].tPin,
+  investAmtA:this.settings[0].investAmtA,
+  investAmtB:this.settings[0].investAmtB,
+  investAmtC:this.settings[0].investAmtC,
+  investAmtD:this.settings[0].investAmtD,
+  investAmtE:this.settings[0].investAmtE,
+  investAmtX:this.settings[0].investAmtX,
   cibilPoor: this.settings[0].cibilPoor,
   cibilAverage: this.settings[0].cibilAverage,
   cibilGood: this.settings[0].cibilGood,
@@ -104,6 +116,24 @@ this.userForm.patchValue({
   get tPin() {
 		return this.userForm.get('tPin');
 	}  
+   get investAmtA() {
+		return this.userForm.get('investAmtA');
+	}  
+  get investAmtB() {
+		return this.userForm.get('investAmtB');
+	}  
+  get investAmtC() {
+		return this.userForm.get('investAmtC');
+	}  
+  get investAmtD() {
+		return this.userForm.get('investAmtD');
+	}  
+  get investAmtE() {
+		return this.userForm.get('investAmtE');
+	} 
+  get investAmtX() {
+		return this.userForm.get('investAmtX');
+	}  
   get cibilPoor() {
 		return this.userForm.get('cibilPoor');
 	}
@@ -146,9 +176,15 @@ this.userForm.patchValue({
     model.settingsId = this.userForm.get('settingsId')?.value;
     model.isEnabled = this.userForm.get('isEnabled')?.value;
     model.limitPerDay = this.userForm.get('limitPerDay')?.value;
+    model.tPin = this.userForm.get('tPin')?.value;  
     model.investAmt = this.userForm.get('investAmt')?.value;
-    model.minInvestAmt = this.userForm.get('minInvestAmt')?.value;
-    model.tPin = this.userForm.get('tPin')?.value;
+    model.minInvestAmt = this.userForm.get('minInvestAmt')?.value;        
+    model.investAmtA = this.userForm.get('investAmtA')?.value;    
+    model.investAmtB = this.userForm.get('investAmtB')?.value;    
+    model.investAmtC = this.userForm.get('investAmtC')?.value;    
+    model.investAmtD = this.userForm.get('investAmtD')?.value;    
+    model.investAmtE = this.userForm.get('investAmtE')?.value; 
+    model.investAmtX = this.userForm.get('investAmtX')?.value;
     model.cibilPoor = this.userForm.get('cibilPoor')?.value;
     model.cibilAverage = this.userForm.get('cibilAverage')?.value;
     model.cibilGood = this.userForm.get('cibilGood')?.value;
