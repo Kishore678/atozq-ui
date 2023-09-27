@@ -115,6 +115,7 @@
 				<button>Save</button>				
 				<button type="button" (click)="patchUserValues()">Set Default</button>
 				<button type="button" (click)="restoreUserValues()">Cancel</button>
+				<button type="button" (click)="LoadSettings()">Refresh</button>
 			</td>
 		</tr>
 	</table>
@@ -129,6 +130,7 @@
   <tr>      
     <th style="width:25px;">Loan</th>
     <th style="width:25px;">Risk</th>
+    <th style="width:25px;">Age</th>
     <th style="width:25px;">Cibil</th>
     <th style="width:25px;">Int%.</th>
     <th style="width:30px;">Tenure</th>
@@ -139,6 +141,7 @@
   <tr *ngFor="let w of borrowers;let i=index;">  
    <td>{{w.loadId}}</td>
    <td>{{w.riskCategory}}</td>
+   <td>{{w.borrowerAge}}</td>
    <td>{{w.creditBureauScore}}</td>
    <td>{{w.interestCurrentRate}}</td>   
    <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   

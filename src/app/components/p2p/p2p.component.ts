@@ -43,12 +43,12 @@ export class P2pComponent implements OnInit {
   	
 	}
 
-  ngAfterViewInit()
-  {   
+  LoadSettings()
+  {
     this.p2pService.GetSettings().subscribe({
       next:(res)=> { 
+        this.settings=[];
 this.settings = res;
-debugger;
 this.userForm.patchValue({
   settingsId: this.settings[0].settingsId,
   isEnabled: this.settings[0].isEnabled,
@@ -72,7 +72,11 @@ this.userForm.patchValue({
 
       },
       error:(err)=>{ Swal.fire('Something went wrong!');}
-    });	  
+    });	
+  }
+  ngAfterViewInit()
+  {   
+    this.LoadSettings();
     this.LoadBorrowers();  
   }
 
