@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActiveBorrowers } from 'src/app/models/active-borrowers.model';
+import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
 import { P2pService } from 'src/app/services/p2p.service';
 import Swal from 'sweetalert2';
@@ -14,7 +15,7 @@ export class P2pComponent implements OnInit {
 	isValidFormSubmitted!:boolean;
 	userForm!: FormGroup;
   settings!:P2PModel[];
-  borrowers!:ActiveBorrowers[];
+  borrowers!:ManageBorrowers[];
 	
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
@@ -303,9 +304,9 @@ this.userForm.patchValue({
     });    
   }
 
-DeleteWatchListItem(w:ActiveBorrowers)
+DeleteWatchListItem(w:ManageBorrowers)
 {
-  var confirmMessage =  w.loadId+' '+w.riskCategory+' '+w.creditBureauScore+' '+w.interestCurrentRate+'%'+' '+(w.tenure+' '+(w.tenureType=='d'?'D':'M'))+' removed from Active Borrowers List.';
+  var confirmMessage =  w.loan+' '+w.risk+' '+w.cibil+' '+w.interest+'%'+' '+(w.tenure+' '+(w.tenureType=='d'?'D':'M'))+' removed from Active Borrowers List.';
   Swal.fire({
     title: 'Are you sure?',
     text: 'Remove '+confirmMessage,
@@ -315,7 +316,7 @@ DeleteWatchListItem(w:ActiveBorrowers)
     cancelButtonText: 'No, let me think',
   }).then((result) => {
     if (result.value) {      
-      this.p2pService.DeleteBorrower(w.activeBorrowersId).subscribe({
+      this.p2pService.DeleteBorrower(w.keyId,w.isGroup).subscribe({
         next:(event)=>{
           this.borrowers = event;
             Swal.fire('Removed!', confirmMessage,'success');                 

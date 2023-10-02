@@ -177,14 +177,14 @@
     <th style="width:20px;"></th>
   </tr>
   <tr *ngFor="let w of borrowers;let i=index;">  
-   <td>{{w.loadId}}</td>
-   <td>{{w.riskCategory}}</td>
-   <td>{{w.borrowerAge}}</td>
-   <td>{{w.creditBureauScore}}</td>
-   <td>{{w.interestCurrentRate}}</td>   
+   <td>{{w.loan}}</td>
+   <td>{{w.risk}}</td>
+   <td>{{w.age}}</td>
+   <td>{{w.cibil}}</td>
+   <td>{{w.interest}}</td>   
    <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   
-   <td [ngClass]="w.isInvestEligible?'profit':'loss'">{{w.isInvestEligible?'Yes':'No'}}</td>
-   <td>{{w.autoInvestStatus}}</td>
+   <td [ngClass]="w.isEligible?'profit':'loss'">{{w.isEligible?'Yes':'No'}}</td>
+   <td>{{w.status}}</td>
    <td style="text-align:center"><mat-icon svgIcon="delete" (click)="DeleteWatchListItem(w)"></mat-icon></td>
   </tr>
 </table>

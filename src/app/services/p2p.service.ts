@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { P2PModel } from '../models/p2-pmodel.model';
 import { environment } from 'src/environments/environment';
 import { ActiveBorrowers } from '../models/active-borrowers.model';
+import { ManageBorrowers } from '../models/manage-borrowers.model';
 
 const baseUrl = environment.onlineUsersApi;
 
@@ -24,14 +25,21 @@ export class P2pService {
     return this.http.put<P2PModel[]>(`${baseUrl}/api/AutoInvestSettings/${id}`,settings);
   }
 
-  GetActiveBorrowers():Observable<ActiveBorrowers[]>
+  GetActiveBorrowers():Observable<ManageBorrowers[]>
   {
-    return this.http.get<ActiveBorrowers[]>(`${baseUrl}/api/ManageBorrowers`);
+    return this.http.get<ManageBorrowers[]>(`${baseUrl}/api/ManageBorrowers`);
   }
 
-  DeleteBorrower(id:number):Observable<ActiveBorrowers[]>
+  DeleteBorrower(id:number,isGroup:boolean):Observable<ManageBorrowers[]>
   {
-    return this.http.delete<ActiveBorrowers[]>(`${baseUrl}/api/ManageBorrowers/${id}`);
+    if(isGroup)
+    {
+    return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/ManageBorrowers/${id}`);      
+    }
+    else
+    {
+    return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/GroupLoans/${id}`);
+    }
   }
 
 }
