@@ -28,6 +28,9 @@ export class P2PModel
      amountPerBorrowerGroup!:string;
      gCibilGood!:string;
      gCibilExcellent!:string;
+     investmentLimit!:number;
+     escroBalance!:number;
+     balanceThreshold!:number;
 }
 
 

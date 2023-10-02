@@ -48,7 +48,10 @@ export class P2pComponent implements OnInit {
       isGroupEnabled:false,
       amountPerBorrowerGroup:0,
       gCibilExcellent:0,
-      gCibilGood:0	   		
+      gCibilGood:0,
+      investmentLimit:0,
+     escroBalance:0,
+     balanceThreshold:0
     });
 
   	
@@ -88,7 +91,10 @@ this.userForm.patchValue({
   isGroupEnabled:this.settings[0].isGroupEnabled,
   amountPerBorrowerGroup:this.settings[0].amountPerBorrowerGroup,
   gCibilExcellent:this.settings[0].gCibilExcellent,
-  gCibilGood:this.settings[0].gCibilGood
+  gCibilGood:this.settings[0].gCibilGood,
+  investmentLimit:this.settings[0].investmentLimit,
+     escroBalance:this.settings[0].escroBalance,
+     balanceThreshold:this.settings[0].balanceThreshold
 });
 
       },
@@ -194,6 +200,17 @@ get gCibilGood() {
   return this.userForm.get('gCibilGood');
 }
 
+get investmentLimit() {
+  return this.userForm.get('investmentLimit');
+}
+
+get escroBalance() {
+  return this.userForm.get('escroBalance');
+}
+
+get balanceThreshold() {
+  return this.userForm.get('gCibilGood');
+}
 
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
@@ -231,6 +248,9 @@ get gCibilGood() {
     model.amountPerBorrowerGroup = this.userForm.get('amountPerBorrowerGroup')?.value;
     model.gCibilExcellent = this.userForm.get('gCibilExcellent')?.value;
     model.gCibilGood = this.userForm.get('gCibilGood')?.value;
+    model.investmentLimit = this.userForm.get('investmentLimit')?.value;
+    model.escroBalance = this.userForm.get('escroBalance')?.value;
+    model.balanceThreshold = this.userForm.get('balanceThreshold')?.value; 
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
@@ -263,7 +283,10 @@ this.userForm.patchValue({
   isGroupEnabled: this.settings[0].isGroupEnabled,
   amountPerBorrowerGroup: this.settings[0].amountPerBorrowerGroup,
   gCibilExcellent: this.settings[0].gCibilExcellent,
-  gCibilGood: this.settings[0].gCibilGood 
+  gCibilGood: this.settings[0].gCibilGood,
+  investmentLimit:this.settings[0].investmentLimit,
+  escroBalance:this.settings[0].escroBalance,
+  balanceThreshold:this.settings[0].balanceThreshold 
 });
       },
       error:(err)=>{
@@ -300,6 +323,9 @@ this.userForm.patchValue({
       amountPerBorrowerGroup: this.settings[0].amountPerBorrowerGroup, 
       gCibilExcellent: this.settings[0].gCibilExcellent, 
       gCibilGood: this.settings[0].gCibilGood, 
+      investmentLimit:this.settings[0].investmentLimit,
+      escroBalance:this.settings[0].escroBalance,
+      balanceThreshold:this.settings[0].balanceThreshold
     });
 	}
 
@@ -329,7 +355,10 @@ this.userForm.patchValue({
       isGroupEnabled:true,
       amountPerBorrowerGroup:500,
       gCibilGood:650,
-      gCibilExcellent:750		
+      gCibilExcellent:750,
+      investmentLimit:10000,
+      escroBalance:10000,
+      balanceThreshold:10000		
     });
 	}
 

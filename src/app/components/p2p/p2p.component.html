@@ -8,6 +8,26 @@
   <input style="display: none;" type="number" formControlName="settingsId">
 
 	<table>	
+
+		<tr>
+			<td>Invest Limit Balance</td>
+			<td>
+				<input style="background: #eee;" readonly type="text" formControlName="investmentLimit">
+			</td>
+		</tr>	
+		<tr>
+			<td>Escro Balance</td>
+			<td>
+				<input style="background: #eee;" readonly type="text" formControlName="escroBalance">
+			</td>
+		</tr>	
+		<tr>
+			<td>Balance Threshold</td>
+			<td>
+				<input type="text" formControlName="balanceThreshold">
+			</td>
+		</tr>	
+
 		<tr>
 			<td>Auto GROUP Enabled</td>
 			<td>
@@ -39,7 +59,7 @@
 			</td>
 		</tr>
     <tr>
-			<td>Balance Trans:</td>
+			<td>Limit Investment's:</td>
 			<td>
 				<input formControlName="limitPerDay" type="number">
 			</td>
@@ -163,13 +183,13 @@
 		<tr style="background: yellow;">
 			<td>Created On:</td>
 			<td>
-				<input readonly formControlName="createdOn" type="text">
+				<input style="background: #eee;" readonly formControlName="createdOn" type="text">
 			</td>
 		</tr>	
     <tr style="background: yellow;">
 			<td>Modified On:</td>
 			<td>
-				<input readonly formControlName="modifiedDate" type="text">
+				<input style="background: #eee;" readonly formControlName="modifiedDate" type="text">
 			</td>
 		</tr>	
 		<tr>
