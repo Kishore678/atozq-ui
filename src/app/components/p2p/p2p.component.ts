@@ -306,6 +306,7 @@ this.userForm.patchValue({
 
 DeleteWatchListItem(w:ManageBorrowers)
 {
+  debugger;
   var confirmMessage =  w.loan+' '+w.risk+' '+w.cibil+' '+w.interest+'%'+' '+(w.tenure+' '+(w.tenureType=='d'?'D':'M'))+' removed from Active Borrowers List.';
   Swal.fire({
     title: 'Are you sure?',

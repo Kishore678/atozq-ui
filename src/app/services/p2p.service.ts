@@ -34,11 +34,11 @@ export class P2pService {
   {
     if(isGroup)
     {
-    return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/ManageBorrowers/${id}`);      
+      return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/GroupLoans/${id}`);         
     }
     else
     {
-    return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/GroupLoans/${id}`);
+      return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/ManageBorrowers/${id}`);     
     }
   }
 
