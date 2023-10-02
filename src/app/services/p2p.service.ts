@@ -22,6 +22,7 @@ export class P2pService {
 
   SaveSettings(id:number,settings:P2PModel):Observable<P2PModel[]>
   {
+    debugger  ;
     return this.http.put<P2PModel[]>(`${baseUrl}/api/AutoInvestSettings/${id}`,settings);
   }
 

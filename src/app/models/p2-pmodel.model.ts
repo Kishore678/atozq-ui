@@ -24,6 +24,10 @@ export class P2PModel
      smtpPassword!:string;
      createdOn!:Date;
      modifiedDate!:Date;
+     isGroupEnabled!:boolean;
+     amountPerBorrowerGroup!:string;
+     gCibilGood!:string;
+     gCibilExcellent!:string;
 }
 
 

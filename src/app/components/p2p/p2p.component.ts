@@ -44,7 +44,11 @@ export class P2pComponent implements OnInit {
       smtpUserName:'',
       smtpPassword:'',
       createdOn: new Date(),
-      modifiedDate: new Date()   		
+      modifiedDate: new Date(),
+      isGroupEnabled:false,
+      amountPerBorrowerGroup:0,
+      gCibilExcellent:0,
+      gCibilGood:0	   		
     });
 
   	
@@ -80,7 +84,11 @@ this.userForm.patchValue({
   smtpUserName:this.settings[0].smtpUserName,
   smtpPassword:this.settings[0].smtpPassword, 
   createdOn: this.settings[0].createdOn,
-  modifiedDate: this.settings[0].modifiedDate
+  modifiedDate: this.settings[0].modifiedDate,
+  isGroupEnabled:this.settings[0].isGroupEnabled,
+  amountPerBorrowerGroup:this.settings[0].amountPerBorrowerGroup,
+  gCibilExcellent:this.settings[0].gCibilExcellent,
+  gCibilGood:this.settings[0].gCibilGood
 });
 
       },
@@ -166,6 +174,27 @@ this.userForm.patchValue({
 		return this.userForm.get('smtpPassword');
 	}
 
+  
+  get isGroupEnabled() {
+		return this.userForm.get('isGroupEnabled');
+	}
+
+
+get amountPerBorrowerGroup() {
+  return this.userForm.get('amountPerBorrowerGroup');
+}
+
+
+get gCibilExcellent() {
+  return this.userForm.get('gCibilExcellent');
+}
+
+
+get gCibilGood() {
+  return this.userForm.get('gCibilGood');
+}
+
+
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -197,7 +226,11 @@ this.userForm.patchValue({
     model.smtpUserName = this.userForm.get('smtpUserName')?.value;
     model.smtpPassword = this.userForm.get('smtpPassword')?.value;
     model.createdOn = this.userForm.get('createdOn')?.value;
-    model.modifiedDate = this.userForm.get('modifiedDate')?.value;
+    model.modifiedDate = this.userForm.get('modifiedDate')?.value;    
+    model.isGroupEnabled = this.userForm.get('isGroupEnabled')?.value;
+    model.amountPerBorrowerGroup = this.userForm.get('amountPerBorrowerGroup')?.value;
+    model.gCibilExcellent = this.userForm.get('gCibilExcellent')?.value;
+    model.gCibilGood = this.userForm.get('gCibilGood')?.value;
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
@@ -226,8 +259,11 @@ this.userForm.patchValue({
   smtpUserName: this.settings[0].smtpUserName,
   smtpPassword: this.settings[0].smtpPassword,
   createdOn: this.settings[0].createdOn,
-  modifiedDate: this.settings[0].modifiedDate
- 
+  modifiedDate: this.settings[0].modifiedDate,
+  isGroupEnabled: this.settings[0].isGroupEnabled,
+  amountPerBorrowerGroup: this.settings[0].amountPerBorrowerGroup,
+  gCibilExcellent: this.settings[0].gCibilExcellent,
+  gCibilGood: this.settings[0].gCibilGood 
 });
       },
       error:(err)=>{
@@ -260,6 +296,10 @@ this.userForm.patchValue({
       smtpPort: this.settings[0].smtpPort,
       smtpUserName: this.settings[0].smtpUserName,
       smtpPassword: this.settings[0].smtpPassword, 
+      isGroupEnabled: this.settings[0].isGroupEnabled, 
+      amountPerBorrowerGroup: this.settings[0].amountPerBorrowerGroup, 
+      gCibilExcellent: this.settings[0].gCibilExcellent, 
+      gCibilGood: this.settings[0].gCibilGood, 
     });
 	}
 
@@ -285,7 +325,11 @@ this.userForm.patchValue({
       smtpHost:'smtppro.zoho.in',
       smtpPort:587,
       smtpUserName:'noreply@aznet.in',
-      smtpPassword:'t@x$!m%uC2EFZxg'		
+      smtpPassword:'t@x$!m%uC2EFZxg',
+      isGroupEnabled:true,
+      amountPerBorrowerGroup:500,
+      gCibilGood:650,
+      gCibilExcellent:750		
     });
 	}
 
