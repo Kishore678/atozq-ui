@@ -393,7 +393,7 @@ DeleteWatchListItem(w:ManageBorrowers)
       this.p2pService.DeleteBorrower(w.keyId,w.isGroup).subscribe({
         next:(event)=>{
           this.borrowers = event;
-            Swal.fire('Removed!', confirmMessage,'success');                 
+            Swal.fire('Removed!', confirmMessage,'success');                        
         },
         error:(err)=>{console.log(err);
           Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
