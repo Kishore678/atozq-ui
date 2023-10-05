@@ -1,0 +1,42 @@
+<p>cibil-master-form-dialog</p>
+
+<h1 mat-dialog-title>Edit Cibil Master</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formInstance">
+    <div>
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Category *</mat-label>
+        <input matInput type="text" 
+        name="category" formControlName="category">
+        <mat-error *ngIf="formInstance.controls['category']?.errors">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-5">
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Min *</mat-label>
+        <input matInput type="number" name="min" formControlName="min" />
+        <mat-error *ngIf="
+        formInstance.controls['min']?.errors">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-5">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Max *</mat-label>
+          <input matInput type="number" name="max" formControlName="max" />
+          <mat-error *ngIf="
+          formInstance.controls['max']?.errors">field required</mat-error>
+        </mat-form-field>
+      </div>  
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary" 
+  [disabled]="formInstance.dirty && formInstance.errors" (click)="save()"
+    cdkFocusInitial>Yes</button>
+  <button mat-raised-button mat-dialog-close>No</button>
+
+</div>

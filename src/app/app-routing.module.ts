@@ -26,6 +26,7 @@ import { FundamentalsComponent } from './components/fundamentals/fundamentals.co
 import { LearnComponent } from './components/learn/learn.component';
 import { ValuepickrComponent } from './components/valuepickr/valuepickr.component';
 import { P2pComponent } from './components/p2p/p2p.component';
+import { P2pmanComponent } from './components/p2pman/p2pman.component';
 
 const routes: Routes = [
   {path:'',component:UploadComponent},
@@ -57,6 +58,7 @@ const routes: Routes = [
   {path:'learn',component:LearnComponent},
   {path:'valuepickr',component:ValuepickrComponent},
   {path:'p2p',component:P2pComponent},
+  {path:'p2pman',component:P2pmanComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];

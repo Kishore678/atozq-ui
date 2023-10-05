@@ -54,8 +54,11 @@ import { LearnComponent } from './components/learn/learn.component';
 import { ValuepickrComponent } from './components/valuepickr/valuepickr.component';
 import { P2pComponent } from './components/p2p/p2p.component';
 import { P2pService } from './services/p2p.service';
+import { P2pmanComponent } from './components/p2pman/p2pman.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { CibilMasterFormDialogComponent } from './components/cibil-master-form-dialog/cibil-master-form-dialog.component';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2pComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2pComponent, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,
@@ -66,6 +69,7 @@ import { P2pService } from './services/p2p.service';
     MaterialExampleModule,
     ReactiveFormsModule    
   ],
+  entryComponents: [ConfirmationDialogComponent],
   providers: [UtcToLocalTimePipe,TitleCasePipe,DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService,UtcConverterService,P2pService],
   bootstrap: [AppComponent],
 })
