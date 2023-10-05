@@ -83,8 +83,7 @@ export class P2pmanComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * initialize data-table by providing persons list to the dataSource.
    */
-  ngOnInit(): void {
-    debugger;
+  ngOnInit(): void {    
     this.LoadData();   
   }
 

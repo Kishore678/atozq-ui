@@ -1,3 +1,9 @@
 table,mat-paginator{
     width:400px;
 }
+
+table caption{
+    font-size: 16px;
+    font-weight: 500;
+    color: #ff5722;
+}
