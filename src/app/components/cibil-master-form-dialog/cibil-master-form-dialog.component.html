@@ -1,6 +1,4 @@
-<p>cibil-master-form-dialog</p>
-
-<h1 mat-dialog-title>Edit Cibil Master</h1>
+<h1 mat-dialog-title>{{formInstance.controls['cibilMasterId'].value>0?'Edit':'Add'}} Cibil Master</h1>
 
 <div mat-dialog-content>
   <form [formGroup]="formInstance">
@@ -36,7 +34,7 @@
 <div class="mt-5" mat-dialog-actions>
   <button mat-raised-button color="primary" 
   [disabled]="formInstance.dirty && formInstance.errors" (click)="save()"
-    cdkFocusInitial>Yes</button>
-  <button mat-raised-button mat-dialog-close>No</button>
+    cdkFocusInitial color="primary">Save</button>
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
 
 </div>

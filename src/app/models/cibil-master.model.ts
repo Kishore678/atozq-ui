@@ -3,6 +3,6 @@ export interface CibilMaster {
     category: string | null;
     min: number;
     max: number;
-    createdDatec: string;
-    modifedDate: string;
+    createdDatec: Date;
+    modifedDate: Date;
 }

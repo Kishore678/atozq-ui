@@ -31,6 +31,7 @@ export class CibilMasterFormDialogComponent implements OnInit {
   }
 
   save(): void {
-    this.dialogRef.close();
+  
+    this.dialogRef.close(Object.assign({}, this.formInstance.value));
   }
 }

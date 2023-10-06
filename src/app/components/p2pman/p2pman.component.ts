@@ -19,38 +19,37 @@ export class P2pmanComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  public displayedColumns: string[] = ['category', 'min', 'max'];
+  public displayedColumnsCibilMaster: string[] = ['category', 'min', 'max'];
   // cibilMasterId: number;
   // createdDatec: string;
   // modifedDate: string;
-  public columnsToDisplay: string[] = [...this.displayedColumns, 'actions'];
+  public columnsToDisplayCibilMaster: string[] = [...this.displayedColumnsCibilMaster, 'actions'];
 
   /**
    * it holds a list of active filter for each column.
    * example: {firstName: {contains: 'person 1'}}
    *
    */
-  public columnsFilters = {};
+  public columnsFiltersCibilMaster = {};
 
-  public dataSource: MatTableDataSource<CibilMaster>;
-  private serviceSubscribe!: Subscription;
+  public dataSourceCibilMaster: MatTableDataSource<CibilMaster>; 
   cibilMasterData!:CibilMaster[];
 
-  LoadData()
+  LoadDataCibilMaster()
 {
   this.cibilMasterService.getData().subscribe({
     next:(data)=>{
       this.cibilMasterData = data;
-      this.dataSource.data = this.cibilMasterData;
+      this.dataSourceCibilMaster.data = this.cibilMasterData;
     },
     error:(err)=>{console.log(err);}
    });
 }
   constructor(private cibilMasterService:CibilMasterService, public dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource<CibilMaster>();
+    this.dataSourceCibilMaster = new MatTableDataSource<CibilMaster>();
   }   
 
-  edit(id:number,data: CibilMaster) {
+  editCibilMaster(id:number,data: CibilMaster) {
     const dialogRef = this.dialog.open(CibilMasterFormDialogComponent, {
       width: '400px',
       data: data
@@ -58,33 +57,68 @@ export class P2pmanComponent implements OnInit, OnDestroy, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.cibilMasterService.updateData(id,result);
-        this.LoadData();
+        this.cibilMasterService.updateData(id,result).subscribe({
+          next:(value) =>{
+        this.LoadDataCibilMaster();            
+          },
+          error:(err)=>{alert(err)}
+        });;
+        this.LoadDataCibilMaster();
       }
     });
   }
 
-  delete(id: any) {
+
+  addCibilMaster() {
+    const dialogRef = this.dialog.open(CibilMasterFormDialogComponent, {
+      width: '400px',
+      data: {
+        "cibilMasterId":  0,
+        "category": '', 
+        "min": '',
+        "max": '',
+        "createdDate": new Date(),
+        "modifiedDate": new Date()
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      debugger;
+      if (result) {
+        this.cibilMasterService.addData(result).subscribe({
+          next:(value) =>{
+        this.LoadDataCibilMaster();            
+          },
+          error:(err)=>{alert(err)}
+        });
+      }
+    });
+  }
+
+  deleteCibilMaster(id: number) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.cibilMasterService.deleteData(id);
-        this.LoadData();
+        this.cibilMasterService.deleteData(id).subscribe({
+          next:(value) =>{
+        this.LoadDataCibilMaster();            
+          },
+          error:(err)=>{alert(err)}
+        });       
       }
     });
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSourceCibilMaster.paginator = this.paginator;
+    this.dataSourceCibilMaster.sort = this.sort;
   }
 
   /**
    * initialize data-table by providing persons list to the dataSource.
    */
   ngOnInit(): void {    
-    this.LoadData();   
+    this.LoadDataCibilMaster();   
   }
 
   ngOnDestroy(): void {
