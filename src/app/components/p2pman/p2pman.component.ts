@@ -1,6 +1,4 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
-
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -16,8 +14,8 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   styleUrls: ['./p2pman.component.css']
 })
 export class P2pmanComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginatorCibilMaster!: MatPaginator;
+  @ViewChild(MatSort) sortCibilMaster!: MatSort;
 
   public displayedColumnsCibilMaster: string[] = ['category', 'min', 'max'];
   // cibilMasterId: number;
@@ -110,8 +108,8 @@ export class P2pmanComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.dataSourceCibilMaster.paginator = this.paginator;
-    this.dataSourceCibilMaster.sort = this.sort;
+    this.dataSourceCibilMaster.paginator = this.paginatorCibilMaster;
+    this.dataSourceCibilMaster.sort = this.sortCibilMaster;
   }
 
   /**

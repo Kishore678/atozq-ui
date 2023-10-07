@@ -13,9 +13,10 @@ table caption{
 
 table caption span.spn-txt{
     display: block;
-    height: 32px;
+    height: 0px;
 }
 
 :host ::ng-deep table caption button.btn-add{
     float: left;
+    height: 32px;
 }
