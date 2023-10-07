@@ -20,14 +20,14 @@ export class P2pmanComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('cibilMasterPaginator') paginatorCibilMaster!: MatPaginator;
   @ViewChild('cibilMasterSort') sortCibilMaster!: MatSort;
 
-  @ViewChild('InvestSettingsRules') paginatorInvestSettingsRules!: MatPaginator;
+  @ViewChild('investSettingsRulesPaginator') paginatorInvestSettingsRules!: MatPaginator;
   @ViewChild('investSettingsRulesSort') sortInvestSettingsRules!: MatSort;
 
   public displayedColumnsCibilMaster: string[] = ['category', 'min', 'max'];
-  public displayedColumnsInvestSettingsRules: string[] = ['ruleName', 'riskType', 'isBaseRule',
+  public displayedColumnsInvestSettingsRules: string[] = ['ruleName', 'riskType', 
 'minAge','maxAge','loanAmt','tenureD','tenureM','investAmt','minInvest','allowNoCibil',
-'cibilMasterID','maxAllowNoCibil','isAutoInvest','autoInvestLimit','tPin',
-'user','pwd','source','escroBal','investLimitBal','alertIfBalLow','createdDatec','modifedDate'];
+'cibilMasterID','maxAllowNoCibil','isAutoInvest','autoInvestLimit'
+];
     
   public columnsToDisplayCibilMaster: string[] = [...this.displayedColumnsCibilMaster, 'actions'];
   public columnsToDisplayInvestSettingsRules: string[] = [...this.displayedColumnsInvestSettingsRules, 'actions'];
@@ -125,7 +125,6 @@ LoadDataInvestSettingsRules()
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      debugger;
       if (result) {
         this.cibilMasterService.addData(result).subscribe({
           next:(value) =>{
@@ -168,8 +167,7 @@ LoadDataInvestSettingsRules()
         "modifedDate": new Date()
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      debugger;
+    dialogRef.afterClosed().subscribe(result => {   
       if (result) {
         this.investSettingsRulesService.addData(result).subscribe({
           next:(value) =>{
@@ -214,6 +212,9 @@ LoadDataInvestSettingsRules()
   ngAfterViewInit(): void {
     this.dataSourceCibilMaster.paginator = this.paginatorCibilMaster;
     this.dataSourceCibilMaster.sort = this.sortCibilMaster;
+
+    this.dataSourceInvestSettingsRules.paginator = this.paginatorInvestSettingsRules;
+    this.dataSourceInvestSettingsRules.sort = this.sortInvestSettingsRules;
   }
 
   /**

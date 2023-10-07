@@ -1,71 +1,74 @@
 <div class="page-container"> 
 <h3><span class="page-header">P2P Manager</span></h3>
-</div>
 
-
-    <table class="mat-elevation-z8" mat-table [dataSource]="dataSourceCibilMaster" #cibilMasterSort="matSort" matSort class="mat-elevation-z8">
+<table class="cibil mat-elevation-z8" mat-table [dataSource]="dataSourceCibilMaster" #cibilMasterSort="matSort" matSort class="mat-elevation-z8">
         <caption><span class="spn-txt">CIBIL Master</span><button class="btn-add" mat-raised-button (click)="addCibilMaster()">
           ADD <mat-icon mat-icon-button color='primary'>add</mat-icon>
         </button></caption>
+        <ng-container [matColumnDef]="'actions'">
+          <th mat-header-cell *matHeaderCellDef> Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="editCibilMaster(element.cibilMasterId,element)">
+              <mat-icon mat-icon-button color='primary'>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteCibilMaster(element.cibilMasterId)">
+              <mat-icon mat-icon-button color="warn">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
       <ng-container *ngFor="let column of displayedColumnsCibilMaster" [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef>
           <div style="display: flex; align-items: center;">
-            <span mat-sort-header>{{column|uppercase}}</span>
+            <span mat-sort-header>{{column|titlecase}}</span>
            
           </div>
         </th>
         <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
       </ng-container>
-      <ng-container [matColumnDef]="'actions'">
-        <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button (click)="editCibilMaster(element.cibilMasterId,element)">
-            <mat-icon mat-icon-button color='primary'>edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteCibilMaster(element.cibilMasterId)">
-            <mat-icon mat-icon-button color="warn">delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+     
       <tr mat-header-row *matHeaderRowDef="columnsToDisplayCibilMaster"></tr>
       <tr mat-row *matRowDef="let row; columns: columnsToDisplayCibilMaster;"></tr>
     </table>
   
-    <mat-paginator #cibilMasterPaginator="matPaginator" [pageSize]="5" 
+    <mat-paginator class="cibil" #cibilMasterPaginator="matPaginator" [pageSize]="5" 
     [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons hidePageSize="true"></mat-paginator>
   
  
 
 
-    <table class="mat-elevation-z8" mat-table [dataSource]="dataSourceInvestSettingsRules" matSort  #investSettingsRulesSort="matSort" class="mat-elevation-z8">
+    <table class="rules mat-elevation-z8" mat-table [dataSource]="dataSourceInvestSettingsRules" matSort  #investSettingsRulesSort="matSort" class="mat-elevation-z8">
         <caption><span class="spn-txt">Invest Rules & Settings</span><button class="btn-add" mat-raised-button (click)="addInvestSettingsRules()">
           ADD <mat-icon mat-icon-button color='primary'>add</mat-icon>
         </button></caption>
+
+        <ng-container [matColumnDef]="'actions'">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="editInvestSettingsRules(element.investSettingsRulesId,element)">
+              <mat-icon mat-icon-button color='primary'>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteInvestSettingsRules(element.investSettingsRulesId)">
+              <mat-icon mat-icon-button color="warn">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        
       <ng-container *ngFor="let column of displayedColumnsInvestSettingsRules" [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef>
           <div style="display: flex; align-items: center;">
-            <span mat-sort-header>{{column|uppercase}}</span>
+            <span mat-sort-header>{{column|titlecase}}</span>
            
           </div>
         </th>
         <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
       </ng-container>
-      <ng-container [matColumnDef]="'actions'">
-        <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button (click)="editInvestSettingsRules(element.investSettingsRulesId,element)">
-            <mat-icon mat-icon-button color='primary'>edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteInvestSettingsRules(element.investSettingsRulesId)">
-            <mat-icon mat-icon-button color="warn">delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+      
       <tr mat-header-row *matHeaderRowDef="columnsToDisplayInvestSettingsRules"></tr>
       <tr mat-row *matRowDef="let row; columns: columnsToDisplayInvestSettingsRules;"></tr>
     </table>
   
-    <mat-paginator #InvestSettingsRules="matPaginator" [pageSize]="5" 
+    <mat-paginator class="rules" #investSettingsRulesPaginator="matPaginator" [pageSize]="5" 
     [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons hidePageSize="true"></mat-paginator>
   
 
+  </div>

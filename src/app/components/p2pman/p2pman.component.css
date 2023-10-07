@@ -1,6 +1,17 @@
-table,mat-paginator{
+table.cibil {
     width:400px;
     margin: 10px;
+}
+
+mat-paginator {
+    width:295px;    
+    margin: 10px;
+    float: left;
+}
+
+table.rules {
+    width:900px;
+    margin: 10px; 
 }
 
 table caption{
@@ -14,6 +25,8 @@ table caption{
 table caption span.spn-txt{
     display: block;
     height: 0px;
+    margin-left: 95px;
+    float: left;
 }
 
 :host ::ng-deep table caption button.btn-add{
