@@ -57,8 +57,11 @@ import { P2pService } from './services/p2p.service';
 import { P2pmanComponent } from './components/p2pman/p2pman.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CibilMasterFormDialogComponent } from './components/cibil-master-form-dialog/cibil-master-form-dialog.component';
+import { InvestSettingsRulesFormDialogComponent } from './components/invest-settings-rules-form-dialog/invest-settings-rules-form-dialog.component';
+import { SmtpSettingsFormDialogComponent } from './components/smtp-settings-form-dialog/smtp-settings-form-dialog.component';
+import { ServiceSettingsFormDialogComponent } from './components/service-settings-form-dialog/service-settings-form-dialog.component';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2pComponent, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2pComponent, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent, InvestSettingsRulesFormDialogComponent, SmtpSettingsFormDialogComponent, ServiceSettingsFormDialogComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,

@@ -1,0 +1,208 @@
+<h1 mat-dialog-title>{{formInstance.controls['investSettingsRulesId'].value>0?'Edit':'Add'}} Invest Rules & Settings</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="formInstance">
+    <div>
+      <mat-form-field class="fullWidth" appearance="outline">
+        <mat-label>Rule Name *</mat-label>
+        <input matInput type="text" name="ruleName" formControlName="ruleName">
+        <mat-error *ngIf="formInstance.controls['ruleName']?.errors">field required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="mt-5">
+        <mat-form-field class="fullWidth" appearance="outline">
+          <mat-label>Risk Type *</mat-label>
+          <input matInput type="text" name="riskType" formControlName="riskType" />
+          <mat-error *ngIf="
+          formInstance.controls['riskType']?.errors">field required</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="mt-5" style="height: 45px;">
+            <input type="checkbox" id="isBaseRule" formControlName="isBaseRule" />
+            <mat-label>Is Base Rule *</mat-label> 
+        </div>  
+  
+        <div class="mt-5">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Min Age *</mat-label>
+            <input matInput type="number" name="minAge" formControlName="minAge" />
+            <mat-error *ngIf="
+            formInstance.controls['minAge']?.errors">field required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="mt-5">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Max Age *</mat-label>
+            <input matInput type="number" name="maxAge" formControlName="maxAge" />
+            <mat-error *ngIf="formInstance.controls['maxAge']?.errors">field required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="mt-5">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Loan Amt *</mat-label>
+            <input matInput type="number" name="loanAmt" formControlName="loanAmt" />
+            <mat-error *ngIf="
+            formInstance.controls['loanAmt']?.errors">field required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="mt-5">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Tenure(Days) *</mat-label>
+            <input matInput type="number" name="tenureD" formControlName="tenureD" />
+            <mat-error *ngIf="
+            formInstance.controls['tenureD']?.errors">field required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="mt-5">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Tenure(Months) *</mat-label>
+            <input matInput type="number" name="tenureM" formControlName="tenureM" />
+            <mat-error *ngIf="
+            formInstance.controls['tenureM']?.errors">field required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="mt-5">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Invest Amt *</mat-label>
+            <input matInput type="number" name="investAmt" formControlName="investAmt" />
+            <mat-error *ngIf="
+            formInstance.controls['investAmt']?.errors">field required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="mt-5">
+          <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Invest Min *</mat-label>
+            <input matInput type="number" name="minInvest" formControlName="minInvest" />
+            <mat-error *ngIf="
+            formInstance.controls['minInvest']?.errors">field required</mat-error>
+          </mat-form-field>
+        </div>   
+
+        <div class="mt-5"   style="height: 45px;">
+              <input type="checkbox" id="allowNoCibil" formControlName="allowNoCibil" />
+              <mat-label>Allow No-Cibil *</mat-label>              
+          </div>
+
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Cibil Master *</mat-label>
+              <input matInput type="number" name="cibilMasterID" formControlName="cibilMasterID" />
+              <mat-error *ngIf="
+              formInstance.controls['cibilMasterID']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Max No-Cibil Allow (G) *</mat-label>
+              <input matInput type="number" name="maxAllowNoCibil" formControlName="maxAllowNoCibil" />
+              <mat-error *ngIf="
+              formInstance.controls['maxAllowNoCibil']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>
+
+        <div class="mt-5"  style="height: 45px;">           
+            <input type="checkbox" id="isAutoInvest" formControlName="isAutoInvest"/>
+            <mat-label>Auto Invest *</mat-label>           
+        </div>
+
+        <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>AI Tran Limit *</mat-label>
+              <input matInput type="number" name="autoInvestLimit" formControlName="autoInvestLimit" />
+              <mat-error *ngIf="
+              formInstance.controls['autoInvestLimit']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>    
+    
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>TPIN *</mat-label>
+              <input matInput type="number" name="tPin" formControlName="tPin" />
+              <mat-error *ngIf="
+              formInstance.controls['tPin']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>
+    
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>User Name *</mat-label>
+              <input matInput type="text" name="user" formControlName="user" />
+              <mat-error *ngIf="
+              formInstance.controls['user']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Password *</mat-label>
+              <input matInput type="password" name="pwd" formControlName="pwd" />
+              <mat-error *ngIf="
+              formInstance.controls['pwd']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Source *</mat-label>
+              <input matInput type="text" name="source" formControlName="source" />
+              <mat-error *ngIf="
+              formInstance.controls['source']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Escro Bal</mat-label>
+              <input matInput type="number" name="escroBal" formControlName="escroBal" />          
+            </mat-form-field>
+          </div>
+    
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Invest Limit Bal</mat-label>
+              <input matInput type="number" name="investLimitBal" formControlName="investLimitBal" />          
+            </mat-form-field>
+          </div>
+
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Low Bal Threshold *</mat-label>
+              <input matInput type="number" name="alertIfBalLow" formControlName="alertIfBalLow" />
+              <mat-error *ngIf="
+              formInstance.controls['alertIfBalLow']?.errors">field required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Created Date</mat-label>
+              <input matInput type="text" name="createdDatec" formControlName="createdDatec" />          
+            </mat-form-field>
+          </div>
+    
+          <div class="mt-5">
+            <mat-form-field class="fullWidth" appearance="outline">
+              <mat-label>Modified Date</mat-label>
+              <input matInput type="text" name="modifedDate" formControlName="modifedDate" />          
+            </mat-form-field>
+          </div> -->
+
+  </form>
+</div>
+
+<div class="mt-5" mat-dialog-actions>
+  <button mat-raised-button color="primary" 
+  [disabled]="formInstance.dirty && formInstance.errors" (click)="save()"
+    cdkFocusInitial color="primary">Save</button>
+  <button mat-raised-button mat-dialog-close color="warn">Cancel</button>
+
+</div>
