@@ -377,13 +377,12 @@ this.userForm.patchValue({
     });    
   }
 
-DeleteWatchListItem(w:ManageBorrowers)
+ForceInvest(w:ManageBorrowers)
 {
-  debugger;
-  var confirmMessage =  w.loan+' '+w.risk+' '+w.cibil+' '+w.interest+'%'+' '+(w.tenure+' '+(w.tenureType=='d'?'D':'M'))+' removed from Active Borrowers List.';
+  var confirmMessage =  'Loan:'+w.loan+' '+w.risk+' '+w.cibil+' '+w.interest+'%'+' '+(w.tenure+' '+(w.tenureType=='d'?'D':'M'));
   Swal.fire({
     title: 'Are you sure?',
-    text: 'Remove '+confirmMessage,
+    text: 'Force Invest '+ confirmMessage,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Yes, go ahead.',
@@ -393,7 +392,7 @@ DeleteWatchListItem(w:ManageBorrowers)
       this.p2pService.DeleteBorrower(w.keyId,w.isGroup).subscribe({
         next:(event)=>{
           this.borrowers = event;
-            Swal.fire('Removed!', confirmMessage,'success');                        
+            Swal.fire('Force Invested', confirmMessage,'success');                        
         },
         error:(err)=>{console.log(err);
           Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');

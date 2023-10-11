@@ -1,6 +1,8 @@
 export class ManageBorrowers {
     keyId!:number;
         loan!:number;
+        loanAmt!:string;
+        investAmt!:number;
         isGroup!:boolean;
         risk!:boolean;
         age!:string;
@@ -9,5 +11,6 @@ export class ManageBorrowers {
         tenureType!:string;
         tenure!:number;
         isEligible!:boolean;
-        status!:string;
+        status!:number;
+        statusMsg!:string;
 }

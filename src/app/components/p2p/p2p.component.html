@@ -210,26 +210,32 @@
   <section class="container">
 <table id="watchlist">
   <tr>      
+    <th style="width:25px;">#</th>
     <th style="width:25px;">Loan</th>
+    <th style="width:25px;">LoanAmt</th>
     <th style="width:25px;">Risk</th>
     <th style="width:25px;">Age</th>
     <th style="width:25px;">Cibil</th>
     <th style="width:25px;">Int%.</th>
     <th style="width:30px;">Tenure</th>
     <th style="width:10px;">Elig.</th>   
-    <th style="width:95px;">Invest</th>   
+    <th style="width:50px;">InvestedAmt</th>   
+    <th style="width:95px;">Status</th>   
     <th style="width:20px;"></th>
   </tr>
   <tr *ngFor="let w of borrowers;let i=index;">  
+   <td>{{w.keyId}}</td>
    <td>{{w.loan}}</td>
+   <td>{{w.loanAmt}}</td>
    <td>{{w.risk}}</td>
    <td>{{w.age}}</td>
    <td>{{w.cibil}}</td>
    <td>{{w.interest}}</td>   
    <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   
    <td [ngClass]="w.isEligible?'profit':'loss'">{{w.isEligible?'Yes':'No'}}</td>
-   <td>{{w.status}}</td>
-   <td style="text-align:center"><mat-icon svgIcon="delete" (click)="DeleteWatchListItem(w)"></mat-icon></td>
+   <td>{{w.investAmt}}</td>
+   <td [ngClass]="w.status==2?'profit':''">{{w.statusMsg}}</td>
+   <td style="text-align:center"><button type="button" style="background: green;color: white;" (click)="ForceInvest(w)">Force Invest</button></td>
   </tr>
 </table>
 </section>
