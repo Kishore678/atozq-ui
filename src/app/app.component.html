@@ -3,8 +3,8 @@
     <mat-toolbar color="primary" class="atozq-toolbar">     
       <a class="atozq-app-name" routerLink="/"><mat-icon style="color: #ff5722;
         font-size: 27px;
-        padding-right: 3px;">label_important</mat-icon><span>aznet<span style="font-size: 24px;
-        color: #38f84d;">.in</span></span></a>
+        padding-right: 3px;">label_important</mat-icon><span style="font-size: 24px;">AZNET<span style="font-size: 24px;
+        color: #38f84d;">.IN</span></span></a>
       <span class="spacer"></span>
 
       <a class="menuitems" mat-list-item routerLink="/account" *ngIf="!auth.user().IsLoggedIn">      
@@ -37,7 +37,7 @@
         <section class="row home-toolbar3"> 
           <div class="example-button-row">         
             <mat-button-toggle-group (change)="changeInToggleGroup(cityGroup.value)" [(ngModel)]="toggleSelected" #cityGroup="matButtonToggleGroup">
-              <mat-button-toggle routerLink="/stock"  value="stock">
+              <!-- <mat-button-toggle routerLink="/stock"  value="stock">
                 <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
                 <span class="toggle-button-menutext">All Stock</span>
               </mat-button-toggle>
@@ -48,7 +48,34 @@
               <mat-button-toggle routerLink="/valuepickr" value="valuepickr" (change)="changeInToggle(toggleVal.value)" #toggleVal>
                 <mat-icon svgIcon="worldwide-value" class="example-tab-icon"></mat-icon>
                 <span class="toggle-button-menutext">ValuePickr</span>
-              </mat-button-toggle>      
+              </mat-button-toggle>       -->
+
+
+                  <mat-button-toggle routerLink="/stock"  value="stock">
+                <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
+                <span class="toggle-button-menutext">Stock's</span>
+              </mat-button-toggle>
+
+              <mat-button-toggle routerLink="/fd"  value="fd">
+                <mat-icon svgIcon="fd1" class="example-tab-icon"></mat-icon>
+                <span class="toggle-button-menutext">FD's</span>
+              </mat-button-toggle>         
+
+              <mat-button-toggle routerLink="/mf"  value="mf">
+                <mat-icon svgIcon="mf" class="example-tab-icon"></mat-icon>
+                <span class="toggle-button-menutext">MF's</span>
+              </mat-button-toggle>
+
+              <mat-button-toggle routerLink="/sgb"  value="sgb">
+                <mat-icon svgIcon="sgb" class="example-tab-icon"></mat-icon>
+                <span class="toggle-button-menutext">SGB's</span>
+              </mat-button-toggle>
+
+              <mat-button-toggle routerLink="/p2p"  value="p2p">
+                <mat-icon svgIcon="p2p" class="example-tab-icon"></mat-icon>
+                <span class="toggle-button-menutext">P2P</span>
+              </mat-button-toggle>
+
             </mat-button-toggle-group> 
           </div>
         </section>

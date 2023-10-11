@@ -146,6 +146,29 @@ export class AppComponent implements OnDestroy {
       "star-alliance",
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/star-alliance.svg")
     ); 
+
+    this.matIconRegistry.addSvgIcon(
+      "fd1",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/fd1.svg")
+    ); 
+    
+    this.matIconRegistry.addSvgIcon(
+      "fd2",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/fd2.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "p2p",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/p2p.svg")
+    ); 
+
+    this.matIconRegistry.addSvgIcon(
+      "mf",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/mf.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "sgb",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/sgb.svg")
+    ); 
   }
   toggleSelected:string='';
   changeInToggleGroup(val: string) {

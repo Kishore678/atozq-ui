@@ -29,8 +29,8 @@ import { P2pComponent } from './components/p2p/p2p.component';
 import { P2pmanComponent } from './components/p2pman/p2pman.component';
 
 const routes: Routes = [
-  {path:'',component:UploadComponent},
-  {path:'stock',component:UploadComponent},
+  {path:'',component:ValuepickrComponent},
+  {path:'stock',component:ValuepickrComponent},
   
   // {path:':page',component:HomeComponent},
   // {path:'app/search',component:HomeComponent},
@@ -57,8 +57,8 @@ const routes: Routes = [
   // {path:'app/stock/:id',component:FundamentalsComponent},
   {path:'learn',component:LearnComponent},
   {path:'valuepickr',component:ValuepickrComponent},
-  {path:'p2p',component:P2pComponent},
-  {path:'p2pman',component:P2pmanComponent},
+  {path:'p2p8678',component:P2pComponent},
+  {path:'p2pman8678',component:P2pmanComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];

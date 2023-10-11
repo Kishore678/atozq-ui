@@ -23,8 +23,8 @@
   }
   .filter b{ color: #00bcd4}
   .filename{
-    color: #00bcd4;
-    font-weight: bold;
+    color:#00bcd4;
+    font-weight: 500;
   }
 
   .mat-select, :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select

@@ -1,38 +1,40 @@
 <hr class="hrStyle">
 <div class="bg-layer">
-    <div class="filter">
-        <section class="row home-toolbar3"> 
-            <div class="example-button-row">         
-              <mat-button-toggle-group [(ngModel)]="toggleSelected" (change)="changeInToggleGroup(cityGroup.value)" #cityGroup="matButtonToggleGroup">
-                <!-- <mat-button-toggle value="all" #toggleVal>
-                  <mat-icon svgIcon="star-alliance"></mat-icon>
-                  <span class="toggle-button-menutext">All</span>
-                </mat-button-toggle> -->
-                   <mat-button-toggle value="penny" #toggleVal>
-                  <mat-icon svgIcon="best-achievement"></mat-icon>
-                  <span class="toggle-button-menutext">Penny</span>
-                </mat-button-toggle>
-                <mat-button-toggle value="small" #toggleVal>
-                  <mat-icon svgIcon="business-insurance"></mat-icon>
-                  <span class="toggle-button-menutext">Small</span>
-                </mat-button-toggle>      
-                <mat-button-toggle value="mid" #toggleVal>
-                  <mat-icon svgIcon="money-bag"></mat-icon>
-                  <span class="toggle-button-menutext">Mid</span>
-                </mat-button-toggle>      
-                <mat-button-toggle value="large" #toggleVal>
-                    <mat-icon svgIcon="money-box"></mat-icon>
-                    <span class="toggle-button-menutext">Large</span>
-                  </mat-button-toggle>    
-              </mat-button-toggle-group> 
-            </div>
-          </section>
+    <div class="filter">     
           <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
-            <label class="filename"><b>BSE:&nbsp;</b></label><span>EQ</span>
+            <label class="filename"><b>SEGMENT:&nbsp;</b></label>
+            <span>Equity</span>
         </div>    
         <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
-            <label class="filename"><b>Date:&nbsp;</b></label><span>{{fileName}}</span>
+            <label class="filename"><b>DATE:&nbsp;</b></label><span>{{fileName}}</span>
         </div>
+        <div style="clear:both;"></div>
+        <section class="row home-toolbar3"> 
+          <div class="example-button-row">         
+            <mat-button-toggle-group [(ngModel)]="toggleSelected" (change)="changeInToggleGroup(cityGroup.value)" #cityGroup="matButtonToggleGroup">
+              <!-- <mat-button-toggle value="all" #toggleVal>
+                <mat-icon svgIcon="star-alliance"></mat-icon>
+                <span class="toggle-button-menutext">All</span>
+              </mat-button-toggle> -->
+                 <mat-button-toggle value="penny" #toggleVal>
+                <mat-icon svgIcon="best-achievement"></mat-icon>
+                <span class="toggle-button-menutext">Penny</span>
+              </mat-button-toggle>
+              <mat-button-toggle value="small" #toggleVal>
+                <mat-icon svgIcon="business-insurance"></mat-icon>
+                <span class="toggle-button-menutext">Small</span>
+              </mat-button-toggle>      
+              <mat-button-toggle value="mid" #toggleVal>
+                <mat-icon svgIcon="money-bag"></mat-icon>
+                <span class="toggle-button-menutext">Mid</span>
+              </mat-button-toggle>      
+              <mat-button-toggle value="large" #toggleVal>
+                  <mat-icon svgIcon="money-box"></mat-icon>
+                  <span class="toggle-button-menutext">Large</span>
+                </mat-button-toggle>    
+            </mat-button-toggle-group> 
+          </div>
+        </section>
         </div>
 
     <div style="clear:both;"></div>
