@@ -52,7 +52,7 @@ import { FundamentalsComponent } from './components/fundamentals/fundamentals.co
 import { UtcConverterService } from './pipes/utc-converter.service';
 import { LearnComponent } from './components/learn/learn.component';
 import { ValuepickrComponent } from './components/valuepickr/valuepickr.component';
-import { P2pComponent } from './components/p2p/p2p.component';
+import { P2p8678Component } from './components/p2p/p2p8678.component';
 import { P2pService } from './services/p2p.service';
 import { P2pmanComponent } from './components/p2pman/p2pman.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
@@ -60,8 +60,13 @@ import { CibilMasterFormDialogComponent } from './components/cibil-master-form-d
 import { InvestSettingsRulesFormDialogComponent } from './components/invest-settings-rules-form-dialog/invest-settings-rules-form-dialog.component';
 import { SmtpSettingsFormDialogComponent } from './components/smtp-settings-form-dialog/smtp-settings-form-dialog.component';
 import { ServiceSettingsFormDialogComponent } from './components/service-settings-form-dialog/service-settings-form-dialog.component';
+import { FdComponent } from './components/fd/fd.component';
+import { MfComponent } from './components/mf/mf.component';
+import { SgbComponent } from './components/sgb/sgb.component';
+import { P2pComponent } from './components/p2p/p2p.component';
+import { RefComponent } from './components/ref/ref.component';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2pComponent, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent, InvestSettingsRulesFormDialogComponent, SmtpSettingsFormDialogComponent, ServiceSettingsFormDialogComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2p8678Component, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent, InvestSettingsRulesFormDialogComponent, SmtpSettingsFormDialogComponent, ServiceSettingsFormDialogComponent, FdComponent, MfComponent, SgbComponent, P2pComponent, RefComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,

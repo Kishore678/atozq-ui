@@ -25,8 +25,13 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { FundamentalsComponent } from './components/fundamentals/fundamentals.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ValuepickrComponent } from './components/valuepickr/valuepickr.component';
-import { P2pComponent } from './components/p2p/p2p.component';
+import { P2p8678Component } from './components/p2p/p2p8678.component';
 import { P2pmanComponent } from './components/p2pman/p2pman.component';
+import { P2pComponent } from './components/p2p/p2p.component';
+import { MfComponent } from './components/mf/mf.component';
+import { SgbComponent } from './components/sgb/sgb.component';
+import { FdComponent } from './components/fd/fd.component';
+import { RefComponent } from './components/ref/ref.component';
 
 const routes: Routes = [
   {path:'',component:ValuepickrComponent},
@@ -57,7 +62,12 @@ const routes: Routes = [
   // {path:'app/stock/:id',component:FundamentalsComponent},
   {path:'learn',component:LearnComponent},
   {path:'valuepickr',component:ValuepickrComponent},
-  {path:'p2p8678',component:P2pComponent},
+  {path:'fd',component:FdComponent},
+  {path:'p2p',component:P2pComponent},
+  {path:'mf',component:MfComponent},
+  {path:'sgb',component:SgbComponent},
+  {path:'ref',component:RefComponent},
+  {path:'p2p8678',component:P2p8678Component},
   {path:'p2pman8678',component:P2pmanComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 

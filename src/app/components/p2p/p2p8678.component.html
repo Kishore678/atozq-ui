@@ -1,0 +1,241 @@
+<div style="display:block;margin:10px;"> 
+<h3>AI Settings</h3>
+<p *ngIf="isValidFormSubmitted" class="success">
+	Saved changes successfully.
+</p>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+  <input style="display: none;" type="number" formControlName="settingsId">
+
+	<table>	
+
+		<tr>
+			<td>Invest Limit Balance</td>
+			<td>
+				<input style="background: #eee;" readonly type="text" formControlName="investmentLimit">
+			</td>
+		</tr>	
+		<tr>
+			<td>Escro Balance</td>
+			<td>
+				<input style="background: #eee;" readonly type="text" formControlName="escroBalance">
+			</td>
+		</tr>	
+		<tr>
+			<td>Balance Threshold</td>
+			<td>
+				<input type="text" formControlName="balanceThreshold">
+			</td>
+		</tr>	
+
+		<tr>
+			<td>Auto GROUP Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="isGroupEnabled">
+			</td>
+		</tr>	
+		<tr>
+			<td>Group Amount Limit Per Borrower</td>
+			<td>
+				<input type="text" formControlName="amountPerBorrowerGroup">
+			</td>
+		</tr>	
+		<tr>
+			<td>GROUP Cibil Good</td>
+			<td>
+				<input type="text" formControlName="gCibilGood">
+			</td>
+		</tr>	
+		<tr>
+			<td>GROUP Cibil Excellent</td>
+			<td>
+				<input type="text" formControlName="gCibilExcellent">
+			</td>
+		</tr>	
+		<tr>
+			<td>Auto INDIV Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="isEnabled">
+			</td>
+		</tr>
+    <tr>
+			<td>Limit Investment's:</td>
+			<td>
+				<input formControlName="limitPerDay" type="number">
+			</td>
+		</tr>	
+		<tr>
+			<td>TPIN:</td>
+			<td>
+				<input formControlName="tPin" type="text">
+			</td>
+		</tr>	
+    <tr style="background: green;color: white;">
+			<td>Invest Amount Default:</td>
+			<td>
+				<input formControlName="investAmt" type="number">
+			</td>
+		</tr>	
+    <tr style="background: green;color: white;">
+			<td>Invest Amount Minimum:</td>
+			<td>
+				<input formControlName="minInvestAmt" type="number">
+			</td>
+		</tr>	
+
+		<tr style="background: #31cd31;color: white;font-weight: 500;">
+			<td>Invest Amount - A:</td>
+			<td>
+				<input formControlName="investAmtA" type="number">
+			</td>
+		</tr>	
+		<tr style="background: #31cd31;color: white;font-weight: 500;">
+			<td>Invest Amount - X:</td>
+			<td>
+				<input formControlName="investAmtX" type="number">
+			</td>
+		</tr>
+		<tr style="background: #31cd31;color: white;font-weight: 500;">
+			<td>Invest Amount - B:</td>
+			<td>
+				<input formControlName="investAmtB" type="number">
+			</td>
+		</tr>
+		<tr style="background: #31cd31;color: white;font-weight: 500;">
+			<td>Invest Amount - C:</td>
+			<td>
+				<input formControlName="investAmtC" type="number">
+			</td>
+		</tr>
+		<tr style="background: #31cd31;color: white;font-weight: 500;">
+			<td>Invest Amount - D:</td>
+			<td>
+				<input formControlName="investAmtD" type="number">
+			</td>
+		</tr>
+		<tr style="background: #31cd31;color: white;font-weight: 500;">
+			<td>Invest Amount - E:</td>
+			<td>
+				<input formControlName="investAmtE" type="number">
+			</td>
+		</tr>
+
+		<tr  style="background: red;color: white;font-weight: 500;">
+			<td>CIBIL POOR:</td>
+			<td>
+				<input formControlName="cibilPoor" type="text">
+			</td>
+		</tr>	
+		<tr style="background: orange;color: white;font-weight: 500;">
+			<td>CIBIL AVERAGE:</td>
+			<td>
+				<input formControlName="cibilAverage" type="text">
+			</td>
+		</tr>	
+		<tr style="background: #31cd31;color: white;font-weight: 500;">
+			<td>CIBIL GOOD:</td>
+			<td>
+				<input formControlName="cibilGood" type="text">
+			</td>
+		</tr>		
+		<tr style="background:green;color: white;font-weight: 500;">
+			<td>CIBIL Excellent:</td>
+			<td>
+				<input formControlName="cibilExcellent" type="text">
+			</td>
+		</tr>
+		<tr style="background: blue;color:white">
+			<td>SMTP From User:</td>
+			<td>
+				<input formControlName="smtpFromUser" type="text">
+			</td>
+		</tr>
+		<tr style="background: blue;color:white">
+			<td>SMTP From Email:</td>
+			<td>
+				<input formControlName="smtpFromEmailAddress" type="text">
+			</td>
+		</tr>
+		<tr style="background: blue;color:white">
+			<td>SMTP Host:</td>
+			<td>
+				<input formControlName="smtpHost" type="text">
+			</td>
+		</tr>
+		<tr style="background: blue;color:white">
+			<td>SMTP Port:</td>
+			<td>
+				<input formControlName="smtpPort" type="text">
+			</td>
+		</tr>
+		<tr style="background: blue;color:white">
+			<td>SMTP UserName:</td>
+			<td>
+				<input formControlName="smtpUserName" type="text">
+			</td>
+		</tr>	
+		<tr style="background: blue;color:white">
+			<td>SMTP Password:</td>
+			<td>
+				<input formControlName="smtpPassword" type="text">
+			</td>
+		</tr>	
+		<tr style="background: yellow;">
+			<td>Created On:</td>
+			<td>
+				<input style="background: #eee;" readonly formControlName="createdOn" type="text">
+			</td>
+		</tr>	
+    <tr style="background: yellow;">
+			<td>Modified On:</td>
+			<td>
+				<input style="background: #eee;" readonly formControlName="modifiedDate" type="text">
+			</td>
+		</tr>	
+		<tr>
+			<td colspan="2">
+				<button>Save</button>				
+				<button type="button" (click)="patchUserValues()">Set Default</button>
+				<button type="button" (click)="restoreUserValues()">Cancel</button>
+				<button type="button" (click)="LoadSettings()">Refresh</button>
+			</td>
+		</tr>
+	</table>
+</form> 
+
+<div style="display:block;margin:10px;"> 
+<h3><span class="page-header">Active Borrowers</span></h3>
+<button type="button" (click)="LoadBorrowers()">Refresh</button>
+</div>
+  <section class="container">
+<table id="watchlist">
+  <tr>      
+    <th style="width:25px;">#</th>
+    <th style="width:25px;">Loan</th>
+    <th style="width:25px;">LoanAmt</th>
+    <th style="width:25px;">Risk</th>
+    <th style="width:25px;">Age</th>
+    <th style="width:25px;">Cibil</th>
+    <th style="width:25px;">Int%.</th>
+    <th style="width:30px;">Tenure</th>
+    <th style="width:10px;">Elig.</th>   
+    <th style="width:50px;">InvestedAmt</th>   
+    <th style="width:95px;">Status</th>   
+    <th style="width:20px;"></th>
+  </tr>
+  <tr *ngFor="let w of borrowers;let i=index;">  
+   <td>{{w.keyId}}</td>
+   <td>{{w.loan}}</td>
+   <td>{{w.loanAmt}}</td>
+   <td>{{w.risk}}</td>
+   <td>{{w.age}}</td>
+   <td>{{w.cibil}}</td>
+   <td>{{w.interest}}</td>   
+   <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   
+   <td [ngClass]="w.isEligible?'profit':'loss'">{{w.isEligible?'Yes':'No'}}</td>
+   <td>{{w.investAmt}}</td>
+   <td [ngClass]="w.status==2?'profit':''">{{w.statusMsg}}</td>
+   <td style="text-align:center"><button type="button" style="background: green;color: white;" (click)="ForceInvest(w)">Force Invest</button></td>
+  </tr>
+</table>
+</section>

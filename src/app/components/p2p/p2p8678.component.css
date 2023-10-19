@@ -1,0 +1,44 @@
+table {
+  border-collapse: collapse;
+  margin-left: 10px;
+}
+table, th, td {
+  border: 1px solid black;
+}
+.error {
+  color: red;
+}
+.success {
+  color: green;
+} 
+
+button{
+  margin: 5px;
+}
+
+table#watchlist{
+  width:100%;font-weight: 500;
+  background: #feffff;
+}
+#watchlist tr{
+  text-align: center;
+  color: #297983;
+  font-weight: 500;
+}
+  #watchlist .mat-icon{
+    color: #db2c2c;cursor: pointer;vertical-align: middle;
+  }
+  #watchlist .mat-icon:hover
+  {
+    color: #f14343;
+  }
+
+  .profit
+  {
+    color: #070!important;
+  }
+
+  .loss
+  {
+    color: #c00!important;   
+  }
