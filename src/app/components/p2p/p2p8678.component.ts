@@ -47,7 +47,7 @@ export class P2p8678Component implements OnInit {
       modifiedDate: new Date(),
       isGroupEnabled:false,
       amountPerBorrowerGroup:0,
-      gCibilExcellent:0,
+      cibilBest:0,
       gCibilGood:0,
       investmentLimit:0,
      escroBalance:0,
@@ -90,7 +90,7 @@ this.userForm.patchValue({
   modifiedDate: this.settings[0].modifiedDate,
   isGroupEnabled:this.settings[0].isGroupEnabled,
   amountPerBorrowerGroup:this.settings[0].amountPerBorrowerGroup,
-  gCibilExcellent:this.settings[0].gCibilExcellent,
+  cibilBest:this.settings[0].cibilBest,
   gCibilGood:this.settings[0].gCibilGood,
   investmentLimit:this.settings[0].investmentLimit,
      escroBalance:this.settings[0].escroBalance,
@@ -191,8 +191,8 @@ get amountPerBorrowerGroup() {
 }
 
 
-get gCibilExcellent() {
-  return this.userForm.get('gCibilExcellent');
+get cibilBest() {
+  return this.userForm.get('cibilBest');
 }
 
 
@@ -246,7 +246,7 @@ get balanceThreshold() {
     model.modifiedDate = this.userForm.get('modifiedDate')?.value;    
     model.isGroupEnabled = this.userForm.get('isGroupEnabled')?.value;
     model.amountPerBorrowerGroup = this.userForm.get('amountPerBorrowerGroup')?.value;
-    model.gCibilExcellent = this.userForm.get('gCibilExcellent')?.value;
+    model.cibilBest = this.userForm.get('cibilBest')?.value;
     model.gCibilGood = this.userForm.get('gCibilGood')?.value;
     model.investmentLimit = this.userForm.get('investmentLimit')?.value;
     model.escroBalance = this.userForm.get('escroBalance')?.value;
@@ -282,7 +282,7 @@ this.userForm.patchValue({
   modifiedDate: this.settings[0].modifiedDate,
   isGroupEnabled: this.settings[0].isGroupEnabled,
   amountPerBorrowerGroup: this.settings[0].amountPerBorrowerGroup,
-  gCibilExcellent: this.settings[0].gCibilExcellent,
+  cibilBest: this.settings[0].cibilBest,
   gCibilGood: this.settings[0].gCibilGood,
   investmentLimit:this.settings[0].investmentLimit,
   escroBalance:this.settings[0].escroBalance,
@@ -321,7 +321,7 @@ this.userForm.patchValue({
       smtpPassword: this.settings[0].smtpPassword, 
       isGroupEnabled: this.settings[0].isGroupEnabled, 
       amountPerBorrowerGroup: this.settings[0].amountPerBorrowerGroup, 
-      gCibilExcellent: this.settings[0].gCibilExcellent, 
+      cibilBest: this.settings[0].cibilBest, 
       gCibilGood: this.settings[0].gCibilGood, 
       investmentLimit:this.settings[0].investmentLimit,
       escroBalance:this.settings[0].escroBalance,
@@ -355,7 +355,7 @@ this.userForm.patchValue({
       isGroupEnabled:true,
       amountPerBorrowerGroup:500,
       gCibilGood:650,
-      gCibilExcellent:750,
+      cibilBest:750,
       investmentLimit:10000,
       escroBalance:10000,
       balanceThreshold:10000		
