@@ -4,7 +4,7 @@ export class ManageBorrowers {
         loanAmt!:string;
         investAmt!:number;
         isGroup!:boolean;
-        risk!:boolean;
+        risk!:string;
         age!:string;
         cibil!:number;
         interest!:string;

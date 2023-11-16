@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { P2PModel } from '../models/p2-pmodel.model';
 import { environment } from 'src/environments/environment';
 import { ActiveBorrowers } from '../models/active-borrowers.model';
@@ -31,16 +31,21 @@ export class P2pService {
     return this.http.get<ManageBorrowers[]>(`${baseUrl}/api/ManageBorrowers`);
   }
 
-  DeleteBorrower(id:number,isGroup:boolean):Observable<ManageBorrowers[]>
+  DeleteBorrower(id:number,type:string):Observable<ManageBorrowers[]>
   {
-    if(isGroup)
+    if(type=='I2I-G')
     {
       return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/GroupLoans/${id}`);         
     }
-    else
+    else if(type=='LC-M')
+    {
+      return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/LCMemberLoan/${id}`);         
+    }
+    else if(type=='I2I-M')
     {
       return this.http.delete<ManageBorrowers[]>(`${baseUrl}/api/ManageBorrowers/${id}`);     
     }
+    return of([]);
   }
 
 }
