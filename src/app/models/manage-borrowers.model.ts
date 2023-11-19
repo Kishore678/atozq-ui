@@ -13,4 +13,5 @@ export class ManageBorrowers {
         isEligible!:boolean;
         status!:number;
         statusMsg!:string;
+        createdDate!:Date;
 }

@@ -210,8 +210,9 @@
 </div>
   <section class="container">
 <table id="watchlist">
-  <tr>      
-    <th style="width:25px;">#</th>
+  <tr>   
+	<th style="width:50px;">Date</th>
+    <th style="width:25px;">ID</th>
     <th style="width:25px;">Loan</th>
     <th style="width:25px;">LoanAmt</th>
     <th style="width:25px;">Risk</th>
@@ -225,6 +226,7 @@
     <th style="width:20px;"></th>
   </tr>
   <tr *ngFor="let w of borrowers;let i=index;">  
+   <td>{{w.createdDate|date:'short'}}</td>
    <td>{{w.keyId}}</td>
    <td>{{w.loan}}</td>
    <td>{{w.loanAmt}}</td>
