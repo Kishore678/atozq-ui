@@ -389,9 +389,9 @@ ForceInvest(w:ManageBorrowers)
     cancelButtonText: 'No, let me think',
   }).then((result) => {
     if (result.value) {      
-      this.p2pService.DeleteBorrower(w.keyId,w.risk=='LendenClub'?'LC-M':(w.isGroup?'I2I-G':'I2I-M')).subscribe({
+      this.p2pService.DeleteBorrower(w.keyId,w.risk.startsWith('LC-')?'LC-M':(w.isGroup?'I2I-G':'I2I-M')).subscribe({
         next:(event)=>{
-          this.borrowers = event;
+          this.LoadBorrowers();
             Swal.fire('Force Invested', confirmMessage,'success');                        
         },
         error:(err)=>{console.log(err);
