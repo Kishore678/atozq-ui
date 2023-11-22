@@ -51,7 +51,15 @@ export class P2p8678Component implements OnInit {
       gCibilGood:0,
       investmentLimit:0,
      escroBalance:0,
-     balanceThreshold:0
+     balanceThreshold:0,
+     groupLoanI2IFundingEnabled:false,
+     memberLoanI2IFundingEnabled:false,	
+     memberLoanLendenClubEnabled:false,	
+     withdrawaI2IFundingEnabled:false,	
+     withdrawaLendenClubEnabled:false,	
+     i2IWithdrawAmt:0,	
+     lCWithdrawAmt:0,	
+     lendenEscroBalance:0,
     });
 
   	
@@ -94,7 +102,15 @@ this.userForm.patchValue({
   gCibilGood:this.settings[0].gCibilGood,
   investmentLimit:this.settings[0].investmentLimit,
      escroBalance:this.settings[0].escroBalance,
-     balanceThreshold:this.settings[0].balanceThreshold
+     balanceThreshold:this.settings[0].balanceThreshold,
+     groupLoanI2IFundingEnabled:this.settings[0].groupLoanI2IFundingEnabled,
+     memberLoanI2IFundingEnabled:this.settings[0].memberLoanI2IFundingEnabled,	
+     memberLoanLendenClubEnabled:this.settings[0].memberLoanLendenClubEnabled,	
+     withdrawaI2IFundingEnabled:this.settings[0].withdrawaI2IFundingEnabled,	
+     withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
+     i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
+     lCWithdrawAmt:this.settings[0].lCWithdrawAmt,	
+     lendenEscroBalance:this.settings[0].lendenEscroBalance
 });
 
       },
@@ -209,7 +225,40 @@ get escroBalance() {
 }
 
 get balanceThreshold() {
-  return this.userForm.get('gCibilGood');
+  return this.userForm.get('balanceThreshold');
+}
+
+get groupLoanI2IFundingEnabled()
+{
+  return this.userForm.get('groupLoanI2IFundingEnabled');
+}
+get memberLoanI2IFundingEnabled()
+{
+  return this.userForm.get('memberLoanI2IFundingEnabled');
+}	
+get memberLoanLendenClubEnabled()
+{
+  return this.userForm.get('memberLoanLendenClubEnabled');
+}
+get withdrawaI2IFundingEnabled()
+{
+  return this.userForm.get('withdrawaI2IFundingEnabled');
+}	
+get withdrawaLendenClubEnabled()
+{
+  return this.userForm.get('withdrawaLendenClubEnabled');
+}	
+get i2IWithdrawAmt()
+{
+  return this.userForm.get('i2IWithdrawAmt');
+}
+get lCWithdrawAmt()
+{
+  return this.userForm.get('lCWithdrawAmt');
+}	
+get lendenEscroBalance()
+{
+  return this.userForm.get('lendenEscroBalance');
 }
 
 	onFormSubmit() {
@@ -251,6 +300,14 @@ get balanceThreshold() {
     model.investmentLimit = this.userForm.get('investmentLimit')?.value;
     model.escroBalance = this.userForm.get('escroBalance')?.value;
     model.balanceThreshold = this.userForm.get('balanceThreshold')?.value; 
+    model.groupLoanI2IFundingEnabled = this.userForm.get('groupLoanI2IFundingEnabled')?.value;
+    model.memberLoanI2IFundingEnabled = this.userForm.get('memberLoanI2IFundingEnabled')?.value;
+    model.memberLoanLendenClubEnabled = this.userForm.get('memberLoanLendenClubEnabled')?.value;	
+    model.withdrawaI2IFundingEnabled = this.userForm.get('withdrawaI2IFundingEnabled')?.value;	
+    model.withdrawaLendenClubEnabled = this.userForm.get('withdrawaLendenClubEnabled')?.value;
+    model.i2IWithdrawAmt = this.userForm.get('i2IWithdrawAmt')?.value;
+    model.lCWithdrawAmt = this.userForm.get('lCWithdrawAmt')?.value;
+    model.lendenEscroBalance = this.userForm.get('lendenEscroBalance')?.value;
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
@@ -286,7 +343,15 @@ this.userForm.patchValue({
   gCibilGood: this.settings[0].gCibilGood,
   investmentLimit:this.settings[0].investmentLimit,
   escroBalance:this.settings[0].escroBalance,
-  balanceThreshold:this.settings[0].balanceThreshold 
+  balanceThreshold:this.settings[0].balanceThreshold,
+  groupLoanI2IFundingEnabled:this.settings[0].groupLoanI2IFundingEnabled,
+  memberLoanI2IFundingEnabled:this.settings[0].memberLoanI2IFundingEnabled,	
+  memberLoanLendenClubEnabled:this.settings[0].memberLoanLendenClubEnabled,	
+  withdrawaI2IFundingEnabled:this.settings[0].withdrawaI2IFundingEnabled,	
+  withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
+  i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
+  lCWithdrawAmt:this.settings[0].lCWithdrawAmt,	
+  lendenEscroBalance:this.settings[0].lendenEscroBalance
 });
       },
       error:(err)=>{
@@ -325,7 +390,15 @@ this.userForm.patchValue({
       gCibilGood: this.settings[0].gCibilGood, 
       investmentLimit:this.settings[0].investmentLimit,
       escroBalance:this.settings[0].escroBalance,
-      balanceThreshold:this.settings[0].balanceThreshold
+      balanceThreshold:this.settings[0].balanceThreshold,
+      groupLoanI2IFundingEnabled:this.settings[0].groupLoanI2IFundingEnabled,
+      memberLoanI2IFundingEnabled:this.settings[0].memberLoanI2IFundingEnabled,	
+      memberLoanLendenClubEnabled:this.settings[0].memberLoanLendenClubEnabled,	
+      withdrawaI2IFundingEnabled:this.settings[0].withdrawaI2IFundingEnabled,	
+      withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
+      i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
+      lCWithdrawAmt:this.settings[0].lCWithdrawAmt,	
+      lendenEscroBalance:this.settings[0].lendenEscroBalance
     });
 	}
 
@@ -358,7 +431,15 @@ this.userForm.patchValue({
       cibilBest:750,
       investmentLimit:10000,
       escroBalance:10000,
-      balanceThreshold:10000		
+      balanceThreshold:10000,
+      groupLoanI2IFundingEnabled:true,
+      memberLoanI2IFundingEnabled:true,	
+      memberLoanLendenClubEnabled:true,	
+      withdrawaI2IFundingEnabled:true,	
+      withdrawaLendenClubEnabled:true,	
+      i2IWithdrawAmt:10000,	
+      lCWithdrawAmt:10000,	
+      lendenEscroBalance:0		
     });
 	}
 

@@ -31,6 +31,14 @@ export class P2PModel
      investmentLimit!:number;
      escroBalance!:number;
      balanceThreshold!:number;
+     groupLoanI2IFundingEnabled!:boolean;
+     memberLoanI2IFundingEnabled!:boolean;	
+     memberLoanLendenClubEnabled!:boolean;	
+     withdrawaI2IFundingEnabled!:boolean;	
+     withdrawaLendenClubEnabled!:boolean;	
+     i2IWithdrawAmt!:number;	
+     lCWithdrawAmt!:number;	
+     lendenEscroBalance!:number;
 }
 
 
