@@ -5,6 +5,7 @@ import { P2PModel } from '../models/p2-pmodel.model';
 import { environment } from 'src/environments/environment';
 import { ActiveBorrowers } from '../models/active-borrowers.model';
 import { ManageBorrowers } from '../models/manage-borrowers.model';
+import { Withdrawals } from '../models/withdrawals.model';
 
 const baseUrl = environment.onlineUsersApi;
 
@@ -19,6 +20,17 @@ export class P2pService {
   {
     return this.http.get<P2PModel[]>(`${baseUrl}/api/AutoInvestSettings`);
   }
+
+  I2IWithdrawAmtGet():Observable<Withdrawals[]>
+  {
+    return this.http.get<Withdrawals[]>(`${baseUrl}/api/Withdrawals`);
+  }
+
+  I2IWithdrawAmtPut():Observable<Withdrawals[]>
+  {
+    return this.http.put<Withdrawals[]>(`${baseUrl}/api/Withdrawals/0`,{});
+  }
+
 
   SaveSettings(id:number,settings:P2PModel):Observable<P2PModel[]>
   {

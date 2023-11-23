@@ -4,6 +4,7 @@ import { filter } from 'rxjs';
 import { ActiveBorrowers } from 'src/app/models/active-borrowers.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
+import { Withdrawals } from 'src/app/models/withdrawals.model';
 import { P2pService } from 'src/app/services/p2p.service';
 import Swal from 'sweetalert2';
 
@@ -119,8 +120,9 @@ this.userForm.patchValue({
     });	
   }
   ngAfterViewInit()
-  {   
+  {  
     this.LoadSettings();
+    this.LoadI2IWithdrawAmt();
     this.LoadBorrowers();  
   }
 
@@ -446,7 +448,45 @@ this.userForm.patchValue({
 
 
   isEligibleOnly!:boolean;
+withdras!:Withdrawals[];
 
+LoadI2IWithdrawAmt()
+{
+  this.p2pService.I2IWithdrawAmtGet().subscribe({
+    next:(event)=>{
+       this.withdras = event;                          
+    },
+    error:(err)=>{console.log(err);
+      Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
+    }
+  });
+}
+
+  RequestI2IWithdrawAmt(amt:number)
+  {
+    var confirmMessage =  `Are you sure want to withdraw Rs.${amt}?`;
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'Force Invest '+ confirmMessage,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, go ahead.',
+    cancelButtonText: 'No, let me think',
+  }).then((result) => {
+    if (result.value) {      
+      this.p2pService.I2IWithdrawAmtPut().subscribe({
+        next:(event)=>{
+           this.LoadI2IWithdrawAmt();
+            Swal.fire('Withdraw Requested', confirmMessage,'success');                        
+        },
+        error:(err)=>{console.log(err);
+          Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
+        }
+      });
+      
+    } 
+  });
+  }
   LoadBorrowers()
   {    
     this.p2pService.GetActiveBorrowers().subscribe({
