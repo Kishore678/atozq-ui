@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { filter } from 'rxjs';
 import { ActiveBorrowers } from 'src/app/models/active-borrowers.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
@@ -58,7 +59,7 @@ export class P2p8678Component implements OnInit {
      withdrawaI2IFundingEnabled:false,	
      withdrawaLendenClubEnabled:false,	
      i2IWithdrawAmt:0,	
-     lCWithdrawAmt:0,	
+     lcWithdrawAmt:0,	
      lendenEscroBalance:0,
     });
 
@@ -109,7 +110,7 @@ this.userForm.patchValue({
      withdrawaI2IFundingEnabled:this.settings[0].withdrawaI2IFundingEnabled,	
      withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
      i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
-     lCWithdrawAmt:this.settings[0].lCWithdrawAmt,	
+     lcWithdrawAmt:this.settings[0].lcWithdrawAmt,	
      lendenEscroBalance:this.settings[0].lendenEscroBalance
 });
 
@@ -252,9 +253,9 @@ get i2IWithdrawAmt()
 {
   return this.userForm.get('i2IWithdrawAmt');
 }
-get lCWithdrawAmt()
+get lcWithdrawAmt()
 {
-  return this.userForm.get('lCWithdrawAmt');
+  return this.userForm.get('lcWithdrawAmt');
 }	
 get lendenEscroBalance()
 {
@@ -306,7 +307,7 @@ get lendenEscroBalance()
     model.withdrawaI2IFundingEnabled = this.userForm.get('withdrawaI2IFundingEnabled')?.value;	
     model.withdrawaLendenClubEnabled = this.userForm.get('withdrawaLendenClubEnabled')?.value;
     model.i2IWithdrawAmt = this.userForm.get('i2IWithdrawAmt')?.value;
-    model.lCWithdrawAmt = this.userForm.get('lCWithdrawAmt')?.value;
+    model.lcWithdrawAmt = this.userForm.get('lcWithdrawAmt')?.value;
     model.lendenEscroBalance = this.userForm.get('lendenEscroBalance')?.value;
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
@@ -350,7 +351,7 @@ this.userForm.patchValue({
   withdrawaI2IFundingEnabled:this.settings[0].withdrawaI2IFundingEnabled,	
   withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
   i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
-  lCWithdrawAmt:this.settings[0].lCWithdrawAmt,	
+  lcWithdrawAmt:this.settings[0].lcWithdrawAmt,	
   lendenEscroBalance:this.settings[0].lendenEscroBalance
 });
       },
@@ -397,7 +398,7 @@ this.userForm.patchValue({
       withdrawaI2IFundingEnabled:this.settings[0].withdrawaI2IFundingEnabled,	
       withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
       i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
-      lCWithdrawAmt:this.settings[0].lCWithdrawAmt,	
+      lcWithdrawAmt:this.settings[0].lcWithdrawAmt,	
       lendenEscroBalance:this.settings[0].lendenEscroBalance
     });
 	}
@@ -438,24 +439,40 @@ this.userForm.patchValue({
       withdrawaI2IFundingEnabled:true,	
       withdrawaLendenClubEnabled:true,	
       i2IWithdrawAmt:10000,	
-      lCWithdrawAmt:10000,	
+      lcWithdrawAmt:10000,	
       lendenEscroBalance:0		
     });
 	}
 
 
+  isEligibleOnly!:boolean;
+
   LoadBorrowers()
   {    
     this.p2pService.GetActiveBorrowers().subscribe({
       next:(event)=>{
-        this.borrowers = [];        
+        this.borrowers = [];   
+        if(this.isEligibleOnly)
+        {
+          this.borrowers = event.filter((val,index)=>{
+            return val.isEligible;
+          });        
+        } 
+        else
+        {    
         this.borrowers = event;        
+        }
       },
       error:(err)=>{
         Swal.fire('Something went wrong. Please try again after sometime.');   
         console.log(err);
       }
     });    
+  }
+
+  ApplyFilter()
+  {    
+    this.LoadBorrowers();
   }
 
 ForceInvest(w:ManageBorrowers)

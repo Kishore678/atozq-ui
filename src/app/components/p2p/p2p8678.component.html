@@ -36,7 +36,7 @@
 		<tr>
 			<td>LC WithdrawAmt</td>
 			<td>
-				<input type="text" formControlName="lCWithdrawAmt">
+				<input type="text" formControlName="lcWithdrawAmt">
 			</td>
 		</tr>
 		<tr>
@@ -252,6 +252,7 @@
 <div style="display:block;margin:10px;"> 
 <h3><span class="page-header">Active Borrowers</span></h3>
 <button type="button" (click)="LoadBorrowers()">Refresh</button>
+<label for="eligibleOnly">&nbsp;Show Eligible</label> <input name="eligibleOnly" [(ngModel)]="isEligibleOnly" type="checkbox" (change)="ApplyFilter()"/>
 </div>
   <section class="container">
 <table id="watchlist">

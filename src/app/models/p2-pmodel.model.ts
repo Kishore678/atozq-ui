@@ -37,7 +37,7 @@ export class P2PModel
      withdrawaI2IFundingEnabled!:boolean;	
      withdrawaLendenClubEnabled!:boolean;	
      i2IWithdrawAmt!:number;	
-     lCWithdrawAmt!:number;	
+     lcWithdrawAmt!:number;	
      lendenEscroBalance!:number;
 }
 
