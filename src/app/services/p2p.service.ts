@@ -26,6 +26,11 @@ export class P2pService {
     return this.http.get<Withdrawals[]>(`${baseUrl}/api/Withdrawals`);
   }
 
+  GetI2IAccStatement():Observable<any[]>
+  {
+    return this.http.get<any[]>(`${baseUrl}/api/AccountStatement`);
+  }
+  
   I2IWithdrawAmtPut():Observable<Withdrawals[]>
   {
     return this.http.put<Withdrawals[]>(`${baseUrl}/api/Withdrawals/0`,{});

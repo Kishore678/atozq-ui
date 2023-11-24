@@ -39,6 +39,10 @@ export class P2PModel
      i2IWithdrawAmt!:number;	
      lcWithdrawAmt!:number;	
      lendenEscroBalance!:number;
+     i2IPrincipalBalance!:number;
+     i2ITotalInvested!:number;
+     i2ITotalWithdrawn!:number;
+     i2IMyInvestmentBalance!:number;
 }
 
 

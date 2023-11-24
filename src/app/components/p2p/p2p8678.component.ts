@@ -62,6 +62,10 @@ export class P2p8678Component implements OnInit {
      i2IWithdrawAmt:0,	
      lcWithdrawAmt:0,	
      lendenEscroBalance:0,
+     i2IPrincipalBalance:0,
+     i2ITotalInvested:0,
+     i2ITotalWithdrawn:0,
+     i2IMyInvestmentBalance:0
     });
 
   	
@@ -112,7 +116,11 @@ this.userForm.patchValue({
      withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
      i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
      lcWithdrawAmt:this.settings[0].lcWithdrawAmt,	
-     lendenEscroBalance:this.settings[0].lendenEscroBalance
+     lendenEscroBalance:this.settings[0].lendenEscroBalance,
+     i2IPrincipalBalance:this.settings[0].i2IPrincipalBalance,
+     i2ITotalInvested:this.settings[0].i2ITotalInvested,
+     i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
+     i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance
 });
 
       },
@@ -264,6 +272,27 @@ get lendenEscroBalance()
   return this.userForm.get('lendenEscroBalance');
 }
 
+
+get i2IPrincipalBalance()
+{
+  return this.userForm.get('i2IPrincipalBalance');
+}
+
+get i2ITotalInvested()
+{
+  return this.userForm.get('i2ITotalInvested');
+}
+
+get i2ITotalWithdrawn()
+{
+  return this.userForm.get('i2ITotalWithdrawn');
+}
+
+get i2IMyInvestmentBalance()
+{
+  return this.userForm.get('i2IMyInvestmentBalance');
+}
+
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -311,6 +340,10 @@ get lendenEscroBalance()
     model.i2IWithdrawAmt = this.userForm.get('i2IWithdrawAmt')?.value;
     model.lcWithdrawAmt = this.userForm.get('lcWithdrawAmt')?.value;
     model.lendenEscroBalance = this.userForm.get('lendenEscroBalance')?.value;
+    model.i2IPrincipalBalance = this.userForm.get('i2IPrincipalBalance')?.value;
+    model.i2ITotalInvested = this.userForm.get('i2ITotalInvested')?.value;
+    model.i2ITotalWithdrawn = this.userForm.get('i2ITotalWithdrawn')?.value;
+    model.i2IMyInvestmentBalance = this.userForm.get('i2IMyInvestmentBalance')?.value;
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
@@ -354,7 +387,11 @@ this.userForm.patchValue({
   withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
   i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
   lcWithdrawAmt:this.settings[0].lcWithdrawAmt,	
-  lendenEscroBalance:this.settings[0].lendenEscroBalance
+  lendenEscroBalance:this.settings[0].lendenEscroBalance,
+  i2IPrincipalBalance:this.settings[0].i2IPrincipalBalance,
+  i2ITotalInvested:this.settings[0].i2ITotalInvested,
+  i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
+  i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance
 });
       },
       error:(err)=>{
@@ -401,7 +438,11 @@ this.userForm.patchValue({
       withdrawaLendenClubEnabled:this.settings[0].withdrawaLendenClubEnabled,	
       i2IWithdrawAmt:this.settings[0].i2IWithdrawAmt,	
       lcWithdrawAmt:this.settings[0].lcWithdrawAmt,	
-      lendenEscroBalance:this.settings[0].lendenEscroBalance
+      lendenEscroBalance:this.settings[0].lendenEscroBalance,
+      i2IPrincipalBalance:this.settings[0].i2IPrincipalBalance,
+      i2ITotalInvested:this.settings[0].i2ITotalInvested,
+      i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
+      i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance
     });
 	}
 
@@ -442,7 +483,11 @@ this.userForm.patchValue({
       withdrawaLendenClubEnabled:true,	
       i2IWithdrawAmt:10000,	
       lcWithdrawAmt:10000,	
-      lendenEscroBalance:0		
+      lendenEscroBalance:0,
+      i2IPrincipalBalance:0,
+      i2ITotalInvested:0,
+      i2ITotalWithdrawn:0,
+      i2IMyInvestmentBalance:0		
     });
 	}
 
@@ -450,6 +495,17 @@ this.userForm.patchValue({
   isEligibleOnly!:boolean;
 withdras!:Withdrawals[];
 
+GetI2IAccStatement()
+{
+  this.p2pService.GetI2IAccStatement().subscribe({
+    next:(event)=>{
+      this.LoadSettings();                           
+    },
+    error:(err)=>{console.log(err);
+      Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
+    }
+  });  
+}
 LoadI2IWithdrawAmt()
 {
   this.p2pService.I2IWithdrawAmtGet().subscribe({

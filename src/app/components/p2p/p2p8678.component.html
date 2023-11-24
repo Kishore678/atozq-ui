@@ -16,20 +16,34 @@
 				<button style="background-color: #f44336;color:#ffffff" type="button" (click)="LoadSettings()">Refresh</button>
 			</td>
 			<td>
-
+				<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Get I2I Account Status</button>	
 			</td>
 		</tr>
 		<tr>
-			<td>Invest Limit Balance</td>
+			<td>I2i Investment Limit</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="investmentLimit">
 			</td>
 			<td></td>
 		</tr>	
-		<tr>
+		<tr style="background-color: #04AA6D;color:#ffffff">
+			<td>I2i Principal Holding</td>
+			<td>
+				<input readonly type="text" formControlName="i2IPrincipalBalance">
+			</td>
+			<td></td>
+		</tr>
+		<tr style="background-color: #04AA6D;color:#ffffff">
+			<td>I2i My Investment</td>
+			<td>
+				<input readonly type="text" formControlName="i2IMyInvestmentBalance">
+			</td>
+			<td></td>
+		</tr>
+		<tr style="background-color: #04AA6D;color:#ffffff">
 			<td>I2I Escro Balance</td>
 			<td>
-				<input style="background: #eee;" readonly type="text" formControlName="escroBalance">
+				<input readonly type="text" formControlName="escroBalance">
 			</td>
 			<td></td>
 		</tr>	
