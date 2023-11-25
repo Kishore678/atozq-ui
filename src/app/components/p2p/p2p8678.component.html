@@ -42,14 +42,28 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		<tr style="background-color: #008CBA;color:#ffffff">
-			<td>I2I Total Account Value (A+B)</td>
+			<td>I2I Fund Under Proposal (C)</td>
+			<td>
+				<input readonly type="text" formControlName="i2IAmtProposal">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
+		<tr style="background-color: #008CBA;color:#ffffff">
+			<td>I2I Fund Under Disburse (D)</td>
+			<td>
+				<input readonly type="text" formControlName="i2IAmtDisburse">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
+		<tr style="background-color: #008CBA;color:#ffffff">
+			<td>I2I Total Account Value (A+B+C+D)</td>
 			<td>
 				<input readonly type="text" value="{{totalAccValue}}">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		<tr style="background-color: #008CBA;color:#ffffff">
-			<td>I2i My Investment</td>
+			<td>I2i My Investment (Fund Cr.-Fund Deb.)</td>
 			<td>
 				<input readonly type="text" formControlName="i2IMyInvestmentBalance">
 			</td>
@@ -57,7 +71,7 @@
 		</tr>
 
 		<tr [ngClass]="i2IProfitLoss>0?'i2iProfit':'i2iLoss'">
-			<td>I2i Profit (or) Loss</td>
+			<td>I2i Profit (or) Loss (Acc value - My Investment))</td>
 			<td>
 				<input readonly type="text" value="{{i2IProfitLoss}}">
 			</td>

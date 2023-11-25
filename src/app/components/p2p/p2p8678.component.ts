@@ -68,7 +68,9 @@ export class P2p8678Component implements OnInit {
      i2ITotalInvested:0,
      i2ITotalWithdrawn:0,
      i2IMyInvestmentBalance:0,
-     i2IDiffAmount:0
+     i2IDiffAmount:0,
+     i2IAmtProposal:0,
+     i2IAmtDisburse:0
     });
 
   	
@@ -124,12 +126,20 @@ this.userForm.patchValue({
      i2ITotalInvested:this.settings[0].i2ITotalInvested,
      i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
      i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
-     i2IDiffAmount:this.settings[0].i2IDiffAmount
+     i2IDiffAmount:this.settings[0].i2IDiffAmount,
+     i2IAmtProposal:this.settings[0].i2IAmtProposal,
+     i2IAmtDisburse:this.settings[0].i2IAmtDisburse
 });
 
- this.totalAccValue = this.settings[0].i2IPrincipalBalance + this.settings[0].escroBalance;
+ this.totalAccValue = this.settings[0].i2IPrincipalBalance + 
+                      this.settings[0].escroBalance + 
+                      this.settings[0].i2IAmtProposal +
+                      this.settings[0].i2IAmtDisburse;
+
  this.i2IProfitLoss = this.totalAccValue - this.settings[0].i2IMyInvestmentBalance;
+
 this.isI2IDiffAmount = this.settings[0].i2IDiffAmount>0;
+
       },
       error:(err)=>{ Swal.fire('Something went wrong!');}
     });	
@@ -305,6 +315,16 @@ get i2IDiffAmount()
   return this.userForm.get('i2IDiffAmount');
 }
 
+get i2IAmtProposal()
+{
+  return this.userForm.get('i2IAmtProposal');
+}
+
+get i2IAmtDisburse()
+{
+  return this.userForm.get('i2IAmtDisburse');
+}
+
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -357,6 +377,10 @@ get i2IDiffAmount()
     model.i2ITotalWithdrawn = this.userForm.get('i2ITotalWithdrawn')?.value;
     model.i2IMyInvestmentBalance = this.userForm.get('i2IMyInvestmentBalance')?.value;
     model.i2IDiffAmount = this.userForm.get('i2IDiffAmount')?.value;
+    model.i2IAmtProposal = this.userForm.get('i2IAmtProposal')?.value;
+    model.i2IAmtDisburse = this.userForm.get('i2IAmtDisburse')?.value;
+
+
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
         this.settings = res;
@@ -404,7 +428,9 @@ this.userForm.patchValue({
   i2ITotalInvested:this.settings[0].i2ITotalInvested,
   i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
   i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
-  i2IDiffAmount:this.settings[0].i2IDiffAmount
+  i2IDiffAmount:this.settings[0].i2IDiffAmount,
+  i2IAmtProposal:this.settings[0].i2IAmtProposal,
+  i2IAmtDisburse:this.settings[0].i2IAmtDisburse
 });
       },
       error:(err)=>{
@@ -456,7 +482,9 @@ this.userForm.patchValue({
       i2ITotalInvested:this.settings[0].i2ITotalInvested,
       i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
       i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
-      i2IDiffAmount:this.settings[0].i2IDiffAmount
+      i2IDiffAmount:this.settings[0].i2IDiffAmount,
+      i2IAmtProposal:this.settings[0].i2IAmtProposal,
+      i2IAmtDisburse:this.settings[0].i2IAmtDisburse
     });
 	}
 
@@ -502,7 +530,9 @@ this.userForm.patchValue({
       i2ITotalInvested:0,
       i2ITotalWithdrawn:0,
       i2IMyInvestmentBalance:0,
-      i2IDiffAmount:0		
+      i2IDiffAmount:0,
+      i2IAmtProposal:0,
+      i2IAmtDisburse:0		
     });
 	}
 
