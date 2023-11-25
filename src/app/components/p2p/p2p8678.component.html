@@ -14,9 +14,10 @@
 				<!-- <button type="button" (click)="patchUserValues()">Set Default</button>
 				<button type="button" (click)="restoreUserValues()">Cancel</button> -->
 				<button style="background-color: #f44336;color:#ffffff" type="button" (click)="LoadSettings()">Refresh</button>
+				<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Get I2I Account Status</button>	
+			
 			</td>
 			<td>
-				<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Get I2I Account Status</button>	
 			</td>
 		</tr>
 		<tr>
@@ -26,27 +27,49 @@
 			</td>
 			<td></td>
 		</tr>	
-		<tr style="background-color: #04AA6D;color:#ffffff">
-			<td>I2i Principal Holding</td>
+		<tr style="background-color: #008CBA;color:#ffffff">
+			<td>I2i Principal Holding (A)</td>
 			<td>
 				<input readonly type="text" formControlName="i2IPrincipalBalance">
 			</td>
-			<td></td>
+			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr style="background-color: #04AA6D;color:#ffffff">
+		<tr style="background-color: #008CBA;color:#ffffff">
+			<td>I2I Escro Balance (B)</td>
+			<td>
+				<input readonly type="text" formControlName="escroBalance">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
+		<tr style="background-color: #008CBA;color:#ffffff">
+			<td>I2I Total Account Value (A+B)</td>
+			<td>
+				<input readonly type="text" value="{{totalAccValue}}">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
+		<tr style="background-color: #008CBA;color:#ffffff">
 			<td>I2i My Investment</td>
 			<td>
 				<input readonly type="text" formControlName="i2IMyInvestmentBalance">
 			</td>
-			<td></td>
+			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr style="background-color: #04AA6D;color:#ffffff">
-			<td>I2I Escro Balance</td>
+
+		<tr [ngClass]="i2IProfitLoss>0?'i2iProfit':'i2iLoss'">
+			<td>I2i Profit (or) Loss</td>
 			<td>
-				<input readonly type="text" formControlName="escroBalance">
+				<input readonly type="text" value="{{i2IProfitLoss}}">
 			</td>
-			<td></td>
-		</tr>	
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+		<tr [ngClass]="isI2IDiffAmount?'i2iLoss':'i2iProfit'">
+			<td>I2i Diff Amount</td>
+			<td>
+				<input readonly type="text" formControlName="i2IDiffAmount">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
 		<tr>
 			<td>I2I WithdrawAmt&nbsp;<button style="background-color: #04AA6D;color:#ffffff" (click)="RequestI2IWithdrawAmt(userForm.controls['i2IWithdrawAmt'].value)">Withdraw</button></td>
 			<td>

@@ -124,3 +124,14 @@ table#watchlist{
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.i2iLoss 
+{
+  background-color: #f44336;color:#ffffff;
+}
+
+.i2iProfit {
+  background-color: #04AA6D;
+  color:#ffffff;
+}
+

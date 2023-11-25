@@ -18,7 +18,9 @@ export class P2p8678Component implements OnInit {
 	userForm!: FormGroup;
   settings!:P2PModel[];
   borrowers!:ManageBorrowers[];
-	
+	totalAccValue!:number;
+  i2IProfitLoss!:number;
+  isI2IDiffAmount!:boolean;
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
 
@@ -65,7 +67,8 @@ export class P2p8678Component implements OnInit {
      i2IPrincipalBalance:0,
      i2ITotalInvested:0,
      i2ITotalWithdrawn:0,
-     i2IMyInvestmentBalance:0
+     i2IMyInvestmentBalance:0,
+     i2IDiffAmount:0
     });
 
   	
@@ -120,9 +123,13 @@ this.userForm.patchValue({
      i2IPrincipalBalance:this.settings[0].i2IPrincipalBalance,
      i2ITotalInvested:this.settings[0].i2ITotalInvested,
      i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
-     i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance
+     i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
+     i2IDiffAmount:this.settings[0].i2IDiffAmount
 });
 
+ this.totalAccValue = this.settings[0].i2IPrincipalBalance + this.settings[0].escroBalance;
+ this.i2IProfitLoss = this.totalAccValue - this.settings[0].i2IMyInvestmentBalance;
+this.isI2IDiffAmount = this.settings[0].i2IDiffAmount>0;
       },
       error:(err)=>{ Swal.fire('Something went wrong!');}
     });	
@@ -278,6 +285,7 @@ get i2IPrincipalBalance()
   return this.userForm.get('i2IPrincipalBalance');
 }
 
+
 get i2ITotalInvested()
 {
   return this.userForm.get('i2ITotalInvested');
@@ -291,6 +299,10 @@ get i2ITotalWithdrawn()
 get i2IMyInvestmentBalance()
 {
   return this.userForm.get('i2IMyInvestmentBalance');
+}
+get i2IDiffAmount()
+{
+  return this.userForm.get('i2IDiffAmount');
 }
 
 	onFormSubmit() {
@@ -344,7 +356,7 @@ get i2IMyInvestmentBalance()
     model.i2ITotalInvested = this.userForm.get('i2ITotalInvested')?.value;
     model.i2ITotalWithdrawn = this.userForm.get('i2ITotalWithdrawn')?.value;
     model.i2IMyInvestmentBalance = this.userForm.get('i2IMyInvestmentBalance')?.value;
-
+    model.i2IDiffAmount = this.userForm.get('i2IDiffAmount')?.value;
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
         this.settings = res;
@@ -391,7 +403,8 @@ this.userForm.patchValue({
   i2IPrincipalBalance:this.settings[0].i2IPrincipalBalance,
   i2ITotalInvested:this.settings[0].i2ITotalInvested,
   i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
-  i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance
+  i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
+  i2IDiffAmount:this.settings[0].i2IDiffAmount
 });
       },
       error:(err)=>{
@@ -442,7 +455,8 @@ this.userForm.patchValue({
       i2IPrincipalBalance:this.settings[0].i2IPrincipalBalance,
       i2ITotalInvested:this.settings[0].i2ITotalInvested,
       i2ITotalWithdrawn:this.settings[0].i2ITotalWithdrawn,
-      i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance
+      i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
+      i2IDiffAmount:this.settings[0].i2IDiffAmount
     });
 	}
 
@@ -487,7 +501,8 @@ this.userForm.patchValue({
       i2IPrincipalBalance:0,
       i2ITotalInvested:0,
       i2ITotalWithdrawn:0,
-      i2IMyInvestmentBalance:0		
+      i2IMyInvestmentBalance:0,
+      i2IDiffAmount:0		
     });
 	}
 

@@ -43,6 +43,7 @@ export class P2PModel
      i2ITotalInvested!:number;
      i2ITotalWithdrawn!:number;
      i2IMyInvestmentBalance!:number;
+     i2IDiffAmount!:number;
 }
 
 
