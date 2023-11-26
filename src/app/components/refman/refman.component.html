@@ -1,5 +1,33 @@
 
-<ul *ngFor="let r of refmanList">
-<li>{{r.title}}</li>
-</ul>
-<app-refman-editor (addRef)="AddRef($event)"></app-refman-editor>
+<div class="container">
+    <div class="headerDiv">
+        <h2>Manage Refferals</h2>  
+    </div>
+    <div class="floatedDiv">
+        <app-refman-editor [status]="MyStatus" (addRef)="AddRef($event)"></app-refman-editor>
+    </div>
+    <div class="floatedDiv">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>     
+                <th>Status</th>
+                <th>Order</th>
+                <th>Action</th>
+            </tr>
+        <tr *ngFor="let r of refmanList">
+        <td>{{r.referralWinWinid}}</td>
+        <td>{{r.title}}</td>
+        <td>{{r.isActive?'Active':'Not Active'}}</td>
+        <td>{{r.orderNo}}</td>
+        <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
+        </tr>
+        </table>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+
+
+

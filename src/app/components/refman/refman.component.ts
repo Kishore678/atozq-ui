@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./refman.component.css']
 })
 export class RefmanComponent implements OnInit {
-  
+  MyStatus!:boolean;
   refmanList!:Refman[];
 
   constructor(private refmanService:RefmanService) { }
@@ -23,6 +23,7 @@ export class RefmanComponent implements OnInit {
     this.refmanService.GetAll().subscribe({
       next:(value)=>{
        this.refmanList = value;
+       this.MyStatus=true;
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 
@@ -31,10 +32,11 @@ export class RefmanComponent implements OnInit {
   }
 
   AddRef(refman:Refman)
-  {    
+  { 
     this.refmanService.Add(refman).subscribe({
       next:(value)=>{
        this.refmanList.push(value);
+       return true;
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 

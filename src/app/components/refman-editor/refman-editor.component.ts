@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Refman } from 'src/app/models/refman.model';
 import Swal from 'sweetalert2';
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class RefmanEditorComponent implements OnInit {
   private refMan: Refman = new Refman();
   constructor() { }
-
+  @Input() status:boolean=false;
   @Output() addRef = new EventEmitter<Refman>();
 
   ngOnInit(): void {
@@ -23,8 +23,12 @@ export class RefmanEditorComponent implements OnInit {
     else
     {
       this.addRef.emit(new Refman(this.refmanForm.value));
-      
+
+      if(this.status)
+      {       
     Swal.fire(this.refmanForm.get('title')?.value+'\nSubmited successfully.');
+    this.refmanForm.reset();
+      }
     }
   }
   refmanForm = new FormGroup({    
