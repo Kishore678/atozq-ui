@@ -35,6 +35,6 @@ export class RefmanService {
 
   Delete(id:number):Observable<Refman>
   {
-    return this.http.delete<Refman>(`${apiBaseUrl}/api/ReferralWinWin/${id}`);
+    return this.http.delete<Refman>(`${apiBaseUrl}/api/ReferralWinWin/${id}?referralwinwinid=${id}`);
   }
 }

@@ -4,7 +4,7 @@
         <h2>Manage Refferals</h2>  
     </div>
     <div class="floatedDiv">
-        <app-refman-editor [status]="MyStatus" (addRef)="AddRef($event)"></app-refman-editor>
+        <app-refman-editor (addRef)="AddRef($event)"></app-refman-editor>
     </div>
     <div class="floatedDiv">
         <table>
@@ -20,7 +20,7 @@
         <td>{{r.title}}</td>
         <td>{{r.isActive?'Active':'Not Active'}}</td>
         <td>{{r.orderNo}}</td>
-        <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
+        <td><button class="edit">Edit</button><button class="delete" (click)="RemoveRef(r)">Delete</button></td>
         </tr>
         </table>
     </div>

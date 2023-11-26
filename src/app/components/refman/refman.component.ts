@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Refman } from 'src/app/models/refman.model';
 import { RefmanService } from 'src/app/services/refman.service';
 import Swal from 'sweetalert2';
+import { RefmanEditorComponent } from '../refman-editor/refman-editor.component';
 
 @Component({
   selector: 'app-refman',
@@ -9,7 +10,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./refman.component.css']
 })
 export class RefmanComponent implements OnInit {
-  MyStatus!:boolean;
+
+   @ViewChild(RefmanEditorComponent) child!:RefmanEditorComponent;
+
   refmanList!:Refman[];
 
   constructor(private refmanService:RefmanService) { }
@@ -22,8 +25,7 @@ export class RefmanComponent implements OnInit {
   {
     this.refmanService.GetAll().subscribe({
       next:(value)=>{
-       this.refmanList = value;
-       this.MyStatus=true;
+       this.refmanList = value;      
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 
@@ -33,10 +35,12 @@ export class RefmanComponent implements OnInit {
 
   AddRef(refman:Refman)
   { 
+  
     this.refmanService.Add(refman).subscribe({
       next:(value)=>{
+        this.child.refmanForm.reset();
        this.refmanList.push(value);
-       return true;
+      Swal.fire('Successfuly submitted.'); 
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 
@@ -44,18 +48,30 @@ export class RefmanComponent implements OnInit {
     });
   }
 
-  RemoveRef(id:number)
+  RemoveRef(refman:Refman)
   {
-    this.refmanService.Delete(id).subscribe({
+    var confirmMessage =  `Delete ${refman.title}`;
+    Swal.fire({
+      title: 'Are you sure?',
+      text: confirmMessage,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, go ahead.',
+      cancelButtonText: 'No, let me think',
+    }).then((result) => {
+      if (result.value) {  
+
+    this.refmanService.Delete(refman.referralWinWinid).subscribe({
       next:(value)=>{
        this.refmanList = this.refmanList.filter((val,index,arr)=>{
-        return val.referralWinWinid!=id;
+        return val.referralWinWinid!=refman.referralWinWinid;
        });
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 
       }
     });
+  }});
   }
 
 }

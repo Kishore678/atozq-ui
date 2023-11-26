@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class RefmanEditorComponent implements OnInit {
   private refMan: Refman = new Refman();
   constructor() { }
-  @Input() status:boolean=false;
+
   @Output() addRef = new EventEmitter<Refman>();
 
   ngOnInit(): void {
@@ -22,15 +22,11 @@ export class RefmanEditorComponent implements OnInit {
     Swal.fire('Invalid form submission please check and submit again');
     else
     {
-      this.addRef.emit(new Refman(this.refmanForm.value));
-
-      if(this.status)
-      {       
-    Swal.fire(this.refmanForm.get('title')?.value+'\nSubmited successfully.');
-    this.refmanForm.reset();
-      }
+      this.addRef.emit(new Refman(this.refmanForm.value));      
     }
   }
+
+
   refmanForm = new FormGroup({    
     referralWinWinid: new FormControl(0),
     title: new FormControl('',Validators.required),
