@@ -30,7 +30,7 @@ export class RefmanService {
 
   Update(refman:Refman):Observable<Refman>
   {
-    return this.http.put<Refman>(`${apiBaseUrl}/api/ReferralWinWin`,refman);
+    return this.http.put<Refman>(`${apiBaseUrl}/api/ReferralWinWin/${refman.referralWinWinid}?referralwinwinid=${refman.referralWinWinid}`,refman);
   }
 
   Delete(id:number):Observable<Refman>

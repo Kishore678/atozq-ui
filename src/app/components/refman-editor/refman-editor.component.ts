@@ -26,6 +26,25 @@ export class RefmanEditorComponent implements OnInit {
     }
   }
 
+  setFormDefault()
+  {
+   this.refmanForm.setValue(
+    {    
+      referralWinWinid: 0,
+      title: '',
+      subTitle: '',
+      posterUrl: '',
+      description: '',
+      referralCode: '',
+      referralLink: '',
+      moreDetails: '',
+      createdDate: new Date(),
+      modifiedDate: new Date(),
+      isActive: false,
+      orderNo: 0
+    }
+   );
+  }
 
   refmanForm = new FormGroup({    
     referralWinWinid: new FormControl(0),

@@ -1,4 +1,9 @@
 <form [formGroup]="refmanForm" (ngSubmit)="onSubmit()"> 
+    <label for="status"><strong>Status:</strong> {{!refmanForm.valid?'Not Ready':'Ready to submit'}}</label> 
+
+    <input type="submit" [ngClass]="!refmanForm.valid?'not-ready':'ready'" [disabled]="!refmanForm.valid" value="Submit">
+    <input type="reset" class="reset" value="Reset">
+    <div class="clear"></div>
  
     <input id="referralWinWinid" readonly type="hidden" formControlName="referralWinWinid">
   
@@ -37,8 +42,5 @@
     <app-label for="orderNo" [control]="refmanForm.controls.orderNo">Order No </app-label>
     <input id="orderNo" type="number" formControlName="orderNo">
     
-    <label for="status"><strong>Status:</strong> {{!refmanForm.valid?'Not Ready':'Ready to submit'}}</label> 
 
-<input type="submit" [ngClass]="!refmanForm.valid?'not-ready':'ready'" [disabled]="!refmanForm.valid" value="Submit">
-<input type="reset" class="reset" value="Reset">
 </form>
