@@ -65,8 +65,11 @@ import { MfComponent } from './components/mf/mf.component';
 import { SgbComponent } from './components/sgb/sgb.component';
 import { P2pComponent } from './components/p2p/p2p.component';
 import { RefComponent } from './components/ref/ref.component';
+import { RefmanComponent } from './components/refman/refman.component';
+import { RefmanEditorComponent } from './components/refman-editor/refman-editor.component';
+import { LabelComponent } from './label.component';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2p8678Component, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent, InvestSettingsRulesFormDialogComponent, SmtpSettingsFormDialogComponent, ServiceSettingsFormDialogComponent, FdComponent, MfComponent, SgbComponent, P2pComponent, RefComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2p8678Component, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent, InvestSettingsRulesFormDialogComponent, SmtpSettingsFormDialogComponent, ServiceSettingsFormDialogComponent, FdComponent, MfComponent, SgbComponent, P2pComponent, RefComponent, RefmanComponent,RefmanEditorComponent,LabelComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,
@@ -75,7 +78,7 @@ import { RefComponent } from './components/ref/ref.component';
     HttpClientModule,
     MatNativeDateModule,
     MaterialExampleModule,
-    ReactiveFormsModule    
+    ReactiveFormsModule        
   ],
   entryComponents: [ConfirmationDialogComponent],
   providers: [UtcToLocalTimePipe,TitleCasePipe,DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService,UtcConverterService,P2pService],

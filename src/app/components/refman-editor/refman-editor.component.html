@@ -1,0 +1,47 @@
+<div>
+
+<form [formGroup]="refmanForm" (ngSubmit)="onSubmit()">
+    <h2>Manage Refferals</h2>  
+ 
+    <input id="referralWinWinid" readonly type="hidden" formControlName="referralWinWinid">
+  
+    <app-label for="title" [control]="refmanForm.controls.title">Title </app-label>
+    <input id="title" type="text" formControlName="title">  
+   
+    <app-label for="subTitle" [control]="refmanForm.controls.subTitle">Sub Title </app-label>
+    <input id="subTitle" type="text" formControlName="subTitle">  
+   
+    <app-label for="posterUrl" [control]="refmanForm.controls.posterUrl">Poster Url </app-label>
+    <input id="posterUrl" type="text" formControlName="posterUrl">
+
+    <app-label for="description" [control]="refmanForm.controls.description">Description</app-label>
+    <input id="description" type="text" formControlName="description">
+   
+    <app-label for="referralCode" [control]="refmanForm.controls.referralCode">Referral Code</app-label>
+    <input id="referralCode" type="text" formControlName="referralCode">
+    
+    <app-label for="referralLink" [control]="refmanForm.controls.referralLink">Referral Link</app-label>
+    <input id="referralLink" type="text" formControlName="referralLink">        
+    
+    <app-label for="moreDetails" [control]="refmanForm.controls.moreDetails">Extra Details</app-label>
+    <textarea id="moreDetails" type="text" formControlName="moreDetails"></textarea>
+            
+    
+    <input id="createdDate" readonly type="hidden" formControlName="createdDate">
+                
+
+    <input id="modifiedDate" readonly type="hidden" formControlName="modifiedDate">
+                    
+    
+    <app-label for="isActive" [control]="refmanForm.controls.isActive">Is Active</app-label>
+    <input id="isActive" type="checkbox" formControlName="isActive">
+
+ 
+    <app-label for="orderNo" [control]="refmanForm.controls.orderNo">Order No </app-label>
+    <input id="orderNo" type="number" formControlName="orderNo">
+    
+    <label for="status">Status: {{!refmanForm.valid?'Not Ready':'Ready to submit'}}</label> 
+
+<input type="submit" [ngClass]="!refmanForm.valid?'not-ready':'ready'" [disabled]="!refmanForm.valid" value="Submit">
+</form>
+</div>

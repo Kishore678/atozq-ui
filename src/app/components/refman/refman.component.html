@@ -1,0 +1,5 @@
+
+<ul *ngFor="let r of refmanList">
+<li>{{r.title}}</li>
+</ul>
+<app-refman-editor (addRef)="AddRef($event)"></app-refman-editor>

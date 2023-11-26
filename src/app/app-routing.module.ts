@@ -32,6 +32,7 @@ import { MfComponent } from './components/mf/mf.component';
 import { SgbComponent } from './components/sgb/sgb.component';
 import { FdComponent } from './components/fd/fd.component';
 import { RefComponent } from './components/ref/ref.component';
+import { RefmanComponent } from './components/refman/refman.component';
 
 const routes: Routes = [
   {path:'',component:ValuepickrComponent},
@@ -69,6 +70,7 @@ const routes: Routes = [
   {path:'ref',component:RefComponent},
   {path:'p2p8678',component:P2p8678Component},
   {path:'p2pman8678',component:P2pmanComponent},
+  {path:'refman',component:RefmanComponent},
   {path:'**', pathMatch: 'full',component:PagenotfoundComponent},
 
 ];
