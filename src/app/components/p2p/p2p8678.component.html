@@ -30,57 +30,57 @@
 		<tr style="background-color: #008CBA;color:#ffffff">
 			<td>I2i Principal Holding (A)</td>
 			<td>
-				<input readonly type="text" formControlName="i2IPrincipalBalance">
+				<input style="background: #eee;" readonly type="text" formControlName="i2IPrincipalBalance">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 		<tr style="background-color: #008CBA;color:#ffffff">
 			<td>I2I Escro Balance (B)</td>
 			<td>
-				<input readonly type="text" formControlName="escroBalance">
+				<input style="background: #eee;" readonly type="text" formControlName="escroBalance">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		<tr style="background-color: #008CBA;color:#ffffff">
 			<td>I2I Fund Under Proposal (C)</td>
 			<td>
-				<input readonly type="text" formControlName="i2IAmtProposal">
+				<input style="background: #eee;" readonly type="text" formControlName="i2IAmtProposal">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		<tr style="background-color: #008CBA;color:#ffffff">
 			<td>I2I Fund Under Disburse (D)</td>
 			<td>
-				<input readonly type="text" formControlName="i2IAmtDisburse">
+				<input style="background: #eee;" readonly type="text" formControlName="i2IAmtDisburse">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		<tr style="background-color: #008CBA;color:#ffffff">
 			<td>I2I Total Account Value (A+B+C+D)</td>
 			<td>
-				<input readonly type="text" value="{{totalAccValue}}">
+				<input style="background: #eee;" readonly type="text" formControlName="i2ICurrentAccValue">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		<tr style="background-color: #008CBA;color:#ffffff">
 			<td>I2i My Investment (Fund Cr.-Fund Deb.)</td>
 			<td>
-				<input readonly type="text" formControlName="i2IMyInvestmentBalance">
+				<input style="background: #eee;" readonly type="text" formControlName="i2IMyInvestmentBalance">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
-		</tr>
-
-		<tr [ngClass]="i2IProfitLoss>0?'i2iProfit':'i2iLoss'">
-			<td>I2i Profit (or) Loss (Acc value - My Investment))</td>
+		</tr>	
+	
+		<tr [ngClass]="i2IProfitLoss?'i2iProfit':'i2iLoss'">
+			<td>I2i Profit (or) Loss (Acc value - My Investment)</td>
 			<td>
-				<input readonly type="text" value="{{i2IProfitLoss}}">
+				<input style="background: #eee;" readonly type="text" formControlName="i2IProfitOrLoss">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr [ngClass]="isI2IDiffAmount?'i2iLoss':'i2iProfit'">
+		<tr [ngClass]="isI2IDiffAmount?'i2iProfit':'i2iLoss'">
 			<td>I2i Diff Amount</td>
 			<td>
-				<input readonly type="text" formControlName="i2IDiffAmount">
+				<input style="background: #eee;" readonly type="text" formControlName="i2IDiffAmount">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>

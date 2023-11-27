@@ -46,6 +46,8 @@ export class P2PModel
      i2IDiffAmount!:number;
      i2IAmtProposal!:number;
      i2IAmtDisburse!:number;
+     i2ICurrentAccValue!:number;
+     i2IProfitOrLoss!:number;
 }
 
 

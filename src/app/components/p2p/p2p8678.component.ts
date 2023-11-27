@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { filter } from 'rxjs';
-import { ActiveBorrowers } from 'src/app/models/active-borrowers.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
 import { Withdrawals } from 'src/app/models/withdrawals.model';
@@ -18,8 +16,7 @@ export class P2p8678Component implements OnInit {
 	userForm!: FormGroup;
   settings!:P2PModel[];
   borrowers!:ManageBorrowers[];
-	totalAccValue!:number;
-  i2IProfitLoss!:number;
+	i2IProfitLoss!:boolean;
   isI2IDiffAmount!:boolean;
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
@@ -70,7 +67,9 @@ export class P2p8678Component implements OnInit {
      i2IMyInvestmentBalance:0,
      i2IDiffAmount:0,
      i2IAmtProposal:0,
-     i2IAmtDisburse:0
+     i2IAmtDisburse:0,
+     i2ICurrentAccValue:0,
+     i2IProfitOrLoss:0
     });
 
   	
@@ -128,17 +127,13 @@ this.userForm.patchValue({
      i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
      i2IDiffAmount:this.settings[0].i2IDiffAmount,
      i2IAmtProposal:this.settings[0].i2IAmtProposal,
-     i2IAmtDisburse:this.settings[0].i2IAmtDisburse
+     i2IAmtDisburse:this.settings[0].i2IAmtDisburse,
+     i2ICurrentAccValue:this.settings[0].i2ICurrentAccValue,
+     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss
 });
 
- this.totalAccValue = this.settings[0].i2IPrincipalBalance + 
-                      this.settings[0].escroBalance + 
-                      this.settings[0].i2IAmtProposal +
-                      this.settings[0].i2IAmtDisburse;
-
- this.i2IProfitLoss = this.totalAccValue - this.settings[0].i2IMyInvestmentBalance;
-
-this.isI2IDiffAmount = this.settings[0].i2IDiffAmount>0;
+this.i2IProfitLoss=this.settings[0].i2IProfitOrLoss>0;
+this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
 
       },
       error:(err)=>{ Swal.fire('Something went wrong!');}
@@ -325,6 +320,18 @@ get i2IAmtDisburse()
   return this.userForm.get('i2IAmtDisburse');
 }
 
+
+get i2ICurrentAccValue()
+{
+  return this.userForm.get('i2ICurrentAccValue');
+}
+
+get i2IProfitOrLoss()
+{
+  return this.userForm.get('i2IProfitOrLoss');
+}
+
+
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -379,7 +386,8 @@ get i2IAmtDisburse()
     model.i2IDiffAmount = this.userForm.get('i2IDiffAmount')?.value;
     model.i2IAmtProposal = this.userForm.get('i2IAmtProposal')?.value;
     model.i2IAmtDisburse = this.userForm.get('i2IAmtDisburse')?.value;
-
+    model.i2ICurrentAccValue= this.userForm.get('i2ICurrentAccValue')?.value;
+    model.i2IProfitOrLoss= this.userForm.get('i2IProfitOrLoss')?.value;
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
@@ -430,7 +438,9 @@ this.userForm.patchValue({
   i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
   i2IDiffAmount:this.settings[0].i2IDiffAmount,
   i2IAmtProposal:this.settings[0].i2IAmtProposal,
-  i2IAmtDisburse:this.settings[0].i2IAmtDisburse
+  i2IAmtDisburse:this.settings[0].i2IAmtDisburse,
+   i2ICurrentAccValue:this.settings[0].i2ICurrentAccValue,
+     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss
 });
       },
       error:(err)=>{
@@ -484,7 +494,9 @@ this.userForm.patchValue({
       i2IMyInvestmentBalance:this.settings[0].i2IMyInvestmentBalance,
       i2IDiffAmount:this.settings[0].i2IDiffAmount,
       i2IAmtProposal:this.settings[0].i2IAmtProposal,
-      i2IAmtDisburse:this.settings[0].i2IAmtDisburse
+      i2IAmtDisburse:this.settings[0].i2IAmtDisburse,
+       i2ICurrentAccValue:this.settings[0].i2ICurrentAccValue,
+     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss
     });
 	}
 
@@ -532,7 +544,9 @@ this.userForm.patchValue({
       i2IMyInvestmentBalance:0,
       i2IDiffAmount:0,
       i2IAmtProposal:0,
-      i2IAmtDisburse:0		
+      i2IAmtDisburse:0,
+       i2ICurrentAccValue:0,
+     i2IProfitOrLoss:0		
     });
 	}
 
