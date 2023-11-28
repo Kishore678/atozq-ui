@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class RefmanEditorComponent implements OnInit {
   private refMan: Refman = new Refman();
+  SubmitText:string = 'Add'; 
   constructor() { }
 
   @Output() addRef = new EventEmitter<Refman>();

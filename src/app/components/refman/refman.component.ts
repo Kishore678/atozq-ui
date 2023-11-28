@@ -10,7 +10,7 @@ import { RefmanEditorComponent } from '../refman-editor/refman-editor.component'
   styleUrls: ['./refman.component.css']
 })
 export class RefmanComponent implements OnInit {
-
+  
    @ViewChild(RefmanEditorComponent) child!:RefmanEditorComponent;
 
   refmanList!:Refman[];
@@ -49,6 +49,7 @@ export class RefmanComponent implements OnInit {
     isActive: refman.isActive,
     orderNo: refman.orderNo,
     });
+    this.child.SubmitText='Save';
   }
 
   SaveRef(refman:Refman)
@@ -56,8 +57,7 @@ export class RefmanComponent implements OnInit {
     if(refman.referralWinWinid>0)  
     {
       this.refmanService.Update(refman).subscribe({
-        next:(value)=>{  
-          debugger;  
+        next:(value)=>{ 
         for(var i=0;i<this.refmanList.length;i++)
        {
         if(this.refmanList[i].referralWinWinid==value.referralWinWinid)
@@ -77,23 +77,7 @@ export class RefmanComponent implements OnInit {
           this.child.setFormDefault();
         }
       }
-      //  for(var i=0;i<this.refmanList.length;i++)
-      //  {
-      //   if(val.referralWinWinid==value.referralWinWinid)
-      //   {
-      //     val.title=value.title;
-      //     val.subTitle = value.subTitle;
-      //     val.description = value.description;
-      //     val.posterUrl = value.posterUrl;
-      //     val.referralCode = value.referralCode;
-      //     val.referralLink = value.referralLink;
-      //     val.moreDetails = value.moreDetails;
-      //     val.isActive = value.isActive;
-      //     val.orderNo = value.orderNo;
-      //     val.createdDate = value.createdDate;
-      //     val.modifiedDate = value.modifiedDate;            
-      //   }
-      //  }         
+        this.child.SubmitText='Add';         
         Swal.fire('Updated Successfuly.'); 
         },
         error:(err)=>{

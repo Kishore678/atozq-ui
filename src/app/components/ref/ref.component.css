@@ -1,0 +1,51 @@
+
+table {
+    border-collapse: collapse;  
+  }
+  
+th, td {
+    text-align: left;
+    padding: 4px;
+  }
+  
+tr:nth-child(even) {background-color: #f2f2f2;border-bottom: 1px solid #888;}
+tr{border-bottom: 1px solid #888;}
+
+h3{color: #ff5722;}
+
+h3 small{
+    color:black;
+}
+  button {
+    padding: 8px 10px;
+    margin: 4px 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;   
+  }
+
+  button.read
+  {
+    background-color: #4565a0;
+    color: #f2f2f2;
+  }
+  button.share
+  {
+    background-color: #38f84d;
+    color: #f2f2f2;
+  }
+
+.floatedDiv{float: left;}
+  
+.headerDiv h2{
+  text-align: center;
+}
+
+.floatedDiv {   
+  border-radius: 5px; 
+  padding: 20px;
+}
+.headerDiv
+{
+  width: 100%;
+}

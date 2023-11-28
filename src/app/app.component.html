@@ -23,12 +23,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>  
-      <div class="container">
-        <!-- <div class="row home-toolbar">        
-          <div class="col-md-12">
-            <span style="cursor: pointer;float: left;line-height: 1;margin: 3px -57px 3px 3px;font-weight: 500;color:#ffffff">&nbsp;Welcome&nbsp;</span><span class="box datetime">{{dt | date:'MM/dd/yyyy hh:mm:ss a'}}</span>
-          </div>            
-        </div> -->
+      <div class="container">   
         <div class="row home-toolbar2"> 
           <div class="col-md-12">
             <span><span class="dot users"></span>Users:<span class="box">{{users|number:'1.0-0'}}</span><span class="dot online"></span>Online:<span class="box">{{online|number:'1.0-0'}}</span> <span class="dot visited"></span>Visited:<span class="box">{{visited|number:'1.0-0'}}</span></span>
@@ -37,26 +32,13 @@
         <section class="row home-toolbar3"> 
           <div class="example-button-row">         
             <mat-button-toggle-group (change)="changeInToggleGroup(cityGroup.value)" [(ngModel)]="toggleSelected" #cityGroup="matButtonToggleGroup">
-              <!-- <mat-button-toggle routerLink="/stock"  value="stock">
-                <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">All Stock</span>
-              </mat-button-toggle>
-              <mat-button-toggle routerLink="/learn" value="learn" (change)="changeInToggle(toggleVal.value)" #toggleVal>
-                <mat-icon svgIcon="elearning" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">Learning</span>
-              </mat-button-toggle>      
-              <mat-button-toggle routerLink="/valuepickr" value="valuepickr" (change)="changeInToggle(toggleVal.value)" #toggleVal>
-                <mat-icon svgIcon="worldwide-value" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">ValuePickr</span>
-              </mat-button-toggle>       -->
-
-
+  
                   <mat-button-toggle routerLink="/stock"  value="stock">
                 <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">Stock's</span>
+                <span class="toggle-button-menutext">Stocks</span>
               </mat-button-toggle>
 
-              <mat-button-toggle routerLink="/fd"  value="fd">
+              <!-- <mat-button-toggle routerLink="/fd"  value="fd">
                 <mat-icon svgIcon="fd1" class="example-tab-icon"></mat-icon>
                 <span class="toggle-button-menutext">FD's</span>
               </mat-button-toggle>         
@@ -74,11 +56,11 @@
               <mat-button-toggle routerLink="/p2p"  value="p2p">
                 <mat-icon svgIcon="p2p" class="example-tab-icon"></mat-icon>
                 <span class="toggle-button-menutext">P2P</span>
-              </mat-button-toggle>
+              </mat-button-toggle> -->
 
               <mat-button-toggle routerLink="/ref"  value="ref">
                 <mat-icon svgIcon="ref" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">REF</span>
+                <span class="toggle-button-menutext">Referrals</span>
               </mat-button-toggle>
 
             </mat-button-toggle-group> 
