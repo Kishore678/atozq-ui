@@ -1,21 +1,12 @@
 
-table {
-    border-collapse: collapse;  
-  }
-  
-th, td {
-    text-align: left;
-    padding: 4px;
-  }
-  
-tr:nth-child(even) {background-color: #f2f2f2;border-bottom: 1px solid #888;}
-tr{border-bottom: 1px solid #888;}
+ 
+div.div1:nth-child(even) {background-color: #f2f2f2;border-bottom: 1px solid #888;}
+div.div2{border-bottom: 1px solid #888;}
 
 h3{color: #ff5722;}
 
-h3 small{
-    color:black;
-}
+h3 small{color:black;}
+
   button {
     padding: 8px 10px;
     margin: 4px 5px;
@@ -34,18 +25,75 @@ h3 small{
     background-color: #38f84d;
     color: #f2f2f2;
   }
-
-.floatedDiv{float: left;}
   
 .headerDiv h2{
   text-align: center;
+  margin: 10px;
 }
+.content {display: block;}
 
 .floatedDiv {   
-  border-radius: 5px; 
-  padding: 20px;
+ float: left; 
+ width: 100%;
+ margin-left: 10px;
+ margin-bottom: 10px;
 }
+
+.floatedDiv .poster{ 
+    float:inline-start;
+    width: 350px;
+    margin: auto;
+    display: block;
+}
+
+.content
+{
+    float:left;
+}
+
 .headerDiv
 {
   width: 100%;
 }
+
+.main-div {
+    float: left;
+    padding: 15px; 
+  }
+  
+  .div1 {    
+    width:350px;
+  }
+  
+  .div2 {    
+    width:400px;
+  }
+
+  .reflink
+  {
+    width:400px;
+    overflow:hidden;
+    text-wrap:nowrap;
+    display:block;
+    border:3px solid #08b1c7;
+    font-size:16px;
+    background: #fff;
+  }
+  .reflink a
+  {
+    text-wrap:nowrap;text-overflow: ellipsis;width:50px;display:inline-block;
+  }
+  .reflink-lable
+  {
+    color: white;background: #08b1c7;padding: 2px;width: 65px;
+  }
+  .refcode
+  {
+    text-wrap:nowrap;text-overflow: ellipsis;width:50px;display:inline-block;
+  }
+  .descrip
+  {
+    text-align: justify;
+    width: 400px;
+    display: block; 
+  }
