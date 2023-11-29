@@ -14,7 +14,7 @@
 				<!-- <button type="button" (click)="patchUserValues()">Set Default</button>
 				<button type="button" (click)="restoreUserValues()">Cancel</button> -->
 				<button style="background-color: #f44336;color:#ffffff" type="button" (click)="LoadSettings()">Refresh</button>
-				<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Get I2I Account Status</button>	
+				<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Update Account</button>	
 			
 			</td>
 			<td>
@@ -371,8 +371,12 @@
 <h3><span class="page-header">Active Borrowers</span></h3>
 <button  style="background-color: #f44336;color:#ffffff"  type="button" (click)="LoadBorrowers()">Refresh</button>
 <br><br>
-<label class="chkcontainer">Show Eligible
+<label class="chkcontainer"><span class="lable-text">Elig.</span>
 	<input type="checkbox" name="eligibleOnly" [(ngModel)]="isEligibleOnly" type="checkbox" (change)="ApplyFilter()">
+	<span class="checkmark"></span>
+  </label>
+  <label class="chkcontainer"><span class="lable-text">I2I</span>
+	<input type="checkbox" name="i2iOnly" [(ngModel)]="isI2iOnly" type="checkbox" (change)="ApplyFilter()">
 	<span class="checkmark"></span>
   </label>
 </div>
@@ -382,14 +386,14 @@
 	<th style="width:50px;">Date</th>
     <th style="width:25px;">ID</th>
     <th style="width:25px;">Loan</th>
-    <th style="width:25px;">LoanAmt</th>
+    <th style="width:25px;">Loan Amt</th>
     <th style="width:25px;">Risk</th>
     <th style="width:25px;">Age</th>
     <th style="width:25px;">Cibil</th>
     <th style="width:25px;">Int%.</th>
     <th style="width:30px;">Tenure</th>
     <th style="width:10px;">Elig.</th>   
-    <th style="width:50px;">InvestedAmt</th>   
+    <th style="width:50px;">Invest Amt</th>   
     <th style="width:95px;">Status</th>   
     <th style="width:20px;"></th>
   </tr>

@@ -18,6 +18,8 @@ export class P2p8678Component implements OnInit {
   borrowers!:ManageBorrowers[];
 	i2IProfitLoss!:boolean;
   isI2IDiffAmount!:boolean;
+  isEligibleOnly!:boolean;
+  isI2iOnly!:boolean;
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
 
@@ -550,8 +552,6 @@ this.userForm.patchValue({
     });
 	}
 
-
-  isEligibleOnly!:boolean;
 withdras!:Withdrawals[];
 
 GetI2IAccStatement()
@@ -607,7 +607,20 @@ LoadI2IWithdrawAmt()
     this.p2pService.GetActiveBorrowers().subscribe({
       next:(event)=>{
         this.borrowers = [];   
-        if(this.isEligibleOnly)
+
+        if(this.isEligibleOnly && this.isI2iOnly)
+        {
+          this.borrowers = event.filter((val,index)=>{
+            return val.isEligible && val.risk.startsWith('I2I-');
+          });        
+        }
+        else if(!this.isEligibleOnly && this.isI2iOnly)
+        {
+          this.borrowers = event.filter((val,index)=>{
+            return val.risk.startsWith('I2I-');
+          });        
+        }  
+        else if(this.isEligibleOnly)
         {
           this.borrowers = event.filter((val,index)=>{
             return val.isEligible;
@@ -617,6 +630,8 @@ LoadI2IWithdrawAmt()
         {    
         this.borrowers = event;        
         }
+
+        
       },
       error:(err)=>{
         Swal.fire('Something went wrong. Please try again after sometime.');   
