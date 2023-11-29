@@ -4,11 +4,11 @@
     </div> 
 
 <div class="ref-row" *ngFor="let r of refmanList">
-<div class="main-div div1">
-    <img style="width:100%;" height="200" [src]="r.posterUrl"/> 
+<div class="main-div poster">
+    <img class="poster-img" [src]="r.posterUrl"/> 
 </div>
-<div class="main-div div2">
-    <h3 class="ref-title"><span style="min-width:300px;display:block;float:left;">{{r.title}} - <small>{{r.subTitle}}</small></span><span style="width:32px;display:block;float:right;text-align:right;"><mat-icon svgIcon="{{r.isFavorite?'favorite':'un-favorite'}}" class="example-tab-icon"></mat-icon></span></h3>            
+<div class="main-div content">
+    <h3 class="ref-title-container"><span class="ref-title-text">{{r.title}} - <small>{{r.subTitle}}</small></span><span class="favorite"><mat-icon svgIcon="{{r.isFavorite?'favorite':'un-favorite'}}" class="example-tab-icon"></mat-icon></span></h3>            
     <p class="reflink"><span class="reflink-lable">Ref Link:</span>&nbsp;<a href="{{r.referralLink}}" target="_blank">{{r.referralLink}}</a></p>
  
     <p class="reflink"><span class="reflink-lable">Ref Code:</span>&nbsp;<span class="refcode">{{r.referralCode | uppercase}}</span></p>
