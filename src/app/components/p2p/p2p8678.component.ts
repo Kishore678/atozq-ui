@@ -710,6 +710,14 @@ LoadI2IWithdrawAmt()
     {
       this.isI2iOnly=false;
     }
+    else if(chk=='FUNDED')
+    {
+      this.isNotFundedOnly=false;
+    }
+    else if(chk=='NOTFUNDED')
+    {
+      this.isFundedOnly=false;
+    }
     this.LoadBorrowers();
   }
 
