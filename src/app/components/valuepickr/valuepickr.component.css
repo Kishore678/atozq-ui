@@ -21,9 +21,9 @@
     background: #ffffff;
     padding: 2px;
   }
-  .filter b{ color: #00bcd4}
+  .filter b{ color: #0072bc}
   .filename{
-    color:#00bcd4;
+    color:#0072bc;
     font-weight: 500;
   }
 
@@ -35,7 +35,7 @@
     border-radius: 4px;
     padding: 5px;
     font-weight: 500;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #00bcd4);
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
     border-color: #dddddd;
   }
 
@@ -84,7 +84,7 @@
     color: #fff; 
   }
 
-  th{background: #00bcd4;
+  th{background: #0072bc;
     color: #fff;}
  
   tr>td>a {
@@ -376,7 +376,7 @@ color: #ffd382;
   padding: .5rem 3rem;
   box-shadow: 0 0 6px 0 #9d60d480;
   border: solid 3px transparent;
-  /* background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #00bcd4); */
+  /* background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #0072bc); */
   background-origin: border-box;
   background-clip: content-box, border-box;
   box-shadow: 2px 1000px 1px #fff inset;
@@ -470,21 +470,21 @@ mat-icon {
     float: left;   
     margin: 5px;
     border-spacing: 0;
-    border-left: 1px solid#00bcd4;
+    border-left: 1px solid#0072bc;
     font-size: 12px;
 }
 
 
 table.basic-info td, table.basic-info th{
-    border-right: 1px solid#00bcd4;  
-    border-bottom: 1px solid#00bcd4;
+    border-right: 1px solid#0072bc;  
+    border-bottom: 1px solid#0072bc;
     border-spacing: 0;
 }
 
 
 
 table.basic-info >caption{
-  background: #00bcd4;
+  background: #0072bc;
     color: #fff;
     font-size: 16px;
     padding: 2px;
@@ -527,14 +527,14 @@ table.basic-info th,  table.basic-info td {
 
     
     .expand {      
-      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #00bcd4);
+      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
       color: #ffffff;
       font-weight: 500; 
       border-color: #dddddd;    
   }
 
   .collapse {      
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #00bcd4);
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
     color: #ffffff;
     font-weight: 500;
     border-color: #000000;
@@ -573,7 +573,7 @@ small.fiveDays .mat-icon{
 }
 
 small.fiveDays span{
-  border: 1px solid #00bcd4;
+  border: 1px solid #0072bc;
   margin: 5px;
   padding: 5px;
 }
@@ -617,7 +617,7 @@ tr.mat-header-row {
     border-radius: 4px;
     padding: 7.2px;
     font-weight: 500;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #00bcd4);
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
     border-color: #dddddd;
     font-weight: bold;
 }

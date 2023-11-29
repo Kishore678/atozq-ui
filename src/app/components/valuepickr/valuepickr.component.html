@@ -1,11 +1,11 @@
 <hr class="hrStyle">
 <div class="bg-layer">
     <div class="filter">     
-          <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+          <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #ff5722;">    
             <label class="filename"><b>SEGMENT:&nbsp;</b></label>
             <span>Equity</span>
         </div>    
-        <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+        <div *ngIf="!spinner" style="float:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #ff5722;">    
             <label class="filename"><b>DATE:&nbsp;</b></label><span>{{fileName}}</span>
         </div>
         <div style="clear:both;"></div>
@@ -39,7 +39,7 @@
 
     <div style="clear:both;"></div>
     <section class="table-container mat-elevation-z8" tabindex="0">
-        <div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #0000ff;">    
+        <div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #ff5722;">    
             <label class="filename"><b>Loading&nbsp;</b></label> <img style="vertical-align:bottom;" src="assets/spinner.gif"/>
           </div>
       <mat-paginator #paginator  [length]="length" [pageIndex]="pageNo" [pageSize]="size" [pageSizeOptions]="[10,20,50,100,500,1000]"

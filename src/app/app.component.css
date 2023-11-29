@@ -11,7 +11,7 @@
     position: fixed;
     /* Make sure the toolbar will stay on top of the content as it scrolls past. */
     z-index: 2;
-    /* border-bottom: 4px solid #00bcd4; */
+    /* border-bottom: 4px solid #0072bc; */
   }
   .example-container { 
     margin-bottom: 1px;
@@ -37,7 +37,7 @@
 }
 .menuitems
 {
-  color:#00bcd4;
+  color:#0072bc;
   padding: 4px;
   text-decoration: none;
   font-size: 14px;
@@ -45,7 +45,7 @@
 }
 .sidemenu
 {
-  color: #00bcd4;
+  color: #0072bc;
   /* line-height: 5px; */
 }
 .menuitems:hover
@@ -79,14 +79,14 @@ a {
 
 .copyright p
 {
-  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #00bcd4);
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #0072bc, #0072bc);
   color:#ffffff;
   padding:5px;
   font-size:12px;
 }
 
 .copyright a:link,.copyright a:visited,.copyright a:hover,.copyright a:active {
-  color: #00bcd4;
+  color: #0072bc;
   background-color: transparent;
   text-decoration: underline;
   font-weight: 500;
@@ -110,13 +110,13 @@ a {
 .mat-toolbar.mat-primary 
 {
   background:#ffffff;
-  color: #00bcd4;
+  color: #0072bc;
 }
 
 .atozq-app-name
 {
   text-decoration: none;
-  color:#3f51b5;
+  color:#0072bc;
   font-size: 32px;
   border-radius: 2px;
   font-family: sans-serif;
@@ -147,7 +147,7 @@ min-height: 100vh;
 }
 
 .profile{
-  background:#00bcd4;
+  background:#0072bc;
   color:#fff;
 }
 .profile mat-icon{
@@ -168,7 +168,7 @@ min-height: 100vh;
 .home-toolbar2
 {
   padding: 2px;
-  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #00bcd4);
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #0072bc, #0072bc);
   color: #fff;
   text-align: center;
   font-size: 13px;

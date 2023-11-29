@@ -16,7 +16,7 @@ export class RefComponent implements OnInit {
     this.refService.GetAll().subscribe({
       next:(val)=>{
         this.refmanList = val.filter((v,index,arr)=>{
-          v.isFavorite = true;
+          v.isFavorite = false;
           return v.isActive;
         });
       },

@@ -49,7 +49,7 @@
     margin-top: 10px;
   }
   .msger-send-btn { 
-    background: #24b8cc;
+    background: #0072BC;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
@@ -97,9 +97,9 @@
       background: #ffffff;
       padding: 2px;
     }
-    .filter b{ color: #00bcd4}
+    .filter b{ color: #0072bc}
     .filename{
-      color: #00bcd4;
+      color: #0072bc;
       font-weight: bold;
     }
   
@@ -113,10 +113,10 @@
       border-color: #dddddd;
     }
   
-    th{background: #00bcd4;
+    th{background: #0072bc;
       color: #fff;}
    
-    tr>td>a {color:#0040ff;cursor: pointer;text-decoration: underline;font-weight:500;}
+    tr>td>a {color:#0072bc;cursor: pointer;text-decoration: underline;font-weight:500;}
     tr:hover,tr>td>a:hover {    background-color: aliceblue;
       color: #245afc;}
     
