@@ -383,6 +383,14 @@
 	<input type="checkbox" name="lcOnly" [(ngModel)]="isLCOnly" type="checkbox" (change)="ApplyFilter('LC')">
 	<span class="checkmark"></span>
   </label>
+  <label class="chkcontainer"><span class="lable-text">Funded</span>
+	<input type="checkbox" name="fundedOnly" [(ngModel)]="isFundedOnly" type="checkbox" (change)="ApplyFilter('FUNDED')">
+	<span class="checkmark"></span>
+  </label>
+  <label class="chkcontainer"><span class="lable-text">Not Funded</span>
+	<input type="checkbox" name="notFundedOnly" [(ngModel)]="isNotFundedOnly" type="checkbox" (change)="ApplyFilter('NOTFUNDED')">
+	<span class="checkmark"></span>
+  </label>
 </div>
   <section class="container">
 <table id="watchlist">

@@ -21,7 +21,8 @@ export class P2p8678Component implements OnInit {
   isEligibleOnly!:boolean;
   isI2iOnly!:boolean;
   isLCOnly!:boolean;
-
+  isFundedOnly!:boolean;
+  isNotFundedOnly!:boolean;
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
 
@@ -613,36 +614,81 @@ LoadI2IWithdrawAmt()
         if(this.isEligibleOnly && this.isI2iOnly)
         {
           this.borrowers = event.filter((val,index)=>{
-            return val.isEligible && val.risk.startsWith('I2I-');
+
+            let q =  val.isEligible && val.risk.startsWith('I2I-');
+
+            if(this.isFundedOnly)
+            return q && val.statusMsg.indexOf('success')!=-1;
+            else if(this.isNotFundedOnly)
+            return q && val.statusMsg.indexOf('success')==-1;
+            else
+            return q;
+
           });        
         }
         else if(this.isI2iOnly)
         {
           this.borrowers = event.filter((val,index)=>{
-            return val.risk.startsWith('I2I-');
+            let q = val.risk.startsWith('I2I-');
+            if(this.isFundedOnly)
+            return q && val.statusMsg.indexOf('success')!=-1;
+            else if(this.isNotFundedOnly)
+            return q && val.statusMsg.indexOf('success')==-1;
+            else
+            return q;
           });        
         }
         else if(this.isEligibleOnly && this.isLCOnly)
         {
           this.borrowers = event.filter((val,index)=>{
-            return val.isEligible && val.risk.startsWith('LC-');
+            let q = val.isEligible && val.risk.startsWith('LC-');
+            if(this.isFundedOnly)
+            return q && val.statusMsg.indexOf('success')!=-1;
+            else if(this.isNotFundedOnly)
+            return q && val.statusMsg.indexOf('success')==-1;
+            else
+            return q;
           });        
         }   
         else if(this.isLCOnly)
         {
           this.borrowers = event.filter((val,index)=>{
-            return val.risk.startsWith('LC-');
+            let q = val.risk.startsWith('LC-');
+            if(this.isFundedOnly)
+            return q && val.statusMsg.indexOf('success')!=-1;
+            else if(this.isNotFundedOnly)
+            return q && val.statusMsg.indexOf('success')==-1;
+            else
+            return q;
           });        
         }     
         else if(this.isEligibleOnly)
         {
           this.borrowers = event.filter((val,index)=>{
-            return val.isEligible;
+            let q = val.isEligible;
+            if(this.isFundedOnly)
+            return q && val.statusMsg.indexOf('success')!=-1;
+            else if(this.isNotFundedOnly)
+            return q && val.statusMsg.indexOf('success')==-1;
+            else
+            return q;
           });        
         } 
         else
-        {    
-        this.borrowers = event;        
+        { 
+          this.borrowers = event.filter((val,index)=>{
+            let q = true;
+            if(this.isFundedOnly)
+            return q && val.statusMsg.indexOf('success')!=-1;
+            else if(this.isNotFundedOnly)
+            return q && val.statusMsg.indexOf('success')==-1;
+            else
+            return q;             
+          });
+
+
+         
+               
         }
 
         
