@@ -21,10 +21,10 @@
     background: #ffffff;
     padding: 2px;
   }
-  .filter b{ color: #0072bc}
+  .filter b{ color: #1b1b1b; font-weight: normal;}
   .filename{
-    color:#0072bc;
-    font-weight: 500;
+    color:#1b1b1b;
+    font-weight: normal;
   }
 
   .mat-select, :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select
@@ -35,7 +35,7 @@
     border-radius: 4px;
     padding: 5px;
     font-weight: 500;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
+    background-image: #f9f9fb;
     border-color: #dddddd;
   }
 
@@ -81,11 +81,11 @@
   
   :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select-value
   {
-    color: #fff; 
+    color: #b3b3b3; 
   }
 
-  th{background: #0072bc;
-    color: #fff;}
+  th{background: #f9f9fb;
+    color: #4e4e4e}
  
   tr>td>a {
     color: #000000;
@@ -100,7 +100,7 @@
     color: #245afc;
   }
   tr:hover{
-    background-color: #eefff1ef;
+    background-color: #f7f9fd;
   }
   
   th.mat-header-cell,
@@ -208,7 +208,7 @@
 }
 
 .mat-button-toggle-checked {
-  background-color: #edfdff;
+  background-color: #f7f9fd;
 }
 
 mat-button-toggle-group {
@@ -376,7 +376,7 @@ color: #ffd382;
   padding: .5rem 3rem;
   box-shadow: 0 0 6px 0 #9d60d480;
   border: solid 3px transparent;
-  /* background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #0072bc); */
+  /* background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #218b99, #f9f9fb); */
   background-origin: border-box;
   background-clip: content-box, border-box;
   box-shadow: 2px 1000px 1px #fff inset;
@@ -419,11 +419,11 @@ tr.example-detail-row {
 }
 
 tr.example-element-row:not(.example-expanded-row):hover {
-  background: #eefff1ef
+  background: #f7f9fd
 }
 
 tr.example-element-row:not(.example-expanded-row):active {
-  background: #efefef;
+  background: #f7f9fd;
 }
 
 .example-element-row td {
@@ -456,7 +456,7 @@ mat-icon {
   margin: 5px;
   font-weight: 500;
   text-align: center;
-  color: #ffffff;
+  color: #1b1b1b;
   font-size: 14px;
     }
 
@@ -470,22 +470,23 @@ mat-icon {
     float: left;   
     margin: 5px;
     border-spacing: 0;
-    border-left: 1px solid#0072bc;
+    border-left: 1px solid#1b1b1b;
     font-size: 12px;
 }
 
 
 table.basic-info td, table.basic-info th{
-    border-right: 1px solid#0072bc;  
-    border-bottom: 1px solid#0072bc;
+    border-right: 1px solid#d3d3d3;  
+    border-bottom: 0.5px solid#d3d3d3;
+    border-top: 0.5px solid#d3d3d3;
     border-spacing: 0;
 }
 
 
 
 table.basic-info >caption{
-  background: #0072bc;
-    color: #fff;
+  background: #f9f9fb ;
+    color:#1b1b1b;
     font-size: 16px;
     padding: 2px;
 }
@@ -496,7 +497,7 @@ table.basic-info td, table.basic-info th {
 
 table.basic-info td:first-child {
     text-align: right;   
-    background-color: aliceblue;
+    background-color: #f9f9fb;
     color: black;
 }
 
@@ -527,15 +528,15 @@ table.basic-info th,  table.basic-info td {
 
     
     .expand {      
-      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
-      color: #ffffff;
+      background-image: #f9f9fb;
+      color: #b3b3b3;
       font-weight: 500; 
       border-color: #dddddd;    
   }
 
   .collapse {      
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
-    color: #ffffff;
+    background-image: #f9f9fb;
+    color: #b3b3b3;
     font-weight: 500;
     border-color: #000000;
     border: 1px;
@@ -573,7 +574,7 @@ small.fiveDays .mat-icon{
 }
 
 small.fiveDays span{
-  border: 1px solid #0072bc;
+  border: 1px solid #f9f9fb;
   margin: 5px;
   padding: 5px;
 }
@@ -617,14 +618,14 @@ tr.mat-header-row {
     border-radius: 4px;
     padding: 7.2px;
     font-weight: 500;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #00daf7, #0072bc);
+    background-image: #f9f9fb;
     border-color: #dddddd;
     font-weight: bold;
 }
 
 
 .mat-row:nth-child(2n+1){
-  background-color: aliceblue;
+  background-color: #f9f9fb;
 }
       
 .mat-row:nth-child(4n+1){

@@ -69,16 +69,16 @@ body { margin: 0;}
   text-align: center;
 }
 .mat-select .mat-select-value {
-color: #ffffff;
+color: #b3b3b3;
 text-align: center;
 }
 
 .mat-select-arrow {
-  color: #ffffff;
+  color: #b3b3b3;
 }
 .mat-option.mat-active {
   background:#f0f8ff !important;
-  color: #245bff;
+  color: #b3b3b3;
 }
 
 .fundamental-dialog .mat-dialog-container{ 
