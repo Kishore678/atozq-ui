@@ -107,7 +107,12 @@ h3 small{color:#00bcd3;font-weight: 500;}
   }
   .reflink-lable
   {
-    color: white;background: #08b1c7;padding: 2px;width: 65px;
+    display: block;
+    color: white;
+    background: #08b1c7;
+    padding: 2px;
+    width: 65px;
+    float: left;
   }
   .refcode
   {
