@@ -8,14 +8,10 @@
     <img style="width:100%;" height="200" [src]="r.posterUrl"/> 
 </div>
 <div class="main-div div2">
-    <h3 style="    width: 390px;
-    padding: 0px 10px 27px 10px;
-    margin-bottom: 10px;
-    display: block;
-    background: #3f51b5;"><span style="width:300px;display:block;float:left;">{{r.title}} - <small>{{r.subTitle}}</small></span><span style="width:90px;display:block;float:right;text-align:right;"><mat-icon svgIcon="{{r.isFavorite?'favorite':'un-favorite'}}" class="example-tab-icon"></mat-icon></span></h3>            
+    <h3 class="ref-title"><span style="min-width:300px;display:block;float:left;">{{r.title}} - <small>{{r.subTitle}}</small></span><span style="width:32px;display:block;float:right;text-align:right;"><mat-icon svgIcon="{{r.isFavorite?'favorite':'un-favorite'}}" class="example-tab-icon"></mat-icon></span></h3>            
     <p class="reflink"><span class="reflink-lable">Ref Link:</span>&nbsp;<a href="{{r.referralLink}}" target="_blank">{{r.referralLink}}</a></p>
  
-    <p class="reflink"><span class="reflink-lable">Ref Code:</span>&nbsp;<span class="refcode">{{r.referralCode}}</span></p>
+    <p class="reflink"><span class="reflink-lable">Ref Code:</span>&nbsp;<span class="refcode">{{r.referralCode | uppercase}}</span></p>
     <p class="descrip">{{r.description}}</p> 
     <p><button class="read" (click)="ShareRef(r)">Read more..</button><button class="save" (click)="SaveRef(r)">Add to Favorite</button><button class="share" (click)="ShareRef(r)">Share</button></p>  
    

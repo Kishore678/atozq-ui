@@ -74,19 +74,32 @@ h3 small{color:#00bcd3;font-weight: 500;}
     width:350px;
   }
   
-  .div2 {    
-    width:400px;
+  .div2 {  
+    min-width: 350px;  
+    width:calc(95% - 350px);
+    float: left;
   }
 
   .reflink
-  {
-    width:400px;
+  {    
     overflow:hidden;
     text-wrap:nowrap;
     display:block;
     border:3px solid #08b1c7;
     font-size:16px;
     background: #fff;
+  }
+
+  div.div2 h3.ref-title
+  {
+    padding: 0px 0px 27px 10px;
+    margin-bottom: 10px;
+    display: block;
+    background: #3f51b5;
+  }
+  div.div2 h3.mat-icon
+  {
+    margin: 1px 5px;
   }
   .reflink a
   {
@@ -102,7 +115,6 @@ h3 small{color:#00bcd3;font-weight: 500;}
   }
   .descrip
   {
-    text-align: justify;
-    width: 400px;
-    display: block; 
+    text-align: justify; 
+    display: inline-block; 
   }
