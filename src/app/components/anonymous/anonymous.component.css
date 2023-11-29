@@ -49,8 +49,8 @@
     margin-top: 10px;
   }
   .msger-send-btn { 
-    background: #0072BC;
-    color: #fff;
+    background: #F9F9FB;
+    color: #1b1b1b;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.23s;
@@ -97,9 +97,9 @@
       background: #ffffff;
       padding: 2px;
     }
-    .filter b{ color: #0072bc}
+    .filter b{ color: #f9f9fb}
     .filename{
-      color: #0072bc;
+      color: #f9f9fb;
       font-weight: bold;
     }
   
@@ -113,10 +113,10 @@
       border-color: #dddddd;
     }
   
-    th{background: #0072bc;
-      color: #fff;}
+    th{background: #f9f9fb;
+      color: #1b1b1b;}
    
-    tr>td>a {color:#0072bc;cursor: pointer;text-decoration: underline;font-weight:500;}
+    tr>td>a {color:#f9f9fb;cursor: pointer;text-decoration: underline;font-weight:500;}
     tr:hover,tr>td>a:hover {    background-color: aliceblue;
       color: #245afc;}
     
@@ -140,7 +140,7 @@
   
     button.btn {
       background: #1c971d;
-      color: #fff;
+      color: #1b1b1b;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -161,7 +161,7 @@
     button.btn:hover,button.selected
     {
       background:#15e52a;
-      color: #fff;
+      color: #1b1b1b;
       font-weight: bold;
     }
   
@@ -225,13 +225,13 @@
   }
   
   .mat-button-toggle-appearance-standard {
-    color: #fff;
+    color: #1b1b1b;
     background:#1c971d;
     padding: 0 10px;
     line-height: 35px;
   }
   .mat-button-toggle-checked{
-    color: #fff;
+    color: #1b1b1b;
     background:#15e52a;
   }
   
@@ -392,7 +392,7 @@ table#watchlist{
 }
 #watchlist tr{
   text-align: center;
-  color: #297983;
+  color: #1b1b1b;
   font-weight: 500;
 }
   #watchlist .mat-icon{
