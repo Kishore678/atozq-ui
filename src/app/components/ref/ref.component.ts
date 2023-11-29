@@ -15,8 +15,9 @@ export class RefComponent implements OnInit {
   ngOnInit(): void {
     this.refService.GetAll().subscribe({
       next:(val)=>{
-        this.refmanList = val.filter((val,index,arr)=>{
-          return val.isActive;
+        this.refmanList = val.filter((v,index,arr)=>{
+          v.isFavorite = true;
+          return v.isActive;
         });
       },
       error:(err)=>{Swal.fire('Something went wrong. Please try again')}
@@ -24,6 +25,10 @@ export class RefComponent implements OnInit {
   }
 
   ShareRef(ref:Refman)
+  {
+    
+  }
+  SaveRef(ref:Refman)
   {
     
   }

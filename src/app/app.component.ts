@@ -173,6 +173,14 @@ export class AppComponent implements OnDestroy {
       "ref",
       this.domSanitizer.bypassSecurityTrustResourceUrl("assets/ref.svg")
     ); 
+    this.matIconRegistry.addSvgIcon(
+      "favorite",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/favorite.svg")
+    ); 
+    this.matIconRegistry.addSvgIcon(
+      "un-favorite",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/un-favorite.svg")
+    ); 
   }
   toggleSelected:string='';
   changeInToggleGroup(val: string) {

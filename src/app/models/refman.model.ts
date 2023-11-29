@@ -14,6 +14,7 @@ export class Refman {
     modifiedDate: Date=new Date();
     isActive: boolean=false;
     orderNo: number=0;
+    isFavorite:boolean=false;
 }
 
 

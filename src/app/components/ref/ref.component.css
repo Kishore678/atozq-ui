@@ -1,11 +1,11 @@
 
  
-div.div1:nth-child(even) {background-color: #f2f2f2;border-bottom: 1px solid #888;}
-div.div2{border-bottom: 1px solid #888;}
+div.ref-row:nth-child(even) {background-color: #f2f2f2;border-bottom: 1px solid #888;}
+div.ref-row{border-bottom: 1px solid #888;}
 
-h3{color: #ff5722;}
+h3{color: #ffffff;font-weight: 500;}
 
-h3 small{color:black;}
+h3 small{color:#00bcd3;font-weight: 500;}
 
   button {
     padding: 8px 10px;
@@ -17,7 +17,7 @@ h3 small{color:black;}
 
   button.read
   {
-    background-color: #4565a0;
+    background-color: #08b1c7;
     color: #f2f2f2;
   }
   button.share
@@ -25,7 +25,16 @@ h3 small{color:black;}
     background-color: #38f84d;
     color: #f2f2f2;
   }
-  
+  button.save
+  {
+    background-color: #b6b6b6;
+    color: #f2f2f2;
+  }
+  button.save:hover
+  {
+    background-color:#ef6183;
+    color: #f2f2f2;
+  }
 .headerDiv h2{
   text-align: center;
   margin: 10px;
