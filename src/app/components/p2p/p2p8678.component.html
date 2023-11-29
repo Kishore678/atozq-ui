@@ -372,11 +372,15 @@
 <button  style="background-color: #f44336;color:#ffffff"  type="button" (click)="LoadBorrowers()">Refresh</button>
 <br><br>
 <label class="chkcontainer"><span class="lable-text">Elig.</span>
-	<input type="checkbox" name="eligibleOnly" [(ngModel)]="isEligibleOnly" type="checkbox" (change)="ApplyFilter()">
+	<input type="checkbox" name="eligibleOnly" [(ngModel)]="isEligibleOnly" type="checkbox" (change)="ApplyFilter('Elig')">
 	<span class="checkmark"></span>
   </label>
   <label class="chkcontainer"><span class="lable-text">I2I</span>
-	<input type="checkbox" name="i2iOnly" [(ngModel)]="isI2iOnly" type="checkbox" (change)="ApplyFilter()">
+	<input type="checkbox" name="i2iOnly" [(ngModel)]="isI2iOnly" type="checkbox" (change)="ApplyFilter('I2I')">
+	<span class="checkmark"></span>
+  </label>
+  <label class="chkcontainer"><span class="lable-text">LC</span>
+	<input type="checkbox" name="lcOnly" [(ngModel)]="isLCOnly" type="checkbox" (change)="ApplyFilter('LC')">
 	<span class="checkmark"></span>
   </label>
 </div>

@@ -20,6 +20,8 @@ export class P2p8678Component implements OnInit {
   isI2IDiffAmount!:boolean;
   isEligibleOnly!:boolean;
   isI2iOnly!:boolean;
+  isLCOnly!:boolean;
+
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
 
@@ -606,7 +608,7 @@ LoadI2IWithdrawAmt()
   {    
     this.p2pService.GetActiveBorrowers().subscribe({
       next:(event)=>{
-        this.borrowers = [];   
+        this.borrowers = []; 
 
         if(this.isEligibleOnly && this.isI2iOnly)
         {
@@ -614,12 +616,24 @@ LoadI2IWithdrawAmt()
             return val.isEligible && val.risk.startsWith('I2I-');
           });        
         }
-        else if(!this.isEligibleOnly && this.isI2iOnly)
+        else if(this.isI2iOnly)
         {
           this.borrowers = event.filter((val,index)=>{
             return val.risk.startsWith('I2I-');
           });        
-        }  
+        }
+        else if(this.isEligibleOnly && this.isLCOnly)
+        {
+          this.borrowers = event.filter((val,index)=>{
+            return val.isEligible && val.risk.startsWith('LC-');
+          });        
+        }   
+        else if(this.isLCOnly)
+        {
+          this.borrowers = event.filter((val,index)=>{
+            return val.risk.startsWith('LC-');
+          });        
+        }     
         else if(this.isEligibleOnly)
         {
           this.borrowers = event.filter((val,index)=>{
@@ -640,8 +654,16 @@ LoadI2IWithdrawAmt()
     });    
   }
 
-  ApplyFilter()
-  {    
+  ApplyFilter(chk:string)
+  {   
+    if(chk=='I2I')
+    {
+      this.isLCOnly=false;
+    }
+    else if(chk=='LC')
+    {
+      this.isI2iOnly=false;
+    }
     this.LoadBorrowers();
   }
 
