@@ -1,12 +1,12 @@
 div.ref-row:nth-child(even) {background-color: #ffffff;border-bottom: 2px solid #d3d3d3; box-shadow: 0px 2px 1px #e1e1e1;}
 div.ref-row{border-bottom: 2px solid #d3d3d3; background-color: #ffffff; box-shadow: 0px 2px 1px #e1e1e1;}
 h3{color: #ffffff;font-weight: 500;}
-h3 small{color:#4caf50;font-weight: 500;}
+h3 small{color:#0069c2;font-weight: 500;}
 h3.ref-title-container span.favorite{width: 24px;display: block;float: right;text-align: right;margin: 0 5px;}
 h3.ref-title-container span.ref-title-text{min-width:300px;display:block;float:left;}
 button{padding: 8px 10px;margin: 4px 5px;border: none;border-radius: 4px;cursor: pointer;}
 button.read{background-color: #0072bc; color: #f2f2f2;}
-button.share{background-color: #58A738;color: #f2f2f2;}
+button.share{background-color: #4dc4ff;color: #f2f2f2;}
 button.save{background-color: #afa7a7;color: #f2f2f2;}
 button.save:hover{background-color:#ef6183;color: #f2f2f2;}
 .headerDiv h2{text-align: center;margin: 10px;border-bottom: 2px solid #d3d3d3; }
@@ -29,15 +29,18 @@ div.content h3.ref-title-container{
     margin-bottom: 10px;
     display: block;
     background: #d3d3d3;
-    font-size: 18px;
+    font-size: 20px;
     background: #f9f9fb;
-    color: #0069c2;
+    color: #ff5722;
     text-align: left;
     box-shadow: 0px 2px 1px #e1e1e1;
     border-bottom: 4px solid #fbfbfb;
 }
 div.content h3 .mat-icon{margin: 1px 5px;color: #ccc;}
-.reflink a{text-wrap:nowrap;text-overflow: ellipsis;width:50px;display:inline-block;    padding: 5px;}
+.reflink a{color:#212121;text-wrap:nowrap;text-overflow: ellipsis;width:50px;display:inline-block;    padding: 5px;}
+.reflink a:hover{
+    color: #38f84d;
+}
 .reflink-lable{display: block;
     color: white;
     background: #4CAF50;

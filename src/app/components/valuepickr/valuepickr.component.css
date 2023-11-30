@@ -21,10 +21,10 @@
     background: #ffffff;
     padding: 2px;
   }
-  .filter b{ color: #1b1b1b; font-weight: normal;}
+  .filter b{ color:#212121; font-weight: 500;}
   .filename{
     color:#1b1b1b;
-    font-weight: normal;
+    font-weight: 500;
   }
 
   .mat-select, :host ::ng-deep.mat-paginator .mat-paginator-container .mat-select

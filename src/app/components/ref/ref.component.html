@@ -13,7 +13,10 @@
  
     <p class="reflink"><span class="reflink-lable">Ref Code:</span>&nbsp;<span class="refcode">{{r.referralCode | uppercase}}</span></p>
     <p class="descrip">{{r.description}}</p> 
-    <p><button class="read" (click)="ShareRef(r)">Read more..</button><button class="save" (click)="SaveRef(r)">Add to Favorite</button><button class="share" (click)="ShareRef(r)">Share</button></p>  
+    <p>
+        <!-- <button class="read" (click)="ShareRef(r)">Read more..</button> -->
+        <button class="save" (click)="SaveRef(r)">Add to Favorite</button>
+        <button class="share" (click)="ShareRef(r)">Share</button></p>  
    
 </div>
 <div style="clear:left;"></div>

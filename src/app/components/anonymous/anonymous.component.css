@@ -49,8 +49,8 @@
     margin-top: 10px;
   }
   .msger-send-btn { 
-    background: #F9F9FB;
-    color: #1b1b1b;
+    background: #4CAF50;
+    color: #ffffff;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.23s;
