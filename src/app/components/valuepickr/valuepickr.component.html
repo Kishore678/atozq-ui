@@ -177,15 +177,13 @@
               <td mat-cell *matCellDef="let element"> {{element.Fund}} </td>
           </ng-container>
   
-          <ng-container matColumnDef="expandedDetail">
+          <ng-container matColumnDef="expandedDetail">            
             <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
               <div class="example-element-detail"
-                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-               
-                   <div class="fundamentals"> 
-                    
+                   [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">               
+                   <div class="fundamentals">                                     
                     <table class="basic-info">
-                        <caption><span class="page-header"><mat-icon svgIcon="stockmarket"></mat-icon>&nbsp;&nbsp;{{element.Nme}}&nbsp;-&nbsp;FUNDAMENTALS</span></caption>                               
+                        <!-- <caption><span class="page-header"><mat-icon svgIcon="stockmarket"></mat-icon>&nbsp;&nbsp;{{element.Nme}}&nbsp;</span>-&nbsp;Fundamentals</caption>                                -->
                         <tr>
                           <td>Market Cap(Cr.):</td>
                           <td>{{element.MarketCap | number:'1.2-2'}}</td>
