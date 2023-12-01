@@ -8,11 +8,11 @@
       <span class="spacer"></span>
 
       <a class="menuitems" mat-list-item routerLink="/account" *ngIf="!auth.user().IsLoggedIn">      
-        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">Account</span>      
+        <mat-icon aria-hidden="false" aria-label="Login" fontIcon="account_circle"></mat-icon><span class="menutext">My Account</span>      
        </a> 
-       <a class="menuitems" mat-list-item (click)="OpenYT()">      
+       <!-- <a class="menuitems" mat-list-item (click)="OpenYT()">      
         <mat-icon svgIcon="youtube"></mat-icon><span class="menutext">YouTube</span>      
-       </a>      
+       </a>       -->
     </mat-toolbar>
 
   <mat-sidenav-container class="atozq-sidenav-container"
