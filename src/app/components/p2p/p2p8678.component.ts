@@ -78,7 +78,7 @@ export class P2p8678Component implements OnInit {
      enableLCAlerts:false,
      lcPortfolioValue:0,
      lcNetReturns:0,
-     lcROI:0,
+     lcroi:0,
      lcTotalInvested:0	
     });
 
@@ -144,7 +144,7 @@ this.userForm.patchValue({
      enableLCAlerts:this.settings[0].enableLCAlerts,
      lcPortfolioValue:this.settings[0].lcPortfolioValue,
      lcNetReturns:this.settings[0].lcNetReturns,
-     lcROI:this.settings[0].lcROI,
+     lcroi:this.settings[0].lcroi,
      lcTotalInvested:this.settings[0].lcTotalInvested
 });
 
@@ -362,9 +362,9 @@ get lcNetReturns()
   return this.userForm.get('lcNetReturns');
 }
 
-get lcROI()
+get lcroi()
 {
-  return this.userForm.get('lcROI');
+  return this.userForm.get('lcroi');
 }
 
 
@@ -433,7 +433,7 @@ get lcTotalInvested()
     model.enableLCAlerts = this.userForm.get('enableLCAlerts')?.value;
     model.lcPortfolioValue = this.userForm.get('lcPortfolioValue')?.value;
     model.lcNetReturns = this.userForm.get('lcNetReturns')?.value;
-    model.lcROI = this.userForm.get('lcROI')?.value;
+    model.lcroi = this.userForm.get('lcroi')?.value;
     model.lcTotalInvested = this.userForm.get('lcTotalInvested')?.value;
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
@@ -491,7 +491,7 @@ this.userForm.patchValue({
      enableLCAlerts:this.settings[0].enableLCAlerts,
      lcPortfolioValue:this.settings[0].lcPortfolioValue,
      lcNetReturns:this.settings[0].lcNetReturns,
-     lcROI:this.settings[0].lcROI,
+     lcroi:this.settings[0].lcroi,
      lcTotalInvested:this.settings[0].lcTotalInvested
 });
       },
@@ -552,7 +552,7 @@ this.userForm.patchValue({
      enableLCAlerts:this.settings[0].enableLCAlerts,
      lcPortfolioValue:this.settings[0].lcPortfolioValue,
      lcNetReturns:this.settings[0].lcNetReturns,
-     lcROI:this.settings[0].lcROI,
+     lcroi:this.settings[0].lcroi,
      lcTotalInvested:this.settings[0].lcTotalInvested
     });
 	}
@@ -607,7 +607,7 @@ this.userForm.patchValue({
      enableLCAlerts:false,
      lcPortfolioValue:0,
      lcNetReturns:0,
-     lcROI:0,
+     lcroi:0,
      lcTotalInvested:0		
     });
 	}

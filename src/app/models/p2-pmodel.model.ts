@@ -51,7 +51,7 @@ export class P2PModel
      enableLCAlerts!:boolean;
      lcPortfolioValue!:number;
      lcNetReturns!:number;
-     lcROI!:number;
+     lcroi!:number;
      lcTotalInvested!:number;
 }
 
