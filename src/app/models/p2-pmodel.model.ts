@@ -48,6 +48,11 @@ export class P2PModel
      i2IAmtDisburse!:number;
      i2ICurrentAccValue!:number;
      i2IProfitOrLoss!:number;
+     enableLCAlerts!:boolean;
+     lcPortfolioValue!:number;
+     lcNetReturns!:number;
+     lcROI!:number;
+     lcTotalInvested!:number;
 }
 
 

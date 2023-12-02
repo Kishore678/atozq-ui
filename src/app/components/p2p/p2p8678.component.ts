@@ -74,7 +74,12 @@ export class P2p8678Component implements OnInit {
      i2IAmtProposal:0,
      i2IAmtDisburse:0,
      i2ICurrentAccValue:0,
-     i2IProfitOrLoss:0
+     i2IProfitOrLoss:0,
+     enableLCAlerts:false,
+     lcPortfolioValue:0,
+     lcNetReturns:0,
+     lcROI:0,
+     lcTotalInvested:0	
     });
 
   	
@@ -134,7 +139,13 @@ this.userForm.patchValue({
      i2IAmtProposal:this.settings[0].i2IAmtProposal,
      i2IAmtDisburse:this.settings[0].i2IAmtDisburse,
      i2ICurrentAccValue:this.settings[0].i2ICurrentAccValue,
-     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss
+     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss,
+
+     enableLCAlerts:this.settings[0].enableLCAlerts,
+     lcPortfolioValue:this.settings[0].lcPortfolioValue,
+     lcNetReturns:this.settings[0].lcNetReturns,
+     lcROI:this.settings[0].lcROI,
+     lcTotalInvested:this.settings[0].lcTotalInvested
 });
 
 this.i2IProfitLoss=this.settings[0].i2IProfitOrLoss>0;
@@ -336,6 +347,32 @@ get i2IProfitOrLoss()
   return this.userForm.get('i2IProfitOrLoss');
 }
 
+get enableLCAlerts()
+{
+  return this.userForm.get('enableLCAlerts');
+}
+
+get lcPortfolioValue()
+{
+  return this.userForm.get('lcPortfolioValue');
+}
+
+get lcNetReturns()
+{
+  return this.userForm.get('lcNetReturns');
+}
+
+get lcROI()
+{
+  return this.userForm.get('lcROI');
+}
+
+
+get lcTotalInvested()
+{
+  return this.userForm.get('lcTotalInvested');
+}
+
 
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
@@ -391,8 +428,13 @@ get i2IProfitOrLoss()
     model.i2IDiffAmount = this.userForm.get('i2IDiffAmount')?.value;
     model.i2IAmtProposal = this.userForm.get('i2IAmtProposal')?.value;
     model.i2IAmtDisburse = this.userForm.get('i2IAmtDisburse')?.value;
-    model.i2ICurrentAccValue= this.userForm.get('i2ICurrentAccValue')?.value;
-    model.i2IProfitOrLoss= this.userForm.get('i2IProfitOrLoss')?.value;
+    model.i2ICurrentAccValue = this.userForm.get('i2ICurrentAccValue')?.value;
+    model.i2IProfitOrLoss = this.userForm.get('i2IProfitOrLoss')?.value;
+    model.enableLCAlerts = this.userForm.get('enableLCAlerts')?.value;
+    model.lcPortfolioValue = this.userForm.get('lcPortfolioValue')?.value;
+    model.lcNetReturns = this.userForm.get('lcNetReturns')?.value;
+    model.lcROI = this.userForm.get('lcROI')?.value;
+    model.lcTotalInvested = this.userForm.get('lcTotalInvested')?.value;
 
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
@@ -445,7 +487,12 @@ this.userForm.patchValue({
   i2IAmtProposal:this.settings[0].i2IAmtProposal,
   i2IAmtDisburse:this.settings[0].i2IAmtDisburse,
    i2ICurrentAccValue:this.settings[0].i2ICurrentAccValue,
-     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss
+     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss,
+     enableLCAlerts:this.settings[0].enableLCAlerts,
+     lcPortfolioValue:this.settings[0].lcPortfolioValue,
+     lcNetReturns:this.settings[0].lcNetReturns,
+     lcROI:this.settings[0].lcROI,
+     lcTotalInvested:this.settings[0].lcTotalInvested
 });
       },
       error:(err)=>{
@@ -501,7 +548,12 @@ this.userForm.patchValue({
       i2IAmtProposal:this.settings[0].i2IAmtProposal,
       i2IAmtDisburse:this.settings[0].i2IAmtDisburse,
        i2ICurrentAccValue:this.settings[0].i2ICurrentAccValue,
-     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss
+     i2IProfitOrLoss:this.settings[0].i2IProfitOrLoss,
+     enableLCAlerts:this.settings[0].enableLCAlerts,
+     lcPortfolioValue:this.settings[0].lcPortfolioValue,
+     lcNetReturns:this.settings[0].lcNetReturns,
+     lcROI:this.settings[0].lcROI,
+     lcTotalInvested:this.settings[0].lcTotalInvested
     });
 	}
 
@@ -551,7 +603,12 @@ this.userForm.patchValue({
       i2IAmtProposal:0,
       i2IAmtDisburse:0,
        i2ICurrentAccValue:0,
-     i2IProfitOrLoss:0		
+     i2IProfitOrLoss:0,
+     enableLCAlerts:false,
+     lcPortfolioValue:0,
+     lcNetReturns:0,
+     lcROI:0,
+     lcTotalInvested:0		
     });
 	}
 
