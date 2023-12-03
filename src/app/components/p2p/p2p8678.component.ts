@@ -23,6 +23,7 @@ export class P2p8678Component implements OnInit {
   isLCOnly!:boolean;
   isFundedOnly!:boolean;
   isNotFundedOnly!:boolean;
+  selectedCount:number=0;
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
 
@@ -639,10 +640,10 @@ LoadI2IWithdrawAmt()
 
   RequestI2IWithdrawAmt(amt:number)
   {
-    var confirmMessage =  `Are you sure want to withdraw Rs.${amt}?`;
+    var confirmMessage =  `Withdraw amount Rs.${amt}`;
   Swal.fire({
     title: 'Are you sure?',
-    text: 'Force Invest '+ confirmMessage,
+    text: confirmMessage,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Yes, go ahead.',
@@ -681,7 +682,7 @@ LoadI2IWithdrawAmt()
             else
             return q;
 
-          });        
+          });            
         }
         else if(this.isI2iOnly)
         {
@@ -747,7 +748,7 @@ LoadI2IWithdrawAmt()
          
                
         }
-
+        this.selectedCount =  this.borrowers.length;
         
       },
       error:(err)=>{

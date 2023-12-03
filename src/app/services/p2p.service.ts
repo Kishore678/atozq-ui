@@ -33,7 +33,18 @@ export class P2pService {
   
   I2IWithdrawAmtPut():Observable<Withdrawals[]>
   {
-    return this.http.put<Withdrawals[]>(`${baseUrl}/api/Withdrawals/0`,{});
+    return this.http.put<Withdrawals[]>(`${baseUrl}/api/Withdrawals/0`,{
+      withdrawalsId: 0,
+      wType: '',
+      month: 0,
+      year: 0,
+      amount:  0,
+      status:  false,
+      message: '',
+      manual: true,
+      createdDate: new Date(),
+      modifiedDate: new Date()
+    });
   }
 
 
