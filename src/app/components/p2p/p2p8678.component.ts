@@ -80,7 +80,9 @@ export class P2p8678Component implements OnInit {
      lcPortfolioValue:0,
      lcNetReturns:0,
      lcroi:0,
-     lcTotalInvested:0	
+     lcTotalInvested:0,
+     lcHighCreditOnly: false,
+     lcShortPeriodOnly: false	
     });
 
   	
@@ -146,7 +148,10 @@ this.userForm.patchValue({
      lcPortfolioValue:this.settings[0].lcPortfolioValue,
      lcNetReturns:this.settings[0].lcNetReturns,
      lcroi:this.settings[0].lcroi,
-     lcTotalInvested:this.settings[0].lcTotalInvested
+     lcTotalInvested:this.settings[0].lcTotalInvested,
+
+     lcHighCreditOnly:this.settings[0].lcHighCreditOnly,
+     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly
 });
 
 this.i2IProfitLoss=this.settings[0].i2IProfitOrLoss>0;
@@ -375,6 +380,16 @@ get lcTotalInvested()
 }
 
 
+get lcHighCreditOnly()
+{
+  return this.userForm.get('lcHighCreditOnly');
+}
+
+get lcShortPeriodOnly()
+{
+  return this.userForm.get('lcShortPeriodOnly');
+}
+
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -437,6 +452,9 @@ get lcTotalInvested()
     model.lcroi = this.userForm.get('lcroi')?.value;
     model.lcTotalInvested = this.userForm.get('lcTotalInvested')?.value;
 
+    model.lcHighCreditOnly= this.userForm.get('lcHighCreditOnly')?.value;
+    model.lcShortPeriodOnly= this.userForm.get('lcShortPeriodOnly')?.value;
+
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
         this.settings = res;
@@ -493,7 +511,9 @@ this.userForm.patchValue({
      lcPortfolioValue:this.settings[0].lcPortfolioValue,
      lcNetReturns:this.settings[0].lcNetReturns,
      lcroi:this.settings[0].lcroi,
-     lcTotalInvested:this.settings[0].lcTotalInvested
+     lcTotalInvested:this.settings[0].lcTotalInvested,
+     lcHighCreditOnly:this.settings[0].lcHighCreditOnly,
+     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly
 });
       },
       error:(err)=>{
@@ -554,7 +574,9 @@ this.userForm.patchValue({
      lcPortfolioValue:this.settings[0].lcPortfolioValue,
      lcNetReturns:this.settings[0].lcNetReturns,
      lcroi:this.settings[0].lcroi,
-     lcTotalInvested:this.settings[0].lcTotalInvested
+     lcTotalInvested:this.settings[0].lcTotalInvested,
+     lcHighCreditOnly:this.settings[0].lcHighCreditOnly,
+     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly
     });
 	}
 
@@ -609,7 +631,9 @@ this.userForm.patchValue({
      lcPortfolioValue:0,
      lcNetReturns:0,
      lcroi:0,
-     lcTotalInvested:0		
+     lcTotalInvested:0,
+     lcHighCreditOnly:false,
+     lcShortPeriodOnly:false		
     });
 	}
 

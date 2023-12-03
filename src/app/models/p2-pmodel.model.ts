@@ -53,6 +53,8 @@ export class P2PModel
      lcNetReturns!:number;
      lcroi!:number;
      lcTotalInvested!:number;
+     lcHighCreditOnly!:boolean;
+     lcShortPeriodOnly!:boolean;
 }
 
 
