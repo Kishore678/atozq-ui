@@ -4,6 +4,93 @@
 	Saved changes successfully.
 </p>
 </div>
+<label class="chkcontainer"><span class="lable-text">Success</span>
+	<input type="checkbox" name="lcSuccess" [(ngModel)]="lcSuccess" type="checkbox" (change)="ApplyLCFilter('Success')">
+	<span class="checkmark"></span>
+  </label>
+  <label class="chkcontainer"><span class="lable-text">Fail</span>
+	<input type="checkbox" name="lcFail" [(ngModel)]="lcFail" type="checkbox" (change)="ApplyLCFilter('Fail')">
+	<span class="checkmark"></span>
+  </label>
+  
+<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide LC</button>	
+<button type="button" style="background-color: #00ba19;color: #fff;" (click)="RefreshLendenLMS()">Refresh LC LMS</button>	
+<button type="button" style="background-color: #ba006c;color: #fff;" (click)="GetRefreshStatusLendenLMS()">Get Status LC LMS</button>	
+
+<div style="clear:both;"></div>
+<table *ngIf="hiddenLC">
+	<tr>
+		<th>STATUS</th>
+		<th>ID</th>
+		<th> INV</th>
+		<th>RECV</th>
+		<th>EXP</th>
+		<th>ACTUAL</th>
+		<th>ROI</th>
+		<th>TENURE</th>
+		<th>CLOSED</th>
+		<th>SCH_ID</th>
+		<th>LOANID</th>
+			<th>DT_OPEN</th>
+				<th>DT_CLOSE</th>
+				<th>MESSAGE</th>
+					
+						
+					
+							
+								<!-- <th>AUTO</th> -->
+<!-- 									
+											
+											
+													<th>INV_TYPE</th>
+													<th>INV_NAME</th>
+													<th>HEALTH</th>
+													<th>DOC</th>
+													<th>MANDATE</th>
+													<th>SOURCE</th>
+												
+												
+													
+													<th>AMT_INV</th>
+													<th>LOAN_TYPE</th>
+													<th>BORROWER</th>												
+													
+													<th>CREATED</th>
+													<th>MODIFIED</th> -->
+	</tr>
+	<tr *ngFor="let l of lendenLoansFiltered">
+		<td [ngClass]="l.isSuccess?'i2iProfit':'i2iLoss'">{{l.isSuccess?'Success':'Fail'}}</td>
+		<td>{{l.lendenLoanId}}</td>
+		<td>{{l.total_investment}}</td>
+		<td>{{l.amount_received}}</td>
+		<td>{{l.expected_returns}}</td>
+		<td>{{l.actual_returns}}</td>	
+		<td>{{l.net_roi}}</td>
+		<td>{{l.tenure}}-{{l.tenure_type=='MONTHS'?'M':''}}</td>												
+		<td>{{l.is_closed}}</td>
+		<td>{{l.scheme_id}}</td>
+		<td>{{l.loan_id}}</td>
+		<td>{{l.open_date | date:'short'}}</td>
+		<td>{{l.maturity_date| date:'short'}}</td>
+		<td>{{l.errorMessage}}</td>
+		<!-- <td>{{l.auto_renew}}</td> -->
+								
+																				
+													<!-- <td>{{l.investment_type}}</td>
+													<td>{{l.investment_name}}</td>
+													<td>{{l.portfolio_health?'Yes':'No'}}</td>
+													<td><a [href]="l.file_url">doc</a></td>
+													<td>{{l.mandate_status}}</td>
+													<td>{{l.source}}</td>													
+													<td>{{l.expected_amount}}</td>
+													<td>{{l.invested_amount}}</td>
+													<td>{{l.loan_type}}</td>
+													<td>{{l.borrower_name}}</td>											
+													<td>{{l.createdDate}}</td>
+													<td>{{l.modifiedDate}}</td> -->
+		
+	</tr>
+</table>
 <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
   <input style="display: none;" type="number" formControlName="settingsId">
 
@@ -15,7 +102,7 @@
 				<button type="button" (click)="restoreUserValues()">Cancel</button> -->
 				<button style="background-color: #f44336;color:#ffffff" type="button" (click)="LoadSettings()">Refresh</button>
 				<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Update Account</button>	
-			
+				
 			</td>
 			<td>
 			</td>
@@ -85,9 +172,11 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 		<tr>
-			<td>I2I WithdrawAmt&nbsp;<button style="background-color: #04AA6D;color:#ffffff" (click)="RequestI2IWithdrawAmt(userForm.controls['i2IWithdrawAmt'].value)">Withdraw</button></td>
+			<td>I2I Withdraw</td>
 			<td>
 				<input type="text" formControlName="i2IWithdrawAmt">
+				<br>
+				<button style="background-color: #04AA6D;color:#ffffff" (click)="RequestI2IWithdrawAmt(userForm.controls['i2IWithdrawAmt'].value)">Withdraw</button>
 			</td>
 			<td>
 				<table>
@@ -151,7 +240,9 @@
 			<td>
 				<input type="text" style="background: #eee;" readonly formControlName="lcPortfolioValue">
 			</td>
-			<td style="background-color: #ffffff;color:#000000"></td>
+			<td style="background-color: #ffffff;color:#000000">	
+			
+			</td>
 		</tr>
 		
 		

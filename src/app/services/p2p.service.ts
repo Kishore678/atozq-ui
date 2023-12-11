@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ActiveBorrowers } from '../models/active-borrowers.model';
 import { ManageBorrowers } from '../models/manage-borrowers.model';
 import { Withdrawals } from '../models/withdrawals.model';
+import { LendenLoan, LendenLoanStatus } from '../models/lenden-loans.model';
 
 const baseUrl = environment.onlineUsersApi;
 
@@ -49,9 +50,23 @@ export class P2pService {
 
 
   SaveSettings(id:number,settings:P2PModel):Observable<P2PModel[]>
-  {
-    debugger  ;
+  {   
     return this.http.put<P2PModel[]>(`${baseUrl}/api/AutoInvestSettings/${id}`,settings);
+  }
+
+  GetLendenLoans():Observable<LendenLoan[]>
+  {
+    return this.http.get<LendenLoan[]>(`${baseUrl}/api/LendenLoans`);
+  }
+
+  RefreshLCLoanData()
+  {   
+    return this.http.post<LendenLoan[]>(`${baseUrl}/api/LendenLoans`,{});
+  }
+
+  GetStatusLCLoanData(t:string):Observable<LendenLoanStatus>
+  {   
+    return this.http.get<LendenLoanStatus>(`${baseUrl}/api/LendenLoans/latest/open`);
   }
 
   GetActiveBorrowers():Observable<ManageBorrowers[]>

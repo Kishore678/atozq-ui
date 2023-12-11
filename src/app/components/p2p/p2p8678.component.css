@@ -78,6 +78,12 @@ table#watchlist{
   display: block;
 }
 
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  }
+
 /* Hide the browser's default checkbox */
 .chkcontainer input {
   position: absolute;

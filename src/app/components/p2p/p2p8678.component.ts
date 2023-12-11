@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LendenLoan } from 'src/app/models/lenden-loans.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
 import { Withdrawals } from 'src/app/models/withdrawals.model';
@@ -24,6 +25,14 @@ export class P2p8678Component implements OnInit {
   isFundedOnly!:boolean;
   isNotFundedOnly!:boolean;
   selectedCount:number=0;
+  lendenLoansOriginal!:LendenLoan[];
+  lendenLoansFiltered!:LendenLoan[];
+  hiddenLC:boolean=true;
+
+  showHideLC()
+  {
+    this.hiddenLC = !this.hiddenLC;
+  }
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 	ngOnInit() {
 
@@ -84,9 +93,22 @@ export class P2p8678Component implements OnInit {
      lcHighCreditOnly: false,
      lcShortPeriodOnly: false	
     });
-
+  }
   	
-	}
+  LoadLendenLoans()
+  {
+    this.p2pService.GetLendenLoans().subscribe({
+      next:(val)=>{
+        this.lendenLoansOriginal=val;
+        this.lendenLoansFiltered=this.lendenLoansOriginal;
+      },
+      error:(err)=>{
+        Swal.fire('Something went wrong.')
+      }
+    });
+  }
+
+	
 
   LoadSettings()
   {
@@ -166,6 +188,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
     this.LoadSettings();
     this.LoadI2IWithdrawAmt();
     this.LoadBorrowers();  
+    this.LoadLendenLoans();
   }
 
   get settingsId() {
@@ -782,6 +805,44 @@ LoadI2IWithdrawAmt()
     });    
   }
 
+RefreshLendenLMS()
+{
+this.p2pService.RefreshLCLoanData().subscribe({
+next:(val)=>{Swal.fire('Completed');},
+error:(err)=>{Swal.fire('Something went wrong!')}
+});
+}
+
+GetRefreshStatusLendenLMS()
+{
+  this.p2pService.GetStatusLCLoanData('open').subscribe({
+    next:(val)=>{Swal.fire(val.scheme_id+' : '+val.status);},
+    error:(err)=>{Swal.fire('Something went wrong!')}
+    });
+  
+}
+
+  lcSuccess:boolean=false;
+  lcFail:boolean=false;
+  ApplyLCFilter(chk:string)
+  {   
+    if(chk=='Success')
+    {
+      this.lcSuccess=false;
+      this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        return val.isSuccess;
+      });
+    }
+    else if(chk=='Fail')
+    {
+      this.lcFail=false;     
+      this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        return !val.isSuccess;
+      });
+    }
+    
+       
+  }
   ApplyFilter(chk:string)
   {   
     if(chk=='I2I')
