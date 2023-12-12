@@ -1,8 +1,9 @@
 
-<h2>Update LC Status: <br><small style="padding: 5px;margin: 5px;" class="i2iProfit">{{lcUpdateStatus}}</small></h2>
+<h2>&nbsp;&nbsp;&nbsp;Update LC Status: <br>
+	&nbsp;&nbsp;&nbsp;<small style="padding: 5px;margin: 5px;" class="i2iProfit">{{lcUpdateStatus}}</small></h2>
 
 <br>
-<div style="float:left;">
+<div style="float:left;">&nbsp;&nbsp;&nbsp;
 <button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide</button>	
 <button type="button" style="background-color: #00ba19;color: #fff;" (click)="UpdateDataLendenLMS()">Update</button>	
 <button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadLendenLoans()">Refresh</button>	
@@ -16,64 +17,40 @@
 	<input type="checkbox" name="lcFail" [(ngModel)]="lcFail" type="checkbox" (change)="ApplyLCFilter()">
 	<span class="checkmark"></span>
   </label>
-  
-
-<div style="clear:both;"></div>
+<div style="clear:both;"></div> 
+<span>&nbsp;&nbsp;&nbsp;<b>Invested</b>-({{lcInvested| number : '1.2-2'}})</span>&nbsp;|&nbsp;<span><b>Received</b>-({{lcReceived| number : '1.2-2'}})</span>&nbsp;|&nbsp;<span><b>Pending</b>-({{lcPending| number : '1.2-2'}})</span>   
+<br><br>
 <table *ngIf="hiddenLC">
 	<tr>
-		<th>STATUS</th>
+		<th>Status</th>
 		<th>ID</th>
-		<th> INV</th>
-		<th>RECV</th>
-		<th>EXP</th>
-		<th>ACTUAL</th>
+		<th>Invstd</th>
+		<th>Recvd</th>
 		<th>ROI</th>
-		<th>TENURE</th>
-		<th>CLOSED</th>
-		<th>SCH_ID</th>
-		<th>LOANID</th>
-			<th>DT_OPEN</th>
-				<th>DT_CLOSE</th>
-				<th>MESSAGE</th>
-					
-						
-					
-							
-								<!-- <th>AUTO</th> -->
-<!-- 									
-											
-											
-													<th>INV_TYPE</th>
-													<th>INV_NAME</th>
-													<th>HEALTH</th>
-													<th>DOC</th>
-													<th>MANDATE</th>
-													<th>SOURCE</th>
-												
-												
-													
-													<th>AMT_INV</th>
-													<th>LOAN_TYPE</th>
-													<th>BORROWER</th>												
-													
-													<th>CREATED</th>
-													<th>MODIFIED</th> -->
+		<th>Tenure</th>
+		<th>Closed</th>
+		<th>SchemeID</th>
+		<th>LoanID</th>
+	    <th>OpenDate</th>
+	    <th>MatureDate</th>
+		<th>Message</th>
+		<th>Date</th>
+		
 	</tr>
 	<tr *ngFor="let l of lendenLoansFiltered">
-		<td [ngClass]="l.isSuccess?'i2iProfit':'i2iLoss'">{{l.isSuccess?'Success':'Fail'}}</td>
-		<td>{{l.lendenLoanId}}</td>
-		<td>{{l.total_investment}}</td>
-		<td>{{l.amount_received}}</td>
-		<td>{{l.expected_returns}}</td>
-		<td>{{l.actual_returns}}</td>	
-		<td>{{l.net_roi}}</td>
-		<td>{{l.tenure}}-{{l.tenure_type=='MONTHS'?'M':''}}</td>												
-		<td>{{l.is_closed}}</td>
-		<td>{{l.scheme_id}}</td>
-		<td>{{l.loan_id}}</td>
-		<td>{{l.open_date | date:'short'}}</td>
-		<td>{{l.maturity_date| date:'short'}}</td>
-		<td>{{l.errorMessage}}</td>
+		<td  style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="l.isSuccess?'i2iProfit':'i2iLoss'">{{l.isSuccess?'Success':'Fail'}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.lendenLoanId}}</td>
+		<td style="text-align: right;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.total_investment}}</td>
+		<td style="text-align: right;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.amount_received}}</td>	
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.net_roi}}%</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.tenure}}-{{l.tenure_type=='MONTHS'?'M':''}}</td>												
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.is_closed?'Yes':'No'}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.scheme_id}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.loan_id}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.open_date | date:'short'}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.maturity_date| date:'short'}}</td>
+		<td style="text-align: left;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.errorMessage}}</td>
+		<td>{{l.modifiedDate}}</td>
 		<!-- <td>{{l.auto_renew}}</td> -->
 								
 																				

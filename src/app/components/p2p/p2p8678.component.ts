@@ -30,7 +30,10 @@ export class P2p8678Component implements OnInit {
   lendenLoansFiltered!:LendenLoan[];
   hiddenLC:boolean=true;
   hiddenSettings:boolean=true;
-
+  
+  lcInvested:number=0;
+  lcReceived:number=0;
+  lcPending:number=0;
   showHideSettings()
   {
     this.hiddenSettings = !this.hiddenSettings;
@@ -100,15 +103,24 @@ export class P2p8678Component implements OnInit {
      lcShortPeriodOnly: false	
     });
   }
-   
+sumamounts(val:LendenLoan)
+{
+  this.lcInvested+=val.total_investment??0;
+          this.lcReceived+=val.amount_received;
+          this.lcPending+=(val.total_investment??0)-val.amount_received;
+}
   LoadLendenLoans()
   {
+    this.lcInvested=0;
+    this.lcReceived=0;
+    this.lcPending=0;
     this.successCnt=0
     this.failCnt=0;
     this.p2pService.GetLendenLoans().subscribe({
       next:(val)=>{
         this.lendenLoansOriginal=val;       
         this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+          this.sumamounts(val);
           if(val.isSuccess)
           this.successCnt++;
           if(!val.isSuccess)
@@ -845,13 +857,20 @@ GetRefreshStatusLendenLMS()
   successCnt:number=0;
   failCnt:number=0;
   ApplyLCFilter()
-  {   
+  {  
+    this.lcInvested=0;
+    this.lcReceived=0;
+    this.lcPending=0;
+     
     if(this.lcSuccess && !this.lcFail)
     {     
       this.successCnt=0;
       this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
          if(val.isSuccess)
+         {
+          this.sumamounts(val);
          this.successCnt++;
+         }
         return val.isSuccess;
       });
     }
@@ -860,15 +879,20 @@ GetRefreshStatusLendenLMS()
       this.failCnt=0;
       this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
         if(!val.isSuccess)
+        {
+          this.sumamounts(val);
         this.failCnt++;
+        }
         return !val.isSuccess;
       });
     }
     else
     {
+  
       this.successCnt=0;
       this.failCnt=0;
       this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        this.sumamounts(val);
         if(val.isSuccess)
         this.successCnt++;
         if(!val.isSuccess)
