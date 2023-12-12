@@ -474,9 +474,10 @@ get lcShortPeriodOnly()
 
     model.lcHighCreditOnly= this.userForm.get('lcHighCreditOnly')?.value;
     model.lcShortPeriodOnly= this.userForm.get('lcShortPeriodOnly')?.value;
-
+    debugger;
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
+        debugger;
         this.settings = res;
 this.userForm.patchValue({
   settingsId: this.settings[0].settingsId,

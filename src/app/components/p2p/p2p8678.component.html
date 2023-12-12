@@ -1,11 +1,13 @@
-<div style="display:block;margin:10px;"> 
+
+<h2>Update LC Status: <br><small style="padding: 5px;margin: 5px;" class="i2iProfit">{{lcUpdateStatus}}</small></h2>
+
 <br>
-<p *ngIf="isValidFormSubmitted" class="success">
-	Saved changes successfully.
-</p>
+<div style="float:left;">
+<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide</button>	
+<button type="button" style="background-color: #00ba19;color: #fff;" (click)="UpdateDataLendenLMS()">Update</button>	
+<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadLendenLoans()">Refresh</button>	
 </div>
-<h2>Update LC Status: <small style="padding: 5px;margin: 5px;" class="i2iProfit">{{lcUpdateStatus}}</small></h2>
-<br>
+<div style="clear:both;"></div>
 <label class="chkcontainer"><span class="lable-text">Success({{successCnt}})</span>
 	<input type="checkbox" name="lcSuccess" [(ngModel)]="lcSuccess" type="checkbox" (change)="ApplyLCFilter()">
 	<span class="checkmark"></span>
@@ -15,9 +17,6 @@
 	<span class="checkmark"></span>
   </label>
   
-<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide LC LMS</button>	
-<button type="button" style="background-color: #00ba19;color: #fff;" (click)="UpdateDataLendenLMS()">Update Data LC LMS</button>	
-<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadLendenLoans()">Refresh UI LC LMS</button>	
 
 <div style="clear:both;"></div>
 <table *ngIf="hiddenLC">
@@ -104,17 +103,18 @@ border-bottom: 1px solid #d3d3d3;
 margin-bottom: 4px;
 "/>
 
-<h2>AI Settings: <small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
+<h2>AI Settings: <br>
+	<small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
 <br>
-<div>	
-<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideSettings()">Show/Hide Settings</button>	
-<button style="background-color: #008CBA;color:#ffffff">Save</button>	
-<button style="background-color: #f44336;color:#ffffff" type="button" (click)="LoadSettings()">Refresh</button>
-<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Update Account</button>	
+<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideSettings()">Show/Hide</button>	
+<button type="button" style="background-color: #00ba19;color: #fff;" (click)="GetI2IAccStatement()">Update</button>	
+<button  style="background-color: #ba006c;color: #fff;" type="button" (click)="LoadSettings()">Refresh</button>
 
-</div>
 <form *ngIf="hiddenSettings" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
-  <input style="display: none;" type="number" formControlName="settingsId">
+<button type="submit" style="background-color: #008CBA;color:#ffffff" (click)="userForm">Save</button>  
+<div>
+	<input style="display: none;" type="number" formControlName="settingsId"><span *ngIf="isValidFormSubmitted" class="success">Saved changed successfully.</span>
+</div>
 	<table>	
 		<tr>
 			<td>I2i Investment Limit</td>
@@ -530,9 +530,9 @@ border-bottom: 1px solid #d3d3d3;
 margin-bottom: 4px;
 "/>
 <div style="display:block;margin:10px;"> 
-	<h2>Todays Active Borrowers: <small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
+	<h2>Todays Active Borrowers: <br><small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
 	<br>
-<button  style="background-color: #f44336;color:#ffffff"  type="button" (click)="LoadBorrowers()">Refresh</button>
+<button   style="background-color: #ba006c;color: #fff;"  type="button" (click)="LoadBorrowers()">Refresh</button>
 <br><br>
 <label class="chkcontainer"><span class="lable-text">Elig.</span>
 	<input type="checkbox" name="eligibleOnly" [(ngModel)]="isEligibleOnly" type="checkbox" (change)="ApplyFilter('Elig')">
@@ -560,34 +560,38 @@ margin-bottom: 4px;
   <section class="container">
 <table id="watchlist">
   <tr>   
+	<th style="width:20px;"></th>
 	<th style="width:50px;">Date</th>
-    <th style="width:25px;">ID</th>
-    <th style="width:25px;">Loan</th>
+	<th style="width:25px;">Loan No.</th>
     <th style="width:25px;">Loan Amt</th>
-    <th style="width:25px;">Risk</th>
-    <th style="width:25px;">Age</th>
-    <th style="width:25px;">Cibil</th>
+	<th style="width:25px;">Cibil</th>
     <th style="width:25px;">Int%.</th>
     <th style="width:30px;">Tenure</th>
     <th style="width:10px;">Elig.</th>   
-    <th style="width:50px;">Invest Amt</th>   
-    <th style="width:95px;">Status</th>   
-    <th style="width:20px;"></th>
+    <th style="width:50px;">Invest Amt</th>
+	<th style="width:95px;">Status</th>    
+   
+    <th style="width:25px;">Risk</th> 
+	
   </tr>
-  <tr *ngFor="let w of borrowers;let i=index;">  
+  <tr *ngFor="let w of borrowers;let i=index;"> 
+	<td style="text-align:center"><button type="button" style="background: green;
+		color: white;
+		width: 50px;
+		margin: 0;
+		padding: 5px;
+	" (click)="ForceInvest(w)">Force</button></td>
    <td>{{w.createdDate|date:'short'}}</td>
-   <td>{{w.keyId}}</td>
    <td>{{w.loan}}</td>
    <td>{{w.loanAmt}}</td>
-   <td>{{w.risk}}</td>
-   <td>{{w.age}}</td>
    <td>{{w.cibil}}</td>
    <td>{{w.interest}}</td>   
    <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   
    <td [ngClass]="w.isEligible?'profit':'loss'">{{w.isEligible?'Yes':'No'}}</td>
    <td>{{w.investAmt}}</td>
-   <td [ngClass]="w.status==2?'profit':''">{{w.statusMsg}}</td>
-   <td style="text-align:center"><button type="button" style="background: green;color: white;" (click)="ForceInvest(w)">Force Invest</button></td>
+   <td style="text-align: left;" [ngClass]="w.status==2?'profit':''">{{w.statusMsg}}</td>
+
+   <td>{{w.risk}}</td> 
   </tr>
 </table>
 </section>
