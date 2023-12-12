@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { timer } from 'rxjs/internal/observable/timer';
 import { LendenLoan } from 'src/app/models/lenden-loans.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
@@ -28,7 +29,12 @@ export class P2p8678Component implements OnInit {
   lendenLoansOriginal!:LendenLoan[];
   lendenLoansFiltered!:LendenLoan[];
   hiddenLC:boolean=true;
+  hiddenSettings:boolean=true;
 
+  showHideSettings()
+  {
+    this.hiddenSettings = !this.hiddenSettings;
+  }
   showHideLC()
   {
     this.hiddenLC = !this.hiddenLC;
@@ -94,13 +100,22 @@ export class P2p8678Component implements OnInit {
      lcShortPeriodOnly: false	
     });
   }
-  	
+   
   LoadLendenLoans()
   {
+    this.successCnt=0
+    this.failCnt=0;
     this.p2pService.GetLendenLoans().subscribe({
       next:(val)=>{
-        this.lendenLoansOriginal=val;
-        this.lendenLoansFiltered=this.lendenLoansOriginal;
+        this.lendenLoansOriginal=val;       
+        this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+          if(val.isSuccess)
+          this.successCnt++;
+          if(!val.isSuccess)
+          this.failCnt++;
+         return true;
+       });
+       this.observableTimer()
       },
       error:(err)=>{
         Swal.fire('Something went wrong.')
@@ -262,40 +277,28 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
 	}
   get smtpPassword() {
 		return this.userForm.get('smtpPassword');
-	}
-
-  
+	}  
   get isGroupEnabled() {
 		return this.userForm.get('isGroupEnabled');
 	}
-
-
 get amountPerBorrowerGroup() {
   return this.userForm.get('amountPerBorrowerGroup');
 }
-
-
 get cibilBest() {
   return this.userForm.get('cibilBest');
 }
-
-
 get gCibilGood() {
   return this.userForm.get('gCibilGood');
 }
-
 get investmentLimit() {
   return this.userForm.get('investmentLimit');
 }
-
 get escroBalance() {
   return this.userForm.get('escroBalance');
 }
-
 get balanceThreshold() {
   return this.userForm.get('balanceThreshold');
 }
-
 get groupLoanI2IFundingEnabled()
 {
   return this.userForm.get('groupLoanI2IFundingEnabled');
@@ -328,24 +331,18 @@ get lendenEscroBalance()
 {
   return this.userForm.get('lendenEscroBalance');
 }
-
-
 get i2IPrincipalBalance()
 {
   return this.userForm.get('i2IPrincipalBalance');
 }
-
-
 get i2ITotalInvested()
 {
   return this.userForm.get('i2ITotalInvested');
 }
-
 get i2ITotalWithdrawn()
 {
   return this.userForm.get('i2ITotalWithdrawn');
 }
-
 get i2IMyInvestmentBalance()
 {
   return this.userForm.get('i2IMyInvestmentBalance');
@@ -805,42 +802,80 @@ LoadI2IWithdrawAmt()
     });    
   }
 
-RefreshLendenLMS()
+UpdateDataLendenLMS()
 {
+  this.play=true;
 this.p2pService.RefreshLCLoanData().subscribe({
 next:(val)=>{Swal.fire('Completed');},
 error:(err)=>{Swal.fire('Something went wrong!')}
 });
+this.observableTimer();
 }
 
+observableTimer() {
+  const source = timer(1000, 2000);
+  const abc = source.subscribe(val => {
+    if(this.play)
+    this.GetRefreshStatusLendenLMS();  
+  });
+}
+
+lcUpdateStatus:string='';
+lcUpdateStatusOld:string='';
+play:boolean=true;
 GetRefreshStatusLendenLMS()
-{
+{ 
   this.p2pService.GetStatusLCLoanData('open').subscribe({
-    next:(val)=>{Swal.fire(val.scheme_id+' : '+val.status);},
+    next:(val)=>{
+      this.lcUpdateStatusOld = this.lcUpdateStatus;
+      this.lcUpdateStatus = val.scheme_id+' : '+val.status;
+
+      if(this.lcUpdateStatus!=null && this.lcUpdateStatusOld == this.lcUpdateStatus && this.lcUpdateStatusOld!=null)
+      {
+        this.play = false;
+      }
+    },
     error:(err)=>{Swal.fire('Something went wrong!')}
-    });
-  
+    });  
 }
 
   lcSuccess:boolean=false;
   lcFail:boolean=false;
-  ApplyLCFilter(chk:string)
+  successCnt:number=0;
+  failCnt:number=0;
+  ApplyLCFilter()
   {   
-    if(chk=='Success')
-    {
-      this.lcSuccess=false;
+    if(this.lcSuccess && !this.lcFail)
+    {     
+      this.successCnt=0;
       this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+         if(val.isSuccess)
+         this.successCnt++;
         return val.isSuccess;
       });
     }
-    else if(chk=='Fail')
+    else if(this.lcFail && !this.lcSuccess)
     {
-      this.lcFail=false;     
+      this.failCnt=0;
       this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        if(!val.isSuccess)
+        this.failCnt++;
         return !val.isSuccess;
       });
     }
-    
+    else
+    {
+      this.successCnt=0;
+      this.failCnt=0;
+      this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        if(val.isSuccess)
+        this.successCnt++;
+        if(!val.isSuccess)
+        this.failCnt++;
+       return true;
+     });
+     
+    }    
        
   }
   ApplyFilter(chk:string)

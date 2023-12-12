@@ -1,21 +1,23 @@
 <div style="display:block;margin:10px;"> 
-<h3>AI Settings</h3>
+<br>
 <p *ngIf="isValidFormSubmitted" class="success">
 	Saved changes successfully.
 </p>
 </div>
-<label class="chkcontainer"><span class="lable-text">Success</span>
-	<input type="checkbox" name="lcSuccess" [(ngModel)]="lcSuccess" type="checkbox" (change)="ApplyLCFilter('Success')">
+<h2>Update LC Status: <small style="padding: 5px;margin: 5px;" class="i2iProfit">{{lcUpdateStatus}}</small></h2>
+<br>
+<label class="chkcontainer"><span class="lable-text">Success({{successCnt}})</span>
+	<input type="checkbox" name="lcSuccess" [(ngModel)]="lcSuccess" type="checkbox" (change)="ApplyLCFilter()">
 	<span class="checkmark"></span>
   </label>
-  <label class="chkcontainer"><span class="lable-text">Fail</span>
-	<input type="checkbox" name="lcFail" [(ngModel)]="lcFail" type="checkbox" (change)="ApplyLCFilter('Fail')">
+  <label class="chkcontainer"><span class="lable-text">Fail({{failCnt}})</span>
+	<input type="checkbox" name="lcFail" [(ngModel)]="lcFail" type="checkbox" (change)="ApplyLCFilter()">
 	<span class="checkmark"></span>
   </label>
   
-<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide LC</button>	
-<button type="button" style="background-color: #00ba19;color: #fff;" (click)="RefreshLendenLMS()">Refresh LC LMS</button>	
-<button type="button" style="background-color: #ba006c;color: #fff;" (click)="GetRefreshStatusLendenLMS()">Get Status LC LMS</button>	
+<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide LC LMS</button>	
+<button type="button" style="background-color: #00ba19;color: #fff;" (click)="UpdateDataLendenLMS()">Update Data LC LMS</button>	
+<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadLendenLoans()">Refresh UI LC LMS</button>	
 
 <div style="clear:both;"></div>
 <table *ngIf="hiddenLC">
@@ -91,22 +93,29 @@
 		
 	</tr>
 </table>
-<form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
-  <input style="display: none;" type="number" formControlName="settingsId">
 
+<hr style="padding: 5px;
+font-size: 12px;
+font-weight: 500;
+background: #607d8b;
+color: #1b1b1b;
+text-align: center;
+border-bottom: 1px solid #d3d3d3;
+margin-bottom: 4px;
+"/>
+
+<h2>AI Settings: <small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
+<br>
+<div>	
+<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideSettings()">Show/Hide Settings</button>	
+<button style="background-color: #008CBA;color:#ffffff">Save</button>	
+<button style="background-color: #f44336;color:#ffffff" type="button" (click)="LoadSettings()">Refresh</button>
+<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Update Account</button>	
+
+</div>
+<form *ngIf="hiddenSettings" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+  <input style="display: none;" type="number" formControlName="settingsId">
 	<table>	
-		<tr>
-			<td colspan="2">
-				<button style="background-color: #008CBA;color:#ffffff">Save</button>				
-				<!-- <button type="button" (click)="patchUserValues()">Set Default</button>
-				<button type="button" (click)="restoreUserValues()">Cancel</button> -->
-				<button style="background-color: #f44336;color:#ffffff" type="button" (click)="LoadSettings()">Refresh</button>
-				<button type="button" style="background-color: #008CBA;color:#ffffff" (click)="GetI2IAccStatement()">Update Account</button>	
-				
-			</td>
-			<td>
-			</td>
-		</tr>
 		<tr>
 			<td>I2i Investment Limit</td>
 			<td>
@@ -511,8 +520,18 @@
 	</table>
 </form> 
 
+<hr style="padding: 5px;
+font-size: 12px;
+font-weight: 500;
+background: #607d8b;
+color: #1b1b1b;
+text-align: center;
+border-bottom: 1px solid #d3d3d3;
+margin-bottom: 4px;
+"/>
 <div style="display:block;margin:10px;"> 
-<h3><span class="page-header">Active Borrowers</span></h3>
+	<h2>Todays Active Borrowers: <small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
+	<br>
 <button  style="background-color: #f44336;color:#ffffff"  type="button" (click)="LoadBorrowers()">Refresh</button>
 <br><br>
 <label class="chkcontainer"><span class="lable-text">Elig.</span>
