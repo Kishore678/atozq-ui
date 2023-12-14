@@ -100,7 +100,11 @@ export class P2p8678Component implements OnInit {
      lcroi:0,
      lcTotalInvested:0,
      lcHighCreditOnly: false,
-     lcShortPeriodOnly: false	
+     lcShortPeriodOnly: false,
+     isLCAIEnabled:false,
+     lcTotalReceived:0,
+     rbiP2PInvestLimit:0,
+     lcWithdrawEnable:false
     });
   }
 sumamounts(val:LendenLoan)
@@ -200,7 +204,12 @@ this.userForm.patchValue({
      lcTotalInvested:this.settings[0].lcTotalInvested,
 
      lcHighCreditOnly:this.settings[0].lcHighCreditOnly,
-     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly
+     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly,
+
+     isLCAIEnabled:this.settings[0].isLCAIEnabled,
+     lcTotalReceived:this.settings[0].lcTotalReceived,
+     rbiP2PInvestLimit:this.settings[0].rbiP2PInvestLimit,
+     lcWithdrawEnable:this.settings[0].lcWithdrawEnable
 });
 
 this.i2IProfitLoss=this.settings[0].i2IProfitOrLoss>0;
@@ -422,6 +431,26 @@ get lcShortPeriodOnly()
   return this.userForm.get('lcShortPeriodOnly');
 }
 
+get isLCAIEnabled()
+{
+  return this.userForm.get('isLCAIEnabled');
+}
+
+get lcTotalReceived()
+{
+  return this.userForm.get('lcTotalReceived');
+}
+
+get rbiP2PInvestLimit()
+{
+  return this.userForm.get('rbiP2PInvestLimit');
+}
+
+get lcWithdrawEnable()
+{
+  return this.userForm.get('lcWithdrawEnable');
+}
+
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -486,7 +515,12 @@ get lcShortPeriodOnly()
 
     model.lcHighCreditOnly= this.userForm.get('lcHighCreditOnly')?.value;
     model.lcShortPeriodOnly= this.userForm.get('lcShortPeriodOnly')?.value;
-    debugger;
+   
+    model.isLCAIEnabled = this.userForm.get('isLCAIEnabled')?.value;
+    model.lcTotalReceived = this.userForm.get('lcTotalReceived')?.value;
+    model.rbiP2PInvestLimit = this.userForm.get('rbiP2PInvestLimit')?.value;
+    model.lcWithdrawEnable = this.userForm.get('lcWithdrawEnable')?.value;
+
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
         debugger;
@@ -546,7 +580,11 @@ this.userForm.patchValue({
      lcroi:this.settings[0].lcroi,
      lcTotalInvested:this.settings[0].lcTotalInvested,
      lcHighCreditOnly:this.settings[0].lcHighCreditOnly,
-     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly
+     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly,
+     isLCAIEnabled:this.settings[0].isLCAIEnabled,
+     lcTotalReceived:this.settings[0].lcTotalReceived,
+     rbiP2PInvestLimit:this.settings[0].rbiP2PInvestLimit,
+     lcWithdrawEnable:this.settings[0].lcWithdrawEnable
 });
       },
       error:(err)=>{
@@ -609,7 +647,11 @@ this.userForm.patchValue({
      lcroi:this.settings[0].lcroi,
      lcTotalInvested:this.settings[0].lcTotalInvested,
      lcHighCreditOnly:this.settings[0].lcHighCreditOnly,
-     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly
+     lcShortPeriodOnly:this.settings[0].lcShortPeriodOnly,
+     isLCAIEnabled:this.settings[0].isLCAIEnabled,
+     lcTotalReceived:this.settings[0].lcTotalReceived,
+     rbiP2PInvestLimit:this.settings[0].rbiP2PInvestLimit,
+     lcWithdrawEnable:this.settings[0].lcWithdrawEnable
     });
 	}
 
@@ -666,7 +708,11 @@ this.userForm.patchValue({
      lcroi:0,
      lcTotalInvested:0,
      lcHighCreditOnly:false,
-     lcShortPeriodOnly:false		
+     lcShortPeriodOnly:false,
+     isLCAIEnabled:false,
+     lcTotalReceived:0,
+     rbiP2PInvestLimit:0,
+     lcWithdrawEnable:false	
     });
 	}
 

@@ -255,6 +255,31 @@ margin-bottom: 4px;
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
+
+		<tr style="background:#008cba;color: #f6fafc;">
+			<td>LC TotalReceived</td>
+			<td>
+				<input type="text" style="background: #eee;" readonly formControlName="lcTotalReceived">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+
+	
+		<tr style="background:#008cba;color: #f6fafc;">
+			<td>LC RBI Limit</td>
+			<td>
+				<input type="text" style="background: #eee;" readonly formControlName="rbiP2PInvestLimit">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
+	
+		<tr>
+			<td>LC Withdraw Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="lcWithdrawEnable">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
 		<tr style="background:#008cba;color: #f6fafc;">
 			<td>LC WithdrawAmt</td>
 			<td>
@@ -323,9 +348,17 @@ margin-bottom: 4px;
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 		<tr>
-			<td>Auto INDIV Enabled</td>
+			<td>Auto I2I INDIV Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="isEnabled">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+	
+		<tr>
+			<td>Auto LC INDIV Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="isLCAIEnabled">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>

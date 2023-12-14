@@ -55,6 +55,10 @@ export class P2PModel
      lcTotalInvested!:number;
      lcHighCreditOnly!:boolean;
      lcShortPeriodOnly!:boolean;
+     isLCAIEnabled!:boolean;
+     lcTotalReceived!:number;
+     rbiP2PInvestLimit!:number;
+     lcWithdrawEnable!:boolean;
 }
 
 
