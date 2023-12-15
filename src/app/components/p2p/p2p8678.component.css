@@ -149,3 +149,18 @@ table {
   color:#ffffff;
 }
 
+.i2i-row-style,
+.lc-row-style
+{
+  background: #04AA6D;color: white;
+}
+.i2i-row-style
+{
+  background: #ffae19;color: white;
+}
+
+.lc-row-style
+{
+  background: #1503b4;color: white;
+}
+

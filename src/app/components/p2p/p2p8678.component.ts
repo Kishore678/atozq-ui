@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { timer } from 'rxjs/internal/observable/timer';
+import { EmailAccount } from 'src/app/models/email-account.model';
 import { LendenLoan } from 'src/app/models/lenden-loans.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
@@ -20,7 +21,7 @@ export class P2p8678Component implements OnInit {
   borrowers!:ManageBorrowers[];
 	i2IProfitLoss!:boolean;
   isI2IDiffAmount!:boolean;
-  isEligibleOnly!:boolean;
+  isEligibleOnly:boolean=true;
   isI2iOnly!:boolean;
   isLCOnly!:boolean;
   isFundedOnly!:boolean;
@@ -28,12 +29,19 @@ export class P2p8678Component implements OnInit {
   selectedCount:number=0;
   lendenLoansOriginal!:LendenLoan[];
   lendenLoansFiltered!:LendenLoan[];
-  hiddenLC:boolean=true;
-  hiddenSettings:boolean=true;
-  
+  hiddenLC:boolean=false;
+  hiddenSettings:boolean=false;
+  emailAccounts!:EmailAccount[];
   lcInvested:number=0;
   lcReceived:number=0;
   lcPending:number=0;
+  showPwd:boolean=false;
+
+  
+  showHidePass()
+  {
+    this.showPwd = !this.showPwd;
+  }
   showHideSettings()
   {
     this.hiddenSettings = !this.hiddenSettings;
@@ -43,6 +51,20 @@ export class P2p8678Component implements OnInit {
     this.hiddenLC = !this.hiddenLC;
   }
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
+
+  ActivateEmail(id:number)
+  {
+    this.p2pService.UpdateEmailAccount(id).subscribe({
+      next:(val)=>{
+        Swal.fire('Email Account Activated');
+        this.LoadEmailAccounts();
+      },
+      error:(err)=>{
+        Swal.fire('Something went wrong!')
+      }
+    })
+  }
+
 	ngOnInit() {
 
     this.userForm = this.formBuilder.group({
@@ -112,6 +134,16 @@ sumamounts(val:LendenLoan)
   this.lcInvested+=val.total_investment??0;
           this.lcReceived+=val.amount_received;
           this.lcPending+=(val.total_investment??0)-val.amount_received;
+}
+
+LoadEmailAccounts()
+{
+  this.p2pService.GetEmailAccounts().subscribe({
+    next:(val)=>{
+      this.emailAccounts = val;
+    },
+    error:(err)=>{Swal.fire('Load Email Account Fail');}
+  });
 }
   LoadLendenLoans()
   {
@@ -225,6 +257,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
     this.LoadI2IWithdrawAmt();
     this.LoadBorrowers();  
     this.LoadLendenLoans();
+    this.LoadEmailAccounts();
   }
 
   get settingsId() {

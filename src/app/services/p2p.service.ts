@@ -7,6 +7,7 @@ import { ActiveBorrowers } from '../models/active-borrowers.model';
 import { ManageBorrowers } from '../models/manage-borrowers.model';
 import { Withdrawals } from '../models/withdrawals.model';
 import { LendenLoan, LendenLoanStatus } from '../models/lenden-loans.model';
+import { EmailAccount } from '../models/email-account.model';
 
 const baseUrl = environment.onlineUsersApi;
 
@@ -72,6 +73,16 @@ export class P2pService {
   GetActiveBorrowers():Observable<ManageBorrowers[]>
   {
     return this.http.get<ManageBorrowers[]>(`${baseUrl}/api/ManageBorrowers`);
+  }
+
+  GetEmailAccounts():Observable<EmailAccount[]>
+  {
+    return this.http.get<EmailAccount[]>(`${baseUrl}/api/EmailAccounts`);
+  }
+
+  UpdateEmailAccount(id:number):Observable<any>
+  {
+    return this.http.put<any>(`${baseUrl}/api/EmailAccounts/${id}`,{});
   }
 
   DeleteBorrower(id:number,type:string):Observable<ManageBorrowers[]>
