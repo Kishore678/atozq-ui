@@ -8,6 +8,7 @@ import { ManageBorrowers } from '../models/manage-borrowers.model';
 import { Withdrawals } from '../models/withdrawals.model';
 import { LendenLoan, LendenLoanStatus } from '../models/lenden-loans.model';
 import { EmailAccount } from '../models/email-account.model';
+import { MaturityData } from '../models/maturity-data.model';
 
 const baseUrl = environment.onlineUsersApi;
 
@@ -78,6 +79,11 @@ export class P2pService {
   GetEmailAccounts():Observable<EmailAccount[]>
   {
     return this.http.get<EmailAccount[]>(`${baseUrl}/api/EmailAccounts`);
+  }
+
+  GetMaturityData():Observable<MaturityData[]>
+  {
+    return this.http.get<MaturityData[]>(`${baseUrl}/api/LendenLoans/maturity`);
   }
 
   UpdateEmailAccount(id:number):Observable<any>

@@ -4,6 +4,7 @@ import { timer } from 'rxjs/internal/observable/timer';
 import { EmailAccount } from 'src/app/models/email-account.model';
 import { LendenLoan } from 'src/app/models/lenden-loans.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
+import { MaturityData } from 'src/app/models/maturity-data.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
 import { Withdrawals } from 'src/app/models/withdrawals.model';
 import { P2pService } from 'src/app/services/p2p.service';
@@ -36,7 +37,39 @@ export class P2p8678Component implements OnInit {
   lcReceived:number=0;
   lcPending:number=0;
   showPwd:boolean=false;
+  maturityDetails!:MaturityData[];
+  hiddenMaturity:boolean=false;
+  hiddenWithdrawals:boolean=false;
+  hiddenEmail:boolean=false;
+  hiddenBorrowers:boolean=false;
 
+
+  showHideMaturity()
+  {
+    this.hiddenMaturity = !this.hiddenMaturity;
+  }
+showHideWithdrawals()
+{
+  this.hiddenWithdrawals = !this.hiddenWithdrawals;
+}
+showHideEmail()
+{
+  this.hiddenEmail = !this.hiddenEmail;
+}
+showHideBorrowers()
+{
+  this.hiddenBorrowers = !this.hiddenBorrowers;  
+}
+
+  LoadMaturityDetails()
+  {
+    this.p2pService.GetMaturityData().subscribe({
+      next:(val)=>{
+        this.maturityDetails = val;
+      },
+      error:(err)=>{Swal.fire('Maturity Data Load Fail.')}
+    })
+  }
   
   showHidePass()
   {
@@ -258,6 +291,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
     this.LoadBorrowers();  
     this.LoadLendenLoans();
     this.LoadEmailAccounts();
+    this.LoadMaturityDetails();
   }
 
   get settingsId() {

@@ -51,25 +51,40 @@
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.maturity_date| date:'short'}}</td>
 		<td style="text-align: left;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.errorMessage}}</td>
 		<td>{{l.modifiedDate}}</td>
-		<!-- <td>{{l.auto_renew}}</td> -->
-								
-																				
-													<!-- <td>{{l.investment_type}}</td>
-													<td>{{l.investment_name}}</td>
-													<td>{{l.portfolio_health?'Yes':'No'}}</td>
-													<td><a [href]="l.file_url">doc</a></td>
-													<td>{{l.mandate_status}}</td>
-													<td>{{l.source}}</td>													
-													<td>{{l.expected_amount}}</td>
-													<td>{{l.invested_amount}}</td>
-													<td>{{l.loan_type}}</td>
-													<td>{{l.borrower_name}}</td>											
-													<td>{{l.createdDate}}</td>
-													<td>{{l.modifiedDate}}</td> -->
-		
 	</tr>
 </table>
-
+<hr style="padding: 5px;
+font-size: 12px;
+font-weight: 500;
+background: #607d8b;
+color: #1b1b1b;
+text-align: center;
+border-bottom: 1px solid #d3d3d3;
+margin-bottom: 4px;
+"/>
+<h2>&nbsp;&nbsp;&nbsp;Maturity Details <br>
+	<small style="padding: 5px;margin: 5px;" class="i2iProfit">Upcoming maturity date with amounts</small></h2>
+	<br>
+	<div style="float:left;">&nbsp;&nbsp;&nbsp;
+	<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideMaturity()">Show/Hide</button>	
+		
+	<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadMaturityDetails()">Refresh</button>	
+	</div>
+	<br style="clear:left"/>
+<table *ngIf="hiddenMaturity">
+<tr>
+<th>Mature(days)</th>
+<th>No.of Loans</th>
+<th>Total Amount</th>
+<th>Maturity Date</th>
+	</tr>
+	<tr [ngClass]="m.matureInDays<=0?'i2iProfit':'i2iLoss'" *ngFor="let m of maturityDetails">
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{m.matureInDays}}</td>		
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{m.noOfLoans}}</td>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{m.maturityAmount}}</td>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{m.maturityDate}}</td>							
+	</tr>
+</table>
 <hr style="padding: 5px;
 font-size: 12px;
 font-weight: 500;
@@ -81,8 +96,14 @@ margin-bottom: 4px;
 "/>
 <h2>&nbsp;&nbsp;&nbsp;Withdrawals <br>
 	<small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I and LC Withdraws</small></h2>
-<br>
-<table>
+	<br>
+	<div style="float:left;">&nbsp;&nbsp;&nbsp;
+	<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideWithdrawals()">Show/Hide</button>	
+		
+	<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadI2IWithdrawAmt()">Refresh</button>	
+	</div>
+	<br style="clear:left"/>
+<table *ngIf="hiddenWithdrawals">
 	<tr>
 		<th>ID</th>
 			<th>Type</th>
@@ -120,8 +141,14 @@ margin-bottom: 4px;
 "/>
 <h2>&nbsp;&nbsp;&nbsp;Email Settings <br>
 	<small style="padding: 5px;margin: 5px;" class="i2iProfit">Email Status Blocked/Active</small></h2>
-<br>
-<table>
+	<br>
+	<div style="float:left;">&nbsp;&nbsp;&nbsp;
+	<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideEmail()">Show/Hide</button>	
+		
+	<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadEmailAccounts()">Refresh</button>	
+	</div>
+	<br style="clear:left"/>
+<table *ngIf="hiddenEmail">
 <tr>
 
 <th>Email</th>
@@ -163,7 +190,7 @@ margin-bottom: 4px;
 <button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideSettings()">Show/Hide</button>	
 <button type="button" style="background-color: #00ba19;color: #fff;" (click)="GetI2IAccStatement()">Update</button>	
 <button  style="background-color: #ba006c;color: #fff;" type="button" (click)="LoadSettings()">Refresh</button>
-
+<br>
 <form *ngIf="hiddenSettings" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
 <button type="submit" style="background-color: #008CBA;color:#ffffff" (click)="userForm">Save</button>  
 <div>
@@ -594,6 +621,8 @@ margin-bottom: 4px;
 <div style="display:block;margin:10px;"> 
 	<h2>Todays Active Borrowers: <br><small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
 	<br>
+	<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideBorrowers()">Show/Hide</button>	
+
 <button   style="background-color: #ba006c;color: #fff;"  type="button" (click)="LoadBorrowers()">Refresh</button>
 <br><br>
 <label class="chkcontainer"><span class="lable-text">Elig.</span>
@@ -620,10 +649,11 @@ margin-bottom: 4px;
   </label>
 </div>
   <section class="container">
-<table id="watchlist">
+<table id="watchlist" *ngIf="hiddenBorrowers">
   <tr>   
 	<th style="width:20px;"></th>
 	<th style="width:50px;">Date</th>
+	<th style="width:25px;">Risk</th> 
 	<th style="width:25px;">Loan No.</th>
     <th style="width:25px;">Loan Amt</th>
 	<th style="width:25px;">Cibil</th>
@@ -631,10 +661,7 @@ margin-bottom: 4px;
     <th style="width:30px;">Tenure</th>
     <th style="width:10px;">Elig.</th>   
     <th style="width:50px;">Invest Amt</th>
-	<th style="width:95px;">Status</th>    
-   
-    <th style="width:25px;">Risk</th> 
-	
+	<th style="width:95px;">Status</th> 
   </tr>
   <tr *ngFor="let w of borrowers;let i=index;"> 
 	<td style="text-align:center"><button type="button" style="background: green;
@@ -644,6 +671,7 @@ margin-bottom: 4px;
 		padding: 5px;
 	" (click)="ForceInvest(w)">Force</button></td>
    <td>{{w.createdDate|date:'short'}}</td>
+   <td>{{w.risk | slice:0:4}}</td> 
    <td>{{w.loan}}</td>
    <td>{{w.loanAmt}}</td>
    <td>{{w.cibil}}</td>
@@ -653,7 +681,7 @@ margin-bottom: 4px;
    <td>{{w.investAmt}}</td>
    <td style="text-align: left;" [ngClass]="w.status==2?'profit':''">{{w.statusMsg}}</td>
 
-   <td>{{w.risk}}</td> 
+ 
   </tr>
 </table>
 </section>
