@@ -363,6 +363,8 @@ margin-bottom: 4px;
 			<td>LC WithdrawAmt</td>
 			<td>
 				<input type="text" formControlName="lcWithdrawAmt">
+				<br>
+				<button style="background-color: #04AA6D;color:#ffffff" (click)="RequestLCWithdrawAmt(userForm.controls['lcWithdrawAmt'].value)">Withdraw</button>
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>

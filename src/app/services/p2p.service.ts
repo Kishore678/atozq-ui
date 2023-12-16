@@ -34,9 +34,9 @@ export class P2pService {
     return this.http.get<any[]>(`${baseUrl}/api/AccountStatement`);
   }
   
-  I2IWithdrawAmtPut():Observable<Withdrawals[]>
+  I2IWithdrawAmtPut(id:number):Observable<Withdrawals[]>
   {
-    return this.http.put<Withdrawals[]>(`${baseUrl}/api/Withdrawals/0`,{
+    return this.http.put<Withdrawals[]>(`${baseUrl}/api/Withdrawals/${id}`,{
       withdrawalsId: 0,
       wType: '',
       month: 0,

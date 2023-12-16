@@ -808,30 +808,39 @@ LoadI2IWithdrawAmt()
   });
 }
 
+RequestLCWithdrawAmt(amt:number)
+{
+  this.RequestWithdraw(-2,amt);
+}
   RequestI2IWithdrawAmt(amt:number)
   {
+  this.RequestWithdraw(-1,amt);       
+  }
+
+  RequestWithdraw(id:number,amt:number)
+  {
     var confirmMessage =  `Withdraw amount Rs.${amt}`;
-  Swal.fire({
-    title: 'Are you sure?',
-    text: confirmMessage,
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Yes, go ahead.',
-    cancelButtonText: 'No, let me think',
-  }).then((result) => {
-    if (result.value) {      
-      this.p2pService.I2IWithdrawAmtPut().subscribe({
-        next:(event)=>{
-           this.LoadI2IWithdrawAmt();
-            Swal.fire('Withdraw Requested', confirmMessage,'success');                        
-        },
-        error:(err)=>{console.log(err);
-          Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
-        }
-      });
-      
-    } 
-  });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: confirmMessage,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, go ahead.',
+      cancelButtonText: 'No, let me think',
+    }).then((result) => {
+      if (result.value) {      
+        this.p2pService.I2IWithdrawAmtPut(id).subscribe({
+          next:(event)=>{
+             this.LoadI2IWithdrawAmt();
+              Swal.fire('Withdraw Requested', confirmMessage,'success');                        
+          },
+          error:(err)=>{console.log(err);
+            Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
+          }
+        });
+        
+      } 
+    });
   }
   LoadBorrowers()
   {    
