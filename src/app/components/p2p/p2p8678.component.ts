@@ -189,6 +189,8 @@ LoadEmailAccounts()
       next:(val)=>{
         this.lendenLoansOriginal=val;       
         this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+          if(val.total_investment==null&&val.loan_id==null)
+           return true;
           this.sumamounts(val);
           if(val.isSuccess)
           this.successCnt++;
