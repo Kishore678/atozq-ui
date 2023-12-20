@@ -129,6 +129,39 @@ margin-bottom: 4px;
 											<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{w.modifiedDate|date:'short'}}</td>
 	</tr>
 </table>
+<br><br>
+<small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I and LC Withdraw Status</small>
+<br>
+<div style="float:left;">&nbsp;&nbsp;&nbsp;
+<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideWithdrawals()">Show/Hide</button>	
+	
+<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadP2PAccountAddWithdrawDetails()">Refresh</button>	
+</div>
+<br style="clear:left"/>
+
+<table *ngIf="hiddenWithdrawals">
+
+<tr>
+<th>P2PName</th>
+<th>TransactID</th>
+<th>TransactType</th>
+<th>Amount</th>
+<th>Status</th>
+<th>TransactDate</th>
+<th>ModifiedDate</th>						
+</tr>
+
+<tr [ngClass]="w.p2PName=='I2I'?'i2i-row-style':w.p2PName=='LC'?'lc-row-style':''" *ngFor="let w of p2pAddWithdrawMoney">
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{w.p2PName}}</td>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{w.transactID}}</td>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="w.status=='SUCCESS'||w.status=='Completed'?'i2iProfit':'i2iLoss'">{{w.transactType}}</td>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="w.status=='SUCCESS'||w.status=='Completed'?'i2iProfit':'i2iLoss'">{{w.amount}}</td>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="w.status=='SUCCESS'||w.status=='Completed'?'i2iProfit':'i2iLoss'">{{w.status}}</td>							
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{w.transactDate|date:'short'}}</td>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{w.modifiedDate|date:'short'}}</td>
+</tr>
+
+</table>
 
 <hr style="padding: 5px;
 font-size: 12px;

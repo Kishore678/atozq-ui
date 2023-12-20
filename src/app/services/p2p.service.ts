@@ -9,6 +9,7 @@ import { Withdrawals } from '../models/withdrawals.model';
 import { LendenLoan, LendenLoanStatus } from '../models/lenden-loans.model';
 import { EmailAccount } from '../models/email-account.model';
 import { MaturityData } from '../models/maturity-data.model';
+import { P2PAccount } from '../models/p2p-account.model';
 
 const baseUrl = environment.onlineUsersApi;
 
@@ -32,6 +33,11 @@ export class P2pService {
   GetI2IAccStatement():Observable<any[]>
   {
     return this.http.get<any[]>(`${baseUrl}/api/AccountStatement`);
+  }
+
+  GetP2PAddWithdrawStatement():Observable<P2PAccount[]>
+  {
+    return this.http.get<P2PAccount[]>(`${baseUrl}/api/P2PAccount`);
   }
   
   I2IWithdrawAmtPut(id:number):Observable<Withdrawals[]>

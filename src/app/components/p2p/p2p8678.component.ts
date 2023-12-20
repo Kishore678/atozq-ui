@@ -6,6 +6,7 @@ import { LendenLoan } from 'src/app/models/lenden-loans.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { MaturityData } from 'src/app/models/maturity-data.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
+import { P2PAccount } from 'src/app/models/p2p-account.model';
 import { Withdrawals } from 'src/app/models/withdrawals.model';
 import { P2pService } from 'src/app/services/p2p.service';
 import Swal from 'sweetalert2';
@@ -178,6 +179,16 @@ LoadEmailAccounts()
     error:(err)=>{Swal.fire('Load Email Account Fail');}
   });
 }
+p2pAddWithdrawMoney!:P2PAccount[];
+LoadP2PAccountAddWithdrawDetails()
+{
+  this.p2pService.GetP2PAddWithdrawStatement().subscribe({
+    next:(val)=>{
+      this.p2pAddWithdrawMoney = val;
+    },
+    error:(err)=>{Swal.fire('Load Email Account Fail');}
+  });
+}
   LoadLendenLoans()
   {
     this.lcInvested=0;
@@ -294,6 +305,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
     this.LoadLendenLoans();
     this.LoadEmailAccounts();
     this.LoadMaturityDetails();
+    this.LoadP2PAccountAddWithdrawDetails();
   }
 
   get settingsId() {
