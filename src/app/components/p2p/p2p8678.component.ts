@@ -17,6 +17,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./p2p8678.component.css']
 })
 export class P2p8678Component implements OnInit {
+  allFDeposit:number=0;
+  allFWithdraw:number=0;
+  allFPending:number=0;
+  i2iFDeposit:number=0;
+  i2iFWithdraw:number=0;
+  i2iFPending:number=0;
+  lcFDeposit:number=0;
+  lcFWithdraw:number=0;
+  lcFPending:number=0;
 	isValidFormSubmitted!:boolean;
 	userForm!: FormGroup;
   settings!:P2PModel[];
@@ -184,6 +193,24 @@ LoadP2PAccountAddWithdrawDetails()
 {
   this.p2pService.GetP2PAddWithdrawStatement().subscribe({
     next:(val)=>{
+
+      for(var i=0;i<val.length;i++)
+      {
+      this.allFDeposit+=val[i].transactType=='DEPOSIT'&&(val[i].status=='Completed'||val[i].status=='SUCCESS')?val[i].amount:0;        
+      this.allFWithdraw+=val[i].transactType=='WITHDRAW'&&(val[i].status=='Completed'||val[i].status=='SUCCESS')?val[i].amount:0;
+      
+      this.i2iFDeposit+=val[i].p2PName=='I2I'&&val[i].transactType=='DEPOSIT'&&val[i].status=='Completed'?val[i].amount:0;
+      this.i2iFWithdraw+=val[i].p2PName=='I2I'&&val[i].transactType=='WITHDRAW'&&val[i].status=='Completed'?val[i].amount:0;
+     
+      this.lcFDeposit+=val[i].p2PName=='LC'&&val[i].transactType=='DEPOSIT'&&val[i].status=='SUCCESS'?val[i].amount:0;
+      this.lcFWithdraw+=val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SUCCESS'?val[i].amount:0;
+
+     
+    }
+      this.allFPending = this.allFDeposit-this.allFWithdraw;
+      this.i2iFPending = this.i2iFDeposit-this.i2iFWithdraw;
+      this.lcFPending = this.lcFDeposit-this.lcFWithdraw;
+     
       this.p2pAddWithdrawMoney = val;
     },
     error:(err)=>{Swal.fire('Load Email Account Fail');}

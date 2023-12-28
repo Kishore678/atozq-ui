@@ -132,6 +132,58 @@ margin-bottom: 4px;
 <br><br>
 <small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I and LC Withdraw Status</small>
 <br>
+<table style="width:fit-content">
+<tr>
+
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="i2i-row-style">I2I Deposit</th>
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="i2i-row-style">I2I Withdraw</th>
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="i2i-row-style">I2I Pending</th>
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="i2i-row-style">I2I Return</th>
+
+</tr>
+<tr>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{i2iFDeposit|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{i2iFWithdraw|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">{{i2iFPending|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:green">{{settings!=null&&settings.length>0?settings[0].i2IProfitOrLoss:0|number}}</td>
+	</tr>
+
+</table>
+<br>
+<table style="width:fit-content">
+<tr>
+
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Deposit</th>
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Withdraw</th>
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Pending</th>
+<th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Return</th>
+</tr>
+<tr>
+<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcFDeposit|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcFWithdraw|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">{{lcFPending|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:green">{{settings!=null&&settings.length>0?settings[0].lcNetReturns:0|number}}</td>
+</tr>
+
+</table>
+<br>
+<table style="width:fit-content">
+<tr>
+<th>All Deposit</th>
+<th>All Withdraw</th>
+<th>All Pending</th>
+<th>All Return</th>
+
+</tr>
+<tr>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{allFDeposit|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{allFWithdraw|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">{{allFPending|number}}</td>
+	<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:green">{{((settings!=null&&settings.length>0?settings[0].i2IProfitOrLoss:0)+(settings!=null&&settings.length>0?settings[0].lcNetReturns:0))|number}}</td>
+	</tr>
+
+</table>
+<br>
 <div style="float:left;">&nbsp;&nbsp;&nbsp;
 <button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideWithdrawals()">Show/Hide</button>	
 	
@@ -706,7 +758,7 @@ margin-bottom: 4px;
 		padding: 5px;
 	" (click)="ForceInvest(w)">Force</button></td>
    <td>{{w.createdDate|date:'short'}}</td>
-   <td>{{w.risk | slice:0:4}}</td> 
+   <td>{{w.risk | slice:0:5}}</td> 
    <td>{{w.loan}}</td>
    <td>{{w.loanAmt}}</td>
    <td>{{w.cibil}}</td>
