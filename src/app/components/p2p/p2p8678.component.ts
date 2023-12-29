@@ -1020,11 +1020,19 @@ observableTimer() {
 lcUpdateStatus:string='';
 lcUpdateStatusOld:string='';
 play:boolean=true;
+playCnt:number=5;
 GetRefreshStatusLendenLMS()
 { 
   this.p2pService.GetStatusLCLoanData('open').subscribe({
     next:(val)=>{
       this.lcUpdateStatusOld = this.lcUpdateStatus;
+
+      if(this.playCnt>0 && (val.scheme_id==null&&val.status==null))
+      {
+        this.playCnt--;
+        if(this.playCnt==0)
+        this.play=false;
+      }
       
       if(val.scheme_id!=null&&val.status!=null)
       {      
