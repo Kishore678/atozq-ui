@@ -17,6 +17,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./p2p8678.component.css']
 })
 export class P2p8678Component implements OnInit {
+
+  ClearWithdrawDepositTotals()
+  {
+    this.allFDeposit=0;
+    this.allFWithdraw=0;
+    this.allFPending=0;
+    this.i2iFDeposit=0;
+    this.i2iFWithdraw=0;
+    this.i2iFPending=0;
+    this.lcFDeposit=0;
+    this.lcFWithdraw=0;
+    this.lcFPending=0;
+  }
   allFDeposit:number=0;
   allFWithdraw:number=0;
   allFPending:number=0;
@@ -52,7 +65,7 @@ export class P2p8678Component implements OnInit {
   hiddenWithdrawals:boolean=false;
   hiddenEmail:boolean=false;
   hiddenBorrowers:boolean=false;
-
+  spinner:boolean=false;
 
   showHideMaturity()
   {
@@ -193,7 +206,7 @@ LoadP2PAccountAddWithdrawDetails()
 {
   this.p2pService.GetP2PAddWithdrawStatement().subscribe({
     next:(val)=>{
-
+      this.ClearWithdrawDepositTotals();
       for(var i=0;i<val.length;i++)
       {
       this.allFDeposit+=val[i].transactType=='DEPOSIT'&&(val[i].status=='Completed'||val[i].status=='SUCCESS')?val[i].amount:0;        
@@ -218,11 +231,14 @@ LoadP2PAccountAddWithdrawDetails()
 }
   LoadLendenLoans()
   {
+    this.spinner=true;
     this.lcInvested=0;
     this.lcReceived=0;
     this.lcPending=0;
     this.successCnt=0
     this.failCnt=0;
+    this.lendenLoansOriginal=[];
+    this.lendenLoansFiltered=[];
     this.p2pService.GetLendenLoans().subscribe({
       next:(val)=>{
         this.lendenLoansOriginal=val;       
@@ -235,11 +251,16 @@ LoadP2PAccountAddWithdrawDetails()
           if(!val.isSuccess)
           this.failCnt++;
          return true;
-       });
-       this.observableTimer()
+       });      
       },
       error:(err)=>{
+        this.spinner=false;
         Swal.fire('Something went wrong.')
+      },
+      complete:()=>{
+        this.spinner=false;
+        this.play=true;
+        this.observableTimer();
       }
     });
   }
@@ -989,7 +1010,7 @@ this.observableTimer();
 }
 
 observableTimer() {
-  const source = timer(1000, 2000);
+  const source = timer(1000, 5000);
   const abc = source.subscribe(val => {
     if(this.play)
     this.GetRefreshStatusLendenLMS();  
@@ -1004,11 +1025,14 @@ GetRefreshStatusLendenLMS()
   this.p2pService.GetStatusLCLoanData('open').subscribe({
     next:(val)=>{
       this.lcUpdateStatusOld = this.lcUpdateStatus;
+      
+      if(val.scheme_id!=null&&val.status!=null)
+      {      
       this.lcUpdateStatus = val.scheme_id+' : '+val.status;
-
-      if(this.lcUpdateStatus!=null && this.lcUpdateStatusOld == this.lcUpdateStatus && this.lcUpdateStatusOld!=null)
+      if(this.lcUpdateStatusOld == this.lcUpdateStatus)
       {
         this.play = false;
+      }
       }
     },
     error:(err)=>{Swal.fire('Something went wrong!')}

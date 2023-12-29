@@ -6,7 +6,10 @@
 <div style="float:left;">&nbsp;&nbsp;&nbsp;
 <button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide</button>	
 <button type="button" style="background-color: #00ba19;color: #fff;" (click)="UpdateDataLendenLMS()">Update</button>	
-<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadLendenLoans()">Refresh</button>	
+<button type="button" style="background-color: #ba006c;color: #fff;" (click)="LoadLendenLoans()">Refresh</button>
+<div *ngIf="spinner" style="Clear:left;display:block;margin:7px 0px 7px 5px;font-weight: 500;color: #ff5722;">    
+	<label class="filename"><span>Loading&nbsp;</span></label> <img style="vertical-align:bottom;" src="assets/spinner.gif"/>
+  </div>	
 </div>
 <div style="clear:both;"></div>
 <label class="chkcontainer"><span class="lable-text">Success({{successCnt}})</span>
