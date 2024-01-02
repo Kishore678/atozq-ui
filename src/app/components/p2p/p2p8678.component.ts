@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { timer } from 'rxjs/internal/observable/timer';
 import { EmailAccount } from 'src/app/models/email-account.model';
 import { LendenLoan } from 'src/app/models/lenden-loans.model';
+import { LendenClubTransactionSummary } from 'src/app/models/lendenclub-account-statement.model';
 import { ManageBorrowers } from 'src/app/models/manage-borrowers.model';
 import { MaturityData } from 'src/app/models/maturity-data.model';
 import { P2PModel } from 'src/app/models/p2-pmodel.model';
@@ -354,6 +355,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
     this.LoadEmailAccounts();
     this.LoadMaturityDetails();
     this.LoadP2PAccountAddWithdrawDetails();
+    this.LoadLendenTransactionStatement();
   }
 
   get settingsId() {
@@ -998,6 +1000,108 @@ RequestLCWithdrawAmt(amt:number)
       }
     });    
   }
+
+  fileName!:string;
+  onFileSelected(event:any) {
+
+    const file:File = event.target.files[0];
+
+    if (file) {
+
+        this.fileName = file.name;
+
+        const formData = new FormData();
+
+        formData.append("thumbnail", file);
+
+        const upload$ = this.p2pService.UploadLendenClubStatement(formData);
+
+        upload$.subscribe();
+    }
+}
+
+lcAccTranSummary!:LendenClubTransactionSummary;
+
+LoadLendenTransactionStatement()
+{
+  this.p2pService.GetLCAccountStatement().subscribe({
+    next:(res)=>{
+      this.lcAccTranSummary = res;
+      Swal.fire('Total Transactions: '+res.lendenClubTransactions.length.toString());
+    },
+    error:(err)=>{console.log('Something went wrong!');}
+  });
+}
+
+upload() {
+  if (!this.selectedFiles || this.selectedFiles.length === 0) {
+    this.errorMsg = 'Please choose a file.';
+    return;
+  }
+
+  const formData = new FormData();
+  this.selectedFiles.forEach((f) => formData.append('files', f));
+
+
+  const upload$ = this.p2pService.UploadLendenClubStatement(formData);
+
+  upload$.subscribe({complete:()=>{
+
+    this.LoadLendenTransactionStatement();
+  
+  }});
+
+  // const req = new HttpRequest(
+  //   'POST',
+  //   `api/students/${this.studentId}/certificates`,
+  //   formData,
+  //   {
+  //     reportProgress: true,
+  //   }
+  // );
+  // this.uploading = true;
+  // this.httpClient
+  //   .request<CertificateSubmissionResult[]>(req)
+  //   .pipe(
+  //     finalize(() => {
+  //       this.uploading = false;
+  //       this.selectedFiles = null;
+  //     })
+  //   )
+  //   .subscribe(
+  //     (event) => {
+  //       if (event.type === HttpEventType.UploadProgress) {
+  //         this.uploadProgress = Math.round(
+  //           (100 * event.loaded) / event.total
+  //         );
+  //       } else if (event instanceof HttpResponse) {
+  //         this.submissionResults = event.body as CertificateSubmissionResult[];
+  //       }
+  //     },
+  //     (error) => {
+  //       // Here, you can either customize the way you want to catch the errors
+  //       throw error; // or rethrow the error if you have a global error handler
+  //     }
+  //   );
+}
+
+selectedFiles!: File[];
+errorMsg = '';
+chooseFile(files: FileList|null) {
+  this.selectedFiles = [];
+  this.errorMsg = '';
+ 
+  if (files==null || files.length === 0) {
+    return;
+  }
+  for (let i = 0; i < files.length; i++) {
+    this.selectedFiles.push(files[i]);
+  }
+  if(this.selectedFiles.length>0)
+  {
+    this.upload();
+  }
+}
 
 UpdateDataLendenLMS()
 {

@@ -1,8 +1,47 @@
 
-<h2>&nbsp;&nbsp;&nbsp;Update LC Status: <br>
+<hr class="divider-css"/>
+<h2>&nbsp;&nbsp;&nbsp;Update LC Status: <br>  
+	
 	&nbsp;&nbsp;&nbsp;<small style="padding: 5px;margin: 5px;" class="i2iProfit">{{lcUpdateStatus}}</small></h2>
+	<br> 
+	<div class="my-2">
+		<label class="btn btn-secondary" (click)="fileInput.value = ''">
+&nbsp;&nbsp;&nbsp;<small style="padding: 5px;margin: 5px;" class="i2iProfit">Upload LC Account Statements</small>	  
+<input
+			#fileInput
+			type="file"
+			style="display:block;margin: 15px;"
+			(change)="chooseFile(fileInput.files)"
+			multiple
+		  />			
+		</label>
+	  </div>
+	<table style="width:fit-content">
+		<tr>
+			<th>Total Balance</th><th>Total Investment</th><th>Expected Return</th><th>Fund Withdrawn</th>			
+		</tr>
+		<tr>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.totalBalance:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.totalInvestment:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.expectedReturns:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.fundsWithdrawn:0 | number : '1.2-2'}}</td>
+		</tr>
+	</table>
+<br>
+	<table style="width:fit-content">
+		<tr>
+			<th>Total Withdrawn</th><th>Total Deposit</th><th>Total Lend</th><th>Total Repay</th>			
+		</tr>
+		<tr>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalWithdrawn:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalDeposit:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalLend:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalRepay:0 | number : '1.2-2'}}</td>
+		</tr>
+	</table>
 
 <br>
+
 <div style="float:left;">&nbsp;&nbsp;&nbsp;
 <button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideLC()">Show/Hide</button>	
 <button type="button" style="background-color: #00ba19;color: #fff;" (click)="UpdateDataLendenLMS()">Update</button>	
@@ -56,15 +95,7 @@
 		<td>{{l.modifiedDate}}</td>
 	</tr>
 </table>
-<hr style="padding: 5px;
-font-size: 12px;
-font-weight: 500;
-background: #607d8b;
-color: #1b1b1b;
-text-align: center;
-border-bottom: 1px solid #d3d3d3;
-margin-bottom: 4px;
-"/>
+<hr class="divider-css"/>
 <h2>&nbsp;&nbsp;&nbsp;Maturity Details <br>
 	<small style="padding: 5px;margin: 5px;" class="i2iProfit">Upcoming maturity date with amounts</small></h2>
 	<br>
@@ -88,15 +119,7 @@ margin-bottom: 4px;
 <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{m.maturityDate}}</td>							
 	</tr>
 </table>
-<hr style="padding: 5px;
-font-size: 12px;
-font-weight: 500;
-background: #607d8b;
-color: #1b1b1b;
-text-align: center;
-border-bottom: 1px solid #d3d3d3;
-margin-bottom: 4px;
-"/>
+<hr class="divider-css"/>
 <h2>&nbsp;&nbsp;&nbsp;Withdrawals <br>
 	<small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I and LC Withdraws</small></h2>
 	<br>
@@ -218,15 +241,7 @@ margin-bottom: 4px;
 
 </table>
 
-<hr style="padding: 5px;
-font-size: 12px;
-font-weight: 500;
-background: #607d8b;
-color: #1b1b1b;
-text-align: center;
-border-bottom: 1px solid #d3d3d3;
-margin-bottom: 4px;
-"/>
+<hr class="divider-css"/>
 <h2>&nbsp;&nbsp;&nbsp;Email Settings <br>
 	<small style="padding: 5px;margin: 5px;" class="i2iProfit">Email Status Blocked/Active</small></h2>
 	<br>
@@ -262,15 +277,7 @@ margin-bottom: 4px;
 	</tr>
 </table>
 
-<hr style="padding: 5px;
-font-size: 12px;
-font-weight: 500;
-background: #607d8b;
-color: #1b1b1b;
-text-align: center;
-border-bottom: 1px solid #d3d3d3;
-margin-bottom: 4px;
-"/>
+<hr class="divider-css"/>
 
 <h2>&nbsp;&nbsp;&nbsp;AI Settings: <br>
 	<small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
@@ -699,15 +706,7 @@ margin-bottom: 4px;
 	</table>
 </form> 
 
-<hr style="padding: 5px;
-font-size: 12px;
-font-weight: 500;
-background: #607d8b;
-color: #1b1b1b;
-text-align: center;
-border-bottom: 1px solid #d3d3d3;
-margin-bottom: 4px;
-"/>
+<hr class="divider-css"/>
 <div style="display:block;margin:10px;"> 
 	<h2>Todays Active Borrowers: <br><small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
 	<br>
@@ -774,4 +773,7 @@ margin-bottom: 4px;
  
   </tr>
 </table>
+
 </section>
+<br>
+<hr class="divider-css"/>

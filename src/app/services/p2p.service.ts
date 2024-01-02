@@ -10,6 +10,7 @@ import { LendenLoan, LendenLoanStatus } from '../models/lenden-loans.model';
 import { EmailAccount } from '../models/email-account.model';
 import { MaturityData } from '../models/maturity-data.model';
 import { P2PAccount } from '../models/p2p-account.model';
+import { LendenClubTransactionSummary } from '../models/lendenclub-account-statement.model';
 
 const baseUrl = environment.onlineUsersApi;
 
@@ -19,6 +20,16 @@ const baseUrl = environment.onlineUsersApi;
 export class P2pService {
 
   constructor(private http:HttpClient) { }
+
+  GetLCAccountStatement():Observable<LendenClubTransactionSummary>
+  {
+    return this.http.get<LendenClubTransactionSummary>(`${baseUrl}/api/AccountStatement`);
+  }
+
+  UploadLendenClubStatement(formData:FormData)
+  {
+    return this.http.post(`${baseUrl}/api/AccountStatement`, formData);    
+  }
 
   GetSettings():Observable<P2PModel[]>
   {
