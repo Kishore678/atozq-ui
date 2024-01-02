@@ -67,6 +67,8 @@ export class P2p8678Component implements OnInit {
   hiddenEmail:boolean=false;
   hiddenBorrowers:boolean=false;
   spinner:boolean=false;
+  lcRecoveryPending:number=0;
+
 
   showHideMaturity()
   {
@@ -219,7 +221,7 @@ LoadP2PAccountAddWithdrawDetails()
       this.lcFDeposit+=val[i].p2PName=='LC'&&val[i].transactType=='DEPOSIT'&&val[i].status=='SUCCESS'?val[i].amount:0;
       this.lcFWithdraw+=val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SUCCESS'?val[i].amount:0;
 
-     
+     this.lcWithdrawPending+=val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SCHEDULED'?val[i].amount:0;
     }
       this.allFPending = this.allFDeposit-this.allFWithdraw;
       this.i2iFPending = this.i2iFDeposit-this.i2iFWithdraw;
@@ -1021,15 +1023,25 @@ RequestLCWithdrawAmt(amt:number)
 }
 
 lcAccTranSummary!:LendenClubTransactionSummary;
-
+lastLCTrans!:Date;
+lcWithdrawPending:number=0;
 LoadLendenTransactionStatement()
 {
   this.p2pService.GetLCAccountStatement().subscribe({
     next:(res)=>{
       this.lcAccTranSummary = res;
-      Swal.fire('Total Transactions: '+res.lendenClubTransactions.length.toString());
+      let lastLCTransation = res.lendenClubTransactions.map(function(m){return m.date;});
+      let mxDate = lastLCTransation.reduce(function (a, b) {
+        return a > b ? a : b;
+    });
+      this.lastLCTrans = mxDate;
+      // Swal.fire('Total Transactions: '+res.lendenClubTransactions.length.toString());
     },
-    error:(err)=>{console.log('Something went wrong!');}
+    error:(err)=>{console.log('Something went wrong!');},
+    complete:()=>{
+  // this.lcRecoveryPending = (this.lcAccTranSummary!=null && this.lcAccTranSummary.calTotalDeposit!=null?this.lcAccTranSummary.calTotalDeposit:0) - ((this.lcAccTranSummary!=null&&this.lcAccTranSummary.calTotalWithdrawn!=null?this.lcAccTranSummary.calTotalWithdrawn:0)+(this.lendenEscroBalance?.value!=null?this.lendenEscroBalance?.value:0));
+
+    }
   });
 }
 

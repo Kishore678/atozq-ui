@@ -2,7 +2,7 @@ export interface LendenClubTransaction {
     accountStatementNo: string | null;
     page: number;
     sno: number;
-    date: string;
+    date: Date;
     transactionID: string | null;
     transactionType: string | null;
     schemeID: string | null;

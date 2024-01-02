@@ -6,7 +6,7 @@
 	<br> 
 	<div class="my-2">
 		<label class="btn btn-secondary" (click)="fileInput.value = ''">
-&nbsp;&nbsp;&nbsp;<small style="padding: 5px;margin: 5px;" class="i2iProfit">Upload LC Account Statements</small>	  
+&nbsp;&nbsp;&nbsp;<small style="padding: 5px;margin: 5px;" class="i2iProfit">Upload LC Account Statements - Last Trans. {{lastLCTrans|date:'short'}}</small>	  
 <input
 			#fileInput
 			type="file"
@@ -17,26 +17,34 @@
 		</label>
 	  </div>
 	<table style="width:fit-content">
+		<caption>Summary</caption>
 		<tr>
-			<th>Total Balance</th><th>Total Investment</th><th>Expected Return</th><th>Fund Withdrawn</th>			
+			<th>Deposit</th><th>Withdrawn</th><th>Lended</th><th>Return</th> 		
 		</tr>
 		<tr>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.totalBalance:0 | number : '1.2-2'}}</td>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.totalInvestment:0 | number : '1.2-2'}}</td>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.expectedReturns:0 | number : '1.2-2'}}</td>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.fundsWithdrawn:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">-</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?(lcAccTranSummary.fundsWithdrawn| currency : 'INR': true :  '1.2-2'):(0 | currency : 'INR': true :  '1.2-2')}}</td>
+
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?(lcAccTranSummary.totalInvestment| currency : 'INR': true :  '1.2-2'):(0 | currency : 'INR': true :  '1.2-2')}}</td>	
+
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?(lcAccTranSummary.expectedReturns| currency : 'INR': true :  '1.2-2'):(0 | currency : 'INR': true :  '1.2-2')}}</td>
+
 		</tr>
 	</table>
 <br>
 	<table style="width:fit-content">
+		<caption>Calculated</caption>
 		<tr>
-			<th>Total Withdrawn</th><th>Total Deposit</th><th>Total Lend</th><th>Total Repay</th>			
+			<th>Deposit</th><th>Withdrawn(incl.Pending)+Balance</th><th>**Balance Investment</th><th>Lended Total</th><th>Repayment(as per St.Dt.)</th><th>**Balance Repayment</th><th>***Diff</th>			
 		</tr>
 		<tr>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalWithdrawn:0 | number : '1.2-2'}}</td>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalDeposit:0 | number : '1.2-2'}}</td>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalLend:0 | number : '1.2-2'}}</td>
-			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?lcAccTranSummary.calTotalRepay:0 | number : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?(lcAccTranSummary.calTotalDeposit| currency : 'INR': true : '1.2-2'):(0 | currency : 'INR': true  : '1.2-2')}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?(((lcAccTranSummary.calTotalWithdrawn??0)+lcWithdrawPending+lendenEscroBalance?.value)| currency : 'INR': true  : '1.2-2'):(0 | currency : 'INR': true  : '1.2-2')}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{((lcAccTranSummary!=null&&lcAccTranSummary.calTotalDeposit!=null?lcAccTranSummary.calTotalDeposit:0)-((lcAccTranSummary!=null&&lcAccTranSummary.calTotalWithdrawn!=null?lcAccTranSummary.calTotalWithdrawn:0)+lcWithdrawPending+lendenEscroBalance?.value))| currency : 'INR': true  : '1.2-2'}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?(lcAccTranSummary.calTotalLend| currency : 'INR': true  : '1.2-2'):(0 | currency : 'INR': true  : '1.2-2')}}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcAccTranSummary!=null?(lcAccTranSummary.calTotalRepay | currency : 'INR': true  : '1.2-2'):(0 | currency : 'INR': true  : '1.2-2') }}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{((lcAccTranSummary!=null&&lcAccTranSummary.calTotalLend!=null?lcAccTranSummary.calTotalLend:0) - (lcAccTranSummary!=null&&lcAccTranSummary.calTotalRepay!=null?lcAccTranSummary.calTotalRepay:0)) | currency : 'INR': true  : '1.2-2' }}</td>
+			<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;color:red">{{((lcAccTranSummary!=null&&lcAccTranSummary.calTotalDeposit!=null?lcAccTranSummary.calTotalDeposit:0)-((lcAccTranSummary!=null&&lcAccTranSummary.calTotalWithdrawn!=null?lcAccTranSummary.calTotalWithdrawn:0)+lcWithdrawPending+lendenEscroBalance?.value)) - ((lcAccTranSummary!=null&&lcAccTranSummary.calTotalLend!=null?lcAccTranSummary.calTotalLend:0) - (lcAccTranSummary!=null&&lcAccTranSummary.calTotalRepay!=null?lcAccTranSummary.calTotalRepay:0)) | currency : 'INR': true  : '1.2-2' }}</td>
 		</tr>
 	</table>
 
