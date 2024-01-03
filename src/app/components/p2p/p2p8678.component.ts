@@ -31,6 +31,7 @@ export class P2p8678Component implements OnInit {
     this.lcFWithdraw=0;
     this.lcFPending=0;
   }
+  i2iWithdrawPending:number=0;
   allFDeposit:number=0;
   allFWithdraw:number=0;
   allFPending:number=0;
@@ -205,6 +206,7 @@ LoadEmailAccounts()
   });
 }
 p2pAddWithdrawMoney!:P2PAccount[];
+unusedLCAmount:number=0;
 LoadP2PAccountAddWithdrawDetails()
 {
   this.p2pService.GetP2PAddWithdrawStatement().subscribe({
@@ -221,12 +223,18 @@ LoadP2PAccountAddWithdrawDetails()
       this.lcFDeposit+=val[i].p2PName=='LC'&&val[i].transactType=='DEPOSIT'&&val[i].status=='SUCCESS'?val[i].amount:0;
       this.lcFWithdraw+=val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SUCCESS'?val[i].amount:0;
 
-     this.lcWithdrawPending+=val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SCHEDULED'?val[i].amount:0;
+     this.lcWithdrawPending += (val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&(val[i].status=='SCHEDULED' || val[i].status=='PROCESSING'))?val[i].amount:0;
+     
+     this.i2iWithdrawPending += (val[i].p2PName=='I2I'&&val[i].transactType=='WITHDRAW'&&val[i].status=='Pending')?val[i].amount:0;
     }
+      this.lcFWithdraw+=this.lcWithdrawPending;
+      this.unusedLCAmount = this.lcFDeposit-this.lcInvested;
+      this.repaidLCAcc = this.lcFWithdraw -  this.unusedLCAmount;
+      
       this.allFPending = this.allFDeposit-this.allFWithdraw;
       this.i2iFPending = this.i2iFDeposit-this.i2iFWithdraw;
       this.lcFPending = this.lcFDeposit-this.lcFWithdraw;
-     
+      
       this.p2pAddWithdrawMoney = val;
     },
     error:(err)=>{Swal.fire('Load Email Account Fail');}
@@ -348,6 +356,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
       error:(err)=>{ Swal.fire('Something went wrong!');}
     });	
   }
+  repaidLCAcc:number=0;
   ngAfterViewInit()
   {  
     this.LoadSettings();
@@ -358,6 +367,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
     this.LoadMaturityDetails();
     this.LoadP2PAccountAddWithdrawDetails();
     this.LoadLendenTransactionStatement();
+   
   }
 
   get settingsId() {
