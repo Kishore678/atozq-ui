@@ -186,7 +186,10 @@ showHideBorrowers()
      isLCAIEnabled:false,
      lcTotalReceived:0,
      rbiP2PInvestLimit:0,
-     lcWithdrawEnable:false
+     lcWithdrawEnable:false,
+     lendBoxMemberLoanEnabled:false,
+     enableLBAlerts:false,
+     isLBAIEnabled:false
     });
   }
 sumamounts(val:LendenLoan)
@@ -207,6 +210,8 @@ LoadEmailAccounts()
 }
 p2pAddWithdrawMoney!:P2PAccount[];
 unusedLCAmount:number=0;
+repaidToLC:number=0;
+repaidToLCBank:number=0;
 LoadP2PAccountAddWithdrawDetails()
 {
   this.p2pService.GetP2PAddWithdrawStatement().subscribe({
@@ -222,14 +227,16 @@ LoadP2PAccountAddWithdrawDetails()
      
       this.lcFDeposit+=val[i].p2PName=='LC'&&val[i].transactType=='DEPOSIT'&&val[i].status=='SUCCESS'?val[i].amount:0;
       this.lcFWithdraw+=val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SUCCESS'?val[i].amount:0;
-
-     this.lcWithdrawPending += (val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&(val[i].status=='SCHEDULED' || val[i].status=='PROCESSING'))?val[i].amount:0;
+      
+      this.repaidToLC+=val[i].repaidToAccount=='LC'&&val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SUCCESS'?val[i].amount:0;
+      this.repaidToLCBank+=val[i].repaidToAccount=='Bank'&&val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&val[i].status=='SUCCESS'?val[i].amount:0;
      
+      this.lcWithdrawPending += (val[i].p2PName=='LC'&&val[i].transactType=='WITHDRAW'&&(val[i].status=='SCHEDULED' || val[i].status=='PROCESSING'))?val[i].amount:0;     
      this.i2iWithdrawPending += (val[i].p2PName=='I2I'&&val[i].transactType=='WITHDRAW'&&val[i].status=='Pending')?val[i].amount:0;
     }
-      this.lcFWithdraw+=this.lcWithdrawPending;
-      this.unusedLCAmount = this.lcFDeposit-this.lcInvested;
-      this.repaidLCAcc = this.lcFWithdraw -  this.unusedLCAmount;
+
+      this.lcFWithdraw+=this.lcWithdrawPending;  
+      this.repaidToLC+=this.lcWithdrawPending;
       
       this.allFPending = this.allFDeposit-this.allFWithdraw;
       this.i2iFPending = this.i2iFDeposit-this.i2iFWithdraw;
@@ -346,7 +353,11 @@ this.userForm.patchValue({
      isLCAIEnabled:this.settings[0].isLCAIEnabled,
      lcTotalReceived:this.settings[0].lcTotalReceived,
      rbiP2PInvestLimit:this.settings[0].rbiP2PInvestLimit,
-     lcWithdrawEnable:this.settings[0].lcWithdrawEnable
+     lcWithdrawEnable:this.settings[0].lcWithdrawEnable,
+
+     lendBoxMemberLoanEnabled:this.settings[0].lendBoxMemberLoanEnabled,
+     enableLBAlerts:this.settings[0].enableLBAlerts,
+     isLBAIEnabled:this.settings[0].isLBAIEnabled,
 });
 
 this.i2IProfitLoss=this.settings[0].i2IProfitOrLoss>0;
@@ -356,7 +367,7 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
       error:(err)=>{ Swal.fire('Something went wrong!');}
     });	
   }
-  repaidLCAcc:number=0;
+
   ngAfterViewInit()
   {  
     this.LoadSettings();
@@ -515,83 +526,79 @@ get i2IDiffAmount()
 {
   return this.userForm.get('i2IDiffAmount');
 }
-
 get i2IAmtProposal()
 {
   return this.userForm.get('i2IAmtProposal');
 }
-
 get i2IAmtDisburse()
 {
   return this.userForm.get('i2IAmtDisburse');
 }
-
-
 get i2ICurrentAccValue()
 {
   return this.userForm.get('i2ICurrentAccValue');
 }
-
 get i2IProfitOrLoss()
 {
   return this.userForm.get('i2IProfitOrLoss');
 }
-
 get enableLCAlerts()
 {
   return this.userForm.get('enableLCAlerts');
 }
-
 get lcPortfolioValue()
 {
   return this.userForm.get('lcPortfolioValue');
 }
-
 get lcNetReturns()
 {
   return this.userForm.get('lcNetReturns');
 }
-
 get lcroi()
 {
   return this.userForm.get('lcroi');
 }
-
-
 get lcTotalInvested()
 {
   return this.userForm.get('lcTotalInvested');
 }
-
-
 get lcHighCreditOnly()
 {
   return this.userForm.get('lcHighCreditOnly');
 }
-
 get lcShortPeriodOnly()
 {
   return this.userForm.get('lcShortPeriodOnly');
 }
-
 get isLCAIEnabled()
 {
   return this.userForm.get('isLCAIEnabled');
 }
-
 get lcTotalReceived()
 {
   return this.userForm.get('lcTotalReceived');
 }
-
 get rbiP2PInvestLimit()
 {
   return this.userForm.get('rbiP2PInvestLimit');
 }
-
 get lcWithdrawEnable()
 {
   return this.userForm.get('lcWithdrawEnable');
+}
+get lendBoxMemberLoanEnabled()
+{
+  return this.userForm.get('lendBoxMemberLoanEnabled');
+}
+
+get enableLBAlerts()
+{
+  return this.userForm.get('enableLBAlerts');
+}
+
+get isLBAIEnabled()
+{
+  return this.userForm.get('isLBAIEnabled');
 }
 
 	onFormSubmit() {
@@ -664,6 +671,10 @@ get lcWithdrawEnable()
     model.rbiP2PInvestLimit = this.userForm.get('rbiP2PInvestLimit')?.value;
     model.lcWithdrawEnable = this.userForm.get('lcWithdrawEnable')?.value;
 
+    model.lendBoxMemberLoanEnabled= this.userForm.get('lendBoxMemberLoanEnabled')?.value;
+    model.enableLBAlerts= this.userForm.get('enableLBAlerts')?.value;
+    model.isLBAIEnabled= this.userForm.get('isLBAIEnabled')?.value;
+
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
         debugger;
@@ -727,7 +738,10 @@ this.userForm.patchValue({
      isLCAIEnabled:this.settings[0].isLCAIEnabled,
      lcTotalReceived:this.settings[0].lcTotalReceived,
      rbiP2PInvestLimit:this.settings[0].rbiP2PInvestLimit,
-     lcWithdrawEnable:this.settings[0].lcWithdrawEnable
+     lcWithdrawEnable:this.settings[0].lcWithdrawEnable,
+     lendBoxMemberLoanEnabled:this.settings[0].lendBoxMemberLoanEnabled,
+     enableLBAlerts:this.settings[0].enableLBAlerts,
+     isLBAIEnabled:this.settings[0].isLBAIEnabled,
 });
       },
       error:(err)=>{
@@ -794,7 +808,10 @@ this.userForm.patchValue({
      isLCAIEnabled:this.settings[0].isLCAIEnabled,
      lcTotalReceived:this.settings[0].lcTotalReceived,
      rbiP2PInvestLimit:this.settings[0].rbiP2PInvestLimit,
-     lcWithdrawEnable:this.settings[0].lcWithdrawEnable
+     lcWithdrawEnable:this.settings[0].lcWithdrawEnable,
+     lendBoxMemberLoanEnabled:this.settings[0].lendBoxMemberLoanEnabled,
+     enableLBAlerts:this.settings[0].enableLBAlerts,
+     isLBAIEnabled:this.settings[0].isLBAIEnabled,
     });
 	}
 
@@ -855,7 +872,10 @@ this.userForm.patchValue({
      isLCAIEnabled:false,
      lcTotalReceived:0,
      rbiP2PInvestLimit:0,
-     lcWithdrawEnable:false	
+     lcWithdrawEnable:false,
+     lendBoxMemberLoanEnabled:false,
+     enableLBAlerts:false,
+     isLBAIEnabled:false
     });
 	}
 
@@ -1053,6 +1073,39 @@ LoadLendenTransactionStatement()
 
     }
   });
+}
+
+RestartWebSite(website:string)
+{
+  var confirmMessage =  `Restart Service ${website}`;
+    Swal.fire({
+      title: 'Are you sure?',
+      text: confirmMessage,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, go ahead.',
+      cancelButtonText: 'No, let me think',
+    }).then((result) => {
+      if (result.value) {      
+        this.p2pService.StopWebsite(website).subscribe({
+          next:(event)=>{
+              if(event)            
+              Swal.fire('Stopped Website Restart Soon.', confirmMessage,'success');
+            else
+            Swal.fire('Stop Website Request Failed! Retry again', confirmMessage,'error');
+
+            setTimeout(()=>{              
+              this.p2pService.StartWebsite(website);
+              Swal.fire(`${website} Service Started`,'success');
+            },25000);
+          },
+          error:(err)=>{console.log(err);
+            Swal.fire('Cancelled','Something went wrong. Please try again.', 'error');
+          }
+        });
+        
+      } 
+    });
 }
 
 upload() {

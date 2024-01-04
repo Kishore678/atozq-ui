@@ -61,26 +61,36 @@
 			<th></th>
 			<th style="text-align:center;">Statement Totals</th>
 			<th style="text-align:center;">Account Totals</th>
+			<th style="text-align:center;">LC to Bank</th>
+			<th style="text-align:center;">EMI to Bank</th>
 		</tr>
 		<tr>
 			<td style="text-align:right;">Total Deposit:</td>
 			<td style="text-align:right;">{{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalDeposit!=null?lcAccTranSummary.calTotalDeposit:0) | currency : 'INR'}}</td>
 			<td style="text-align:right;">{{lcFDeposit | currency : 'INR'}}</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">Total Withdrawn:</td>
 			<td style="text-align:right;">{{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalWithdrawn?lcAccTranSummary.calTotalWithdrawn:0) | currency : 'INR'}}</td>
 			<td style="text-align:right;">{{lcFWithdraw | currency : 'INR'}}</td>
+			<td>{{repaidToLC | currency : 'INR'}}</td>
+			<td>{{repaidToLCBank | currency : 'INR'}}</td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">Total Lended:</td>
 			<td style="text-align:right;">{{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalLend?lcAccTranSummary.calTotalLend:0) | currency : 'INR'}}</td>
 			<td style="text-align:right;">{{lcInvested | currency : 'INR'}}</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td style="text-align:right;">Total Repaid:</td>
 			<td style="text-align:right;"> {{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalRepay?lcAccTranSummary.calTotalRepay:0) | currency : 'INR'}}</td>
-			<td style="text-align:right;">{{repaidLCAcc | currency : 'INR'}}</td>
+			<td style="text-align:right;">{{(this.lcFWithdraw -  (this.lcFDeposit-this.lcInvested)) | currency : 'INR'}}</td>
+			<td></td>
+			<td></td>
 		</tr>
 	</table>
 
@@ -339,7 +349,9 @@
 <button  style="background-color: #ba006c;color: #fff;" type="button" (click)="LoadSettings()">Refresh</button>
 <br>
 <form *ngIf="hiddenSettings" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
-<button type="submit" style="background-color: #008CBA;color:#ffffff" (click)="userForm">Save</button>  
+<button type="submit" style="background-color: #008CBA;color:#ffffff" (click)="userForm">Save</button>  &nbsp;&nbsp;&nbsp;
+<button type="button" style="background-color: red;color:#ffffff" (click)="RestartWebSite('All-Svc')">All Svc Restart</button>&nbsp;&nbsp;  
+<button type="button" style="background-color: red;color:#ffffff" (click)="RestartWebSite('LB-Svc')">LB Svc Restart</button>  
 <div>
 	<input style="display: none;" type="number" formControlName="settingsId"><span *ngIf="isValidFormSubmitted" class="success">Saved changed successfully.</span>
 </div>
@@ -562,6 +574,27 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		<tr>
+			<td>LendBox Service Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="lendBoxMemberLoanEnabled">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
+		<tr>
+			<td>LendBox Alerts</td>
+			<td>
+				<input type="checkbox" formControlName="enableLBAlerts">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+		<tr>
+			<td>LendBox AI</td>
+			<td>
+				<input type="checkbox" formControlName="isLBAIEnabled">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+		<tr>	
 			<td>Group Amount Limit Per Borrower</td>
 			<td>
 				<input type="text" formControlName="amountPerBorrowerGroup">

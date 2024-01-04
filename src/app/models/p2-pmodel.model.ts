@@ -36,6 +36,9 @@ export class P2PModel
      memberLoanLendenClubEnabled!:boolean;	
      withdrawaI2IFundingEnabled!:boolean;	
      withdrawaLendenClubEnabled!:boolean;	
+     lendBoxMemberLoanEnabled!:boolean;
+     enableLBAlerts!:boolean;
+     isLBAIEnabled!:boolean;
      i2IWithdrawAmt!:number;	
      lcWithdrawAmt!:number;	
      lendenEscroBalance!:number;

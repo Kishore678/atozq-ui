@@ -13,7 +13,7 @@ import { P2PAccount } from '../models/p2p-account.model';
 import { LendenClubTransactionSummary } from '../models/lendenclub-account-statement.model';
 
 const baseUrl = environment.onlineUsersApi;
-
+const lbBaseUrl = environment.lbApi;
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +25,35 @@ export class P2pService {
   {
     return this.http.get<LendenClubTransactionSummary>(`${baseUrl}/api/AccountStatement`);
   }
-
+  
+  StopWebsite(website:string):Observable<boolean>
+  {
+    if(website=='All-Svc')
+    {
+    return this.http.get<boolean>(`${baseUrl}/api/WebServices/stop`);
+    }
+    else if(website=='LB-Svc')
+    {
+      debugger;
+    return this.http.get<boolean>(`${lbBaseUrl}/api/WebServices/stop`);      
+    }
+    else
+    {
+      return of(false);
+    }
+  }
+  StartWebsite(website:string)
+  {
+    if(website=='All-Svc')
+    {
+     this.http.get(`${baseUrl}/api/activeborrowers`);
+    }
+    else if(website=='LB-Svc')
+    {                  
+        this.http.get(`${lbBaseUrl}/api/activeborrowers`);     
+    }   
+  }
+  
   UploadLendenClubStatement(formData:FormData)
   {
     return this.http.post(`${baseUrl}/api/AccountStatement`, formData);    

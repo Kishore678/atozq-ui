@@ -4,6 +4,7 @@ export interface P2PAccount {
   amount: number
   transactID: string
   transactType: string
+  repaidToAccount: string
   status: string
   transactDate: Date
   modifiedDate: Date
