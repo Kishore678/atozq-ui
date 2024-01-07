@@ -256,6 +256,8 @@ LoadP2PAccountAddWithdrawDetails()
     this.successCnt=0
     this.failCnt=0;
     this.closedCnt=0;
+    this.lossCnt=0;
+    this.profitCnt=0;
     this.lendenLoansOriginal=[];
     this.lendenLoansFiltered=[];
     this.p2pService.GetLendenLoans().subscribe({
@@ -271,6 +273,10 @@ LoadP2PAccountAddWithdrawDetails()
           this.failCnt++;
           if(val.is_closed)
           this.closedCnt++;
+          if(val.isProfit!=null&&!val.isProfit)
+          this.lossCnt++;
+          if(val.isProfit!=null&&val.isProfit)
+          this.profitCnt++;
          return true;
        });      
       },
@@ -1235,6 +1241,10 @@ GetRefreshStatusLendenLMS()
   failCnt:number=0;
   closedCnt:number=0;
   lcClosed:boolean=false;
+  profitCnt:number=0;
+lcProfit:boolean=false;
+lossCnt:number=0;
+lcLoss:boolean=false;
   ApplyLCFilter()
   {  
     this.lcInvested=0;
@@ -1275,6 +1285,30 @@ GetRefreshStatusLendenLMS()
         this.closedCnt++;
         }
         return val.is_closed;
+      });
+    }
+    else if(this.lcLoss && !this.lcSuccess && !this.lcFail)
+    {
+      this.lossCnt=0;
+      this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        if(val.isProfit!=null&&!val.isProfit)
+        {
+          this.sumamounts(val);
+        this.lossCnt++;
+        }
+        return val.isProfit!=null&&!val.isProfit;
+      });
+    }
+    else if(this.lcProfit && !this.lcSuccess && !this.lcFail)
+    {
+      this.profitCnt=0;
+      this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        if(val.isProfit!=null&&val.isProfit)
+        {
+          this.sumamounts(val);
+        this.profitCnt++;
+        }
+        return val.isProfit!=null&&val.isProfit;
       });
     }
     else
