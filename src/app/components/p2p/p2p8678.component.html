@@ -128,7 +128,7 @@
 <div style="clear:both;"></div> 
 <span>&nbsp;&nbsp;&nbsp;<b>Invested</b>-({{lcInvested| number : '1.2-2'}})</span>&nbsp;|&nbsp;<span><b>Received</b>-({{lcReceived| number : '1.2-2'}})</span>&nbsp;|&nbsp;<span><b>Pending</b>-({{lcPending| number : '1.2-2'}})</span>   
 <br><br>
-<table *ngIf="hiddenLC">
+<table *ngIf="hiddenLC" style="width: 800px;height: 400px;">
 	<tr>
 		<th>Status</th>
 		<!-- <th>ID</th> -->
@@ -141,6 +141,7 @@
 		<th>Profit</th>
 		<th>Cibil</th>
 		<th>ROI</th>
+		<th>LScore</th>
 		<th>Tenure</th>	
 		<th>Income</th>
 		<th>Prof.</th>
@@ -168,10 +169,16 @@
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="l.isProfit==null?'':(l.isProfit==true?'i2iProfit':'i2iLoss')">{{(l.isProfit==null?'':(l.isProfit==true?l.amount_received-l.invested_amount:l.amount_received-l.invested_amount))  | currency : 'INR'}}</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.cibil=='ABOVE 750'?'750':l.cibil=='650 to 750'?'650':'300'}}</td>		
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.net_roi}}%</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.bureauLendenScore}}</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.tenure}}-{{l.tenure_type=='MONTHS'?'M':''}}</td>												
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.professionalIncome | currency : 'INR'}}</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.employmentType| slice:0:3}}</td>
-		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personStayType| slice:0:3}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">
+			<!-- <div class="tooltip">{{l.personStayType| slice:0:3}}
+				<span class="tooltiptext">{{l.personStayType}}</span>
+			  </div>			 -->
+			  {{l.personStayType| slice:0:3}}
+		</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personAge}}</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personCity}}</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personGender| slice:0:1}}</td>

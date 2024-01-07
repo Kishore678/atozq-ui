@@ -25,6 +25,7 @@ export interface LendenLoan {
     borrower_name: string | null;
     loanAmount: number;
     cibil: string | null;
+    bureauLendenScore: string | null;
     professionalIncome: number | null;
     employmentType: string | null;
     personAge: number | null;
