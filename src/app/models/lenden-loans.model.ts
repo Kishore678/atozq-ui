@@ -23,7 +23,17 @@ export interface LendenLoan {
     invested_amount: number;
     loan_type: string | null;
     borrower_name: string | null;
+    loanAmount: number;
+    cibil: string | null;
+    professionalIncome: number | null;
+    employmentType: string | null;
+    personAge: number | null;
+    personCity: string | null;
+    personGender: string | null;
+    personMaritalStatus: string | null;
+    personStayType: string | null;
     isSuccess: boolean;
+    isProfit: boolean | null;    
     errorMessage: string | null;
     createdDate: string;
     modifiedDate: string;

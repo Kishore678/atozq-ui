@@ -121,40 +121,66 @@
 	<input type="checkbox" name="lcFail" [(ngModel)]="lcFail" type="checkbox" (change)="ApplyLCFilter()">
 	<span class="checkmark"></span>
   </label>
+  <label class="chkcontainer"><span class="lable-text">Closed({{closedCnt}})</span>
+	<input type="checkbox" name="lcClosed" [(ngModel)]="lcClosed" type="checkbox" (change)="ApplyLCFilter()">
+	<span class="checkmark"></span>
+  </label>
 <div style="clear:both;"></div> 
 <span>&nbsp;&nbsp;&nbsp;<b>Invested</b>-({{lcInvested| number : '1.2-2'}})</span>&nbsp;|&nbsp;<span><b>Received</b>-({{lcReceived| number : '1.2-2'}})</span>&nbsp;|&nbsp;<span><b>Pending</b>-({{lcPending| number : '1.2-2'}})</span>   
 <br><br>
 <table *ngIf="hiddenLC">
 	<tr>
 		<th>Status</th>
-		<th>ID</th>
+		<!-- <th>ID</th> -->
+		<th>LoanID</th> 
+		<th>Type</th>		
+		<th>Amount</th>
 		<th>Invstd</th>
 		<th>Recvd</th>
-		<th>ROI</th>
-		<th>Tenure</th>
 		<th>Closed</th>
+		<th>Profit</th>
+		<th>Cibil</th>
+		<th>ROI</th>
+		<th>Tenure</th>	
+		<th>Income</th>
+		<th>Prof.</th>
+		<th>Stay</th>
+		<th>Age</th>
+		<th>City</th>
+		<th>Gender</th>
+		<th>Marital</th>
+		<th>Name</th>
 		<th>SchemeID</th>
-		<th>LoanID</th>
-	    <th>OpenDate</th>
-	    <th>MatureDate</th>
-		<th>Message</th>
-		<th>Date</th>
-		
+		<th>OpenDate</th>
+	    <th>MatureDate</th>		
+		<th>Message</th>	
+
 	</tr>
 	<tr *ngFor="let l of lendenLoansFiltered">
-		<td  style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="l.isSuccess?'i2iProfit':'i2iLoss'">{{l.isSuccess?'Success':'Fail'}}</td>
-		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.lendenLoanId}}</td>
-		<td style="text-align: right;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.total_investment}}</td>
-		<td style="text-align: right;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.amount_received}}</td>	
+		<td  style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="l.isSuccess?'i2iProfit':'i2iLoss'">{{l.isSuccess?'S':'F'}}</td>
+		<!-- <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.lendenLoanId}}</td> -->
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.loan_id}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.loan_type| slice:0:3}}</td>	
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.loanAmount | currency : 'INR'}}</td>
+		<td style="text-align: right;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.total_investment | currency : 'INR'}}</td>
+		<td style="text-align: right;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.amount_received | currency : 'INR'}}</td>	
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="l.is_closed==true?'lcClosed':''">{{l.is_closed==true?'Closed':'No'}}</td>		
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="l.isProfit==null?'':(l.isProfit==true?'i2iProfit':'i2iLoss')">{{(l.isProfit==null?'':(l.isProfit==true?l.amount_received-l.invested_amount:l.amount_received-l.invested_amount))  | currency : 'INR'}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.cibil=='ABOVE 750'?'750':l.cibil=='650 to 750'?'650':'300'}}</td>		
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.net_roi}}%</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.tenure}}-{{l.tenure_type=='MONTHS'?'M':''}}</td>												
-		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.is_closed?'Yes':'No'}}</td>
-		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.scheme_id}}</td>
-		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.loan_id}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.professionalIncome | currency : 'INR'}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.employmentType| slice:0:3}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personStayType| slice:0:3}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personAge}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personCity}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personGender| slice:0:1}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.personMaritalStatus| slice:0:1}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.borrower_name}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.scheme_id}}</td>		
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.open_date | date:'short'}}</td>
-		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.maturity_date| date:'short'}}</td>
+		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.maturity_date| date:'short'}}</td>		
 		<td style="text-align: left;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.errorMessage}}</td>
-		<td>{{l.modifiedDate}}</td>
 	</tr>
 </table>
 <hr class="divider-css"/>

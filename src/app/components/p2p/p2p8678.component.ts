@@ -255,6 +255,7 @@ LoadP2PAccountAddWithdrawDetails()
     this.lcPending=0;
     this.successCnt=0
     this.failCnt=0;
+    this.closedCnt=0;
     this.lendenLoansOriginal=[];
     this.lendenLoansFiltered=[];
     this.p2pService.GetLendenLoans().subscribe({
@@ -268,6 +269,8 @@ LoadP2PAccountAddWithdrawDetails()
           this.successCnt++;
           if(!val.isSuccess)
           this.failCnt++;
+          if(val.is_closed)
+          this.closedCnt++;
          return true;
        });      
       },
@@ -1230,6 +1233,8 @@ GetRefreshStatusLendenLMS()
   lcFail:boolean=false;
   successCnt:number=0;
   failCnt:number=0;
+  closedCnt:number=0;
+  lcClosed:boolean=false;
   ApplyLCFilter()
   {  
     this.lcInvested=0;
@@ -1258,6 +1263,18 @@ GetRefreshStatusLendenLMS()
         this.failCnt++;
         }
         return !val.isSuccess;
+      });
+    }
+    else if(this.lcClosed && !this.lcSuccess && !this.lcFail)
+    {
+      this.closedCnt=0;
+      this.lendenLoansFiltered=this.lendenLoansOriginal.filter((val,inde,arr)=>{
+        if(val.is_closed)
+        {
+          this.sumamounts(val);
+        this.closedCnt++;
+        }
+        return val.is_closed;
       });
     }
     else

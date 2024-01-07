@@ -143,6 +143,10 @@ table {
 {
   background-color: #f44336;color:#ffffff;
 }
+.lcClosed
+{
+  background-color: blue;color:#ffffff;
+}
 
 .i2iProfit {
   background-color: #04AA6D;
