@@ -27,6 +27,8 @@ export interface LendenClubTransactionSummary {
     calTotalDeposit: number | null; 
     calTotalLend: number | null;
     calTotalRepay: number | null;
+    totalNewInvestments: number | null;
+    newInvestmentStartDate: string;
     createdDate: string;
     modifiedDate: string;
     lendenClubTransactions: LendenClubTransaction[];
