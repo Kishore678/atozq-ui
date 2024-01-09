@@ -20,20 +20,69 @@
 	  <table style="width:fit-content">
 	  <tr>
 	  
-	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Deposit</th>
-	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Withdraw</th>
-	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Pending</th>
-	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Return</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Deposit</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Withdraw</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Pending</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Return</th>
 	  </tr>
 	  <tr>
 	  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcFDeposit|number}}</td>
 		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcFWithdraw|number}}</td>
-		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">{{lcFPending | currency : 'INR'}}<br><table><tr><th>Old Pending</th></tr><tr><td>{{lcFPending - (lcAccTranSummary!=null?lcAccTranSummary.totalNewInvestments??0:0)| currency : 'INR'}}</td></tr></table></td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">{{lcFPending | currency : 'INR'}}
+		</td>
 		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:green">{{settings!=null&&settings.length>0?settings[0].lcNetReturns:0|number}}</td>
 	  </tr>
 	  
 	  </table>
-	  <br> 
+	  <br>
+	  <table style="width:fit-content">
+	  <tr>
+	  
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Lended</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Repaid</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Pending</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Total Return</th>
+	  </tr>
+	  <tr>
+	  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcInvested | currency : 'INR'}}</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{(this.lcFWithdraw -  (this.lcFDeposit-this.lcInvested)) | currency : 'INR'}}</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">{{(lcInvested-(lcFWithdraw -  (lcFDeposit-lcInvested))) | currency : 'INR'}}
+		</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:green">{{settings!=null&&settings.length>0?settings[0].lcNetReturns:0|number}}</td>
+	  </tr>	  
+	  </table>
+	  <br>
+	  <table style="width:fit-content">
+	  <tr>	  
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Prev Lended</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Prev Repaid</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Prev Pending</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Prev Return</th>
+	  </tr>
+	  <tr>
+	  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{(lcInvested- (lcAccTranSummary!=null&&lcAccTranSummary.totalNewInvestments?lcAccTranSummary.totalNewInvestments:0)) | currency : 'INR'}}</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{(lcFWithdraw -  (lcFDeposit-lcInvested)) | currency : 'INR'}}</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">{{((lcInvested- (lcAccTranSummary!=null&&lcAccTranSummary.totalNewInvestments?lcAccTranSummary.totalNewInvestments:0)) -(lcFWithdraw -  (lcFDeposit-lcInvested))) | currency : 'INR'}}
+		</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:green">{{settings!=null&&settings.length>0?settings[0].lcNetReturns:0|number}}</td>
+	  </tr>	  
+	  </table>
+	  <br>
+	  <table style="width:fit-content">
+	  <tr>	  
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Current Lended</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Current Repaid</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Current Pending</th>
+	  <th style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" class="lc-row-style">LC Current Return</th>
+	  </tr>
+	  <tr>
+	  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{lcInvested -(lcInvested- (lcAccTranSummary!=null&&lcAccTranSummary.totalNewInvestments?lcAccTranSummary.totalNewInvestments:0))  | currency : 'INR'}}</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">-</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:red">-</td>
+		  <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;font-weight:500;color:green">-</td>
+	  </tr>	  
+	  </table>
+	  <!-- <br> 
 	<table>
 		<tr>
 			<th></th>
@@ -70,7 +119,7 @@
 			<td></td>
 			<td></td>
 		</tr>
-	</table>
+	</table> -->
 	<br>
 	<table style="width:fit-content">
 		<tr>
