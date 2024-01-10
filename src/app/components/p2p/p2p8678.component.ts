@@ -1064,11 +1064,36 @@ RequestLCWithdrawAmt(amt:number)
 lcAccTranSummary!:LendenClubTransactionSummary;
 lastLCTrans!:Date;
 lcWithdrawPending:number=0;
+
+lcTotalDeposit: number=0;
+lcTotalWithdraw: number=0;
+lcTotalPending: number=0;
+lcTotalLended: number=0;
+lcTotalRepaid: number=0;
+lcTotalPendingRepay: number=0;
+lcPrevLended: number=0;
+lcPrevRepaid: number=0;
+lcPrevPending: number=0;
+lcCurrentLended: number=0;
+lcCurrentRepaid: number=0;
+lcCurrentPending: number=0;
 LoadLendenTransactionStatement()
 {
   this.p2pService.GetLCAccountStatement().subscribe({
-    next:(res)=>{
+    next:(res)=>{      
       this.lcAccTranSummary = res;
+      this.lcTotalDeposit = res.lcTotalDeposit??0;
+      this.lcTotalWithdraw =res.lcTotalWithdraw??0;
+      this.lcTotalPending =res.lcTotalPending??0;
+      this.lcTotalLended =res.lcTotalLended??0;
+      this.lcTotalRepaid =res.lcTotalRepaid??0;
+this.lcTotalPendingRepay =res.lcTotalPendingRepay??0;
+this.lcPrevLended =res.lcPrevLended??0;
+this.lcPrevRepaid =res.lcPrevRepaid??0;
+this.lcPrevPending =res.lcPrevPending??0;
+this.lcCurrentLended =res.lcCurrentLended??0;
+this.lcCurrentRepaid =res.lcCurrentRepaid??0;
+this.lcCurrentPending =res.lcCurrentPending??0;
       let lastLCTransation = res.lendenClubTransactions.map(function(m){return m.date;});
       let mxDate = lastLCTransation.reduce(function (a, b) {
         return a > b ? a : b;

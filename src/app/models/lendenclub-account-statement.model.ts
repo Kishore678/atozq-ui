@@ -29,6 +29,18 @@ export interface LendenClubTransactionSummary {
     calTotalRepay: number | null;
     totalNewInvestments: number | null;
     newInvestmentStartDate: string;
+    lcTotalDeposit: number | null;
+    lcTotalWithdraw: number | null;
+    lcTotalPending: number | null;
+    lcTotalLended: number | null;
+    lcTotalRepaid: number | null;
+    lcTotalPendingRepay: number | null;
+    lcPrevLended: number | null;
+    lcPrevRepaid: number | null;
+    lcPrevPending: number | null;
+    lcCurrentLended: number | null;
+    lcCurrentRepaid: number | null;
+    lcCurrentPending: number | null;
     createdDate: string;
     modifiedDate: string;
     lendenClubTransactions: LendenClubTransaction[];
