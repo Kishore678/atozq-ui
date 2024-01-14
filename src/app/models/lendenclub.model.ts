@@ -15,6 +15,7 @@ export interface Lendenclub {
     transactionType: string
     date: string
     transactionID: string
+    schemeID:string
     credit: number
     debit: number
   }
