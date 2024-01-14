@@ -50,7 +50,7 @@ const routes: Routes = [
   // {path:'account/resetpass/:user/:token',component:ResetpassComponent},
   // {path:'account/logout',component:LogoutComponent},
   {path:'account',component:AnonymousComponent},
-  {path:'ledenclub',component:LendenclubComponent},
+  {path:'lendenclub',component:LendenclubComponent},
   // {path:'app/referral',component:ReferralComponent},
   // {path:'app/detail/:id',component:DetailComponent},
   // {path:'app/shopping',component:ShoppingComponent},
