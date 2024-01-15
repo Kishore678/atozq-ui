@@ -63,8 +63,42 @@
             <td>
               
             </td>
-        </tr>
+        </tr>      
     </tbody>
+</table>
+<br>
+<table>
+<thead>
+    <tr>
+        <th>ALL</th>
+        <th>LOSS</th>       
+        <th>PROFIT</th>     
+        <th>CLOSED</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>{{allCount}}</td>
+        <td class="cell-highlight-red">{{lossAmount | currency : 'INR'}} - ({{lossCount}})</td>
+        <td class="cell-highlight-green">{{profitAmount | currency : 'INR'}} - ({{profitCount}})</td>
+        <td>{{closedCount}}</td>        
+    </tr>
+    <tr>
+        <td>
+            <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
+                (click)="TransactionDetails('Report')">Details</button>
+        </td>
+        <td> <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
+                (click)="TransactionDetails('Loss')">Details</button>
+        </td>
+        <td> <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
+                (click)="TransactionDetails('Profit')">Details</button>
+        </td>
+        <td> <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
+                (click)="TransactionDetails('Closed')">Details</button>
+        </td>
+    </tr>
+</tbody>
 </table>
 <br>
 <table>
@@ -105,6 +139,61 @@
             <td>
                 {{t.debit| currency : 'INR'}}
             </td>          
+        </tr>       
+    </tbody>
+</table>
+<br>
+<table>  
+    <thead>
+        <tr>
+            <th>SchemeID </th>
+            <th>Invested </th>
+            <th>Repaid </th>
+            <th>Repaid(%) </th>
+            <th>PnL </th>
+            <th>Cibil </th>
+            <th>LSCore </th>
+            <th>Loan Type </th>
+            <th>Loan Amount </th>
+            <th>ROI </th>
+            <th>Tenure </th>          
+            <th>OpenDate </th>
+            <th>CloseDate </th>
+            <th>Closed </th>
+            <th>Loss </th>
+            <th>Profit </th>  
+            <th>EmpType </th>
+            <th>Income </th>
+            <th>Age </th>
+            <th>Sex </th>
+            <th>City </th>
+       
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of reportDetails">
+             <td>{{r.schemeID}}</td>
+             <td>{{r.invested | currency : 'INR'}}</td>
+             <td>{{r.repaid | currency : 'INR'}}</td>
+             <td>{{r.rPercnt | number:'.2'}}%</td>
+             <td [ngClass]="r.profit?'cell-highlight-green':r.loss?'cell-highlight-red':''">{{r.pnL | currency : 'INR'}}</td>
+             <td>{{r.cibil}}</td>
+             <td>{{r.lc}}</td>
+             <td>{{r.loanType}}</td>
+             <td>{{r.loanAmount | currency : 'INR'}}</td>
+             <td>{{r.roi}}</td>
+             <td>{{r.tenure}}-{{r.tenureType=='MONTHS' || r.tenureType=='MONTHLY'?'M':'' }}</td>           
+             <td>{{r.openDate | date: 'dd/MM/yyyy'}}</td>
+             <td>{{r.closeDate | date: 'dd/MM/yyyy'}}</td>
+             <td [ngClass]="r.closed?'cell-highlight':''">{{r.closed?'Yes':''}}</td>
+             <td [ngClass]="r.loss?'cell-highlight':''">{{r.loss?'Yes':''}}</td>
+             <td [ngClass]="r.profit?'cell-highlight':''">{{r.profit?'Yes':''}}</td>  
+             <td>{{r.empType}}</td>
+             <td>{{r.income | currency : 'INR'}}</td>
+             <td>{{r.age}}</td>
+             <td>{{r.sex}}</td>
+             <td>{{r.city}}</td>
+                               
         </tr>       
     </tbody>
 </table>

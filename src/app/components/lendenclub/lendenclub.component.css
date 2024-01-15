@@ -4,7 +4,7 @@ body {
 
   .container{
     width: 98%;
-    border: 2px solid #f00;
+    /* border: 2px solid #f00; */
     padding: 10px;
   }
   .left {
@@ -59,7 +59,19 @@ body {
 }
 .cell-highlight {
     background-color: gold;
-    font-weight: bold;
+    font-weight: 500;
+  }
+
+  .cell-highlight-red {
+    background-color: red;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .cell-highlight-green {
+    background-color: green;
+    color: #fff;
+    font-weight: 500;
   }
   
   tbody tr:nth-child(odd) {

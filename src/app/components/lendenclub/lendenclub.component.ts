@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StatementDetail } from 'src/app/models/lendenclub.model';
+import { LendenClubPnLReport, StatementDetail } from 'src/app/models/lendenclub.model';
 import { LendenclubService } from 'src/app/services/lendenclub.service';
 
 @Component({
@@ -22,7 +22,15 @@ export class LendenclubComponent implements OnInit {
   lendingDetails!:StatementDetail[];
   repaymentDetails!:StatementDetail[];
 
+  reportDetails:LendenClubPnLReport[]=[];
+  reportDetailsTemp:LendenClubPnLReport[]=[];
 
+  allCount: number = 0;
+  lossCount: number = 0;
+  profitCount: number = 0;
+  closedCount: number = 0;
+  lossAmount: number = 0;
+  profitAmount: number = 0;
   constructor(private service:LendenclubService) { }
 
   ngOnInit(): void {
@@ -47,6 +55,14 @@ export class LendenclubComponent implements OnInit {
         this.withdrawDetails = val.withdrawDetails;
         this.lendingDetails = val.lendingDetails;        ;
         this.repaymentDetails = val.repaymentDetails;
+        this.reportDetailsTemp = val.lendenClubPnLReport;
+
+        this.allCount  = val.allCount;
+        this.lossCount  = val.lossCount;
+        this.profitCount  = val.profitCount;
+        this.closedCount = val.closedCount;
+        this.lossAmount = val.lossAmount;
+        this.profitAmount  = val.profitAmount;
       },
       error:(err)=>{
         console.log(err);
@@ -56,18 +72,47 @@ export class LendenclubComponent implements OnInit {
   }
 
   TransactionDetails(tranType:string)
-  {
-    debugger;
+  {   
     this.transactionType = tranType;
     switch(tranType)
     {
-      case 'Deposit':this.details = this.depositDetails;
+      case 'Deposit':
+        this.reportDetails = [];
+        this.details = this.depositDetails;
         break;
-      case 'Withdraw':this.details = this.withdrawDetails;
+      case 'Withdraw':
+        this.reportDetails = [];
+        this.details = this.withdrawDetails;
         break;
-      case 'Lending':this.details = this.lendingDetails;
+      case 'Lending':
+        this.reportDetails = [];
+        this.details = this.lendingDetails;
         break;
-        case 'Repayment':this.details = this.repaymentDetails;
+        case 'Repayment':
+          this.reportDetails = [];
+          this.details = this.repaymentDetails;
+        break;
+        case 'Report':
+          this.details=[]; 
+          this.reportDetails = this.reportDetailsTemp;
+        break;
+        case 'Loss':
+          this.details=[]; 
+          this.reportDetails = this.reportDetailsTemp.filter((val)=>{
+            return val.loss==true;
+          });
+        break;
+        case 'Profit':
+          this.details=[]; 
+          this.reportDetails = this.reportDetailsTemp.filter((val)=>{
+            return val.profit==true;
+          });
+        break;
+        case 'Closed':
+          this.details=[]; 
+          this.reportDetails = this.reportDetailsTemp.filter((val)=>{
+            return val.closed==true;
+          });
         break;
     }
   }
