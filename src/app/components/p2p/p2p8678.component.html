@@ -413,7 +413,7 @@
 <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">
 	<span *ngIf="e.isActive">Active</span>
 	<a *ngIf="!e.isActive" href="https://mail.zoho.in/UnblockMe" target="_blank">click here to Unblock</a>&nbsp;&nbsp;
-	<button *ngIf="!e.isActive" (click)="ActivateEmail(e.emailAccountId)">Activate</button>
+	<button *ngIf="!e.isActive" (click)="ActivateEmail(e)">Activate</button>
 </td>
 <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{e.createdDate|date:'short'}}</td>
 <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{e.modifiedDate|date:'short'}}</td>

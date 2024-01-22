@@ -131,9 +131,10 @@ export class P2pService {
     return this.http.get<MaturityData[]>(`${baseUrl}/api/LendenLoans/maturity`);
   }
 
-  UpdateEmailAccount(id:number):Observable<any>
+  UpdateEmailAccount(email:EmailAccount):Observable<any>
   {
-    return this.http.put<any>(`${baseUrl}/api/EmailAccounts/${id}`,{});
+    
+    return this.http.put<any>(`${baseUrl}/api/EmailAccounts/${email.emailAccountId}`,email);
   }
 
   DeleteBorrower(id:number,type:string):Observable<ManageBorrowers[]>

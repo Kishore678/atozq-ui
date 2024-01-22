@@ -112,9 +112,9 @@ showHideBorrowers()
   }
   constructor(private p2pService:P2pService,private formBuilder: FormBuilder) { }
 
-  ActivateEmail(id:number)
+  ActivateEmail(email:EmailAccount)
   {
-    this.p2pService.UpdateEmailAccount(id).subscribe({
+    this.p2pService.UpdateEmailAccount(email).subscribe({
       next:(val)=>{
         Swal.fire('Email Account Activated');
         this.LoadEmailAccounts();

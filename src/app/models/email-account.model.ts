@@ -4,6 +4,6 @@ export interface EmailAccount {
     password: string | null;
     isActive: boolean;
     message: string | null;
-    createdDate: string;
-    modifiedDate: string;
+    createdDate: Date;
+    modifiedDate: Date;
 }
