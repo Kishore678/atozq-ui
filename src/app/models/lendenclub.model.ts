@@ -10,6 +10,7 @@ export interface Lendenclub {
     lendingDetails: StatementDetail[]
     repaymentDetails: StatementDetail[]
     lendenClubPnLReport:LendenClubPnLReport[]
+    lendenClubAPBStatement:LendenClubAPBStatement[]
     allCount: number
     lossCount: number
     profitCount: number
@@ -50,6 +51,18 @@ export interface Lendenclub {
     closed: boolean | null;
     loss: boolean | null;
     profit: boolean | null;
+}
+
+export interface LendenClubAPBStatement {
+  lendenClubAPBStatementId: number
+  date: string
+  transactionID: string
+  transactionType: string
+  remarks: string
+  credit: number
+  debit: any
+  createdDate: string
+  modifiedDate: string
 }
 
   

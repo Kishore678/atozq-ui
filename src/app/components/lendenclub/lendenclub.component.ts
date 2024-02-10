@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LendenClubPnLReport, StatementDetail } from 'src/app/models/lendenclub.model';
+import { LendenClubAPBStatement, LendenClubPnLReport, StatementDetail } from 'src/app/models/lendenclub.model';
 import { LendenclubService } from 'src/app/services/lendenclub.service';
 
 @Component({
@@ -24,6 +24,8 @@ export class LendenclubComponent implements OnInit {
 
   reportDetails:LendenClubPnLReport[]=[];
   reportDetailsTemp:LendenClubPnLReport[]=[];
+
+  lendenClubAPBStatement:LendenClubAPBStatement[]=[];
 
   allCount: number = 0;
   lossCount: number = 0;
@@ -56,6 +58,7 @@ export class LendenclubComponent implements OnInit {
         this.lendingDetails = val.lendingDetails;        ;
         this.repaymentDetails = val.repaymentDetails;
         this.reportDetailsTemp = val.lendenClubPnLReport;
+        this.lendenClubAPBStatement = val.lendenClubAPBStatement;
 
         this.allCount  = val.allCount;
         this.lossCount  = val.lossCount;
