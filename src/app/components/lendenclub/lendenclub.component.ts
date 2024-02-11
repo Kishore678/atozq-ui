@@ -27,6 +27,7 @@ export class LendenclubComponent implements OnInit {
 
   lendenClubAPBStatement:LendenClubAPBStatement[]=[];
   lendenClubAPBStatementTotal:number=0;
+  showAPBStatement:boolean=false;
   allCount: number = 0;
   lossCount: number = 0;
   profitCount: number = 0;
@@ -75,7 +76,8 @@ export class LendenclubComponent implements OnInit {
   }
 
   TransactionDetails(tranType:string)
-  {   
+  { 
+    this.showAPBStatement = false;  
     this.transactionType = tranType;
     switch(tranType)
     {
@@ -92,6 +94,7 @@ export class LendenclubComponent implements OnInit {
         this.details = this.lendingDetails;
         break;
         case 'Repayment':
+          this.showAPBStatement = true;  
           this.reportDetails = [];
           this.details = this.repaymentDetails;
         break;
