@@ -26,7 +26,7 @@ export class LendenclubComponent implements OnInit {
   reportDetailsTemp:LendenClubPnLReport[]=[];
 
   lendenClubAPBStatement:LendenClubAPBStatement[]=[];
-
+  lendenClubAPBStatementTotal:number=0;
   allCount: number = 0;
   lossCount: number = 0;
   profitCount: number = 0;
@@ -59,7 +59,7 @@ export class LendenclubComponent implements OnInit {
         this.repaymentDetails = val.repaymentDetails;
         this.reportDetailsTemp = val.lendenClubPnLReport;
         this.lendenClubAPBStatement = val.lendenClubAPBStatement;
-
+        this.lendenClubAPBStatementTotal = val.lendenClubAPBStatementTotal;
         this.allCount  = val.allCount;
         this.lossCount  = val.lossCount;
         this.profitCount  = val.profitCount;

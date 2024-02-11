@@ -11,6 +11,7 @@ export interface Lendenclub {
     repaymentDetails: StatementDetail[]
     lendenClubPnLReport:LendenClubPnLReport[]
     lendenClubAPBStatement:LendenClubAPBStatement[]
+    lendenClubAPBStatementTotal:number
     allCount: number
     lossCount: number
     profitCount: number
