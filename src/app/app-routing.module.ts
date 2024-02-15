@@ -34,6 +34,7 @@ import { FdComponent } from './components/fd/fd.component';
 import { RefComponent } from './components/ref/ref.component';
 import { RefmanComponent } from './components/refman/refman.component';
 import { LendenclubComponent } from './components/lendenclub/lendenclub.component';
+import { CcmsComponent } from './components/ccms/ccms.component';
 
 const routes: Routes = [
   {path:'',component:ValuepickrComponent},
@@ -51,6 +52,7 @@ const routes: Routes = [
   // {path:'account/logout',component:LogoutComponent},
   {path:'account',component:AnonymousComponent},
   {path:'lendenclub',component:LendenclubComponent},
+  {path:'ccms',component:CcmsComponent},
   // {path:'app/referral',component:ReferralComponent},
   // {path:'app/detail/:id',component:DetailComponent},
   // {path:'app/shopping',component:ShoppingComponent},
