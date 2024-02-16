@@ -14,7 +14,7 @@ export class Ccms {
     billStatus!: string | null;
     paymentMethod!: number | null;
     chargesPaid!: number | null;
-    cCBillPayCashback!: number | null;
-    cCRewardsValueRs!: number | null;
+    ccBillPayCashback!: number | null;
+    ccRewardsValueRs!: number | null;
     isActive!: boolean;
 }

@@ -2,9 +2,7 @@
     <div class="headerDiv">
         <h2>CC Manager</h2>  
     </div>
-    <div class="floatedDiv">
-        <app-ccms-editor (addCcms)="Save($event)"></app-ccms-editor>
-    </div>
+
     <div class="floatedDiv">
         <table>
             <tr>
@@ -34,13 +32,16 @@
         <td>{{r.billStatus}}</td>
         <td>{{r.paymentMethod}}</td>
         <td>{{r.chargesPaid}}</td>
-        <td>{{r.cCBillPayCashback}}</td>
-        <td>{{r.cCRewardsValueRs}}</td>
+        <td>{{r.ccBillPayCashback}}</td>
+        <td>{{r.ccRewardsValueRs}}</td>
         <td>{{r.isActive}}</td>       
         <td style="text-align: center;">{{r.isActive?'Active':'Not Active'}}</td>       
         <td><button class="edit" (click)="Edit(r)">Edit</button><button class="delete" (click)="Remove(r)">Delete</button></td>
         </tr>
         </table>
+    </div>
+    <div class="floatedDiv">
+        <app-ccms-editor (addCcms)="Save($event)"></app-ccms-editor>
     </div>
     <div class="clear"></div>
   </div>

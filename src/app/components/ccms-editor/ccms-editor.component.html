@@ -1,54 +1,60 @@
 <form [formGroup]="ccmsForm" (ngSubmit)="onSubmit()">   
     <input id="creditCardDetailsId" readonly type="hidden" formControlName="creditCardDetailsId">
   
-    <app-label for="creditCardName" [control]="ccmsForm.controls.creditCardName">Card Name </app-label>
-    <input id="creditCardName" type="text" formControlName="creditCardName">  
-   
-    <app-label for="cardNumberEnd" [control]="ccmsForm.controls.cardNumberEnd">Card Number End </app-label>
-    <input id="cardNumberEnd" type="text" formControlName="cardNumberEnd">  
-   
-    <app-label for="billDateOfMonth" [control]="ccmsForm.controls.billDateOfMonth">Bill Day</app-label>
-    <input id="billDateOfMonth" type="text" formControlName="billDateOfMonth">
+    <table>
+        <tr>
+            <td colspan="2">
+                <label for="status"><strong>Status:</strong> {{!ccmsForm.valid?'Not Ready':'Ready'}}</label> 
+                <input type="submit" [ngClass]="!ccmsForm.valid?'not-ready':'ready'" [disabled]="!ccmsForm.valid" value="{{SubmitText}}">
+                <input type="reset" class="reset" value="Reset">
+            </td>
+            </tr>   
+        <tr>
+            <td style="padding-right:20px;">
+                <app-label for="creditCardName" [control]="ccmsForm.controls.creditCardName">Card Name </app-label>
+                <input id="creditCardName" type="text" formControlName="creditCardName">  
+               
+                <app-label for="cardNumberEnd" [control]="ccmsForm.controls.cardNumberEnd">Card Number End </app-label>
+                <input id="cardNumberEnd" type="text" formControlName="cardNumberEnd">  
+               
+                <app-label for="billDateOfMonth" [control]="ccmsForm.controls.billDateOfMonth">Bill Day</app-label>
+                <input id="billDateOfMonth" type="text" formControlName="billDateOfMonth">
+            
+                <app-label for="dueDateOfMonth" [control]="ccmsForm.controls.dueDateOfMonth">Due Day</app-label>
+                <input id="dueDateOfMonth" type="text" formControlName="dueDateOfMonth">
+               
+                <app-label for="billingCycleFrom" [control]="ccmsForm.controls.billingCycleFrom">Bill Cycle From</app-label>
+                <input id="billingCycleFrom" type="text" formControlName="billingCycleFrom">
+                
+                <app-label for="billingCycleTo" [control]="ccmsForm.controls.billingCycleTo">Bill Cycle To</app-label>
+                <input id="billingCycleTo" type="text" formControlName="billingCycleTo">        
+                
+                <app-label for="billMonth" [control]="ccmsForm.controls.billMonth">Bill Month</app-label>
+                <input id="billMonth" type="text" formControlName="billMonth">              
+              
+            </td>
+            <td>
+                <app-label for="billAmount" [control]="ccmsForm.controls.billAmount">Bill Amount </app-label>
+                <input id="billAmount" type="number" formControlName="billAmount">
 
-    <app-label for="dueDateOfMonth" [control]="ccmsForm.controls.dueDateOfMonth">Due Day</app-label>
-    <input id="dueDateOfMonth" type="text" formControlName="dueDateOfMonth">
-   
-    <app-label for="billingCycleFrom" [control]="ccmsForm.controls.billingCycleFrom">Bill Cycle From</app-label>
-    <input id="billingCycleFrom" type="text" formControlName="billingCycleFrom">
-    
-    <app-label for="billingCycleTo" [control]="ccmsForm.controls.billingCycleTo">Bill Cycle To</app-label>
-    <input id="billingCycleTo" type="text" formControlName="billingCycleTo">        
-    
-    <app-label for="billMonth" [control]="ccmsForm.controls.billMonth">Bill Month</app-label>
-    <input id="billMonth" type="text" formControlName="billMonth">
-    
-    <app-label for="billAmount" [control]="ccmsForm.controls.billAmount">Bill Amount </app-label>
-    <input id="billAmount" type="number" formControlName="billAmount">
-
-    <app-label for="billStatus" [control]="ccmsForm.controls.billStatus">Bill Status </app-label>
-    <input id="billStatus" type="text" formControlName="billStatus">
-
-    <app-label for="paymentMethod" [control]="ccmsForm.controls.paymentMethod">Payment Method </app-label>
-    <input id="paymentMethod" type="text" formControlName="paymentMethod">
-
-    <app-label for="chargesPaid" [control]="ccmsForm.controls.chargesPaid">Charges Paid </app-label>
-    <input id="chargesPaid" type="number" formControlName="chargesPaid">
-
-    <app-label for="cCBillPayCashback" [control]="ccmsForm.controls.cCBillPayCashback">Cashback Received</app-label>
-    <input id="cCBillPayCashback" type="number" formControlName="cCBillPayCashback">
-
-    <app-label for="cCRewardsValueRs" [control]="ccmsForm.controls.chargesPaid">Rewards Received </app-label>
-    <input id="cCRewardsValueRs" type="number" formControlName="cCRewardsValueRs">    
-
-    <app-label for="isActive" [control]="ccmsForm.controls.isActive">Is Active</app-label>
-    <input id="isActive" type="checkbox" formControlName="isActive">
-  
-
-    <label for="status"><strong>Status:</strong> {{!ccmsForm.valid?'Not Ready':'Ready'}}</label> 
-
-    <input type="submit" [ngClass]="!ccmsForm.valid?'not-ready':'ready'" [disabled]="!ccmsForm.valid" value="{{SubmitText}}">
-    <input type="reset" class="reset" value="Reset">
-    <div class="clear"></div>
-    
-
+                <app-label for="billStatus" [control]="ccmsForm.controls.billStatus">Bill Status </app-label>
+                <input id="billStatus" type="text" formControlName="billStatus">
+            
+                <app-label for="paymentMethod" [control]="ccmsForm.controls.paymentMethod">Payment Method </app-label>
+                <input id="paymentMethod" type="number" formControlName="paymentMethod">
+            
+                <app-label for="chargesPaid" [control]="ccmsForm.controls.chargesPaid">Charges Paid </app-label>
+                <input id="chargesPaid" type="number" formControlName="chargesPaid">
+            
+                <app-label for="ccBillPayCashback" [control]="ccmsForm.controls.ccBillPayCashback">Cashback Received</app-label>
+                <input id="ccBillPayCashback" type="number" formControlName="ccBillPayCashback">
+            
+                <app-label for="ccRewardsValueRs" [control]="ccmsForm.controls.ccRewardsValueRs">Rewards Received </app-label>
+                <input id="ccRewardsValueRs" type="number" formControlName="ccRewardsValueRs">    
+            
+                <app-label for="isActive" [control]="ccmsForm.controls.isActive">Is Active</app-label>
+                <input id="isActive" type="checkbox" formControlName="isActive">
+            </td>
+        </tr>
+    </table>
 </form>

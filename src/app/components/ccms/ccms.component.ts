@@ -48,8 +48,8 @@ export class CcmsComponent implements OnInit {
         billStatus:ccms.billStatus,
         paymentMethod:ccms.paymentMethod,
         chargesPaid:ccms.chargesPaid,
-        cCBillPayCashback:ccms.cCBillPayCashback,
-        cCRewardsValueRs:ccms.cCRewardsValueRs,
+        ccBillPayCashback:ccms.ccBillPayCashback,
+        ccRewardsValueRs:ccms.ccRewardsValueRs,
         isActive:ccms.isActive
     });
 
@@ -60,8 +60,10 @@ export class CcmsComponent implements OnInit {
   { 
     if(ccms.creditCardDetailsId>0)  
     {
+      debugger;
       this.service.updateData(ccms.creditCardDetailsId,ccms).subscribe({
         next:(value)=>{ 
+          debugger;
         for(var i=0;i<this.ccmsList.length;i++)
        {
         if(this.ccmsList[i].creditCardDetailsId==value.creditCardDetailsId)
@@ -78,8 +80,8 @@ export class CcmsComponent implements OnInit {
           this.ccmsList[i].billStatus = value.billStatus;
           this.ccmsList[i].paymentMethod = value.paymentMethod;
           this.ccmsList[i].chargesPaid = value.chargesPaid;
-          this.ccmsList[i].cCBillPayCashback = value.cCBillPayCashback;
-          this.ccmsList[i].cCRewardsValueRs = value.cCRewardsValueRs;
+          this.ccmsList[i].ccBillPayCashback = value.ccBillPayCashback;
+          this.ccmsList[i].ccRewardsValueRs = value.ccRewardsValueRs;
           this.ccmsList[i].isActive = value.isActive;
           
           this.child.setFormDefault();
@@ -97,8 +99,10 @@ export class CcmsComponent implements OnInit {
     {
     this.service.addData(ccms).subscribe({
       next:(value)=>{
-        this.child.ccmsForm.reset();
-       this.ccmsList.push(value);
+        debugger;
+        this.child.setFormDefault();        
+       this.ccmsList.push(value);      
+       this.ccmsList=this.ccmsList.filter(()=>{return true});      
       Swal.fire('Submitted Successfuly.'); 
       },
       error:(err)=>{

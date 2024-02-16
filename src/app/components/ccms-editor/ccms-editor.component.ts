@@ -43,8 +43,8 @@ export class CcmsEditorComponent implements OnInit {
       billStatus: '',
       paymentMethod: 1,
       chargesPaid: 0,
-      cCBillPayCashback: 0,
-      cCRewardsValueRs: 0,
+      ccBillPayCashback: 0,
+      ccRewardsValueRs: 0,
       isActive: false
     }
    );
@@ -63,8 +63,8 @@ export class CcmsEditorComponent implements OnInit {
       billStatus: new FormControl(''),
       paymentMethod: new FormControl(1),
       chargesPaid: new FormControl(0),
-      cCBillPayCashback: new FormControl(0),
-      cCRewardsValueRs: new FormControl(0),
+      ccBillPayCashback: new FormControl(0),
+      ccRewardsValueRs: new FormControl(0),
       isActive: new FormControl(false)
   });
 
