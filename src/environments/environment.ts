@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   apiBaseUrl:'https://bsitenet.somee.com',  
   //  onlineUsersApi:'https://atozq.somee.com',
-  onlineUsersApi:'https://localhost:7078',
+   onlineUsersApi:'https://vbraog.somee.com',   
+  // onlineUsersApi:'https://localhost:7078',
    lbApi:'https://ramki8678.bsite.net'
   
 };

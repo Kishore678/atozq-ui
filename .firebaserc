@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "atozq-28a01",
-    "production": "atozq-28a01"
+    "default": "atozqdev-5a859",
+    "production": "atozqdev-5a859"
   },
   "targets": {},
   "etags": {}
