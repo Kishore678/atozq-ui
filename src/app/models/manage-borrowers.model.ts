@@ -7,6 +7,7 @@ export class ManageBorrowers {
         risk!:string;
         age!:string;
         cibil!:number;
+        lScore!:string;
         interest!:string;
         tenureType!:string;
         tenure!:number;

@@ -914,6 +914,7 @@
 	<th style="width:25px;">Loan No.</th>
     <th style="width:25px;">Loan Amt</th>
 	<th style="width:25px;">Cibil</th>
+	<th style="width:25px;">LScr</th>
     <th style="width:25px;">Int%.</th>
     <th style="width:30px;">Tenure</th>
     <th style="width:10px;">Elig.</th>   
@@ -932,6 +933,7 @@
    <td>{{w.loan}}</td>
    <td>{{w.loanAmt}}</td>
    <td>{{w.cibil}}</td>
+   <td>{{w.lScore}}</td>
    <td>{{w.interest}}</td>   
    <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   
    <td [ngClass]="w.isEligible?'profit':'loss'">{{w.isEligible?'Yes':'No'}}</td>
