@@ -33,9 +33,12 @@
                 <input id="billMonth" type="text" formControlName="billMonth">              
               
             </td>
-            <td>
+            <td> 
                 <app-label for="billAmount" [control]="ccmsForm.controls.billAmount">Bill Amount </app-label>
                 <input id="billAmount" type="number" formControlName="billAmount">
+
+                <app-label for="maxCreditLimit" [control]="ccmsForm.controls.maxCreditLimit">MaxCCLimit</app-label>
+                <input id="maxCreditLimit" type="number" formControlName="maxCreditLimit">
 
                 <app-label for="billStatus" [control]="ccmsForm.controls.billStatus">Bill Status </app-label>
                 <input id="billStatus" type="text" formControlName="billStatus">
@@ -43,15 +46,21 @@
                 <app-label for="paymentMethod" [control]="ccmsForm.controls.paymentMethod">Payment Method </app-label>
                 <input id="paymentMethod" type="number" formControlName="paymentMethod">
             
-                <app-label for="chargesPaid" [control]="ccmsForm.controls.chargesPaid">Charges Paid </app-label>
+                <app-label for="chargesPaid" [control]="ccmsForm.controls.chargesPaid">Charges(Rs)</app-label>
                 <input id="chargesPaid" type="number" formControlName="chargesPaid">
             
-                <app-label for="ccBillPayCashback" [control]="ccmsForm.controls.ccBillPayCashback">Cashback Received</app-label>
+                <app-label for="ccBillPayCashback" [control]="ccmsForm.controls.ccBillPayCashback">BillPayCB(Rs)</app-label>
                 <input id="ccBillPayCashback" type="number" formControlName="ccBillPayCashback">
             
-                <app-label for="ccRewardsValueRs" [control]="ccmsForm.controls.ccRewardsValueRs">Rewards Received </app-label>
-                <input id="ccRewardsValueRs" type="number" formControlName="ccRewardsValueRs">    
-            
+                <app-label for="ccRewardsValueRs" [control]="ccmsForm.controls.ccRewardsValueRs">Rewards(Rs)</app-label>
+                <input id="ccRewardsValueRs" type="number" formControlName="ccRewardsValueRs"> 
+
+                <app-label for="ccRewardsPoints" [control]="ccmsForm.controls.ccRewardsPoints">Rewards(Pts)</app-label>
+                <input id="ccRewardsPoints" type="number" formControlName="ccRewardsPoints">  
+
+                <app-label for="maxRewardPoints" [control]="ccmsForm.controls.maxRewardPoints">Max Rewards(Pts)</app-label>
+                <input id="maxRewardPoints" type="number" formControlName="maxRewardPoints">  
+
                 <app-label for="isActive" [control]="ccmsForm.controls.isActive">Is Active</app-label>
                 <input id="isActive" type="checkbox" formControlName="isActive">
             </td>

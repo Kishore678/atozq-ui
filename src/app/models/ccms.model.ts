@@ -17,4 +17,12 @@ export class Ccms {
     ccBillPayCashback!: number | null;
     ccRewardsValueRs!: number | null;
     isActive!: boolean;
+    maxCreditLimit!: number; 
+    maxRewardPoints!: number;
+    ccRewardsPoints!:number;
 }
+
+
+
+       
+   

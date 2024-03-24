@@ -1,5 +1,9 @@
 table {
     border-collapse: collapse;  
+    display: block;
+    white-space: nowrap;
+    overflow: scroll; /* Scrollbar are always visible */
+overflow: auto;   /* Scrollbar is displayed as it's needed */
   }
   
 th, td {

@@ -8,16 +8,19 @@
             <tr>
                 <th style="text-align: center;">Card</th>
                 <th style="text-align: center;">Number</th>     
-                <th style="text-align: center;">Bill Day</th>     
-                <th style="text-align: center;">Due Day</th>     
-                <th style="text-align: center;">Bill Cycle</th>     
+                <th style="text-align: center;">BillDay</th>     
+                <th style="text-align: center;">DueDay</th>     
+                <th style="text-align: center;">BillCycle</th>     
                 <th style="text-align: center;">Month</th>     
-                <th style="text-align: center;">Amount</th>     
+                <th style="text-align: center;">BillAmount</th>     
+                <th style="text-align: center;">MaxCCLimit</th>     
                 <th style="text-align: center;">Status</th>              
                 <th style="text-align: center;">PayMethod</th>              
                 <th style="text-align: center;">Charges</th>              
-                <th style="text-align: center;">BillPayCashback</th>              
-                <th style="text-align: center;">OtherRewards</th>              
+                <th style="text-align: center;">BillPayCB(Rs)</th>                 
+                <th style="text-align: center;">Rewards(Rs)</th>     
+                <th style="text-align: center;">Rewards(Pts)</th>          
+                <th style="text-align: center;">MaxRewards(Pts)</th>              
                 <th style="text-align: center;">IsActive</th>              
                 <th style="text-align: center;"></th>
             </tr>
@@ -29,12 +32,14 @@
         <td>{{r.billingCycleFrom}}-{{r.billingCycleTo}}</td>
         <td>{{r.billMonth}}</td>
         <td>{{r.billAmount}}</td>
+        <td>{{r.maxCreditLimit}}</td>
         <td>{{r.billStatus}}</td>
         <td>{{r.paymentMethod}}</td>
         <td>{{r.chargesPaid}}</td>
-        <td>{{r.ccBillPayCashback}}</td>
+        <td>{{r.ccBillPayCashback}}</td> 
         <td>{{r.ccRewardsValueRs}}</td>
-        <td>{{r.isActive}}</td>       
+        <td>{{r.ccRewardsPoints}}</td>        
+        <td>{{r.maxRewardPoints}}</td> 
         <td style="text-align: center;">{{r.isActive?'Active':'Not Active'}}</td>       
         <td><button class="edit" (click)="Edit(r)">Edit</button><button class="delete" (click)="Remove(r)">Delete</button></td>
         </tr>

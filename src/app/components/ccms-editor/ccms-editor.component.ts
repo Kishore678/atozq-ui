@@ -45,7 +45,10 @@ export class CcmsEditorComponent implements OnInit {
       chargesPaid: 0,
       ccBillPayCashback: 0,
       ccRewardsValueRs: 0,
-      isActive: false
+      isActive: false,
+      maxCreditLimit: 0,
+      maxRewardPoints: 0,
+      ccRewardsPoints:0
     }
    );
   }
@@ -65,7 +68,10 @@ export class CcmsEditorComponent implements OnInit {
       chargesPaid: new FormControl(0),
       ccBillPayCashback: new FormControl(0),
       ccRewardsValueRs: new FormControl(0),
-      isActive: new FormControl(false)
+      isActive: new FormControl(false),
+      maxCreditLimit:new FormControl(0),
+      maxRewardPoints: new FormControl(0),
+      ccRewardsPoints:new FormControl(0)
   });
 
 }

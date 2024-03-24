@@ -50,7 +50,10 @@ export class CcmsComponent implements OnInit {
         chargesPaid:ccms.chargesPaid,
         ccBillPayCashback:ccms.ccBillPayCashback,
         ccRewardsValueRs:ccms.ccRewardsValueRs,
-        isActive:ccms.isActive
+        isActive:ccms.isActive,
+        maxCreditLimit: ccms.maxCreditLimit,
+        maxRewardPoints: ccms.maxRewardPoints,
+        ccRewardsPoints:ccms.ccRewardsPoints
     });
 
     this.child.SubmitText='Save';
@@ -83,7 +86,9 @@ export class CcmsComponent implements OnInit {
           this.ccmsList[i].ccBillPayCashback = value.ccBillPayCashback;
           this.ccmsList[i].ccRewardsValueRs = value.ccRewardsValueRs;
           this.ccmsList[i].isActive = value.isActive;
-          
+          this.ccmsList[i].maxCreditLimit = value.maxCreditLimit,
+          this.ccmsList[i].maxRewardPoints = value.maxRewardPoints,
+          this.ccmsList[i].ccRewardsPoints = value.ccRewardsPoints
           this.child.setFormDefault();
         }
       }
