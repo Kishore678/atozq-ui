@@ -12,7 +12,8 @@ import { CcmsEditorComponent } from '../ccms-editor/ccms-editor.component';
 export class CcmsComponent implements OnInit {
 
   ccmsList:Ccms[]=[];
-  
+  showRecords:boolean = true;
+  showRecordEditor:boolean = true;
   @ViewChild(CcmsEditorComponent) child!:CcmsEditorComponent;
 
   constructor(private service:CcmsService) { }
@@ -57,16 +58,20 @@ export class CcmsComponent implements OnInit {
     });
 
     this.child.SubmitText='Save';
+    this.showRecordEditor = true;
+    this.showRecords = false;
   }
-
+  Reset()
+  {
+    this.showRecordEditor = true;
+    this.showRecords = true;
+  }
   Save(ccms:Ccms)
   { 
     if(ccms.creditCardDetailsId>0)  
-    {
-      debugger;
+    {     
       this.service.updateData(ccms.creditCardDetailsId,ccms).subscribe({
-        next:(value)=>{ 
-          debugger;
+        next:(value)=>{
         for(var i=0;i<this.ccmsList.length;i++)
        {
         if(this.ccmsList[i].creditCardDetailsId==value.creditCardDetailsId)
@@ -89,14 +94,19 @@ export class CcmsComponent implements OnInit {
           this.ccmsList[i].maxCreditLimit = value.maxCreditLimit,
           this.ccmsList[i].maxRewardPoints = value.maxRewardPoints,
           this.ccmsList[i].ccRewardsPoints = value.ccRewardsPoints
+          this.ccmsList[i].roi = value.roi
           this.child.setFormDefault();
         }
       }
         this.child.SubmitText='Add';         
         Swal.fire('Updated Successfuly.'); 
+        this.showRecordEditor = false;
+        this.showRecords = true;
         },
         error:(err)=>{
         Swal.fire('Something went wrong!'); 
+        this.showRecordEditor = false;
+        this.showRecords = true;
         }
       });
     }
@@ -109,9 +119,13 @@ export class CcmsComponent implements OnInit {
        this.ccmsList.push(value);      
        this.ccmsList=this.ccmsList.filter(()=>{return true});      
       Swal.fire('Submitted Successfuly.'); 
+      this.showRecordEditor = false;
+      this.showRecords = true;
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 
+      this.showRecordEditor = false;
+      this.showRecords = true;
       }
     });
   }

@@ -20,6 +20,7 @@ export class Ccms {
     maxCreditLimit!: number; 
     maxRewardPoints!: number;
     ccRewardsPoints!:number;
+    roi!:number;
 }
 
 

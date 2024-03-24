@@ -3,10 +3,12 @@
         <h2>CC Manager</h2>  
     </div>
 
-    <div class="floatedDiv">
+    <div class="floatedDiv" *ngIf="showRecords">
         <table>
             <tr>
+                <th style="text-align: center;">#</th>
                 <th style="text-align: center;">Card</th>
+                <th style="text-align: center;">ROI(%)</th>
                 <th style="text-align: center;">Number</th>     
                 <th style="text-align: center;">BillDay</th>     
                 <th style="text-align: center;">DueDay</th>     
@@ -24,8 +26,10 @@
                 <th style="text-align: center;">IsActive</th>              
                 <th style="text-align: center;"></th>
             </tr>
-        <tr *ngFor="let r of ccmsList">        
+        <tr *ngFor="let r of ccmsList; let i=index;">        
+        <td>{{i+1}}</td>
         <td>{{r.creditCardName}}</td>
+        <td>{{r.roi | number : '1.2-2'}}</td>
         <td>{{r.cardNumberEnd}}</td>
         <td>{{r.billDateOfMonth}}</td>
         <td>{{r.dueDateOfMonth}}</td>
@@ -45,8 +49,8 @@
         </tr>
         </table>
     </div>
-    <div class="floatedDiv">
-        <app-ccms-editor (addCcms)="Save($event)"></app-ccms-editor>
+    <div class="floatedDiv" *ngIf="showRecordEditor">
+        <app-ccms-editor (resetCcms)="Reset()" (addCcms)="Save($event)"></app-ccms-editor>
     </div>
     <div class="clear"></div>
   </div>

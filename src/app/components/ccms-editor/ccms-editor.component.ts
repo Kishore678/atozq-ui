@@ -14,6 +14,7 @@ export class CcmsEditorComponent implements OnInit {
   constructor() { }
 
   @Output() addCcms = new EventEmitter<Ccms>();
+  @Output() resetCcms = new EventEmitter<Ccms>();
 
   ngOnInit(): void {
   }
@@ -26,7 +27,10 @@ export class CcmsEditorComponent implements OnInit {
       this.addCcms.emit(new Ccms(this.ccmsForm.value));      
     }
   }
-
+  onReset()
+  {
+    this.resetCcms.emit();
+  }
   setFormDefault()
   {
    this.ccmsForm.setValue(
