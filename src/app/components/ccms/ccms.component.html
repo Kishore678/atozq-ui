@@ -47,24 +47,24 @@
         <td>{{r.creditCardName}}</td>
         <td>{{r.cardType}}</td>
         <td>{{r.cardNumberEnd}}</td>
-        <td>{{r.roi | number : '1.2-2'}}</td>
-        <td>{{r.unBilledROI | number : '1.2-2'}}</td>
+        <td>{{r.roi | number : '1.2-2'}} (%)</td>
+        <td>{{r.unBilledROI | number : '1.2-2'}} (%)</td>
         <td>{{r.billDateOfMonth}}</td>
         <td>{{r.dueDateOfMonth}}</td>
         <td>{{r.billingCycleFrom}}-{{r.billingCycleTo}}</td>
         <td>{{r.billMonth}}</td>
-        <td>{{r.billAmount}}</td>
-        <td>{{r.unBillAmount}}</td>
-        <td>{{r.outStandAmount}}</td>
-        <td>{{r.availableCCLimit}}</td>
-        <td>{{r.usedLimitInPecent| number : '1.2-2'}}</td>
+        <td>{{r.billAmount| number : '1.2-2'}}</td>
+        <td>{{r.unBillAmount| number : '1.2-2'}}</td>
+        <td>{{r.outStandAmount| number : '1.2-2'}}</td>
+        <td>{{r.availableCCLimit| number : '1.2-2'}}</td>
+        <td>{{r.usedLimitInPecent| number : '1.2-2'}} (%)</td>
         <td>{{r.maxCreditLimit}}</td>
-        <td>{{r.billPaidAmount}}</td>
+        <td>{{r.billPaidAmount| number : '1.2-2'}}</td>
         <td>{{r.billStatus}}</td>
         <td>{{r.lastPaidOn | date:'short'}}</td> 
         <td>{{r.paymentMethod}}</td>
-        <td>{{r.chargesPaid}}</td>
-        <td>{{r.cashBackInRs}}</td>
+        <td>{{r.chargesPaid| number : '1.2-2'}}</td>
+        <td>{{r.cashBackInRs| number : '1.2-2'}}</td>
         <td>{{r.unbilledChargesPaid}}</td>   
         <td>{{r.unbilledCashBackInRs}}</td>
         <td>{{r.ccBillPayCashback}}</td> 
