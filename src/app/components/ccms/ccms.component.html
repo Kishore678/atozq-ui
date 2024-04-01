@@ -6,46 +6,74 @@
     <div class="floatedDiv" *ngIf="showRecords">
         <table>
             <tr>
+                <th style="text-align: center;"></th>
                 <th style="text-align: center;">#</th>
-                <th style="text-align: center;">Card</th>
-                <th style="text-align: center;">ROI(%)</th>
-                <th style="text-align: center;">Number</th>     
+                <th style="text-align: center;">Bank</th>
+                <th style="text-align: center;">Card</th>                
+                <th style="text-align: center;">Type</th>
+                <th style="text-align: center;">Number</th>   
+                <th style="text-align: center;">Billed ROI(%)</th>
+                <th style="text-align: center;">UnBilled ROI(%)</th>                 
                 <th style="text-align: center;">BillDay</th>     
                 <th style="text-align: center;">DueDay</th>     
                 <th style="text-align: center;">BillCycle</th>     
                 <th style="text-align: center;">Month</th>     
                 <th style="text-align: center;">BillAmount</th>     
+                <th style="text-align: center;">UnBillAmount</th>     
+                <th style="text-align: center;">OutStandAmount</th>     
+                <th style="text-align: center;">AvailCCLimit</th>     
+                <th style="text-align: center;">UsedCC(%)</th>     
                 <th style="text-align: center;">MaxCCLimit</th>     
+                <th style="text-align: center;">Bill Piad</th>     
                 <th style="text-align: center;">Status</th>              
+                <th style="text-align: center;">Last Paid</th>              
                 <th style="text-align: center;">PayMethod</th>              
-                <th style="text-align: center;">Charges</th>              
+                <th style="text-align: center;">Billed Charges(Rs)</th>              
+                <th style="text-align: center;">Billed Cashback(Rs)</th>    
+                <th style="text-align: center;">UnBilled Charges(Rs)</th>              
+                <th style="text-align: center;">UnBilled Cashback(Rs)</th>               
                 <th style="text-align: center;">BillPayCB(Rs)</th>                 
                 <th style="text-align: center;">Rewards(Rs)</th>     
                 <th style="text-align: center;">Rewards(Pts)</th>          
                 <th style="text-align: center;">MaxRewards(Pts)</th>              
-                <th style="text-align: center;">IsActive</th>              
-                <th style="text-align: center;"></th>
+                <th style="text-align: center;">IsActive</th>  
+                <th style="text-align: center;">X</th>
+
             </tr>
-        <tr *ngFor="let r of ccmsList; let i=index;">        
+        <tr *ngFor="let r of ccmsList; let i=index;">  
+        <td><button class="edit" (click)="Edit(r)">Edit</button></td>
         <td>{{i+1}}</td>
+        <td>{{r.bankName}}</td>
         <td>{{r.creditCardName}}</td>
-        <td>{{r.roi | number : '1.2-2'}}</td>
+        <td>{{r.cardType}}</td>
         <td>{{r.cardNumberEnd}}</td>
+        <td>{{r.roi | number : '1.2-2'}}</td>
+        <td>{{r.unBilledROI | number : '1.2-2'}}</td>
         <td>{{r.billDateOfMonth}}</td>
         <td>{{r.dueDateOfMonth}}</td>
         <td>{{r.billingCycleFrom}}-{{r.billingCycleTo}}</td>
         <td>{{r.billMonth}}</td>
         <td>{{r.billAmount}}</td>
+        <td>{{r.unBillAmount}}</td>
+        <td>{{r.outStandAmount}}</td>
+        <td>{{r.availableCCLimit}}</td>
+        <td>{{r.usedLimitInPecent| number : '1.2-2'}}</td>
         <td>{{r.maxCreditLimit}}</td>
+        <td>{{r.billPaidAmount}}</td>
         <td>{{r.billStatus}}</td>
+        <td>{{r.lastPaidOn | date:'short'}}</td> 
         <td>{{r.paymentMethod}}</td>
         <td>{{r.chargesPaid}}</td>
+        <td>{{r.cashBackInRs}}</td>
+        <td>{{r.unbilledChargesPaid}}</td>   
+        <td>{{r.unbilledCashBackInRs}}</td>
         <td>{{r.ccBillPayCashback}}</td> 
         <td>{{r.ccRewardsValueRs}}</td>
         <td>{{r.ccRewardsPoints}}</td>        
         <td>{{r.maxRewardPoints}}</td> 
-        <td style="text-align: center;">{{r.isActive?'Active':'Not Active'}}</td>       
-        <td><button class="edit" (click)="Edit(r)">Edit</button><button class="delete" (click)="Remove(r)">Delete</button></td>
+        <td style="text-align: center;">{{r.isActive?'Active':'Not Active'}}</td> 
+        <td><button class="delete" (click)="Remove(r)">Delete</button></td>
+
         </tr>
         </table>
     </div>

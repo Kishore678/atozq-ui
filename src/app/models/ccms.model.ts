@@ -21,6 +21,19 @@ export class Ccms {
     maxRewardPoints!: number;
     ccRewardsPoints!:number;
     roi!:number;
+    
+    cardType!: string | null;
+    bankName!: string | null;
+    unBillAmount!:number;
+    outStandAmount!:number;
+    availableCCLimit!:number;
+    usedLimitInPecent!:number;
+    billPaidAmount!:number;
+    lastPaidOn!:Date; 
+    unbilledChargesPaid!:number;
+    unBilledROI!:number;
+    cashBackInRs!:number;
+    unbilledCashBackInRs!:number;
 }
 
 

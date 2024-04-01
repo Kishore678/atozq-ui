@@ -11,43 +11,73 @@
             </tr>   
         <tr>
             <td style="padding-right:20px;">
-                <app-label for="creditCardName" [control]="ccmsForm.controls.creditCardName">Card Name </app-label>
+
+                <app-label for="bankName" [control]="ccmsForm.controls.bankName">Bank</app-label>
+                <input id="bankName" type="text" formControlName="bankName">  
+
+                <app-label for="creditCardName" [control]="ccmsForm.controls.creditCardName">Card</app-label>
                 <input id="creditCardName" type="text" formControlName="creditCardName">  
+
+                <app-label for="cardType" [control]="ccmsForm.controls.cardType">Type</app-label>
+                <input id="cardType" type="text" formControlName="cardType">  
                
-                <app-label for="cardNumberEnd" [control]="ccmsForm.controls.cardNumberEnd">Card Number End </app-label>
-                <input id="cardNumberEnd" type="text" formControlName="cardNumberEnd">  
+                <app-label for="cardNumberEnd" [control]="ccmsForm.controls.cardNumberEnd">No.End</app-label>
+                <input id="cardNumberEnd" type="text" formControlName="cardNumberEnd">           
                
-                <app-label for="billDateOfMonth" [control]="ccmsForm.controls.billDateOfMonth">Bill Day</app-label>
+                <app-label for="billDateOfMonth" [control]="ccmsForm.controls.billDateOfMonth">Bill.Day</app-label>
                 <input id="billDateOfMonth" type="text" formControlName="billDateOfMonth">
             
-                <app-label for="dueDateOfMonth" [control]="ccmsForm.controls.dueDateOfMonth">Due Day</app-label>
+                <app-label for="dueDateOfMonth" [control]="ccmsForm.controls.dueDateOfMonth">Due.Day</app-label>
                 <input id="dueDateOfMonth" type="text" formControlName="dueDateOfMonth">
                
-                <app-label for="billingCycleFrom" [control]="ccmsForm.controls.billingCycleFrom">Bill Cycle From</app-label>
+                <app-label for="billingCycleFrom" [control]="ccmsForm.controls.billingCycleFrom">BillCycle.From</app-label>
                 <input id="billingCycleFrom" type="text" formControlName="billingCycleFrom">
                 
-                <app-label for="billingCycleTo" [control]="ccmsForm.controls.billingCycleTo">Bill Cycle To</app-label>
+                <app-label for="billingCycleTo" [control]="ccmsForm.controls.billingCycleTo">BillCycle.To</app-label>
                 <input id="billingCycleTo" type="text" formControlName="billingCycleTo">        
                 
-                <app-label for="billMonth" [control]="ccmsForm.controls.billMonth">Bill Month</app-label>
-                <input id="billMonth" type="text" formControlName="billMonth">              
-              
-            </td>
-            <td> 
-                <app-label for="billAmount" [control]="ccmsForm.controls.billAmount">Bill Amount </app-label>
-                <input id="billAmount" type="number" formControlName="billAmount">
+                <app-label for="billMonth" [control]="ccmsForm.controls.billMonth">Bill.Month</app-label>
+                <input id="billMonth" type="text" formControlName="billMonth">  
 
-                <app-label for="maxCreditLimit" [control]="ccmsForm.controls.maxCreditLimit">MaxCCLimit</app-label>
+                <app-label for="billAmount" [control]="ccmsForm.controls.billAmount">Billed.Amount </app-label>
+                <input id="billAmount" type="number" formControlName="billAmount">              
+                
+                <app-label for="outStandAmount" [control]="ccmsForm.controls.outStandAmount">OutStanding.Amount</app-label>
+                <input id="outStandAmount" type="number" formControlName="outStandAmount">  
+               
+                
+                <app-label for="availableCCLimit" [control]="ccmsForm.controls.availableCCLimit">Available.CCLimit</app-label>
+                <input id="availableCCLimit" type="number" formControlName="availableCCLimit">                 
+                
+                <app-label for="usedLimitInPecent" [control]="ccmsForm.controls.usedLimitInPecent">UsedCC.LimitPecent</app-label>
+                <input id="usedLimitInPecent" type="number" formControlName="usedLimitInPecent"> 
+
+                <app-label for="maxCreditLimit" [control]="ccmsForm.controls.maxCreditLimit">MaxCC.Limit</app-label>
                 <input id="maxCreditLimit" type="number" formControlName="maxCreditLimit">
 
-                <app-label for="billStatus" [control]="ccmsForm.controls.billStatus">Bill Status </app-label>
+                <app-label for="billPaidAmount" [control]="ccmsForm.controls.billPaidAmount">BillPaid.Amount</app-label>
+                <input id="billPaidAmount" type="number" formControlName="billPaidAmount">  
+
+                <app-label for="billStatus" [control]="ccmsForm.controls.billStatus">Bill.Status </app-label>
                 <input id="billStatus" type="text" formControlName="billStatus">
+
+                <app-label for="lastPaidOn" [control]="ccmsForm.controls.lastPaidOn">LastPaid.Date</app-label>
+                <input id="lastPaidOn" type="date" formControlName="lastPaidOn">  
             
-                <app-label for="paymentMethod" [control]="ccmsForm.controls.paymentMethod">Payment Method </app-label>
+                <app-label for="paymentMethod" [control]="ccmsForm.controls.paymentMethod">Payment.Method </app-label>
                 <input id="paymentMethod" type="number" formControlName="paymentMethod">
             
-                <app-label for="chargesPaid" [control]="ccmsForm.controls.chargesPaid">Charges(Rs)</app-label>
+                <app-label for="chargesPaid" [control]="ccmsForm.controls.chargesPaid">Billed.Charges(Rs)</app-label>
                 <input id="chargesPaid" type="number" formControlName="chargesPaid">
+
+                <app-label for="cashBackInRs" [control]="ccmsForm.controls.cashBackInRs">Billed.Cashback(Rs)</app-label>
+                <input id="cashBackInRs" type="number" formControlName="cashBackInRs">  
+
+                <app-label for="unbilledChargesPaid" [control]="ccmsForm.controls.unbilledChargesPaid">UnBilled.Charges(Rs)</app-label>
+                <input id="unbilledChargesPaid" type="number" formControlName="unbilledChargesPaid"> 
+                
+                <app-label for="unbilledCashBackInRs" [control]="ccmsForm.controls.unbilledCashBackInRs">UnBilled.Cashback(Rs)</app-label>
+                <input id="unbilledCashBackInRs" type="number" formControlName="unbilledCashBackInRs"> 
             
                 <app-label for="ccBillPayCashback" [control]="ccmsForm.controls.ccBillPayCashback">BillPayCB(Rs)</app-label>
                 <input id="ccBillPayCashback" type="number" formControlName="ccBillPayCashback">

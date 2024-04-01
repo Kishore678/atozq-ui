@@ -7,7 +7,7 @@ overflow: auto;   /* Scrollbar is displayed as it's needed */
   }
   
 th, td {
-    text-align: left;
+    text-align: center;
     padding: 4px;
   }
   

@@ -52,7 +52,20 @@ export class CcmsEditorComponent implements OnInit {
       isActive: false,
       maxCreditLimit: 0,
       maxRewardPoints: 0,
-      ccRewardsPoints:0
+      ccRewardsPoints:0,
+
+      cardType: '',
+      bankName: '',
+      unBillAmount:0,
+      outStandAmount:0,
+      availableCCLimit:0,
+      usedLimitInPecent:0,
+      billPaidAmount:0,
+      lastPaidOn:new Date(''),
+      unbilledChargesPaid:0,
+      unBilledROI:0,
+      cashBackInRs:0,
+      unbilledCashBackInRs:0,
     }
    );
   }
@@ -75,7 +88,20 @@ export class CcmsEditorComponent implements OnInit {
       isActive: new FormControl(false),
       maxCreditLimit:new FormControl(0),
       maxRewardPoints: new FormControl(0),
-      ccRewardsPoints:new FormControl(0)
+      ccRewardsPoints:new FormControl(0),
+
+      cardType: new FormControl(''),
+      bankName: new FormControl(''),
+      unBillAmount:new FormControl(0),
+      outStandAmount:new FormControl(0),
+      availableCCLimit:new FormControl(0),
+      usedLimitInPecent:new FormControl(0),
+      billPaidAmount:new FormControl(0),
+      lastPaidOn: new FormControl(new Date('')), 
+      unbilledChargesPaid:new FormControl(0),
+      unBilledROI:new FormControl(0),
+      cashBackInRs:new FormControl(0),
+      unbilledCashBackInRs:new FormControl(0),
   });
 
 }

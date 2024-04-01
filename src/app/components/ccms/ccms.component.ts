@@ -54,7 +54,20 @@ export class CcmsComponent implements OnInit {
         isActive:ccms.isActive,
         maxCreditLimit: ccms.maxCreditLimit,
         maxRewardPoints: ccms.maxRewardPoints,
-        ccRewardsPoints:ccms.ccRewardsPoints
+        ccRewardsPoints:ccms.ccRewardsPoints,
+
+        cardType:ccms.cardType,
+      bankName:ccms.bankName,
+      unBillAmount:ccms.unBillAmount,
+      outStandAmount:ccms.outStandAmount,
+      availableCCLimit:ccms.availableCCLimit,
+      usedLimitInPecent:ccms.usedLimitInPecent,
+      billPaidAmount:ccms.billPaidAmount,
+      lastPaidOn:ccms.lastPaidOn,
+      unbilledChargesPaid:ccms.unbilledChargesPaid,
+      unBilledROI:ccms.unBilledROI,
+      cashBackInRs:ccms.cashBackInRs,
+      unbilledCashBackInRs:ccms.unbilledCashBackInRs,
     });
 
     this.child.SubmitText='Save';
@@ -91,10 +104,24 @@ export class CcmsComponent implements OnInit {
           this.ccmsList[i].ccBillPayCashback = value.ccBillPayCashback;
           this.ccmsList[i].ccRewardsValueRs = value.ccRewardsValueRs;
           this.ccmsList[i].isActive = value.isActive;
-          this.ccmsList[i].maxCreditLimit = value.maxCreditLimit,
-          this.ccmsList[i].maxRewardPoints = value.maxRewardPoints,
-          this.ccmsList[i].ccRewardsPoints = value.ccRewardsPoints
-          this.ccmsList[i].roi = value.roi
+          this.ccmsList[i].maxCreditLimit = value.maxCreditLimit;
+          this.ccmsList[i].maxRewardPoints = value.maxRewardPoints;
+          this.ccmsList[i].ccRewardsPoints = value.ccRewardsPoints;
+          this.ccmsList[i].roi = value.roi;
+
+          this.ccmsList[i].cardType = value.cardType;
+          this.ccmsList[i].bankName = value.bankName;
+          this.ccmsList[i].unBillAmount = value.unBillAmount;
+          this.ccmsList[i].outStandAmount = value.outStandAmount;
+          this.ccmsList[i].availableCCLimit = value.availableCCLimit;
+          this.ccmsList[i].usedLimitInPecent = value.usedLimitInPecent;
+          this.ccmsList[i].billPaidAmount = value.billPaidAmount;
+          this.ccmsList[i].lastPaidOn = value.lastPaidOn;
+          this.ccmsList[i].unbilledChargesPaid = value.unbilledChargesPaid;
+          this.ccmsList[i].unBilledROI = value.unBilledROI;
+          this.ccmsList[i].cashBackInRs = value.cashBackInRs;
+          this.ccmsList[i].unbilledCashBackInRs = value.unbilledCashBackInRs;
+
           this.child.setFormDefault();
         }
       }
@@ -102,11 +129,13 @@ export class CcmsComponent implements OnInit {
         Swal.fire('Updated Successfuly.'); 
         this.showRecordEditor = false;
         this.showRecords = true;
+        this.Reset();
         },
         error:(err)=>{
         Swal.fire('Something went wrong!'); 
         this.showRecordEditor = false;
         this.showRecords = true;
+        this.Reset();
         }
       });
     }
@@ -121,11 +150,13 @@ export class CcmsComponent implements OnInit {
       Swal.fire('Submitted Successfuly.'); 
       this.showRecordEditor = false;
       this.showRecords = true;
+      this.Reset();
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 
       this.showRecordEditor = false;
       this.showRecords = true;
+      this.Reset();
       }
     });
   }
@@ -149,9 +180,11 @@ export class CcmsComponent implements OnInit {
        this.ccmsList = this.ccmsList.filter((val,index,arr)=>{
         return val.creditCardDetailsId!=ccms.creditCardDetailsId;
        });
+       this.Reset();
       },
       error:(err)=>{
       Swal.fire('Something went wrong!'); 
+      this.Reset();
       }
     });
   }});
