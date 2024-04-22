@@ -4,11 +4,13 @@ export interface Lendenclub {
     pendingWithdraw: number
     lending: number
     repayment: number
+    refund: number
     pendingRepayment: number
     depositDetails: StatementDetail[]
     withdrawDetails: StatementDetail[]
     lendingDetails: StatementDetail[]
     repaymentDetails: StatementDetail[]
+    refundDetails: StatementDetail[]    
     lendenClubPnLReport:LendenClubPnLReport[]
     lendenClubAPBStatement:LendenClubAPBStatement[]
     lendenClubAPBStatementTotal:number

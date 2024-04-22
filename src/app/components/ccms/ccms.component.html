@@ -12,31 +12,32 @@
                 <th style="text-align: center;">Card</th>                
                 <th style="text-align: center;">Type</th>
                 <th style="text-align: center;">Number</th>   
-                <th style="text-align: center;">Billed ROI(%)</th>
-                <th style="text-align: center;">UnBilled ROI(%)</th>                 
-                <th style="text-align: center;">BillDay</th>     
-                <th style="text-align: center;">DueDay</th>     
-                <th style="text-align: center;">BillCycle</th>     
-                <th style="text-align: center;">Month</th>     
-                <th style="text-align: center;">BillAmount</th>     
-                <th style="text-align: center;">UnBillAmount</th>     
-                <th style="text-align: center;">OutStandAmount</th>     
-                <th style="text-align: center;">AvailCCLimit</th>     
-                <th style="text-align: center;">UsedCC(%)</th>     
-                <th style="text-align: center;">MaxCCLimit</th>     
-                <th style="text-align: center;">Bill Piad</th>     
-                <th style="text-align: center;">Status</th>              
-                <th style="text-align: center;">Last Paid</th>              
-                <th style="text-align: center;">PayMethod</th>              
-                <th style="text-align: center;">Billed Charges(Rs)</th>              
-                <th style="text-align: center;">Billed Cashback(Rs)</th>    
-                <th style="text-align: center;">UnBilled Charges(Rs)</th>              
-                <th style="text-align: center;">UnBilled Cashback(Rs)</th>               
-                <th style="text-align: center;">BillPayCB(Rs)</th>                 
-                <th style="text-align: center;">Rewards(Rs)</th>     
-                <th style="text-align: center;">Rewards(Pts)</th>          
-                <th style="text-align: center;">MaxRewards(Pts)</th>              
-                <th style="text-align: center;">IsActive</th>  
+                <th style="text-align: center;">ROI(%)</th>
+                <!-- <th style="text-align: center;">UnBilled ROI(%)</th>                  -->
+                <th style="text-align: center;">St.Date</th>     
+                <th style="text-align: center;">Due.Date</th>     
+                <th style="text-align: center;">Bill.Cycle</th>     
+                <!-- <th style="text-align: center;">Month</th>      -->
+                <th style="text-align: center;">Bill.Amount</th>     
+                <!-- <th style="text-align: center;">UnBillAmount</th>      -->
+                <!-- <th style="text-align: center;">OutStandAmount</th>      -->
+                <!-- <th style="text-align: center;">AvailCCLimit</th>      -->
+                <!-- <th style="text-align: center;">UsedCC(%)</th>      -->
+                <th style="text-align: center;">Max.Limit</th>     
+                <!-- <th style="text-align: center;">Bill Piad</th>      -->
+                <!-- <th style="text-align: center;">Status</th>               -->
+                <!-- <th style="text-align: center;">Last Paid</th>               -->
+                <!-- <th style="text-align: center;">PayMethod</th>               -->
+                <th style="text-align: center;">Charges(Rs)</th>              
+                <th style="text-align: center;">Cashback(Rs)</th>    
+                <!-- <th style="text-align: center;">UnBilled Charges(Rs)</th>              
+                <th style="text-align: center;">UnBilled Cashback(Rs)</th>                -->
+                <!-- <th style="text-align: center;">BillPayCB(Rs)</th>                  -->
+                <!-- <th style="text-align: center;">Rewards(Rs)</th>      -->
+                <!-- <th style="text-align: center;">Rewards(Pts)</th>           -->
+                <!-- <th style="text-align: center;">MaxRewards(Pts)</th>               -->
+                <th style="text-align: center;">Status</th>  
+                <th style="text-align: center;">Note</th>  
                 <th style="text-align: center;">X</th>
 
             </tr>
@@ -48,30 +49,31 @@
         <td>{{r.cardType}}</td>
         <td>{{r.cardNumberEnd}}</td>
         <td>{{r.roi | number : '1.2-2'}} (%)</td>
-        <td>{{r.unBilledROI | number : '1.2-2'}} (%)</td>
+        <!-- <td>{{r.unBilledROI | number : '1.2-2'}} (%)</td> -->
         <td>{{r.billDateOfMonth}}</td>
         <td>{{r.dueDateOfMonth}}</td>
         <td>{{r.billingCycleFrom}}-{{r.billingCycleTo}}</td>
-        <td>{{r.billMonth}}</td>
+        <!-- <td>{{r.billMonth}}</td> -->
         <td>{{r.billAmount| number : '1.2-2'}}</td>
-        <td>{{r.unBillAmount| number : '1.2-2'}}</td>
-        <td>{{r.outStandAmount| number : '1.2-2'}}</td>
-        <td>{{r.availableCCLimit| number : '1.2-2'}}</td>
-        <td>{{r.usedLimitInPecent| number : '1.2-2'}} (%)</td>
+        <!-- <td>{{r.unBillAmount| number : '1.2-2'}}</td>
+        <td>{{r.outStandAmount| number : '1.2-2'}}</td> -->
+        <!-- <td>{{r.availableCCLimit| number : '1.2-2'}}</td>
+        <td>{{r.usedLimitInPecent| number : '1.2-2'}} (%)</td> -->
         <td>{{r.maxCreditLimit}}</td>
-        <td>{{r.billPaidAmount| number : '1.2-2'}}</td>
-        <td>{{r.billStatus}}</td>
-        <td>{{r.lastPaidOn | date:'short'}}</td> 
-        <td>{{r.paymentMethod}}</td>
+        <!-- <td>{{r.billPaidAmount| number : '1.2-2'}}</td> -->
+        <!-- <td>{{r.billStatus}}</td> -->
+        <!-- <td>{{r.lastPaidOn | date:'short'}}</td>  -->
+        <!-- <td>{{r.paymentMethod}}</td> -->
         <td>{{r.chargesPaid| number : '1.2-2'}}</td>
         <td>{{r.cashBackInRs| number : '1.2-2'}}</td>
-        <td>{{r.unbilledChargesPaid}}</td>   
+        <!-- <td>{{r.unbilledChargesPaid}}</td>   
         <td>{{r.unbilledCashBackInRs}}</td>
         <td>{{r.ccBillPayCashback}}</td> 
         <td>{{r.ccRewardsValueRs}}</td>
         <td>{{r.ccRewardsPoints}}</td>        
-        <td>{{r.maxRewardPoints}}</td> 
+        <td>{{r.maxRewardPoints}}</td>  -->
         <td style="text-align: center;">{{r.isActive?'Active':'Not Active'}}</td> 
+        <td>{{r.billStatus}}</td>
         <td><button class="delete" (click)="Remove(r)">Delete</button></td>
 
         </tr>

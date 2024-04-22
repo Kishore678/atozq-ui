@@ -10,6 +10,9 @@
                 Withdraw
             </th>
             <th>
+                Bank
+            </th>
+            <th>
                 Pending 
             </th>
             <th>
@@ -17,6 +20,9 @@
             </th>
             <th>
                 Repayment
+            </th>
+            <th>
+                Refund
             </th>
             <th>
                 Pending 
@@ -31,6 +37,9 @@
             <td>
                 {{withdraw | currency : 'INR'}}
             </td>
+            <td>
+                {{lendenClubAPBStatementTotal | currency : 'INR'}}
+            </td>
             <td class="cell-highlight">
                 {{pendingFund | currency : 'INR'}}
             </td>
@@ -40,25 +49,35 @@
             <td>
                 {{repayment | currency : 'INR'}}
             </td>
+            <td>
+                {{refund | currency : 'INR'}}
+            </td>
             <td class="cell-highlight">
                 {{pendingRepayment | currency : 'INR'}}
             </td>
         </tr>
         <tr>
             <td>
-                <button (click)="TransactionDetails('Deposit')">Details</button>
+                <button (click)="TransactionDetails('Deposit',deposit)">Details</button>
             </td>
             <td>
-                <button (click)="TransactionDetails('Withdraw')">Details</button>
+                <button (click)="TransactionDetails('Withdraw',withdraw)">Details</button>
             </td>
             <td>
               
             </td>
             <td>
-                <button (click)="TransactionDetails('Lending')">Details</button>
+              
             </td>
             <td>
-                <button (click)="TransactionDetails('Repayment')">Details</button>
+                <button (click)="TransactionDetails('Lending',lending)">Details</button>
+            </td>
+            
+            <td>
+                <button (click)="TransactionDetails('Repayment',repayment)">Details</button>
+            </td>
+            <td>
+                <button (click)="TransactionDetails('Refund',refund)">Details</button>
             </td>
             <td>
               
@@ -67,7 +86,7 @@
     </tbody>
 </table>
 <br>
-<table>
+<!-- <table>
 <thead>
     <tr>
         <th>ALL</th>
@@ -86,26 +105,26 @@
     <tr>
         <td>
             <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
-                (click)="TransactionDetails('Report')">Details</button>
+                (click)="TransactionDetails('Report',0)">Details</button>
         </td>
         <td> <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
-                (click)="TransactionDetails('Loss')">Details</button>
+                (click)="TransactionDetails('Loss',0)">Details</button>
         </td>
         <td> <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
-                (click)="TransactionDetails('Profit')">Details</button>
+                (click)="TransactionDetails('Profit',0)">Details</button>
         </td>
         <td> <button style="display: block;margin: 0 auto;float:left;padding:4px;margin-right:5px;"
-                (click)="TransactionDetails('Closed')">Details</button>
+                (click)="TransactionDetails('Closed',0)">Details</button>
         </td>
     </tr>
 </tbody>
 </table>
-<br>
+<br> -->
 <table>
     <tr>
         <td style="border:none;">
             <table>
-                <caption>{{transactionType}} Details</caption>
+                <caption>{{transactionType}} Details&nbsp;(Rs.<span style="color:green">{{total | currency : 'INR' }}</span>)</caption>
                 <thead>
                     <tr>
                         <th>
@@ -148,7 +167,10 @@
         </td>
         <td style="display: block;border:none;">
             <table *ngIf="showAPBStatement">
-                <caption>{{transactionType}} To Bank (Rs.<span style="color:green">{{lendenClubAPBStatementTotal | currency : 'INR' }}</span>)</caption>
+                <caption>
+                   To Bank (Rs.<span style="color:green">{{lendenClubAPBStatementTotal | currency : 'INR' }}</span>) &nbsp;+&nbsp;
+                   Failed Refund (Rs.<span style="color:green">{{refund | currency : 'INR' }}</span>) &nbsp;=&nbsp;(Rs.<span style="color:green">{{lendenClubAPBStatementTotal+refund | currency : 'INR' }}</span>)
+                </caption>
                 <thead>
                     <tr>
                         <th>

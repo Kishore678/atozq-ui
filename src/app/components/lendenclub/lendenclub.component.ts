@@ -14,13 +14,16 @@ export class LendenclubComponent implements OnInit {
   pendingFund:number=0;
   lending:number=0;
   repayment:number=0;
+  refund:number=0;
   pendingRepayment:number=0;
   transactionType:string='';
   details:StatementDetail[]=[];
+  total:number=0;
   depositDetails!:StatementDetail[];
   withdrawDetails!:StatementDetail[];
   lendingDetails!:StatementDetail[];
   repaymentDetails!:StatementDetail[];
+ refundDetails!:StatementDetail[];
 
   reportDetails:LendenClubPnLReport[]=[];
   reportDetailsTemp:LendenClubPnLReport[]=[];
@@ -53,11 +56,13 @@ export class LendenclubComponent implements OnInit {
         this.pendingFund=val.pendingWithdraw;
         this.lending=val.lending;
         this.repayment=val.repayment;
+        this.refund=val.refund;
         this.pendingRepayment=val.pendingRepayment;
         this.depositDetails = val.depositDetails;
         this.withdrawDetails = val.withdrawDetails;
         this.lendingDetails = val.lendingDetails;        ;
         this.repaymentDetails = val.repaymentDetails;
+        this.refundDetails = val.refundDetails;
         this.reportDetailsTemp = val.lendenClubPnLReport;
         this.lendenClubAPBStatement = val.lendenClubAPBStatement;
         this.lendenClubAPBStatementTotal = val.lendenClubAPBStatementTotal;
@@ -75,10 +80,11 @@ export class LendenclubComponent implements OnInit {
     });
   }
 
-  TransactionDetails(tranType:string)
+  TransactionDetails(tranType:string,total:number)
   { 
     this.showAPBStatement = false;  
     this.transactionType = tranType;
+    this.total = total;
     switch(tranType)
     {
       case 'Deposit':
@@ -97,6 +103,11 @@ export class LendenclubComponent implements OnInit {
           this.showAPBStatement = true;  
           this.reportDetails = [];
           this.details = this.repaymentDetails;
+        break;
+        case 'Refund':
+          this.showAPBStatement = true;  
+          this.reportDetails = [];
+          this.details = this.refundDetails;
         break;
         case 'Report':
           this.details=[]; 
