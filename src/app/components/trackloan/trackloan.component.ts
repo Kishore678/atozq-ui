@@ -67,7 +67,7 @@ export class TrackloanComponent implements OnInit {
   ShowP2P(p2p:string)
   {
     this.loans = this.original.filter((v)=>{
-      return v.p2P=p2p;
+      return v.p2P==p2p;
     });
   }
 
