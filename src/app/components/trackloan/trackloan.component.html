@@ -1,0 +1,59 @@
+<table style="border: none;">    
+    <tbody>
+        <tr>
+            <td style="border: none;"><button (click)="ShowAll()">All</button></td>
+            <td style="border: none;"><button (click)="ShowClosed()">Closed</button></td>
+            <td style="border: none;"><button (click)="ShowOpen()">Open</button></td>
+            <td style="border: none;"><button (click)="ShowProfit()">Profit</button></td>
+            <td style="border: none;"><button (click)="ShowOverdue()">Overdue</button></td>
+            <td style="border: none;"><button (click)="ShowP2P('I2I')">I2I</button></td>
+            <td style="border: none;"><button (click)="ShowP2P('LC')">LC</button></td>
+        </tr>
+        </tbody>
+        </table>
+<table>
+    <caption><h2 style="margin:2px;">{{showType}} Loans</h2></caption>
+    <thead>   
+        <tr>
+            <th>#</th>
+            <th>P2P</th>
+            <th>LoanID</th>
+            <th>LoanType</th>
+            <th>Int(%)</th>
+            <th>Invested</th>
+            <th>OpenDate</th>
+            <th>CloseDate</th>            
+            <th>Received</th>
+            <th>Status</th>
+            <th>Tenure</th>
+            <th>TenureType</th>
+            <th>IsProfit</th>
+            <th>IsOverDue</th>
+            <th>IsClosed</th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let l of loans ; index as i">            
+            <td>{{i+1}}</td>
+            <td>{{l.p2P}}</td>
+            <td>{{l.loanID}}</td>
+            <td>{{l.loanType}}</td>
+            <td>{{l.interest}}</td>
+            <td>{{l.invested | currency:'INR'}}</td>
+            <td>{{l.openDate}}</td>
+            <td>{{l.closeDate}}</td>
+            <td>{{l.received | currency:'INR'}}</td>
+            <td>{{l.status}}</td>
+            <td>{{l.tenure}}</td>
+            <td>{{l.tenureType}}</td>
+            <td>{{l.isProfit}}</td>
+            <td>{{l.isOverDue}}</td>
+            <td>{{l.isClosed}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

@@ -35,6 +35,7 @@ import { RefComponent } from './components/ref/ref.component';
 import { RefmanComponent } from './components/refman/refman.component';
 import { LendenclubComponent } from './components/lendenclub/lendenclub.component';
 import { CcmsComponent } from './components/ccms/ccms.component';
+import { TrackloanComponent } from './components/trackloan/trackloan.component';
 
 const routes: Routes = [
   {path:'',component:ValuepickrComponent},
@@ -53,6 +54,7 @@ const routes: Routes = [
   {path:'account',component:AnonymousComponent},
   {path:'lendenclub',component:LendenclubComponent},
   {path:'ccms',component:CcmsComponent},
+  {path:'track',component:TrackloanComponent},
   // {path:'app/referral',component:ReferralComponent},
   // {path:'app/detail/:id',component:DetailComponent},
   // {path:'app/shopping',component:ShoppingComponent},

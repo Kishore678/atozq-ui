@@ -71,8 +71,10 @@ import { LabelComponent } from './label.component';
 import { LendenclubComponent } from './components/lendenclub/lendenclub.component';
 import { CcmsComponent } from './components/ccms/ccms.component';
 import { CcmsEditorComponent } from './components/ccms-editor/ccms-editor.component';
+import { TrackloanComponent } from './components/trackloan/trackloan.component';
+import { TrackloanService } from './services/trackloan.service';
 @NgModule({
-  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2p8678Component, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent, InvestSettingsRulesFormDialogComponent, SmtpSettingsFormDialogComponent, ServiceSettingsFormDialogComponent, FdComponent, MfComponent, SgbComponent, P2pComponent, RefComponent, RefmanComponent,RefmanEditorComponent,LabelComponent, LendenclubComponent, CcmsComponent, CcmsEditorComponent],
+  declarations: [AppComponent, DashboardComponent,HomeComponent, LoginComponent, RegisterComponent, ReferralComponent, ShoppingComponent, LogoutComponent, DialogBoxComponent, LinkifyPipe, PagenotfoundComponent, ForgotpassComponent, ResetpassComponent, ChangePwdSuccessComponent, DetailComponent, UploadComponent, LogComponent, ScriptDetailsDialogComponent, TooltipListPipe, DataPortStatusComponent, ChatDialogComponent, AnonymousComponent, WarnDialogComponent, HelpComponent, TermsComponent, DisclaimerComponent, PrivacyComponent, UtcToLocalTimePipe, FundamentalsComponent, LearnComponent, ValuepickrComponent, P2p8678Component, P2pmanComponent, ConfirmationDialogComponent, CibilMasterFormDialogComponent, InvestSettingsRulesFormDialogComponent, SmtpSettingsFormDialogComponent, ServiceSettingsFormDialogComponent, FdComponent, MfComponent, SgbComponent, P2pComponent, RefComponent, RefmanComponent,RefmanEditorComponent,LabelComponent, LendenclubComponent, CcmsComponent, CcmsEditorComponent, TrackloanComponent],
   imports: [ 
     BrowserAnimationsModule,
     BrowserModule,
@@ -84,7 +86,7 @@ import { CcmsEditorComponent } from './components/ccms-editor/ccms-editor.compon
     ReactiveFormsModule        
   ],
   entryComponents: [ConfirmationDialogComponent],
-  providers: [UtcToLocalTimePipe,TitleCasePipe,DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService,UtcConverterService,P2pService],
+  providers: [UtcToLocalTimePipe,TitleCasePipe,DatePipe,{provide:HTTP_INTERCEPTORS,useClass:JwtHelper,multi:true},{provide: LocationStrategy, useClass:  PathLocationStrategy},AuthenticationService,ProductService,CategoryService,SpinnerService,NavigationService,ShareService,LogService,ScriptdetailsService,DeviceDetectorService,ChatService,UserIDService,UtcConverterService,P2pService,TrackloanService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
