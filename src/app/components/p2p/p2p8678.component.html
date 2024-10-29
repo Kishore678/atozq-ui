@@ -906,6 +906,25 @@
   </label>
 </div>
   <section class="container">
+	<table style="float: left;">
+		<tr>
+			<th>Escrow</th>
+			<th>Hold Principal</th>
+			<th>Hold UnderProposal</th>
+			<th>Hold UnderDisburse</th>
+			<th>Total Hold</th>
+			<th>Free Principal</th>
+		</tr>
+		<tr>
+			<td style="text-align:right;">{{userForm.get('escroBalance')?.value | number}}</td>
+			<td style="text-align:right;">{{userForm.get('i2IPrincipalBalance')?.value | number}}</td>
+			<td style="text-align:right;">{{userForm.get('i2IAmtProposal')?.value | number }}</td>
+			<td style="text-align:right;">{{userForm.get('i2IAmtDisburse')?.value | number }}</td>
+			<td style="text-align:right;">{{(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value) | number }}</td>
+			<td style="text-align:right;">{{(1000000-(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value)) | number}}</td>
+		</tr>
+	</table>
+	<hr>
 <table id="watchlist" *ngIf="hiddenBorrowers">
   <tr>   
 	<th style="width:20px;"></th>
