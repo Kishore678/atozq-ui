@@ -918,6 +918,8 @@
     <th style="width:25px;">Int%.</th>
     <th style="width:30px;">Tenure</th>
     <th style="width:10px;">Elig.</th>   
+    <th style="width:10px;">Live</th>   
+    <th style="width:10px;">LeftAmt</th>   
     <th style="width:50px;">Invest Amt</th>
 	<th style="width:95px;">Status</th> 
   </tr>
@@ -937,9 +939,10 @@
    <td>{{w.interest}}</td>   
    <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   
    <td [ngClass]="w.isEligible?'profit':'loss'">{{w.isEligible?'Yes':'No'}}</td>
+   <td [ngClass]="w.isLive!=''?'profit':'loss'">{{w.isLive}}</td>
+   <td>{{w.leftAmt}}</td>
    <td>{{w.investAmt}}</td>
-   <td style="text-align: left;" [ngClass]="w.status==2?'profit':''">{{w.statusMsg}}</td>
-
+   <td style="text-align: left;" [ngClass]="w.status==2?'profit':''">{{w.statusMsg}}</td> 
  
   </tr>
 </table>

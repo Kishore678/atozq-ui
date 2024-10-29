@@ -12,6 +12,8 @@ export class ManageBorrowers {
         tenureType!:string;
         tenure!:number;
         isEligible!:boolean;
+        isLive!:string;
+        leftAmt!:string;
         status!:number;
         statusMsg!:string;
         createdDate!:Date;
