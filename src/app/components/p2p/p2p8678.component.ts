@@ -189,7 +189,9 @@ showHideBorrowers()
      lcWithdrawEnable:false,
      lendBoxMemberLoanEnabled:false,
      enableLBAlerts:false,
-     isLBAIEnabled:false
+     isLBAIEnabled:false,
+     enableI2IGroupX:false,
+     enableI2IGroupC:false
     });
   }
 sumamounts(val:LendenLoan)
@@ -367,6 +369,8 @@ this.userForm.patchValue({
      lendBoxMemberLoanEnabled:this.settings[0].lendBoxMemberLoanEnabled,
      enableLBAlerts:this.settings[0].enableLBAlerts,
      isLBAIEnabled:this.settings[0].isLBAIEnabled,
+     enableI2IGroupX:this.settings[0].enableI2IGroupX,
+     enableI2IGroupC:this.settings[0].enableI2IGroupC
 });
 
 this.i2IProfitLoss=this.settings[0].i2IProfitOrLoss>0;
@@ -610,6 +614,15 @@ get isLBAIEnabled()
   return this.userForm.get('isLBAIEnabled');
 }
 
+get enableI2IGroupX()
+{
+  return this.userForm.get('enableI2IGroupX');
+}
+
+get enableI2IGroupC()
+{
+  return this.userForm.get('enableI2IGroupC');
+}
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -683,7 +696,9 @@ get isLBAIEnabled()
     model.lendBoxMemberLoanEnabled= this.userForm.get('lendBoxMemberLoanEnabled')?.value;
     model.enableLBAlerts= this.userForm.get('enableLBAlerts')?.value;
     model.isLBAIEnabled= this.userForm.get('isLBAIEnabled')?.value;
-
+    model.enableI2IGroupX= this.userForm.get('enableI2IGroupX')?.value;
+    model.enableI2IGroupC= this.userForm.get('enableI2IGroupC')?.value;
+   
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
         debugger;
@@ -751,6 +766,8 @@ this.userForm.patchValue({
      lendBoxMemberLoanEnabled:this.settings[0].lendBoxMemberLoanEnabled,
      enableLBAlerts:this.settings[0].enableLBAlerts,
      isLBAIEnabled:this.settings[0].isLBAIEnabled,
+     enableI2IGroupX:this.settings[0].enableI2IGroupX,
+     enableI2IGroupC:this.settings[0].enableI2IGroupC,    
 });
       },
       error:(err)=>{
@@ -821,6 +838,8 @@ this.userForm.patchValue({
      lendBoxMemberLoanEnabled:this.settings[0].lendBoxMemberLoanEnabled,
      enableLBAlerts:this.settings[0].enableLBAlerts,
      isLBAIEnabled:this.settings[0].isLBAIEnabled,
+     enableI2IGroupX:this.settings[0].enableI2IGroupX,
+     enableI2IGroupC:this.settings[0].enableI2IGroupC     
     });
 	}
 
@@ -884,7 +903,9 @@ this.userForm.patchValue({
      lcWithdrawEnable:false,
      lendBoxMemberLoanEnabled:false,
      enableLBAlerts:false,
-     isLBAIEnabled:false
+     isLBAIEnabled:false,
+     enableI2IGroupX:false,
+     enableI2IGroupC:false     
     });
 	}
 

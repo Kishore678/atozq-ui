@@ -624,6 +624,7 @@
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
+		
 			
 		<tr>
 			<td>I2I Member Service Enabled</td>
@@ -632,7 +633,21 @@
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
+		<tr>
+			<td>I2I GROUP-X Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="enableI2IGroupX">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
 		
+		<tr>
+			<td>I2I GROUP-C Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="enableI2IGroupC">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
 		<tr>
 			<td>LC Member Service Enabled</td>
 			<td>
@@ -876,6 +891,27 @@
 
 <hr class="divider-css"/>
 <div style="display:block;margin:10px;"> 
+	<table>
+		<tr>
+			<th>Escrow</th>
+			<th>Hold Principal</th>
+			<th>Hold UnderProposal</th>
+			<th>Hold UnderDisburse</th>
+			<th>Total Hold</th>
+			<th>Free Principal</th>
+		</tr>
+		<tr>
+			<td style="text-align:right;">{{userForm.get('escroBalance')?.value | number}}</td>
+			<td style="text-align:right;">{{userForm.get('i2IPrincipalBalance')?.value | number}}</td>
+			<td style="text-align:right;">{{userForm.get('i2IAmtProposal')?.value | number }}</td>
+			<td style="text-align:right;">{{userForm.get('i2IAmtDisburse')?.value | number }}</td>
+			<td style="text-align:right;">{{(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value) | number }}</td>
+			<td style="text-align:right;">{{(1000000-(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value)) | number}}</td>
+		</tr>
+	</table>
+</div>	
+<hr class="divider-css"/>
+<div style="display:block;margin:10px;"> 
 	<h2>Todays Active Borrowers: <br><small style="padding: 5px;margin: 5px;" class="i2iProfit">I2I-Member, I2I-Group and LC-Member</small></h2>
 	<br>
 	<button type="button" style="background-color: #baae00;color: #fff;" (click)="showHideBorrowers()">Show/Hide</button>	
@@ -906,25 +942,6 @@
   </label>
 </div>
   <section class="container">
-	<table style="float: left;">
-		<tr>
-			<th>Escrow</th>
-			<th>Hold Principal</th>
-			<th>Hold UnderProposal</th>
-			<th>Hold UnderDisburse</th>
-			<th>Total Hold</th>
-			<th>Free Principal</th>
-		</tr>
-		<tr>
-			<td style="text-align:right;">{{userForm.get('escroBalance')?.value | number}}</td>
-			<td style="text-align:right;">{{userForm.get('i2IPrincipalBalance')?.value | number}}</td>
-			<td style="text-align:right;">{{userForm.get('i2IAmtProposal')?.value | number }}</td>
-			<td style="text-align:right;">{{userForm.get('i2IAmtDisburse')?.value | number }}</td>
-			<td style="text-align:right;">{{(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value) | number }}</td>
-			<td style="text-align:right;">{{(1000000-(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value)) | number}}</td>
-		</tr>
-	</table>
-	<hr>
 <table id="watchlist" *ngIf="hiddenBorrowers">
   <tr>   
 	<th style="width:20px;"></th>
@@ -965,7 +982,6 @@
  
   </tr>
 </table>
-
 </section>
 <br>
-<hr class="divider-css"/>
+<br>

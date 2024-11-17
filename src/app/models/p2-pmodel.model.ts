@@ -62,6 +62,8 @@ export class P2PModel
      lcTotalReceived!:number;
      rbiP2PInvestLimit!:number;
      lcWithdrawEnable!:boolean;
+     enableI2IGroupX!:boolean;
+     enableI2IGroupC!:boolean;
 }
 
 
