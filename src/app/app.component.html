@@ -39,10 +39,19 @@
           <div class="example-button-row">         
             <mat-button-toggle-group (change)="changeInToggleGroup(cityGroup.value)" [(ngModel)]="toggleSelected" #cityGroup="matButtonToggleGroup">
   
-                  <mat-button-toggle routerLink="/stock"  value="stock">
-                <mat-icon svgIcon="stockmarket" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">Stocks</span>
-              </mat-button-toggle>
+
+                  <a style="display:block;float: left;margin-right: 10px;" href="https://atozq-28a01.web.app"  value="ref">
+                    <mat-icon svgIcon="ref" class="example-tab-icon"></mat-icon>
+                    <span class="toggle-button-menutext">GSRK</span>
+                  </a>
+                  <a style="display:block;float: left;margin-right: 10px" href="https://atozqdev-5a859.web.app"  value="ref">
+                    <mat-icon svgIcon="ref" class="example-tab-icon"></mat-icon>
+                    <span class="toggle-button-menutext">GVBR</span>
+                  </a>
+                  <a style="display:block;float: left;margin-right: 10px" href="https://bpmt57.web.app"  value="ref">
+                    <mat-icon svgIcon="ref" class="example-tab-icon"></mat-icon>
+                    <span class="toggle-button-menutext">BPMT</span>
+                  </a>
 
               <!-- <mat-button-toggle routerLink="/fd"  value="fd">
                 <mat-icon svgIcon="fd1" class="example-tab-icon"></mat-icon>
@@ -64,10 +73,7 @@
                 <span class="toggle-button-menutext">P2P</span>
               </mat-button-toggle> -->
 
-              <mat-button-toggle routerLink="/ref"  value="ref">
-                <mat-icon svgIcon="ref" class="example-tab-icon"></mat-icon>
-                <span class="toggle-button-menutext">Referrals</span>
-              </mat-button-toggle>
+              
 
             </mat-button-toggle-group> 
           </div>

@@ -38,7 +38,7 @@ import { CcmsComponent } from './components/ccms/ccms.component';
 import { TrackloanComponent } from './components/trackloan/trackloan.component';
 
 const routes: Routes = [
-  {path:'',component:ValuepickrComponent},
+  {path:'',component:P2p8678Component},
   {path:'stock',component:ValuepickrComponent},
   
   // {path:':page',component:HomeComponent},

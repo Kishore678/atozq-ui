@@ -1,5 +1,5 @@
 
-<hr class="divider-css"/>
+<!-- <hr class="divider-css"/>
 <h2>&nbsp;&nbsp;&nbsp;Update LC Status: <br>  
 	
 	&nbsp;&nbsp;&nbsp;<small style="padding: 5px;margin: 5px;" class="i2iProfit">{{lcUpdateStatus}}</small></h2>
@@ -78,44 +78,7 @@
 		
 	  </tr>	  
 	  </table>
-	  <!-- <br> 
-	<table>
-		<tr>
-			<th></th>
-			<th style="text-align:center;">Statement Totals</th>
-			<th style="text-align:center;">Account Totals</th>
-			<th style="text-align:center;">LC to Bank</th>
-			<th style="text-align:center;">EMI to Bank</th>
-		</tr>
-		<tr>
-			<td style="text-align:right;">Total Deposit:</td>
-			<td style="text-align:right;">{{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalDeposit!=null?lcAccTranSummary.calTotalDeposit:0) | currency : 'INR'}}</td>
-			<td style="text-align:right;">{{lcFDeposit | currency : 'INR'}}</td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td style="text-align:right;">Total Withdrawn:</td>
-			<td style="text-align:right;">{{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalWithdrawn?lcAccTranSummary.calTotalWithdrawn:0) | currency : 'INR'}}</td>
-			<td style="text-align:right;">{{lcFWithdraw | currency : 'INR'}}</td>
-			<td>{{repaidToLC | currency : 'INR'}}</td>
-			<td>{{repaidToLCBank | currency : 'INR'}}</td>
-		</tr>
-		<tr>
-			<td style="text-align:right;">Total Lended:</td>
-			<td style="text-align:right;">{{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalLend?lcAccTranSummary.calTotalLend:0) | currency : 'INR'}}</td>
-			<td style="text-align:right;">{{lcInvested | currency : 'INR'}}</td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td style="text-align:right;">Total Repaid:</td>
-			<td style="text-align:right;"> {{(lcAccTranSummary!=null&&lcAccTranSummary.calTotalRepay?lcAccTranSummary.calTotalRepay:0) | currency : 'INR'}}</td>
-			<td style="text-align:right;">{{(this.lcFWithdraw -  (this.lcFDeposit-this.lcInvested)) | currency : 'INR'}}</td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table> -->
+	  
 	<br>
 	<table style="width:fit-content">
 		<tr>
@@ -135,13 +98,7 @@
 		
 		</table>
 		
-	<!-- calTotalWithdrawn: number | null; 
-    calTotalDeposit: number | null; 
-    calTotalLend: number | null;
-    calTotalRepay: number | null;
-    createdDate: string;
-    modifiedDate: string;
-    lendenClubTransactions: LendenClubTransaction[]; -->
+	
 <br>
 
 <div style="float:left;">&nbsp;&nbsp;&nbsp;
@@ -190,7 +147,7 @@
 		<th>Income</th>
 		<th>Recvd</th>	
 		<th>Status</th>
-		<!-- <th>ID</th> -->
+
 		<th>Type</th>	
 		<th>LoanID</th> 
 		<th>Prof.</th>
@@ -215,16 +172,14 @@
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.tenure}}-{{l.tenure_type=='MONTHS'?'M':''}}</td>												
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.net_roi}}%</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">
-			<!-- <div class="tooltip">{{l.personStayType| slice:0:3}}
-				<span class="tooltiptext">{{l.personStayType}}</span>
-			  </div>			 -->
+			
 			  {{l.personStayType| slice:0:3}}
 		</td>
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.professionalIncome | currency : 'INR'}}</td>
 		<td style="text-align: right;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.amount_received | currency : 'INR'}}</td>	
 
 		<td  style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;" [ngClass]="l.isSuccess?'i2iProfit':'i2iLoss'">{{l.isSuccess?'S':'F'}}</td>
-		<!-- <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.lendenLoanId}}</td> -->
+		
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.loan_type| slice:0:3}}</td>	
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.loan_id}}</td>		
 		<td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{l.employmentType| slice:0:3}}</td>
@@ -384,7 +339,7 @@
 <td style="text-align: center;padding:0 5px 0 5px;margin:0 5px 0 5px;">{{w.modifiedDate|date:'short'}}</td>
 </tr>
 
-</table>
+</table> -->
 
 <hr class="divider-css"/>
 <h2>&nbsp;&nbsp;&nbsp;Email Settings <br>
@@ -894,19 +849,19 @@
 	<table>
 		<tr>
 			<th>Escrow</th>
-			<th>Hold Principal</th>
-			<th>Hold UnderProposal</th>
-			<th>Hold UnderDisburse</th>
-			<th>Total Hold</th>
-			<th>Free Principal</th>
+			<th>Hold</th>
+			<th>Free</th>
+			<th>Confirm</th>
+			<th>Proposal</th>
+			<th>Disbursal</th>
 		</tr>
 		<tr>
-			<td style="text-align:right;">{{userForm.get('escroBalance')?.value | number}}</td>
-			<td style="text-align:right;">{{userForm.get('i2IPrincipalBalance')?.value | number}}</td>
-			<td style="text-align:right;">{{userForm.get('i2IAmtProposal')?.value | number }}</td>
-			<td style="text-align:right;">{{userForm.get('i2IAmtDisburse')?.value | number }}</td>
-			<td style="text-align:right;">{{(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value) | number }}</td>
-			<td style="text-align:right;">{{(1000000-(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value)) | number}}</td>
+			<td style="text-align:right;padding-left:5px;padding-right:5px;">{{userForm.get('escroBalance')?.value | number}}</td>
+			<td style="text-align:right;padding-left:5px;padding-right:5px;">{{(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value) | number }}</td>
+			<td style="text-align:right;padding-left:5px;padding-right:5px;">{{(1000000-(userForm.get('i2IPrincipalBalance')?.value+userForm.get('i2IAmtProposal')?.value+userForm.get('i2IAmtDisburse')?.value)) | number}}</td>			
+			<td style="text-align:right;padding-left:5px;padding-right:5px;">{{userForm.get('i2IPrincipalBalance')?.value | number}}</td>
+			<td style="text-align:right;padding-left:5px;padding-right:5px;">{{userForm.get('i2IAmtProposal')?.value | number }}</td>
+			<td style="text-align:right;padding-left:5px;padding-right:5px;">{{userForm.get('i2IAmtDisburse')?.value | number }}</td>
 		</tr>
 	</table>
 </div>	
