@@ -384,13 +384,13 @@ this.isI2IDiffAmount = this.settings[0].i2IDiffAmount==0;
   ngAfterViewInit()
   {  
     this.LoadSettings();
-    this.LoadI2IWithdrawAmt();
+    // this.LoadI2IWithdrawAmt();
     this.LoadBorrowers();  
-    this.LoadLendenLoans();
+    // this.LoadLendenLoans();
     this.LoadEmailAccounts();
-    this.LoadMaturityDetails();
-    this.LoadP2PAccountAddWithdrawDetails();
-    this.LoadLendenTransactionStatement();
+    // this.LoadMaturityDetails();
+    // this.LoadP2PAccountAddWithdrawDetails();
+    // this.LoadLendenTransactionStatement();
    
   }
 
