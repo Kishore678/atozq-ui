@@ -191,6 +191,11 @@ showHideBorrowers()
      enableLBAlerts:false,
      isLBAIEnabled:false,
      enableI2IGroupX:false,
+     enableI2IGroupA:false,
+     enableI2IGroupB:false,
+     enableI2IGroupD:false,
+     enableI2IGroupE:false,
+     enableI2IGroupF:false,
      enableI2IGroupC:false
     });
   }
