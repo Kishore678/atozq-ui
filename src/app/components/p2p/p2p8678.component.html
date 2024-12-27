@@ -389,54 +389,54 @@
 <form *ngIf="hiddenSettings" [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
 <button type="submit" style="background-color: #008CBA;color:#ffffff" (click)="userForm">Save</button>  &nbsp;&nbsp;&nbsp;
 <button type="button" style="background-color: red;color:#ffffff" (click)="RestartWebSite('All-Svc')">All Svc Restart</button>&nbsp;&nbsp;  
-<button type="button" style="background-color: red;color:#ffffff" (click)="RestartWebSite('LB-Svc')">LB Svc Restart</button>  
+<button type="button" style="display: none;background-color: red;color:#ffffff" (click)="RestartWebSite('LB-Svc')">LB Svc Restart</button>  
 <div>
 	<input style="display: none;" type="number" formControlName="settingsId"><span *ngIf="isValidFormSubmitted" class="success">Saved changed successfully.</span>
 </div>
 	<table>	
-		<tr>
+		<tr style="display: none;">
 			<td>I2i Investment Limit</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="investmentLimit">
 			</td>
 			<td></td>
 		</tr>	
-		<tr style="background-color: #008CBA;color:#ffffff">
+		<tr style="display: none;background-color: #008CBA;color:#ffffff">
 			<td>I2i Principal Holding (A)</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="i2IPrincipalBalance">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr style="background-color: #008CBA;color:#ffffff">
+		<tr style="display: none;background-color: #008CBA;color:#ffffff">
 			<td>I2I Escro Balance (B)</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="escroBalance">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background-color: #008CBA;color:#ffffff">
+		<tr style="display: none;background-color: #008CBA;color:#ffffff">
 			<td>I2I Fund Under Proposal (C)</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="i2IAmtProposal">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background-color: #008CBA;color:#ffffff">
+		<tr style="display: none;background-color: #008CBA;color:#ffffff">
 			<td>I2I Fund Under Disburse (D)</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="i2IAmtDisburse">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background-color: #008CBA;color:#ffffff">
+		<tr style="display: none;background-color: #008CBA;color:#ffffff">
 			<td>I2I Total Account Value (A+B+C+D)</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="i2ICurrentAccValue">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background-color: #008CBA;color:#ffffff">
+		<tr style="display: none;background-color: #008CBA;color:#ffffff">
 			<td>I2i My Investment (Fund Cr.-Fund Deb.)</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="i2IMyInvestmentBalance">
@@ -444,21 +444,21 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 	
-		<tr [ngClass]="i2IProfitLoss?'i2iProfit':'i2iLoss'">
+		<tr style="display: none;" [ngClass]="i2IProfitLoss?'i2iProfit':'i2iLoss'">
 			<td>I2i Profit (or) Loss (Acc value - My Investment)</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="i2IProfitOrLoss">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr [ngClass]="isI2IDiffAmount?'i2iProfit':'i2iLoss'">
+		<tr style="display: none;" [ngClass]="isI2IDiffAmount?'i2iProfit':'i2iLoss'">
 			<td>I2i Diff Amount</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="i2IDiffAmount">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr>
+		<tr style="display: none;">
 			<td>I2I Withdraw</td>
 			<td>
 				<input type="text" formControlName="i2IWithdrawAmt">
@@ -469,35 +469,35 @@
 			
 			</td>
 		</tr>
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC Escro Balance</td>
 			<td>
 				<input style="background: #eee;" readonly type="text" formControlName="lendenEscroBalance">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>		
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC Alerts Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="enableLCAlerts">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC High Credit (Above 750) Only Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="lcHighCreditOnly">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC Short Tenure (Below 2M) Only Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="lcShortPeriodOnly">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC PortfolioValue</td>
 			<td>
 				<input type="text" style="background: #eee;" readonly formControlName="lcPortfolioValue">
@@ -508,7 +508,7 @@
 		</tr>
 		
 		
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC NetReturns</td>
 			<td>
 				<input type="text" style="background: #eee;" readonly formControlName="lcNetReturns">
@@ -516,7 +516,7 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 		
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC ROI</td>
 			<td>
 				<input type="text" style="background: #eee;" readonly formControlName="lcroi">
@@ -524,7 +524,7 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 		
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC TotalInvested</td>
 			<td>
 				<input type="text" style="background: #eee;" readonly formControlName="lcTotalInvested">
@@ -532,7 +532,7 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC TotalReceived</td>
 			<td>
 				<input type="text" style="background: #eee;" readonly formControlName="lcTotalReceived">
@@ -541,7 +541,7 @@
 		</tr>
 
 	
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC RBI Limit</td>
 			<td>
 				<input type="text" style="background: #eee;" readonly formControlName="rbiP2PInvestLimit">
@@ -549,14 +549,14 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 	
-		<tr>
+		<tr style="display: none;">
 			<td>LC Withdraw Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="lcWithdrawEnable">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr style="background:#008cba;color: #f6fafc;">
+		<tr style="display: none;background:#008cba;color: #f6fafc;">
 			<td>LC WithdrawAmt</td>
 			<td>
 				<input type="text" formControlName="lcWithdrawAmt">
@@ -565,7 +565,7 @@
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr>
+		<tr style="display: none;">
 			<td>Balance Threshold</td>
 			<td>
 				<input type="text" formControlName="balanceThreshold">
@@ -588,14 +588,22 @@
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
+		
 		<tr>
-			<td>I2I GROUP-X Enabled</td>
+			<td>I2I GROUP-A Enabled</td>
 			<td>
-				<input type="checkbox" formControlName="enableI2IGroupX">
+				<input type="checkbox" formControlName="enableI2IGroupA">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
-		</tr>	
+		</tr>
 		
+		<tr>
+			<td>I2I GROUP-B Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="enableI2IGroupB">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
 		<tr>
 			<td>I2I GROUP-C Enabled</td>
 			<td>
@@ -604,6 +612,35 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 		<tr>
+			<td>I2I GROUP-D Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="enableI2IGroupD">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+		<tr>
+			<td>I2I GROUP-E Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="enableI2IGroupE">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+		<tr>
+			<td>I2I GROUP-F Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="enableI2IGroupF">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>
+		<tr>
+			<td>I2I GROUP-X Enabled</td>
+			<td>
+				<input type="checkbox" formControlName="enableI2IGroupX">
+			</td>
+			<td style="background-color: #ffffff;color:#000000"></td>
+		</tr>	
+		
+		<tr style="display: none;">
 			<td>LC Member Service Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="memberLoanLendenClubEnabled">
@@ -611,7 +648,7 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
 		
-		<tr>
+		<tr style="display: none;">
 			<td>I2I Withdraw Service Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="withdrawaI2IFundingEnabled">
@@ -619,28 +656,28 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>		
 
-		<tr>
+		<tr style="display: none;">
 			<td>LC Withdraw Service Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="withdrawaLendenClubEnabled">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr>
+		<tr style="display: none;">
 			<td>LendBox Service Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="lendBoxMemberLoanEnabled">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>	
-		<tr>
+		<tr style="display: none;">
 			<td>LendBox Alerts</td>
 			<td>
 				<input type="checkbox" formControlName="enableLBAlerts">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-		<tr>
+		<tr style="display: none;">
 			<td>LendBox AI</td>
 			<td>
 				<input type="checkbox" formControlName="isLBAIEnabled">
@@ -669,14 +706,14 @@
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
 	
-		<tr>
+		<tr style="display: none;">
 			<td>Auto LC INDIV Enabled</td>
 			<td>
 				<input type="checkbox" formControlName="isLCAIEnabled">
 			</td>
 			<td style="background-color: #ffffff;color:#000000"></td>
 		</tr>
-    <tr>
+    <tr style="display: none;">
 			<td>Limit Investment's:</td>
 			<td>
 				<input formControlName="limitPerDay" type="number">

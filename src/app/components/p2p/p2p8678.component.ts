@@ -370,6 +370,11 @@ this.userForm.patchValue({
      enableLBAlerts:this.settings[0].enableLBAlerts,
      isLBAIEnabled:this.settings[0].isLBAIEnabled,
      enableI2IGroupX:this.settings[0].enableI2IGroupX,
+     enableI2IGroupA:this.settings[0].enableI2IGroupA,
+     enableI2IGroupB:this.settings[0].enableI2IGroupB,
+     enableI2IGroupD:this.settings[0].enableI2IGroupD,
+     enableI2IGroupE:this.settings[0].enableI2IGroupE,
+     enableI2IGroupF:this.settings[0].enableI2IGroupF,
      enableI2IGroupC:this.settings[0].enableI2IGroupC
 });
 
@@ -618,7 +623,26 @@ get enableI2IGroupX()
 {
   return this.userForm.get('enableI2IGroupX');
 }
-
+get enableI2IGroupA()
+{
+  return this.userForm.get('enableI2IGroupA');
+}
+get enableI2IGroupB()
+{
+  return this.userForm.get('enableI2IGroupB');
+}
+get enableI2IGroupD()
+{
+  return this.userForm.get('enableI2IGroupD');
+}
+get enableI2IGroupE()
+{
+  return this.userForm.get('enableI2IGroupE');
+}
+get enableI2IGroupF()
+{
+  return this.userForm.get('enableI2IGroupF');
+}
 get enableI2IGroupC()
 {
   return this.userForm.get('enableI2IGroupC');
@@ -697,6 +721,11 @@ get enableI2IGroupC()
     model.enableLBAlerts= this.userForm.get('enableLBAlerts')?.value;
     model.isLBAIEnabled= this.userForm.get('isLBAIEnabled')?.value;
     model.enableI2IGroupX= this.userForm.get('enableI2IGroupX')?.value;
+    model.enableI2IGroupA= this.userForm.get('enableI2IGroupA')?.value;
+    model.enableI2IGroupB= this.userForm.get('enableI2IGroupB')?.value;
+    model.enableI2IGroupD= this.userForm.get('enableI2IGroupD')?.value;
+    model.enableI2IGroupE= this.userForm.get('enableI2IGroupE')?.value;
+    model.enableI2IGroupF= this.userForm.get('enableI2IGroupF')?.value;
     model.enableI2IGroupC= this.userForm.get('enableI2IGroupC')?.value;
    
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
@@ -767,6 +796,11 @@ this.userForm.patchValue({
      enableLBAlerts:this.settings[0].enableLBAlerts,
      isLBAIEnabled:this.settings[0].isLBAIEnabled,
      enableI2IGroupX:this.settings[0].enableI2IGroupX,
+     enableI2IGroupA:this.settings[0].enableI2IGroupA,
+     enableI2IGroupB:this.settings[0].enableI2IGroupB,
+     enableI2IGroupD:this.settings[0].enableI2IGroupD,
+     enableI2IGroupE:this.settings[0].enableI2IGroupE,
+     enableI2IGroupF:this.settings[0].enableI2IGroupF,
      enableI2IGroupC:this.settings[0].enableI2IGroupC,    
 });
       },
@@ -839,6 +873,11 @@ this.userForm.patchValue({
      enableLBAlerts:this.settings[0].enableLBAlerts,
      isLBAIEnabled:this.settings[0].isLBAIEnabled,
      enableI2IGroupX:this.settings[0].enableI2IGroupX,
+     enableI2IGroupA:this.settings[0].enableI2IGroupA,
+     enableI2IGroupB:this.settings[0].enableI2IGroupB,
+     enableI2IGroupD:this.settings[0].enableI2IGroupD,
+     enableI2IGroupE:this.settings[0].enableI2IGroupE,
+     enableI2IGroupF:this.settings[0].enableI2IGroupF,
      enableI2IGroupC:this.settings[0].enableI2IGroupC     
     });
 	}
@@ -905,6 +944,11 @@ this.userForm.patchValue({
      enableLBAlerts:false,
      isLBAIEnabled:false,
      enableI2IGroupX:false,
+     enableI2IGroupA:false,
+     enableI2IGroupB:false,
+     enableI2IGroupD:false,
+     enableI2IGroupE:false,
+     enableI2IGroupF:false,
      enableI2IGroupC:false     
     });
 	}
