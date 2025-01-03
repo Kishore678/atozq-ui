@@ -196,7 +196,21 @@ showHideBorrowers()
      enableI2IGroupD:false,
      enableI2IGroupE:false,
      enableI2IGroupF:false,
-     enableI2IGroupC:false
+     enableI2IGroupC:false,
+     shortTermA:false,
+     highCibilA:false,
+     shortTermB:false,
+     highCibilB:false,
+     shortTermC:false,
+     highCibilC:false,
+     shortTermD:false,
+     highCibilD:false,
+     shortTermE:false,
+     highCibilE:false,
+     shortTermF:false,
+     highCibilF:false,
+     shortTermX:false,
+     highCibilX:false
     });
   }
 sumamounts(val:LendenLoan)
@@ -380,7 +394,22 @@ this.userForm.patchValue({
      enableI2IGroupD:this.settings[0].enableI2IGroupD,
      enableI2IGroupE:this.settings[0].enableI2IGroupE,
      enableI2IGroupF:this.settings[0].enableI2IGroupF,
-     enableI2IGroupC:this.settings[0].enableI2IGroupC
+     enableI2IGroupC:this.settings[0].enableI2IGroupC,
+     shortTermA:this.settings[0].shortTermA,
+     highCibilA:this.settings[0].highCibilA,
+     shortTermB:this.settings[0].shortTermB,
+     highCibilB:this.settings[0].highCibilB,
+     shortTermC:this.settings[0].shortTermC,
+     highCibilC:this.settings[0].highCibilC,
+     shortTermD:this.settings[0].shortTermD,
+     highCibilD:this.settings[0].highCibilD,
+     shortTermE:this.settings[0].shortTermE,
+     highCibilE:this.settings[0].highCibilE,
+     shortTermF:this.settings[0].shortTermF,
+     highCibilF:this.settings[0].highCibilF,
+     shortTermX:this.settings[0].shortTermX,
+     highCibilX:this.settings[0].highCibilX
+     
 });
 
 this.i2IProfitLoss=this.settings[0].i2IProfitOrLoss>0;
@@ -652,6 +681,54 @@ get enableI2IGroupC()
 {
   return this.userForm.get('enableI2IGroupC');
 }
+get shortTermA()
+{
+  return this.userForm.get('shortTermA');
+}
+get highCibilA()
+{
+  return this.userForm.get('highCibilA');
+}
+get shortTermB()
+{
+  return this.userForm.get('shortTermB');
+}
+get highCibilB()
+{
+  return this.userForm.get('highCibilB');
+}
+get shortTermC()
+{
+  return this.userForm.get('shortTermC');
+}
+get highCibilC()
+{
+  return this.userForm.get('highCibilC');
+}
+get shortTermD()
+{
+  return this.userForm.get('shortTermD');
+}
+get highCibilD()
+{
+  return this.userForm.get('highCibilD');
+}
+get shortTermE()
+{
+  return this.userForm.get('shortTermE');
+}
+get highCibilE()
+{
+  return this.userForm.get('highCibilE');
+}
+get shortTermX()
+{
+  return this.userForm.get('shortTermX');
+}
+get highCibilX()
+{
+  return this.userForm.get('highCibilX');
+}
 	onFormSubmit() {
 		this.isValidFormSubmitted = false;
 		if (this.userForm.invalid) {
@@ -732,6 +809,20 @@ get enableI2IGroupC()
     model.enableI2IGroupE= this.userForm.get('enableI2IGroupE')?.value;
     model.enableI2IGroupF= this.userForm.get('enableI2IGroupF')?.value;
     model.enableI2IGroupC= this.userForm.get('enableI2IGroupC')?.value;
+    model.shortTermA= this.userForm.get('shortTermA')?.value;
+    model.highCibilA= this.userForm.get('highCibilA')?.value;   
+    model.shortTermB= this.userForm.get('shortTermB')?.value;
+    model.highCibilB= this.userForm.get('highCibilB')?.value;
+    model.shortTermC= this.userForm.get('shortTermC')?.value;
+    model.highCibilC= this.userForm.get('highCibilC')?.value;
+    model.shortTermD= this.userForm.get('shortTermD')?.value;
+    model.highCibilD= this.userForm.get('highCibilD')?.value;
+    model.shortTermE= this.userForm.get('shortTermE')?.value;
+    model.highCibilE= this.userForm.get('highCibilE')?.value;
+    model.shortTermF= this.userForm.get('shortTermF')?.value;
+    model.highCibilF= this.userForm.get('highCibilF')?.value;
+    model.shortTermX= this.userForm.get('shortTermX')?.value;
+    model.highCibilX= this.userForm.get('highCibilX')?.value;
    
     this.p2pService.SaveSettings(model.settingsId,model).subscribe({
       next:(res)=>{
@@ -806,7 +897,21 @@ this.userForm.patchValue({
      enableI2IGroupD:this.settings[0].enableI2IGroupD,
      enableI2IGroupE:this.settings[0].enableI2IGroupE,
      enableI2IGroupF:this.settings[0].enableI2IGroupF,
-     enableI2IGroupC:this.settings[0].enableI2IGroupC,    
+     enableI2IGroupC:this.settings[0].enableI2IGroupC, 
+     shortTermA:this.settings[0].shortTermA, 
+     highCibilA:this.settings[0].highCibilA,     
+     shortTermB:this.settings[0].shortTermB, 
+     highCibilB:this.settings[0].highCibilB,
+     shortTermC:this.settings[0].shortTermC, 
+     highCibilC:this.settings[0].highCibilC,
+     shortTermD:this.settings[0].shortTermD, 
+     highCibilD:this.settings[0].highCibilD,
+     shortTermE:this.settings[0].shortTermE, 
+     highCibilE:this.settings[0].highCibilE,
+     shortTermF:this.settings[0].shortTermF, 
+     highCibilF:this.settings[0].highCibilF,
+     shortTermX:this.settings[0].shortTermX, 
+     highCibilX:this.settings[0].highCibilX,
 });
       },
       error:(err)=>{
@@ -883,7 +988,21 @@ this.userForm.patchValue({
      enableI2IGroupD:this.settings[0].enableI2IGroupD,
      enableI2IGroupE:this.settings[0].enableI2IGroupE,
      enableI2IGroupF:this.settings[0].enableI2IGroupF,
-     enableI2IGroupC:this.settings[0].enableI2IGroupC     
+     enableI2IGroupC:this.settings[0].enableI2IGroupC, 
+     shortTermA:this.settings[0].shortTermA, 
+     highCibilA:this.settings[0].highCibilA,  
+     shortTermB:this.settings[0].shortTermB, 
+     highCibilB:this.settings[0].highCibilB,
+     shortTermC:this.settings[0].shortTermC, 
+     highCibilC:this.settings[0].highCibilC,
+     shortTermD:this.settings[0].shortTermD, 
+     highCibilD:this.settings[0].highCibilD,
+     shortTermE:this.settings[0].shortTermE, 
+     highCibilE:this.settings[0].highCibilE,
+     shortTermF:this.settings[0].shortTermF, 
+     highCibilF:this.settings[0].highCibilF,
+     shortTermX:this.settings[0].shortTermX, 
+     highCibilX:this.settings[0].highCibilX
     });
 	}
 
@@ -954,7 +1073,21 @@ this.userForm.patchValue({
      enableI2IGroupD:false,
      enableI2IGroupE:false,
      enableI2IGroupF:false,
-     enableI2IGroupC:false     
+     enableI2IGroupC:false,
+     shortTermA:false, 
+     highCibilA:false,   
+     shortTermB:false, 
+     highCibilB:false,
+     shortTermC:false, 
+     highCibilC:false,
+     shortTermD:false, 
+     highCibilD:false,
+     shortTermE:false, 
+     highCibilE:false,
+     shortTermF:false, 
+     highCibilF:false,
+     shortTermX:false, 
+     highCibilX:false,
     });
 	}
 

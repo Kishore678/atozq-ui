@@ -69,6 +69,27 @@ export class P2PModel
      enableI2IGroupE!:boolean;
      enableI2IGroupF!:boolean;
      enableI2IGroupC!:boolean;
+     shortTermA!:boolean;
+     highCibilA!:boolean;  
+     
+     shortTermB!:boolean;
+     highCibilB!:boolean; 
+
+     shortTermC!:boolean;
+     highCibilC!:boolean; 
+
+     shortTermD!:boolean;
+     highCibilD!:boolean; 
+
+     shortTermE!:boolean;
+     highCibilE!:boolean; 
+
+     shortTermF!:boolean;
+     highCibilF!:boolean; 
+
+     shortTermX!:boolean;
+     highCibilX!:boolean; 
+     
 }
 
 
