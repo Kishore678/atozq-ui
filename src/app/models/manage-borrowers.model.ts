@@ -13,6 +13,8 @@ export class ManageBorrowers {
         tenure!:number;
         isEligible!:boolean;
         isLive!:string;
+        isRepeat!:false;
+        loanCount!:number;
         leftAmt!:string;
         status!:number;
         statusMsg!:string;

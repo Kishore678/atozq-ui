@@ -959,7 +959,8 @@
 	<th style="width:25px;">LScr</th>
     <th style="width:25px;">Int%.</th>
     <th style="width:30px;">Tenure</th>
-    <th style="width:10px;">Elig.</th>   
+    <th style="width:10px;">Elig.</th>  
+    <th style="width:10px;">Rept.</th>  
     <th style="width:10px;">Live</th>   
     <th style="width:10px;">LeftAmt</th>   
     <th style="width:50px;">Invest Amt</th>
@@ -981,6 +982,7 @@
    <td>{{w.interest}}</td>   
    <td>{{w.tenure}} {{w.tenureType=='d'?'D':'M'}}</td>   
    <td [ngClass]="w.isEligible?'profit':'loss'">{{w.isEligible?'Yes':'No'}}</td>
+   <td [ngClass]="w.isRepeat?'profit':'loss'">{{w.isRepeat?w.loanCount:''}}</td>   
    <td [ngClass]="w.isLive!=''?'profit':'loss'">{{w.isLive}}</td>
    <td>{{w.leftAmt}}</td>
    <td>{{w.investAmt}}</td>
